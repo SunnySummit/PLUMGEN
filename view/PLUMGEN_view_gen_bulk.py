@@ -11,7 +11,7 @@ import ctypes
 # no file imports
 
 class PlumgenViewGenBulk:
-    def __init__(self, parent, bulk_new_val, selected_biome, property_labels_edited, asset_proper_index, icon_path, apply_callback, multiply=False):
+    def __init__(self, parent, bulk_new_val, selected_biome, property_labels_edited, asset_proper_index, icon_path, languages, langu, apply_callback, multiply=False):
         self.parent = parent
 
         self.apply_callback = apply_callback
@@ -20,10 +20,13 @@ class PlumgenViewGenBulk:
         self.property_labels_edited = property_labels_edited
         self.asset_proper_index = asset_proper_index
         self.icon_path = icon_path
+        self.langs = languages
+        self.lan = langu
+
         self.multiply = multiply
 
         self.window = tk.Toplevel(self.parent)
-        self.window.title("Bulk Edit Menu")
+        self.window.title(self.langs[self.lan]["view_gen_bulk_init"]["Main_Title"])
 
         # check if the code is frozen (compiled to exe) or running as a script
         if getattr(sys, 'frozen', False):
@@ -56,7 +59,7 @@ class PlumgenViewGenBulk:
         self.value_label.configure(text=self.property_labels_edited[self.asset_proper_index] + ": ")
         
         if self.multiply:
-            self.entered_value_label.configure(text=f"* {self.bulk_new_val} (multiply each unique value)")
+            self.entered_value_label.configure(text=f"* {self.bulk_new_val} {self.langs[self.lan]["view_gen_bulk_init"]["multiply_each_label"]}")
         else:
             self.entered_value_label.configure(text=self.bulk_new_val)
 
@@ -101,23 +104,23 @@ class PlumgenViewGenBulk:
 
     def create_widgets(self):
         # Left column widgets
-        self.choose_level_label = ttk.Label(self.window, text="Choose bulk modify level:", style='TitleLabel.TLabel')
-        self.current_biome_radio = ttk.Radiobutton(self.window, text="Selected Biome Only", variable=self.level_choice, value='1')
-        self.all_biomes_radio = ttk.Radiobutton(self.window, text="ALL Biomes", variable=self.level_choice, value='2')
+        self.choose_level_label = ttk.Label(self.window, text=self.langs[self.lan]["left_col_widg"]["choose_level_label"], style='TitleLabel.TLabel')
+        self.current_biome_radio = ttk.Radiobutton(self.window, text=self.langs[self.lan]["left_col_widg"]["current_biome_radio"], variable=self.level_choice, value='1')
+        self.all_biomes_radio = ttk.Radiobutton(self.window, text=self.langs[self.lan]["left_col_widg"]["all_biomes_radio"], variable=self.level_choice, value='2')
 
         # Right column widgets
-        self.choose_category_label = ttk.Label(self.window, text="Choose prop category to modify:", style='TitleLabel.TLabel')
-        self.all_distant_objects_check = ttk.Checkbutton(self.window, text="All Distant Objects", variable=self.prop_distant, onvalue=True, offvalue=False)
-        self.all_landmarks_check = ttk.Checkbutton(self.window, text="All Landmarks", variable=self.prop_landmark, onvalue=True, offvalue=False)
-        self.all_objects_check = ttk.Checkbutton(self.window, text="All Objects", variable=self.prop_object, onvalue=True, offvalue=False)
-        self.all_detail_objects_check = ttk.Checkbutton(self.window, text="All Detail Objects", variable=self.prop_detail, onvalue=True, offvalue=False)
+        self.choose_category_label = ttk.Label(self.window, text=self.langs[self.lan]["right_col_widg"]["choose_category_label"], style='TitleLabel.TLabel')
+        self.all_distant_objects_check = ttk.Checkbutton(self.window, text=self.langs[self.lan]["right_col_widg"]["all_distant_objects_check"], variable=self.prop_distant, onvalue=True, offvalue=False)
+        self.all_landmarks_check = ttk.Checkbutton(self.window, text=self.langs[self.lan]["right_col_widg"]["all_landmarks_check"], variable=self.prop_landmark, onvalue=True, offvalue=False)
+        self.all_objects_check = ttk.Checkbutton(self.window, text=self.langs[self.lan]["right_col_widg"]["all_objects_check"], variable=self.prop_object, onvalue=True, offvalue=False)
+        self.all_detail_objects_check = ttk.Checkbutton(self.window, text=self.langs[self.lan]["right_col_widg"]["all_detail_objects_check"], variable=self.prop_detail, onvalue=True, offvalue=False)
 
         # Labels for entered value
-        self.value_label = ttk.Label(self.window, text="Value: ", style='TitleLabel.TLabel')
-        self.entered_value_label = ttk.Label(self.window, text="Error: Empty value", style='TLabel')
+        self.value_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_button"]["value_label"], style='TitleLabel.TLabel')
+        self.entered_value_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_button"]["entered_value_label"], style='TLabel')
 
         # Apply button
-        self.apply_button = ttk.Button(self.window, text="Apply Bulk Edit", command=self.apply_bulk_settings, style='Bulk.TButton')
+        self.apply_button = ttk.Button(self.window, text=self.langs[self.lan]["labels_button"]["apply_button"], command=self.apply_bulk_settings, style='Bulk.TButton')
 
 
     def layout_widgets(self):
@@ -163,11 +166,9 @@ class PlumgenViewGenBulk:
         level = self.level_choice.get() # '1' if "Selected Biome Only", '2' if "ALL Biomes"
 
         # create a summary message
-        summary_message = "Caution: You cannot undo this.\n\n" \
-                        "Please review your settings.\n\n" \
-                        "Proceed with bulk edit?"
+        summary_message = self.langs[self.lan]["apply_bulk_settings"]["confirm_desc"]
 
-        response = messagebox.askyesno("Confirm Settings", summary_message, parent=self.window)
+        response = messagebox.askyesno(self.langs[self.lan]["apply_bulk_settings"]["confirm_title"], summary_message, parent=self.window)
             
         if response: # if yes
             self.apply_callback(self.bulk_new_val, self.selected_biome, distant, landmark, object, detail, level, self.multiply)

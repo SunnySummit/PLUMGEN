@@ -20,7 +20,7 @@ from view.PLUMGEN_view_menu import MenuBar
 
 class PlumgenViewGen:
     #def __init__(self, parent):
-    def __init__(self, root, controller):
+    def __init__(self, root, controller, languages, lang):
 
         self.logger = logging.getLogger(__name__)  #set up logging
 
@@ -28,6 +28,8 @@ class PlumgenViewGen:
                 
             self.root = root # store the root window reference
             self.controller = controller # configure window
+            self.langs = languages # languages
+            self.lan = lang
 
             # frame 1
             self.framePanel = tk.Frame(self.root)
@@ -116,10 +118,17 @@ class PlumgenViewGen:
                 self.export_script_button, self.save_rename_biome_button
             ]
 
-            self.attribute_labels = ["Filename: ", "Placement: ", "MinHeight: ", "MaxHeight: ", "MinAngle: ", "MaxAngle: ",
-                        "MinScale: ", "MaxScale: ", "MinScaleY: ", "MaxScaleY: ", "PatchEdgeScaling: ",
-                        "MaxXZRotation: ", "DestroyedByPlayerShip: ", "DestroyedByTerrainEdit: ",
-                        "CreaturesCanEat: ", "Coverage: ", "FlatDensity: ", "SlopeDensity: ", "SlopeMultiplier: ", "DrawDistance: ", "TotalCountInTemplate: "]
+            self.attribute_labels = [self.langs[self.lan]["attribute_labels"]["Filename"], self.langs[self.lan]["attribute_labels"]["Placement"],
+                        self.langs[self.lan]["attribute_labels"]["MinHeight"], self.langs[self.lan]["attribute_labels"]["MaxHeight"],
+                        self.langs[self.lan]["attribute_labels"]["MinAngle"], self.langs[self.lan]["attribute_labels"]["MaxAngle"],
+                        self.langs[self.lan]["attribute_labels"]["MinScale"], self.langs[self.lan]["attribute_labels"]["MaxScale"],
+                        self.langs[self.lan]["attribute_labels"]["MinScaleY"], self.langs[self.lan]["attribute_labels"]["MaxScaleY"],
+                        self.langs[self.lan]["attribute_labels"]["PatchEdgeScaling"], self.langs[self.lan]["attribute_labels"]["MaxXZRotation"],
+                        self.langs[self.lan]["attribute_labels"]["DestroyedByPlayerShip"], self.langs[self.lan]["attribute_labels"]["DestroyedByTerrainEdit"],
+                        self.langs[self.lan]["attribute_labels"]["CreaturesCanEat"], self.langs[self.lan]["attribute_labels"]["Coverage"],
+                        self.langs[self.lan]["attribute_labels"]["FlatDensity"], self.langs[self.lan]["attribute_labels"]["SlopeDensity"],
+                        self.langs[self.lan]["attribute_labels"]["SlopeMultiplier"], self.langs[self.lan]["attribute_labels"]["DrawDistance"],
+                        self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]]
             
             self.attribute_labels_edited = [label[:-2] for label in self.attribute_labels]
 
@@ -144,16 +153,20 @@ class PlumgenViewGen:
             self.window.after(300, lambda: self.window.attributes("-alpha", 1.0))
 
         except Exception as e:
-            self.logger.exception("Error: %s", e) # log the exception
-            self.show_error_message("An error occurred: {}".format(str(e)))
+            self.logger.exception(f"{self.langs[self.lan]["messagebox"]["error"]}{e}") # log the exception
+            self.show_error_message(f"{self.langs[self.lan]["messagebox"]["error_desc_short"]}{e}")
 
+
+    def change_language(self, language):
+        # update language menu title
+        self.la = language
 
     def show_error_message(self, message, max_length=200):
         if len(message) > max_length:
             truncated_message = message[:max_length] + "..."
         else:
             truncated_message = message
-        messagebox.showerror("Error", f"{truncated_message}\n\nIf you're struggling to resolve this error, please share the 'plumgen.log' file with the dev.", parent=self.window)
+        messagebox.showerror(self.langs[self.lan]["de_select_all"]["Error"], f"{truncated_message}\n\n{self.langs[self.lan]["messagebox"]["error_desc_long"]}", parent=self.window)
 
 
     def display_splash(self):
@@ -266,33 +279,41 @@ class PlumgenViewGen:
 
         self.filemenu = tk.Menu(self.mb)
         #filemenu.add_command(label='Import EXML Data/Merge Biome Lists', command=self.import_exml_biomes)
-        self.filemenu.add_command(label='Make Biome Template from EXML', command=self.make_template_from_exml)
+        self.filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["make_template"], command=self.make_template_from_exml)
         self.filemenu.add_separator()
-        self.filemenu.add_command(label='Auto-Rename All Biomes', command=self.auto_rename_biomes)
-        self.filemenu.add_command(label='Reset Auto-Rename', command=self.reset_rename_biomes)
+        self.filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["auto_rename"], command=self.auto_rename_biomes)
+        self.filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["reset_auto_rename"], command=self.reset_rename_biomes)
         self.filemenu.add_separator()
-        self.filemenu.add_command(label='Exit', command=self.on_close)
+        self.filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["Exit"], command=self.on_close)
 
         self.presetsmenu = tk.Menu(self.mb)
-        self.presetsmenu.add_command(label='Save Biome as Preset', command=self.save_biome_preset)
-        self.presetsmenu.add_command(label='Import Biome Preset', command=self.open_presets)
+        self.presetsmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["save_preset"], command=self.save_biome_preset)
+        self.presetsmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["import_preset"], command=self.open_presets)
 
         self.toolsmenu = tk.Menu(self.mb)
-        self.toolsmenu.add_command(label='Bulk Edit Menu', command=self.bulk_edit_menu)
-        self.toolsmenu.add_command(label='Refresh Suggested Props', command=self.refresh_suggested_props)
+        self.toolsmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["bulk_menu"], command=self.bulk_edit_menu)
+        self.toolsmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["refresh_suggested"], command=self.refresh_suggested_props)
 
         self.editmenu = tk.Menu(self.mb)
-        self.editmenu.add_command(label='Help', command=self.open_help)
-        self.editmenu.add_command(label='About...', command=self.open_about)
+        self.editmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["Help"], command=self.open_help)
+        self.editmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["about"], command=self.open_about)
+
+        # language menu
+        #self.langmenu = tk.Menu(self.mb)
+        #self.langmenu.add_command(label='English', command=lambda: self.change_language('English'))
+        #self.langmenu.add_command(label='German', command=lambda: self.change_language('German'))
+        #self.langmenu.add_command(label='French', command=lambda: self.change_language('French'))
 
         self.donatemenu = tk.Menu(self.mb)
-        self.donatemenu.add_command(label='Open Donate Page', command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
+        self.donatemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["donate_page"], command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
 
-        self.mb.add_menu('File', self.filemenu)
-        self.mb.add_menu('Presets', self.presetsmenu)
-        self.mb.add_menu('Tools', self.toolsmenu)
-        self.mb.add_menu('Help', self.editmenu)
-        self.mb.add_menu('Donate', self.donatemenu)
+        self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["File"], self.filemenu)
+        self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Presets"], self.presetsmenu)
+        self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Tools"], self.toolsmenu)
+        self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Help_2"], self.editmenu)
+        #self.mb.add_menu('Language', self.langmenu)
+        self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Donate"], self.donatemenu)
+        
 
         # listboxes
         self.biome_lb = Listbox(self.window, selectmode=tk.SINGLE, bg=self.background_c, fg=self.white_c, font=('TkDefaultFont', 10))
@@ -331,35 +352,35 @@ class PlumgenViewGen:
         self.similar_props_lb.configure(xscrollcommand=self.similar_props_scrollbar.set, yscrollcommand=self.similar_props_vscrollbar.set)
 
         #  add/delete buttons
-        self.biome_add_button = ttk.Button(self.window, text="Add Biome", command=self.add_default_biome, style='Gen.TButton')
-        self.biome_delete_button = ttk.Button(self.window, text="Delete", command=self.delete_biome, style='Delete.TButton')
-        self.distant_objects_add_button = ttk.Button(self.window, text="Add Distant Object", command=self.add_default_distant_object, style='Gen.TButton')
-        self.distant_objects_delete_button = ttk.Button(self.window, text="Delete", command=self.delete_distant_object, style='Delete.TButton')
-        self.landmark_add_button = ttk.Button(self.window, text="Add Landmark", command=self.add_default_landmark, style='Gen.TButton')
-        self.landmark_delete_button = ttk.Button(self.window, text="Delete", command=self.delete_landmark, style='Delete.TButton')
-        self.objects_add_button = ttk.Button(self.window, text="Add Object", command=self.add_default_object, style='Gen.TButton')
-        self.objects_delete_button = ttk.Button(self.window, text="Delete", command=self.delete_object, style='Delete.TButton')
-        self.detail_objects_add_button = ttk.Button(self.window, text="Add Detail Object", command=self.add_default_detail_object, style='Gen.TButton')
-        self.detail_objects_delete_button = ttk.Button(self.window, text="Delete", command=self.delete_detail_object, style='Delete.TButton')
+        self.biome_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Biome"], command=self.add_default_biome, style='Gen.TButton')
+        self.biome_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_biome, style='Delete.TButton')
+        self.distant_objects_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Distant"], command=self.add_default_distant_object, style='Gen.TButton')
+        self.distant_objects_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_distant_object, style='Delete.TButton')
+        self.landmark_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Landmark"], command=self.add_default_landmark, style='Gen.TButton')
+        self.landmark_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_landmark, style='Delete.TButton')
+        self.objects_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Object"], command=self.add_default_object, style='Gen.TButton')
+        self.objects_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_object, style='Delete.TButton')
+        self.detail_objects_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Detail"], command=self.add_default_detail_object, style='Gen.TButton')
+        self.detail_objects_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_detail_object, style='Delete.TButton')
         # other buttons
         #self.auto_rename_biomes_button = ttk.Button(self.window, text="Auto Rename All", command=self.auto_rename_biomes, style='Start.TButton')
         #self.reset_auto_names_biomes_button = ttk.Button(self.window, text="Reset Rename", command=self.reset_rename_biomes, style='TButton')
-        self.save_rename_biome_button = ttk.Button(self.window, text="Rename", command=self.save_renamed_biome, style='Gen.TButton')
-        self.duplicate_biome_button = ttk.Button(self.window, text="Duplicate Selected Biome", command=self.duplicate_selected_biome, width=40) # width so text not scrunched
+        self.save_rename_biome_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Rename"], command=self.save_renamed_biome, style='Gen.TButton')
+        self.duplicate_biome_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Duplicate_Biome"], command=self.duplicate_selected_biome, width=40) # width so text not scrunched
         #self.save_biome_preset_button = ttk.Button(self.window, text="Save Biome as Preset", command=self.save_biome_preset, style='Gen.TButton')
-        self.duplicate_prop_button = ttk.Button(self.window, text="Duplicate Selected Prop", command=self.duplicate_selected_prop, width=50)
+        self.duplicate_prop_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Duplicate_Prop"], command=self.duplicate_selected_prop, width=50)
         #self.open_presets_button = ttk.Button(self.window, text="Import Biome Preset", command=self.open_presets, style='Gen.TButton')
         #self.import_lua_button = ttk.Button(self.window, text="Import LUA Scripts", command=self.import_lua_biomes, style='Start.TButton')
-        self.import_exml_button = ttk.Button(self.window, text="Import EXMLs/Merge Biomes", command=self.import_exml_biomes, style='Start.TButton')
+        self.import_exml_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Import"], command=self.import_exml_biomes, style='Start.TButton')
         #self.make_template_from_exml_button = ttk.Button(self.window, text="Make Biome Template from EXML", command=self.make_template_from_exml, style='Gen.TButton')
-        self.export_script_button = ttk.Button(self.window, text="Continue >>", command=self.export_script, style='Start.TButton', width=20)
+        self.export_script_button = ttk.Button(self.window, text=f"{self.langs[self.lan]["buttons"]["Continue"]}>>", command=self.export_script, style='Start.TButton', width=20)
         #self.refresh_suggested_props_button = ttk.Button(self.window, text="Refresh Suggested Props", command=self.refresh_suggested_props, style='Gen.TButton')
-        self.save_prop_changes_button = ttk.Button(self.window, text="Save", width=5, command=self.save_prop_changes)
+        self.save_prop_changes_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Save"], width=5, command=self.save_prop_changes)
         self.increment_prop_changes_button = ttk.Button(self.window, text="↑", width=2, command=self.increment_prop_changes, style='Start.TButton')
         self.decrement_prop_changes_button = ttk.Button(self.window, text="↓", width=2, command=self.decrement_prop_changes, style='Gen.TButton')
         #self.bulk_edit_button = ttk.Button(self.window, text="Bulk Edit Menu", command=self.bulk_edit_menu, style='Start.TButton')
-        self.save_model_choice_button = ttk.Button(self.window, text="Save Model", command=self.save_model_choice, style='Gen.TButton')
-        self.save_placem_choice_button = ttk.Button(self.window, text="Save Placem", command=self.save_placem_choice, style='Gen.TButton')
+        self.save_model_choice_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Save_Model"], command=self.save_model_choice, style='Gen.TButton')
+        self.save_placem_choice_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Save_Placem"], command=self.save_placem_choice, style='Gen.TButton')
         #self.deselect_all_props_button = ttk.Button(self.window, text="Deselect All Props", command=self.deselect_all_props, style='TButton')
 
         # entry
@@ -380,25 +401,25 @@ class PlumgenViewGen:
         self.separator4 = ttk.Separator(self.window, orient="vertical")
 
         # labels
-        self.biome_label = ttk.Label(self.window, text=" Biome Objects List ", style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
-        self.biome_props_label = ttk.Label(self.window, text=" Biome Props ", style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
-        self.prop_attribute_label = ttk.Label(self.window, text=" Prop Attributes ", style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
-        self.prop_modify_attribute_label = ttk.Label(self.window, text=" Modify Attribute ", style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
-        self.model_label = ttk.Label(self.window, text=" Default Model List ", style="Title2Label.TLabel", wraplength=300, justify=tk.CENTER)
-        self.related_props_label = ttk.Label(self.window, text="Suggested Props (click to replace)", style="Title2Label.TLabel", justify=tk.CENTER)
-        self.attribute_desc_label = ttk.Label(self.window, text="Attribute Description", style="Title2Label.TLabel", wraplength=200, justify=tk.CENTER)
-        self.placement_label = ttk.Label(self.window, text="Default Placement List", style="Title2Label.TLabel", wraplength=250, justify=tk.CENTER)
-        self.biome_template_label = ttk.Label(self.window, text="Biome Template: ", style="TLabel", wraplength=200)
+        self.biome_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["title_1"], style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
+        self.biome_props_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["title_2"], style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
+        self.prop_attribute_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["title_3"], style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
+        self.prop_modify_attribute_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["title_4"], style="TitleLabel.TLabel", wraplength=200, justify=tk.CENTER)
+        self.model_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["subtitle_1"], style="Title2Label.TLabel", wraplength=300, justify=tk.CENTER)
+        self.related_props_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["subtitle_2"], style="Title2Label.TLabel", justify=tk.CENTER)
+        self.attribute_desc_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["subtitle_3"], style="Title2Label.TLabel", wraplength=200, justify=tk.CENTER)
+        self.placement_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["subtitle_4"], style="Title2Label.TLabel", wraplength=250, justify=tk.CENTER)
+        self.biome_template_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["subtitle_5"], style="TLabel", wraplength=200)
         # tooltip
-        self.tooltip_label = ttk.Label(self.window, text="Click 'Add Biome' to get started.", style="TLabel", wraplength=220, width=40)
+        self.tooltip_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["tooltip_def"], style="TLabel", wraplength=220, width=40)
 
         # checkboxes
         self.hide_tooltip_var = tk.BooleanVar(value=False)
-        self.hide_tooltip_cb = ttk.Checkbutton(self.window, text="Hide Tooltip", variable=self.hide_tooltip_var, command=self.toggle_tooltip) #, width=40
+        self.hide_tooltip_cb = ttk.Checkbutton(self.window, text=self.langs[self.lan]["checkboxes"]["hide_tooltip"], variable=self.hide_tooltip_var, command=self.toggle_tooltip) #, width=40
         self.gen_using_template_data_var = tk.BooleanVar(value=False)
-        self.gen_using_template_data_cb = ttk.Checkbutton(self.window, text="Add via Template Data", variable=self.gen_using_template_data_var, command=self.gen_using_biome_template_data)
+        self.gen_using_template_data_cb = ttk.Checkbutton(self.window, text=self.langs[self.lan]["checkboxes"]["add_template_data"], variable=self.gen_using_template_data_var, command=self.gen_using_biome_template_data)
         self.replace_lb_with_template_data_var = tk.BooleanVar(value=False)
-        self.replace_lb_with_template_data_cb = ttk.Checkbutton(self.window, text="Use Template Placements/Models", variable=self.replace_lb_with_template_data_var, command=self.use_template_placem_models)
+        self.replace_lb_with_template_data_cb = ttk.Checkbutton(self.window, text=self.langs[self.lan]["checkboxes"]["use_template_stuff"], variable=self.replace_lb_with_template_data_var, command=self.use_template_placem_models)
 
 
     def layout_widgets(self):
@@ -463,18 +484,18 @@ class PlumgenViewGen:
 
         # UI element descriptions
         self.gui_element_descriptions = {
-            self.biome_lb: "> Biome Objects List:\nEach biome represents a potential \"spawning point\" on a given planet (e.g. mountains, base, beach, etc. terrain-- you will pick this later). For instance, you might keep biome prop density low if you want to combine multiple biomes on a single planet.",
-            self.distant_objects_lb: "> Distant Objects:\nProps with the highest draw distance and largest scale. The more props in this category, the lower the performance.",
-            self.landmarks_lb: "> Landmarks:\nProps with higher draw distance and medium to large scale.\ne.g. vanilla-sized trees.",
-            self.objects_lb: "> Objects:\nProps with lower draw distance and smaller scale.\ne.g. vanilla-sized rocks, bushes.",
-            self.detail_objects_lb: "> Detail Objects:\nProps with the lowest draw distance and smallest scale.\ne.g. vanilla-sized grass, small plants. For reference, this category holds the highest number of props in the vanilla game.",
+            self.biome_lb: f">{self.langs[self.lan]["tooltip"]["biome_lb"]}",
+            self.distant_objects_lb: f">{self.langs[self.lan]["tooltip"]["distant_objects_lb"]}",
+            self.landmarks_lb: f">{self.langs[self.lan]["tooltip"]["landmarks_lb"]}",
+            self.objects_lb: f">{self.langs[self.lan]["tooltip"]["objects_lb"]}",
+            self.detail_objects_lb: f">{self.langs[self.lan]["tooltip"]["detail_objects_lb"]}",
             #self.prop_attributes_lb: "Prop attributes:\nModify selected prop attributes like density or scale. Click on an attribute to view more info under 'Attribute Info'",
-            self.biome_template_label: "> Biome Template:\nA giant collection of 'Object Spawn Data' from biome .MBIN files. Clicking any 'Add' button will create a new biome (or prop) based on the currently selected template. Click File > Make Biome Template from EXML to create your own biome template.",
-            self.csv_combo: "> Biome Template:\nA giant collection of 'Object Spawn Data' from biome .MBIN files. Clicking any 'Add' button will create a new biome (or prop) based on the currently selected template. Click File > Make Biome Template from EXML to create your own biome template.",
-            self.gen_using_template_data_cb: "Uses selected biome template model filepaths as the key when adding new biomes/props via 'Add' buttons. If left off, it still uses the .CSV data but sticks to a standard model filepath list for the key. It will not add props to Biome Props list if none are found.",
+            self.biome_template_label: f">{self.langs[self.lan]["tooltip"]["biome_template_label"]}",
+            self.csv_combo: f">{self.langs[self.lan]["tooltip"]["csv_combo"]}",
+            self.gen_using_template_data_cb: f"{self.langs[self.lan]["tooltip"]["gen_using_template_data_cb"]}",
             #self.refresh_suggested_props_button: "These model reference counts (numbers inside []) don't affect your biomes whatsoever, but are meant to help you decide what props to add (based on the selected biome template). Additionally, these are saved with the JSON file when clicking 'Save Biome as Preset'.",  
-            self.import_exml_button: "Analyze EXML files in your '_BIOMES Exmls Folder Goes Here' folder and convert to PLUMGEN's format. \n\n*To merge biome lists* FIRST, move all BIOMES folders to BEFGH, THEN import.",
-            self.model_lb: "Props after '--' line are pre-release models or models normally in a different prop draw distance category. They've been moved here to extend the draw distance for those props (e.g. some props don't have LOD imposters, so you could move those to Distant Objects). ",
+            self.import_exml_button: f"{self.langs[self.lan]["tooltip"]["import_exml_button"]}",
+            self.model_lb: f"{self.langs[self.lan]["tooltip"]["model_lb"]}",
         }
         for element in self.gui_element_descriptions.keys():
             element.bind("<Motion>", lambda event, element=element: self.on_listbox_mouse_move(event, element))
@@ -559,13 +580,13 @@ class PlumgenViewGen:
             help_window.geometry(f"+{parent_x}+{parent_y}")
             help_window.grab_set()  # prevent this window from going behind main window
 
-            label = tk.Label(help_window, text="To read documentation, please visit: ")
+            label = tk.Label(help_window, text=self.langs[self.lan]["help"]["read_doc_visit"])
             label.grid(row=0, column=0, padx=10, pady=10)
             link_label = tk.Label(help_window, text="https://github.com/SunnySummit", fg="blue", cursor="hand2")
             link_label.grid(row=1, column=0, padx=10, pady=5)
             link_label.bind("<Button-1>", lambda event: webbrowser.open_new("https://github.com/SunnySummit"))
 
-            close_button = tk.Button(help_window, text="Close", command=help_window.destroy)
+            close_button = tk.Button(help_window, text=self.langs[self.lan]["help"]["close"], command=help_window.destroy)
             close_button.grid(row=2, column=0, pady=10)
 
             help_window.mainloop()
@@ -578,11 +599,10 @@ class PlumgenViewGen:
     def open_about(self):
         try:
                 
-            messagebox.showinfo("About PLUMGEN", f"Author: SunnySummit aka goosetehmoose"
-                                "\nWebsite: https://github.com/SunnySummit"
-                                "\nLicense: GPL-3.0"
-                                "\n\nI kindly ask that you do not distribute this application "
-                                "for use in other Hello Games-related projects or games other than No Man's Sky.", parent=self.window)
+            messagebox.showinfo(self.langs[self.lan]["about"]["about_title"], f"{self.langs[self.lan]["about"]["author"]}SunnySummit aka goosetehmoose"
+                                f"\n{self.langs[self.lan]["about"]["website"]}https://github.com/SunnySummit"
+                                f"\n{self.langs[self.lan]["about"]["license"]}GPL-3.0"
+                                f"\n\n{self.langs[self.lan]["about"]["desc"]}", parent=self.window)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -698,7 +718,7 @@ class PlumgenViewGen:
 
     def on_listbox_mouse_leave(self, event):
         if not self.biome_lb.get(0, tk.END):
-            self.tooltip_label.config(text="Click 'Add Biome' to get started.")
+            self.tooltip_label.config(text=self.langs[self.lan]["lb_mouse_leave"]["default"])
         else:
             self.tooltip_label.config(text="")
             
@@ -730,14 +750,11 @@ class PlumgenViewGen:
             # set generation to the biome template, if gen_using_template_data_var cb was checked
             if self.gen_using_template_data_var.get():
                 if selected_csv != "_Current Vanilla+Pre NMS.csv":
-                    result = messagebox.askyesno("Warning: Generating using Custom Models", "It seems you're using a custom biome template (not '_Current Vanilla+Pre NMS.csv')."
-                                            "\n\nThis could indicate that your custom .CSV refers to outdated or broken models, which might cause issues with your mod."
-                                            "\n\nYou'll also need a PAK of the custom models for them to show up in-game."
-                                            "\n\nDo you want to proceed?", parent=self.window)
+                    result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
                         self.gen_using_template_data_var.set(False)
                         return
-                else: messagebox.showinfo("Info: Generation Switched", "'Add Using Template Model' Checkbox checked.\n Switching to '_Current Vanilla+Pre NMS.csv' generation.", parent=self.window)
+                else: messagebox.showinfo(self.langs[self.lan]["csv_selected"]["info_title"], self.langs[self.lan]["csv_selected"]["info_desc"], parent=self.window)
                 # replace default model path list with list of unique models in biome template
                 self.controller.set_custom_model_list()
             else:
@@ -833,15 +850,15 @@ class PlumgenViewGen:
         self.prop_attributes_lb.delete(0, tk.END)
 
         for label, item in zip(self.attribute_labels, self.prop_distant):
-            if label != "TotalCountInTemplate: ": 
+            if label != self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: 
                 display_text = f"{label}{item}"
                 self.prop_attributes_lb.insert(tk.END, display_text)
             # select items in listboxes
-            if label == "Filename: ":
+            if label == self.langs[self.lan]["attribute_labels"]["Filename"]:
                 self.select_and_highlight_item(self.model_lb, self.dist_model_list, item)
-            elif label == "Placement: ":
+            elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == "TotalCountInTemplate: ": # find this prop (up to 20th index) in prop's list of similar_items
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
                 self.select_and_highlight_item(self.similar_props_lb, self.prop_distant[20], self.prop_distant[:20]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
@@ -855,15 +872,15 @@ class PlumgenViewGen:
         self.prop_attributes_lb.delete(0, tk.END)
 
         for label, item in zip(self.attribute_labels, self.prop_landmark):
-            if label != "TotalCountInTemplate: ": 
+            if label != self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: 
                 display_text = f"{label}{item}"
                 self.prop_attributes_lb.insert(tk.END, display_text)
             # select items in listboxes
-            if label == "Filename: ":
+            if label == self.langs[self.lan]["attribute_labels"]["Filename"]:
                 self.select_and_highlight_item(self.model_lb, self.landm_model_list, item)
-            elif label == "Placement: ":
+            elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == "TotalCountInTemplate: ": # find this prop (up to 20th index) in prop's list of similar_items
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
                 self.select_and_highlight_item(self.similar_props_lb, self.prop_landmark[20], self.prop_landmark[:20]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
@@ -877,15 +894,15 @@ class PlumgenViewGen:
         self.prop_attributes_lb.delete(0, tk.END)
 
         for label, item in zip(self.attribute_labels, self.prop_object):
-            if label != "TotalCountInTemplate: ": 
+            if label != self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: 
                 display_text = f"{label}{item}"
                 self.prop_attributes_lb.insert(tk.END, display_text)
             # select items in listboxes
-            if label == "Filename: ":
+            if label == self.langs[self.lan]["attribute_labels"]["Filename"]:
                 self.select_and_highlight_item(self.model_lb, self.objs_model_list, item)
-            elif label == "Placement: ":
+            elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == "TotalCountInTemplate: ": # find this prop (up to 20th index) in prop's list of similar_items
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
                 self.select_and_highlight_item(self.similar_props_lb, self.prop_object[20], self.prop_object[:20]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
@@ -899,15 +916,15 @@ class PlumgenViewGen:
         self.prop_attributes_lb.delete(0, tk.END)
 
         for label, item in zip(self.attribute_labels, self.prop_detail):
-            if label != "TotalCountInTemplate: ": 
+            if label != self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: 
                 display_text = f"{label}{item}"
                 self.prop_attributes_lb.insert(tk.END, display_text)
             # select items in listboxes
-            if label == "Filename: ":
+            if label == self.langs[self.lan]["attribute_labels"]["Filename"]:
                 self.select_and_highlight_item(self.model_lb, self.detail_model_list, item)
-            elif label == "Placement: ":
+            elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == "TotalCountInTemplate: ": # find this prop (up to 20th index) in prop's list of similar_items
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
                 self.select_and_highlight_item(self.similar_props_lb, self.prop_detail[20], self.prop_detail[:20]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
@@ -1036,31 +1053,31 @@ class PlumgenViewGen:
 
                 # dictionary to map attribute indexes to descriptions
                 attribute_descriptions = {
-                    0: "Model path.",
-                    1: "Tile type affecting prop placement spacing. Be sure to use distinct placement, coverage, or density values per prop in a biome to prevent overlapping props. If 'X' in the name, it might be deactivated and may not spawn.",
-                    2: "Lowest spawn height relative to sea level. Note: For props in 'Underwater' tile types/terrain, set this to -128 so they spawn correctly.",
-                    3: "Highest spawn height.",
-                    4: "Min terrain angle at which the prop will spawn. 180 = all angles -> lowers performance because more props.",
-                    5: "Max terrain angle at which the prop will spawn. 180 = all angles -> lowers performance because more props.",
-                    6: "Smallest scale for an instance of a prop to spawn on a biome. Large range = extremely varied prop scale on a biome.",
-                    7: "Largest scale for an instance of a prop to spawn on a biome. Large range = extremely varied prop scale on a biome.",
-                    8: "Min height scale for an instance of a prop to spawn on a biome. Mostly used for detail objects, as this value will distort large props.",
-                    9: "Max height scale for an instance of a prop to spawn on a biome. Mostly used for detail objects, as this value will distort large props.",
-                    10: "Scale variation at edges of a group of spawned props. Typically applied to high-density detail objects like grass to add a scale transition from grass to dirt/beach/etc. Not recommended with large or low-density props -> spawns highly erratic scale variations. Instead, use MinScale and MaxScale.",
-                    11: "Maximum rotation of a spawned prop around the X and Z axes. Limits range of vertical rotation.",
-                    12: "Player's ship impact on prop destruction. Note: Players may get stuck on planets after takeoff due to huge, unbreakable props.",
-                    13: "Terrain manipulator impact on prop destruction.",
+                    0: self.langs[self.lan]["attribute_desc"]["desc_0"],
+                    1: self.langs[self.lan]["attribute_desc"]["desc_1"],
+                    2: self.langs[self.lan]["attribute_desc"]["desc_2"],
+                    3: self.langs[self.lan]["attribute_desc"]["desc_3"],
+                    4: self.langs[self.lan]["attribute_desc"]["desc_4"],
+                    5: self.langs[self.lan]["attribute_desc"]["desc_5"],
+                    6: self.langs[self.lan]["attribute_desc"]["desc_6"],
+                    7: self.langs[self.lan]["attribute_desc"]["desc_7"],
+                    8: self.langs[self.lan]["attribute_desc"]["desc_8"],
+                    9: self.langs[self.lan]["attribute_desc"]["desc_9"],
+                    10: self.langs[self.lan]["attribute_desc"]["desc_10"],
+                    11: self.langs[self.lan]["attribute_desc"]["desc_11"],
+                    12: self.langs[self.lan]["attribute_desc"]["desc_12"],
+                    13: self.langs[self.lan]["attribute_desc"]["desc_13"],
                     14: "/ᐠ⎚-⎚マ",
-                    15: "AFAIK impact on spacing/grouping of props, not total number of props. Changing placement is usually more useful than changing coverage, imo. Note: High coverage e.g. 1 = crash.",
-                    16: "Density of props on flat terrain, useful for dense forests. Always check placement attribute, high density + densely grouped prop placement = crash.",
-                    17: "Density of props on sloped terrain. Note: spawning huge props on sloped terrain = issue where these props \"despawn\" as you approach. Always check placement attribute, high density + densely grouped prop placement = crash.",
-                    18: "Density multiplier of props on sloped terrain.",
-                    19: "DrawDistance from biome template .CSV file, may not necessarily represent draw distance of your prop. Note: These categories are hardcoded, meaning some props may not spawn if moved to a category other than vanilla one.",
-                    20: "Total model references in selected biome template. If you change biome template, click Tools > Refresh Suggested Props to update suggestions."
+                    15: self.langs[self.lan]["attribute_desc"]["desc_15"],
+                    16: self.langs[self.lan]["attribute_desc"]["desc_16"],
+                    17: self.langs[self.lan]["attribute_desc"]["desc_17"],
+                    18: self.langs[self.lan]["attribute_desc"]["desc_18"],
+                    19: self.langs[self.lan]["attribute_desc"]["desc_19"],
+                    20: self.langs[self.lan]["attribute_desc"]["desc_20"]
                 }
 
                 # get description based on attribute index
-                new_desc = attribute_descriptions.get(self.prop_attribute_index, "Error: Attribute index out of range.")
+                new_desc = attribute_descriptions.get(self.prop_attribute_index, self.langs[self.lan]["attribute_desc"]["error"])
 
                 self.describe_attribute(new_desc)
 
@@ -1134,13 +1151,12 @@ class PlumgenViewGen:
             elif 'X' in self.placem_val_at_index:
                 self.model_info.delete("1.0", tk.END)
                 self.model_info.insert(tk.END, self.placem_val_at_index + ":\n")
-                self.model_info.insert(tk.END, "Probably a custom placement value. Look for SPAWNDENSITYLIST.MBIN in the modded MBINs to locate this info. "
-                                    "'X' in the name might indicate this placement prevents this prop from spawning.")
+                self.model_info.insert(tk.END, self.langs[self.lan]["placem_click"]["desc_extra"])
 
             else:
                 self.model_info.delete("1.0", tk.END)
                 self.model_info.insert(tk.END, self.placem_val_at_index + ":\n")
-                self.model_info.insert(tk.END, "Probably a custom placement value. Look for SPAWNDENSITYLIST.MBIN in the modded MBINs to locate this info.")
+                self.model_info.insert(tk.END, self.langs[self.lan]["placem_click"]["desc_reg"])
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1173,7 +1189,7 @@ class PlumgenViewGen:
                     
             if self.similar_props_lb.size() > 0:
             
-                result = messagebox.askyesno("Replace?", "\nReplace the current prop with the suggested prop?", parent=self.window)
+                result = messagebox.askyesno(self.langs[self.lan]["sim_props_click"]["title"], self.langs[self.lan]["sim_props_click"]["desc"], parent=self.window)
                 if not result:
                     return
 
@@ -1330,8 +1346,7 @@ class PlumgenViewGen:
     def refresh_suggested_props(self):
         try:
                 
-            result = messagebox.askyesno("Warning", "This will overwrite suggested props for all your biomes (based on the selected biome template)."
-                                    "\n\nDo you want to proceed?", parent=self.window)
+            result = messagebox.askyesno(self.langs[self.lan]["refresh_suggested_props"]["Warning"], self.langs[self.lan]["refresh_suggested_props"]["Warning_Desc"], parent=self.window)
             if not result:
                 return
             self.controller.recount_models() # refresh model counts for selected biome template
@@ -1365,18 +1380,18 @@ class PlumgenViewGen:
     def set_custom_attr(self, selected_biome, index, new_val, set_val):
         if index in {2, 3, 4, 5, 11}:
             if not isinstance(new_val, int):
-                messagebox.showinfo("Error", f"{self.attribute_labels_edited[index]} must be an integer.", parent=self.window)
+                messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_integer"]}", parent=self.window)
                 return
         elif index in {6, 7, 8, 9, 10, 15, 16, 17, 18}:
             if not isinstance(new_val, numbers.Number):
-                messagebox.showinfo("Error", f"{self.attribute_labels_edited[index]} must be a number.", parent=self.window)
+                messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_number"]}", parent=self.window)
                 return
         elif index in {12, 13, 14}:
             if new_val not in {"TRUE", "FALSE"}:
-                messagebox.showinfo("Error", f"{self.attribute_labels_edited[index]} must be either 'TRUE' or 'FALSE'.", parent=self.window)
+                messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_bool"]}", parent=self.window)
                 return
         else:
-            messagebox.showinfo("Error 0", f"Did you add a new index? Index '{index}' out of range?", parent=self.window)
+            messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error_0"], f"{self.langs[self.lan]["set_custom_attr"]["index_warn_pt1"]}{index}{self.langs[self.lan]["set_custom_attr"]["index_warn_pt2"]}", parent=self.window)
             return
         
         if set_val:
@@ -1406,7 +1421,7 @@ class PlumgenViewGen:
                     self.refresh_detail_attr_placem_models()
 
             else:
-                messagebox.showinfo("Error 1", f"Index '{index}' out of range.", parent=self.window)
+                messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error_1"], f"{self.langs[self.lan]["set_custom_attr"]["2_index_warn_pt1"]}{index}{self.langs[self.lan]["set_custom_attr"]["2_index_warn_pt2"]}", parent=self.window)
                 return
             
         else:
@@ -1462,8 +1477,7 @@ class PlumgenViewGen:
                         self.set_custom_attr(selected_biome, self.prop_attribute_index, new_value, True)
 
                 else:
-                    messagebox.showerror("Error", "Modified value must only contain numbers, letters,\nor characters: '.' or '-'"
-                                        "\n\nIf trying to multiply, remove empty spaces, e.g. 4*2", parent=self.window)
+                    messagebox.showerror(self.langs[self.lan]["save_prop_changes"]["Error"], self.langs[self.lan]["save_prop_changes"]["Error_Desc"], parent=self.window)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1498,21 +1512,21 @@ class PlumgenViewGen:
 
                         if self.prop_attribute_index in {2, 3, 4, 5, 11}:
                             if not isinstance(bulk_new_value, int):
-                                messagebox.showinfo("Error", f"{self.attribute_labels_edited[self.prop_attribute_index]} must be an integer.", parent=self.window)
+                                messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_integer"]}", parent=self.window)
                                 return
                         elif self.prop_attribute_index in {6, 7, 8, 9, 10, 15, 16, 17, 18}:
                             if not isinstance(bulk_new_value, numbers.Number):
-                                messagebox.showinfo("Error", f"{self.attribute_labels_edited[self.prop_attribute_index]} must be a number.", parent=self.window)
+                                messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_number"]}", parent=self.window)
                                 return
                         elif self.prop_attribute_index in {12, 13, 14}:
                             if bulk_new_value not in {"TRUE", "FALSE"}:
-                                messagebox.showinfo("Error", f"{self.attribute_labels_edited[self.prop_attribute_index]} must be either 'TRUE' or 'FALSE'.", parent=self.window)
+                                messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_bool"]}", parent=self.window)
                                 return
                         else:
-                            messagebox.showinfo("Error 0", f"Did you add a new index? Index '{self.prop_attribute_index}' out of range?", parent=self.window)
+                            messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error_0"], f"{self.langs[self.lan]["set_custom_attr"]["index_warn_pt1"]}{self.prop_attribute_index}{self.langs[self.lan]["set_custom_attr"]["index_warn_pt2"]}", parent=self.window)
                             return
                     
-                        plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, bulk_new_value, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.apply_bulk_settings, multiply=True)
+                        plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, bulk_new_value, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.langs, self.lan, self.apply_bulk_settings, multiply=True)
 
 
 
@@ -1544,7 +1558,7 @@ class PlumgenViewGen:
                     # instantiate bulk view - display new menu
                     if bulk_val_validated:
                         if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
-                            plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, bulk_new_value, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.apply_bulk_settings)
+                            plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, bulk_new_value, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.langs, self.lan, self.apply_bulk_settings)
                     
                     # if model selected - attempt to get cursor selection and specific model selected
                     if self.prop_attribute_index == 0:
@@ -1555,23 +1569,23 @@ class PlumgenViewGen:
                             elif self.prop_draw_type == 2: selected_item = self.landm_model_list[selected_index]
                             elif self.prop_draw_type == 3: selected_item = self.objs_model_list[selected_index]
                             elif self.prop_draw_type == 4: selected_item = self.detail_model_list[selected_index]
-                            plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, selected_item, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.apply_bulk_settings)
+                            plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, selected_item, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.langs, self.lan, self.apply_bulk_settings)
                         else:
-                            messagebox.showinfo("Click Model", "Click on the model you want before selecting 'Bulk Edit Menu'", parent=self.window)
+                            messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Click_Model"], self.langs[self.lan]["bulk_edit_menu"]["Click_Model_Desc"], parent=self.window)
                     # if placement selected
                     if self.prop_attribute_index == 1:
                         selected_indices = self.placement_lb.curselection()
                         if selected_indices:
                             selected_index = self.placement_lb.curselection()[0]
                             selected_item = self.placement_list[selected_index]
-                            plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, selected_item, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.apply_bulk_settings)
+                            plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, selected_item, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.langs, self.lan, self.apply_bulk_settings)
                         else:
-                            messagebox.showinfo("Click Placement", "Click on the placement you want before selecting 'Bulk Edit Menu'", parent=self.window)
+                            messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Click_Placement"], self.langs[self.lan]["bulk_edit_menu"]["Click_Placement_Desc"], parent=self.window)
 
                 else:
-                    messagebox.showerror("Error", "Modified value must only contain numbers, letters,\nor characters: '.' or '-'", parent=self.window)
+                    messagebox.showerror(self.langs[self.lan]["bulk_edit_menu"]["Error"], self.langs[self.lan]["bulk_edit_menu"]["Info_1"], parent=self.window)
             else:
-                messagebox.showerror("Error", "First, select an attribute for bulk editing. Then, either edit the value next to 'Save' or select a Placement or Model item.", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["bulk_edit_menu"]["Error"], self.langs[self.lan]["bulk_edit_menu"]["Info_2"], parent=self.window)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1684,11 +1698,9 @@ class PlumgenViewGen:
                             attr_value = "TRUE"
                             self.attribute_entry.insert(0, attr_value)
                         else:
-                            messagebox.showerror("Error", "Invalid entry type. Please enter a string, an integer, or a float."
-                                                "\n\nOtherwise, select an item from a listbox to modify it.", parent=self.window)
+                            messagebox.showerror(self.langs[self.lan]["crement_prop_changes"]["Error"], self.langs[self.lan]["crement_prop_changes"]["error_short"], parent=self.window)
                     else:
-                        messagebox.showerror("Error", "Empty or invalid entry type. Please enter a string, an integer, or a float."
-                                                "\n\nOtherwise, select an item from a listbox to modify it.", parent=self.window)
+                        messagebox.showerror(self.langs[self.lan]["crement_prop_changes"]["Error"], self.langs[self.lan]["crement_prop_changes"]["error_long"], parent=self.window)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1727,11 +1739,9 @@ class PlumgenViewGen:
                             attr_value = "FALSE"
                             self.attribute_entry.insert(0, attr_value)
                         else:
-                            messagebox.showerror("Error", "Invalid entry type. Please enter a string, an integer, or a float."
-                                                "\n\nOtherwise, select an item from the listbox to modify it.", parent=self.window)
+                            messagebox.showerror(self.langs[self.lan]["crement_prop_changes"]["Error"], self.langs[self.lan]["crement_prop_changes"]["error_short"], parent=self.window)
                     else:
-                        messagebox.showerror("Error", "Empty or invalid entry type. Please enter a string, an integer, or a float."
-                                                "\n\nOtherwise, select an item from the listbox to modify it.", parent=self.window)
+                        messagebox.showerror(self.langs[self.lan]["crement_prop_changes"]["Error"], self.langs[self.lan]["crement_prop_changes"]["error_long"], parent=self.window)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1747,10 +1757,7 @@ class PlumgenViewGen:
             if self.gen_using_template_data_var.get():
                 self.replace_lb_with_template_data_cb.config(state=tk.NORMAL)
                 if selected_csv != "_Current Vanilla+Pre NMS.csv":
-                    result = messagebox.askyesno("Warning: Generating using Custom Models", "It seems you're using a custom biome template (not '_Current Vanilla+Pre NMS.csv')."
-                                            "\n\nThis could indicate that your custom .CSV refers to outdated or broken models, which might cause issues with your mod."
-                                            "\n\nYou'll also need a PAK of the custom models for them to show up in-game."
-                                            "\n\nDo you want to proceed?", parent=self.window)
+                    result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
                         self.gen_using_template_data_var.set(False)
                         return
@@ -1758,22 +1765,22 @@ class PlumgenViewGen:
                 self.controller.set_custom_model_list()
                 self.controller.set_custom_placem_list() # placements
                 
-                self.biome_add_button['text'] = "Add BT Biome"
-                self.distant_objects_add_button['text'] = "Add BT Distant Object"
-                self.landmark_add_button['text'] = "Add BT Landmark"
-                self.objects_add_button['text'] = "Add BT Object"
-                self.detail_objects_add_button['text'] = "Add BT Detail Object"
+                self.biome_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_BT_Biome"]
+                self.distant_objects_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_BT_Distant"]
+                self.landmark_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_BT_Landmark"]
+                self.objects_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_BT_Object"]
+                self.detail_objects_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_BT_Detail"]
             else:
                 if not self.replace_lb_with_template_data_var.get():
                     self.replace_lb_with_template_data_cb.config(state=tk.DISABLED) # disable next checkbox
 
                 self.controller.set_default_model_list()
                 
-                self.biome_add_button['text'] = "Add Biome"
-                self.distant_objects_add_button['text'] = "Add Distant Object"
-                self.landmark_add_button['text'] = "Add Landmark"
-                self.objects_add_button['text'] = "Add Object"
-                self.detail_objects_add_button['text'] = "Add Detail Object"
+                self.biome_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_Biome"]
+                self.distant_objects_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_Distant"]
+                self.landmark_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_Landmark"]
+                self.objects_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_Object"]
+                self.detail_objects_add_button['text'] = self.langs[self.lan]["gen_using_biome_template_data"]["Add_Detail"]
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1790,8 +1797,8 @@ class PlumgenViewGen:
             # show warning if a custom Biome Template .csv selected
             if self.replace_lb_with_template_data_var.get():
 
-                self.model_label['text'] = "Biome Template Model List"
-                self.placement_label['text'] = "Biome Template Placement List"
+                self.model_label['text'] = self.langs[self.lan]["use_template_placem_models"]["BT_Model_Desc"]
+                self.placement_label['text'] = self.langs[self.lan]["use_template_placem_models"]["BT_Placem_Desc"]
 
                 # refresh model list filepaths with custom ones from biome template
                 self.dist_model_list = self.controller.get_dist_list()
@@ -1833,8 +1840,8 @@ class PlumgenViewGen:
                 if not self.gen_using_template_data_var.get():
                     self.replace_lb_with_template_data_cb.config(state=tk.DISABLED) # disable next checkbox
 
-                self.model_label['text'] = " Default Model List "
-                self.placement_label['text'] = " Default Placement List "
+                self.model_label['text'] = self.langs[self.lan]["use_template_placem_models"]["Model_Desc"]
+                self.placement_label['text'] = self.langs[self.lan]["use_template_placem_models"]["Placem_Desc"]
                 #self.controller.set_default_model_list() #set default model paths to the default lists
 
                 # refresh model list filepaths with default ones
@@ -1884,11 +1891,7 @@ class PlumgenViewGen:
                 
             if self.biome_index is not None:
                 
-                result = messagebox.askyesno("Auto Rename Biome?",
-                    "Do not rename biomes that already have custom names, "
-                    "as their filenames are referenced in many files (especially in big biome gen mods). "
-                    "If you change these filenames, the game will crash when attempting to spawn the renamed biomes."
-                    "\n\nDo you want to proceed?", parent=self.window)
+                result = messagebox.askyesno(self.langs[self.lan]["save_renamed_biome"]["Auto_Rename_title"], self.langs[self.lan]["save_renamed_biome"]["Auto_Rename_desc"], parent=self.window)
                 if not result:
                     return
                 
@@ -1901,7 +1904,7 @@ class PlumgenViewGen:
                         self.biome_lb.delete(index)
                         self.biome_lb.insert(index, new_filename)
                     else: 
-                        messagebox.showerror("Duplicate filename.", "The entered biome name is a duplicate in the list.\nPlease enter a different name.", parent=self.window)
+                        messagebox.showerror(self.langs[self.lan]["save_renamed_biome"]["Duplicate_filen"], self.langs[self.lan]["save_renamed_biome"]["Duplicate_filen_Desc"], parent=self.window)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1914,12 +1917,7 @@ class PlumgenViewGen:
                 
             if self.biome_lb.size() > 0:
                 
-                result = messagebox.askyesno("Auto Rename All Biomes?",
-                    "This will rename biomes based on the model names in each biome.\n\n"
-                    "Do not attempt this with biomes that already have custom names, "
-                    "as their filenames are referenced in many files (especially in big biome gen mods). "
-                    "If you change these filenames, the game will crash when attempting to spawn the renamed biomes."
-                    "\n\nDo you want to proceed?", parent=self.window)
+                result = messagebox.askyesno(self.langs[self.lan]["auto_rename_biomes"]["Auto_Rename_title_all"], self.langs[self.lan]["auto_rename_biomes"]["Auto_Rename_desc_all"], parent=self.window)
                 if not result:
                     return
                 
@@ -1944,12 +1942,7 @@ class PlumgenViewGen:
                 
             if self.biome_lb.size() > 0:
                 
-                result = messagebox.askyesno("Reset Renamed Biomes?",
-                    "This truncates text after the first underscore in the biome name (or leaves it alone if no underscore found).\n\n"
-                    "Do not attempt this with biomes that already have custom names, "
-                    "as their filenames are referenced in many files (especially in big biome gen mods). "
-                    "If you change these filenames, the game will crash when attempting to spawn the renamed biomes."
-                    "\n\nDo you want to proceed?", parent=self.window)
+                result = messagebox.askyesno(self.langs[self.lan]["reset_rename_biomes"]["Reset_rename_title"], self.langs[self.lan]["reset_rename_biomes"]["Reset_rename_desc"], parent=self.window)
                 if not result:
                     return
                 
@@ -1982,8 +1975,7 @@ class PlumgenViewGen:
         try:
                 
             if self.biome_index is not None:
-                result = messagebox.askyesno("Delete Selected Biome?", "Delete biome?"
-                                        "\n\nCaution: This action cannot be undone.", parent=self.window)
+                result = messagebox.askyesno(self.langs[self.lan]["delete_biome"]["delete_biome_title"], f"{self.langs[self.lan]["delete_biome"]["delete_biome_desc"]}", parent=self.window)
                 if not result:
                     return
                 
@@ -2222,10 +2214,7 @@ class PlumgenViewGen:
         try:
                 
             if self.biome_lb.size() > 0:
-                response = messagebox.askyesno("Save Biome as Preset?", "This will save the selected biome as a JSON file "
-                                                "located in your '_Presets' folder. It will use the biome's name as the filename, "
-                                                "potentially overwriting any existing file with the same name."
-                                                "\n\nCreate preset?", parent=self.window)
+                response = messagebox.askyesno(self.langs[self.lan]["save_biome_preset"]["title"], self.langs[self.lan]["save_biome_preset"]["desc"], parent=self.window)
                 if not response:
                     return
                 
@@ -2245,17 +2234,17 @@ class PlumgenViewGen:
             
             # verify that the 'presets' directory exists
             if not os.path.exists(presets_path):
-                messagebox.showerror("Error", f"The '_Presets' directory does not exist: \n\n{presets_path}"
-                                    "\n\nPlease do not delete or rename this directory.", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["open_presets"]["Error"], f"{self.langs[self.lan]["open_presets"]["open_desc_pt1"]}{presets_path}"
+                                    f"{self.langs[self.lan]["open_presets"]["open_desc_pt2"]}", parent=self.window)
                 return
             else:
                 if not os.listdir(presets_path):
-                    messagebox.showerror("Error", f"The '_Presets' directory is empty: \n\n{presets_path}"
-                                        "\n\nFirst, save a biome as a preset, this will save the biome as a json file.", parent=self.window)
+                    messagebox.showerror(self.langs[self.lan]["open_presets"]["Error"], f"{self.langs[self.lan]["open_presets"]["2_open_desc_pt1"]}{presets_path}"
+                                        f"{self.langs[self.lan]["open_presets"]["2_open_desc_pt2"]}", parent=self.window)
                     return
             
             self.presets_window = tk.Toplevel(self.window) # new window to display list of JSON files
-            self.presets_window.title("Biome Presets")
+            self.presets_window.title(self.langs[self.lan]["open_presets"]["window_title"])
             self.presets_window.configure(bg="#333333")
             parent_x = self.window.winfo_rootx()
             parent_y = self.window.winfo_rooty()
@@ -2283,7 +2272,7 @@ class PlumgenViewGen:
                 self.presets_listbox.insert(tk.END, json_file)
 
             # close button
-            close_button = tk.Button(self.presets_window, text="Close", command=self.presets_window.destroy)
+            close_button = tk.Button(self.presets_window, text=self.langs[self.lan]["open_presets"]["Close"], command=self.presets_window.destroy)
             close_button.pack(side=tk.BOTTOM, pady=10)
 
             # bind function to handle selection in the listbox
@@ -2335,16 +2324,16 @@ class PlumgenViewGen:
         for button in self.buttons: # disable import, export, & biome buttons
             button.configure(state="disabled")
         # disable presets menu items
-        self.presetsmenu.entryconfig('Save Biome as Preset', state='disabled')
-        self.presetsmenu.entryconfig('Import Biome Preset', state='disabled')
-        self.filemenu.entryconfig('Auto-Rename All Biomes', state='disabled')
-        self.filemenu.entryconfig('Reset Auto-Rename', state='disabled')
-        self.toolsmenu.entryconfig('Bulk Edit Menu', state='disabled')
-        self.toolsmenu.entryconfig('Refresh Suggested Props', state='disabled')
+        self.presetsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["save_preset"], state='disabled')
+        self.presetsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["import_preset"], state='disabled')
+        self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["auto_rename"], state='disabled')
+        self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["reset_auto_rename"], state='disabled')
+        self.toolsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["bulk_menu"], state='disabled')
+        self.toolsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["refresh_suggested"], state='disabled')
         
         
         loading_screen = tk.Toplevel(self.window)
-        loading_screen.title("Loading...")
+        loading_screen.title(self.langs[self.lan]["show_loading_screen"]["Loading"])
         loading_screen.configure(bg="#9275bd")
         loading_screen.configure(borderwidth=3)
 
@@ -2359,8 +2348,7 @@ class PlumgenViewGen:
         loading_screen.overrideredirect(True) # remove window decorations
         
         # create and place label widget with loading message
-        loading_label = ttk.Label(loading_screen, text="Please wait, importing files... This could take several minutes.\n"
-                                "Do not open BT .CSV files while this is running.\n", justify=tk.CENTER, style="Title3Label.TLabel")
+        loading_label = ttk.Label(loading_screen, text=self.langs[self.lan]["show_loading_screen"]["Loading_Desc"], justify=tk.CENTER, style="Title3Label.TLabel")
         loading_label.grid(row=0, column=0, padx=0, pady=0)
 
         loading_screen.attributes("-topmost", True)
@@ -2374,12 +2362,12 @@ class PlumgenViewGen:
         # re-enable UI elements
         for button in self.buttons:
             button.configure(state="normal")
-        self.presetsmenu.entryconfig('Save Biome as Preset', state='normal')
-        self.presetsmenu.entryconfig('Import Biome Preset', state='normal')
-        self.filemenu.entryconfig('Auto-Rename All Biomes', state='normal')
-        self.filemenu.entryconfig('Reset Auto-Rename', state='normal')
-        self.toolsmenu.entryconfig('Bulk Edit Menu', state='normal')
-        self.toolsmenu.entryconfig('Refresh Suggested Props', state='normal')
+        self.presetsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["save_preset"], state='normal')
+        self.presetsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["import_preset"], state='normal')
+        self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["auto_rename"], state='normal')
+        self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["reset_auto_rename"], state='normal')
+        self.toolsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["bulk_menu"], state='normal')
+        self.toolsmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["refresh_suggested"], state='normal')
 
 
     def complete_import(self, loading_screen):
@@ -2399,12 +2387,7 @@ class PlumgenViewGen:
         loading_screen.destroy()
 
         if len(biomes_to_delete) > 0:
-            response = messagebox.askyesno("Issue with Biome Objects Files", f"The imported biome objects files list contains {len(biomes_to_delete)} /OBJECTS/* MBINs. "
-                                "\n\nThese files may contain unique props with unique attributes, e.g. word stones, which PLUMGEN will make uninteractable."
-                                "\n\nYes = Auto. remove these files for you from your Biome Objects List "
-                                "so props retain unique attributes."
-                                "\n\nNo = Manually remove problematic MBINS in the /OBJECTS/ folder."
-                                "\n\n(If 200+ found, remove subfolders as needed before importing)", parent=self.window)
+            response = messagebox.askyesno(self.langs[self.lan]["complete_import"]["warn_title"], f"{self.langs[self.lan]["complete_import"]["warn_desc_pt1"]}{len(biomes_to_delete)}{self.langs[self.lan]["complete_import"]["warn_desc_pt2"]}", parent=self.window)
             if response:
                 # delete biomes from controller after iterating through all_biomes
                 for index in reversed(biomes_to_delete):
@@ -2422,14 +2405,9 @@ class PlumgenViewGen:
         self.biome_index = None
 
         if len(self.controller.get_bfn_all_biome_files_weights()) < 16:
-            messagebox.showinfo("< 16 Biome Entries", 
-                                "The missing or imported BIOMEFILENAMES.EXML contains less than 16 sub-biomes entries, a fixed-size array. "
-                                "This happens with outdated NMS versions which supported only 10 sub-biomes."
-                                "\n\n(Recommended) Fix 1: After clicking 'Export', choose 'NO' to create a vanilla canvas, then add biomes manually."
-                                "\n\n(Advanced) Fix 2: Add an EXTRA up-to-date vanilla (or custom) BIOMEFILENAMES.EXML to the import folder's top-most directory. "
-                                "Python will process it first, then handle the outdated BFN file, attempting a merge.", parent=self.window)
+            messagebox.showinfo(f"<{self.langs[self.lan]["complete_import"]["warn_missing_title"]}", self.langs[self.lan]["complete_import"]["warn_missing_desc"], parent=self.window)
         else:
-            messagebox.showinfo("Import EXML Complete", "Import EXML complete. All relevant biome data added.", parent=self.window)
+            messagebox.showinfo(self.langs[self.lan]["complete_import"]["info_title"], self.langs[self.lan]["complete_import"]["info_desc"], parent=self.window)
 
         #self.controller.recount_models() # refresh model counts for selected Biome Template
 
@@ -2453,24 +2431,15 @@ class PlumgenViewGen:
 
             # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
             if not os.path.exists(biom_exmls_folder_dir):
-                messagebox.showerror("Error", f"The import directory does not exist: \n\n{biom_exmls_folder_dir}"
-                                    "\n\nPlease do not delete or rename this directory.", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["import_exml_biomes"]["Error"], f"{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt2"]}", parent=self.window)
                 return
             else:
                 if not os.listdir(biom_exmls_folder_dir):
-                    messagebox.showerror("Error", f"The import directory is empty: \n\n{biom_exmls_folder_dir}"
-                                        "\n\nDecompile MBINs to EXML, then move one or more 'BIOMES' folder to this directory."
-                                        "\nSee: '_Biome Templates/__template README.txt' for more info.", parent=self.window)
+                    messagebox.showerror(self.langs[self.lan]["import_exml_biomes"]["Error"], f"{self.langs[self.lan]["import_exml_biomes"]["empty_dir_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["empty_dir_pt2"]}", parent=self.window)
                     return
                 else:
                     if not os.path.exists(biomes_folder): # check if 'BIOMES' folder in directory
-                        response = messagebox.askyesnocancel("Question", f"No 'BIOMES' folder found in directory: \n\n{biom_exmls_folder_dir}"
-                                        "\n\nThis folder contains all necessary EXML files for biome conversion into PLUMGEN data. "
-                                        "Without it, data WILL be missing."
-                                        "\n\n*I do not recommend importing folders other than 'BIOMES'."
-                                        "\n\n*Renaming the 'BIOMES' folder may cause LUA script errors "
-                                        "(ignore this if importing a renamed/modded 'BIOMES' folder)."
-                                        "\n\nContinue anyway?", parent=self.window)
+                        response = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], f"{self.langs[self.lan]["import_exml_biomes"]["ques_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["ques_pt2"]}", parent=self.window)
                         if not response:
                             return
 
@@ -2484,27 +2453,12 @@ class PlumgenViewGen:
 
             if imported_variables:
 
-                response = messagebox.askyesno("Overwrite Data?", "---------------------------WARNING---------------------------\n\n"
-                                                        "This will replace *ALL* your work with the newly imported EXML data. "
-                                                        "\n\nIf you want to import EXML without losing your current work:"
-                                                        
-                                                        "\n\n(Recommended) Fix 1:\nA) For each biome objects item, click Presets > Save Biome as Preset. "
-                                                        "B) Add new 'BIOMES' folder to '_BIOMES Exmls Folder Goes Here' and import EXML. "
-                                                        "C) Click Presets > Import Biome Presets, and click on each file you just saved."
-                                                        
-                                                        "\n\n(Advanced) Fix 2:\nA) Click 'No', B) Export, "
-                                                        "C) Extract EXML with AMUMSS or MBINCompiler (from PAK file), "
-                                                        "D) Add (or combine) 'BIOMES' folder(s) to '_BIOMES Exmls Folder Goes Here', E) Import EXML"
-                                                        "\n\nDo you want to continue?"
-                                                        "\n\n---------------------------WARNING---------------------------", parent=self.window)
+                response = messagebox.askyesno(self.langs[self.lan]["import_exml_biomes"]["overwrite_ques_title"], self.langs[self.lan]["import_exml_biomes"]["overwrite_ques_desc"], parent=self.window)
                 if not response:
                     return
 
 
-            after_next_update = messagebox.askyesnocancel("Question", "Was the 'BIOMES' folder in the directory '_BIOMES Exmls Folder Goes Here' "
-                                                        "created after NMS 'NEXT' update?\n(Update 1.5-July, 2018)"
-                                                        "\n\nYes = After\nNo = Before"
-                                                        "\n\n--- Answering this incorrectly WILL cause issues. ---", parent=self.window)
+            after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], self.langs[self.lan]["import_exml_biomes"]["after_before_next_ques_desc"], parent=self.window)
             
             self.import_exml_button.configure(state="disabled")
             # show loading screen
@@ -2532,11 +2486,9 @@ class PlumgenViewGen:
         self.populate_csv_combo()
 
         self.reenable_buttons()
-        self.filemenu.entryconfig('Make Biome Template from EXML', state='normal') # re-enable template menu item
+        self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["make_template"], state='normal') # re-enable template menu item
 
-        messagebox.showinfo("New Biome Template Added", "Biome Template .CSV created. Select the new biome template in the dropdown menu, "
-                            "and select any relevant checkboxes to start using the new Biome Template."
-                            "\n\nSee '_Biome Templates/__template README.txt' for instructions on how to sort the .CSV file + other info.", parent=self.window)
+        messagebox.showinfo(self.langs[self.lan]["complete_template"]["info_title"], self.langs[self.lan]["complete_template"]["info_desc"], parent=self.window)
 
 
     def make_template_from_exml_threaded(self, after_next_update, template_filename, loading_screen):
@@ -2555,45 +2507,31 @@ class PlumgenViewGen:
 
             # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
             if not os.path.exists(biom_exmls_folder_dir):
-                messagebox.showerror("Error", f"The import directory does not exist: \n\n{biom_exmls_folder_dir}"
-                                    "\n\nPlease do not delete or rename this directory.", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["make_template_from_exml"]["Error"], f"{self.langs[self.lan]["make_template_from_exml"]["desc_1_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["make_template_from_exml"]["desc_1_pt2"]}", parent=self.window)
                 return
             else:
                 if not os.listdir(biom_exmls_folder_dir):
-                    messagebox.showerror("Error", f"The import directory is empty: \n\n{biom_exmls_folder_dir}"
-                                        "\n\nDecompile MBINs to EXML, then move one or more 'BIOMES' folder to this directory."
-                                        "\nSee: '_Biome Templates/__template README.txt' for more info.", parent=self.window)
+                    messagebox.showerror(self.langs[self.lan]["make_template_from_exml"]["Error"], f"{self.langs[self.lan]["make_template_from_exml"]["desc_2_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["make_template_from_exml"]["desc_2_pt2"]}", parent=self.window)
                     return
                 else:
                     if not os.path.exists(biomes_folder): # check if 'BIOMES' folder in directory
-                        response = messagebox.askyesnocancel("Question", f"No 'BIOMES' folder found in directory: \n\n{biom_exmls_folder_dir}"
-                                        "\n\nThis folder contains all necessary EXML files for biome conversion into a biome template (CSV). "
-                                        "Without it, data WILL be missing."
-                                        "\n\n*I do not recommend importing folders other than 'BIOMES'."
-                                        "\n*Renaming the 'BIOMES' folder may cause LUA script errors "
-                                        "(ignore this if importing a renamed/modded 'BIOMES' folder)."
-                                        "\n\nContinue anyway?", parent=self.window)
+                        response = messagebox.askyesnocancel(self.langs[self.lan]["make_template_from_exml"]["Question"], f"{self.langs[self.lan]["make_template_from_exml"]["desc_3_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["make_template_from_exml"]["desc_3_pt2"]}", parent=self.window)
                         if not response:
                             return
 
-            after_next_update = messagebox.askyesnocancel("Question", "Was the 'BIOMES' folder in the directory '_BIOMES Exmls Folder Goes Here' "
-                                                        "created after NMS 'NEXT' update?\n(Update 1.5-July, 2018)"
-                                                        "\n\nYes = After\nNo = Before"
-                                                        "\n\n--- Answering this incorrectly WILL cause issues. ---", parent=self.window)
+            after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["make_template_from_exml"]["Question"], self.langs[self.lan]["make_template_from_exml"]["desc_4"], parent=self.window)
             
             if after_next_update is not None:
                 # create pop-up window to enter filename
-                template_filename = simpledialog.askstring("Enter template filename", "What do you want to name this biome template?"
-                                                        "\n\nUse a unique filename to prevent overwriting any .csv file with the same name in your '_Biome Templates' folder."
-                                                        "\n\nEnter only numbers, letters, or underscores. Do not add .csv at the end.\n", parent=self.window)
+                template_filename = simpledialog.askstring(self.langs[self.lan]["make_template_from_exml"]["template_title"], self.langs[self.lan]["make_template_from_exml"]["template_desc"], parent=self.window)
                 # verify filename contains numbers, letters, or underscores
                 if template_filename and re.match("^[a-zA-Z0-9_]+$", template_filename):
                     template_filename = f"{template_filename}-unsorted.csv" # add '-unsorted.csv'
                 else:
-                    messagebox.showerror("Invalid Filename", "Invalid filename. Enter only numbers, letters, or underscores.", parent=self.window)
+                    messagebox.showerror(self.langs[self.lan]["make_template_from_exml"]["Invalid_Filename_title"], self.langs[self.lan]["make_template_from_exml"]["Invalid_Filename_desc"], parent=self.window)
                     return
             
-            self.filemenu.entryconfig('Make Biome Template from EXML', state='disabled') # disable make biome template
+            self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["make_template"], state='disabled') # disable make biome template
             # show loading screen
             loading_screen = self.show_loading_screen()
             self.window.update_idletasks()  # all pending events processed to show loading screen
@@ -2605,7 +2543,7 @@ class PlumgenViewGen:
 
             else:
                 self.reenable_buttons()
-                self.filemenu.entryconfig('Make Biome Template from EXML', state='normal')
+                self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["make_template"], state='normal')
                 loading_screen.destroy() # hide loading screen
                 return
 
@@ -2696,11 +2634,7 @@ class PlumgenViewGen:
 
                 if not response: # if not all spawner data is missing, prompt to ask what data to replace
 
-                    response = messagebox.askyesnocancel("Import Vanilla JSON?", f"Some spawner data is not configured. Details: \n{missing_variables_str}"
-                            "\n\nImport default data to create a new spawner canvas?"
-                            "\nNote: This will not replace your Biome Objects List."
-                            "\n\nYes = Replace MISSING spawner data."
-                            "\nNo = Replace *ALL* spawner data.", parent=self.window)
+                    response = messagebox.askyesnocancel(self.langs[self.lan]["export_script"]["import_json_title"], f"{self.langs[self.lan]["export_script"]["import_json_desc_pt1"]}{missing_variables_str}{self.langs[self.lan]["export_script"]["import_json_desc_pt2"]}", parent=self.window)
 
                 #response = messagebox.askyesnocancel("Import Vanilla JSON?", f"Some spawner data not configured. Details: \n{missing_variables_str}"
                 #                            "\n\nTo create this, we'll import data to fill in an empty \"spawner canvas.\""
@@ -2722,13 +2656,11 @@ class PlumgenViewGen:
 
                 # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
                 if not os.path.exists(default_bfn_folder_dir):
-                    messagebox.showerror("Error", f"The default import directory does not exist: \n\n{default_bfn_folder_dir}"
-                                        "\n\nPlease do not delete or rename this directory.", parent=self.window)
+                    messagebox.showerror("Error", f"{self.langs[self.lan]["export_script"]["missing_dir_pt1"]}{default_bfn_folder_dir}{self.langs[self.lan]["export_script"]["missing_dir_pt2"]}", parent=self.window)
                     return
 
                 if not os.path.isfile(json_file_path):
-                    messagebox.showerror("Error", f"JSON filepath does not exist: \n\n{json_file_path}"
-                                            "\n\nPlease do not rename or delete this JSON file.", parent=self.window)
+                    messagebox.showerror("Error", f"{self.langs[self.lan]["export_script"]["missing_json_pt1"]}{json_file_path}{self.langs[self.lan]["export_script"]["missing_json_pt2"]}", parent=self.window)
                     return
 
                 # import data from JSON file
@@ -2758,14 +2690,7 @@ class PlumgenViewGen:
 
             # check if user ignored error message when importing
             if len(bfn_all_biome_files_weights) < 16:
-                response = messagebox.askyesno("Issues Exporting - Import Vanilla JSON?", f"The imported biome files list contains less than 16 entries! "
-                                            "\n\nYou should've gotten an error message saying to re-import the EXML files. "
-                                            "\n\nOne alternative solution is to import vanilla JSON data to create "
-                                            "a basic canvas (or you can go back and import EXML files)."
-                                            "\n\nI do not recommend this if you don't know what you're doing..."
-                                            "\n\nContinue with replacing export data with a vanilla canvas?"
-                                            "\n\nFYI: This will replace any/all of your current biome spawner data."
-                                            "\nThis will not replace your current Biome Objects List.", parent=self.window)
+                response = messagebox.askyesno(self.langs[self.lan]["export_script"]["error_missing_16_title"], self.langs[self.lan]["export_script"]["error_missing_16_desc"], parent=self.window)
                 if not response:
                     return
                 else:
@@ -2774,13 +2699,11 @@ class PlumgenViewGen:
 
                     # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
                     if not os.path.exists(default_bfn_folder_dir):
-                        messagebox.showerror("Error", f"The default import directory does not exist: \n\n{default_bfn_folder_dir}"
-                                            "\n\nPlease do not delete or rename this directory.", parent=self.window)
+                        messagebox.showerror("Error", f"{self.langs[self.lan]["export_script"]["missing_dir_pt1"]}{default_bfn_folder_dir}{self.langs[self.lan]["export_script"]["missing_dir_pt2"]}", parent=self.window)
                         return
 
                     if not os.path.isfile(json_file_path):
-                        messagebox.showerror("Error", f"JSON filepath does not exist: \n\n{json_file_path}"
-                                                "\n\nPlease do not rename or delete this JSON file.", parent=self.window)
+                        messagebox.showerror("Error", f"{self.langs[self.lan]["export_script"]["missing_json_pt1"]}{json_file_path}{self.langs[self.lan]["export_script"]["missing_json_pt2"]}", parent=self.window)
                         return
 
                     # import data from JSON file
@@ -2790,10 +2713,10 @@ class PlumgenViewGen:
                     self.controller.set_bfn_all_tile_types(bfn_all_tile_types)
                     self.controller.set_bfn_all_valid_start_planets(bfn_all_valid_start_planets)
                     self.controller.set_all_biome_tile_types(all_biome_tile_types)
-                    messagebox.showinfo("Export Window", "Any changes made in the next window will be saved automatically.", parent=self.window)
+                    messagebox.showinfo(self.langs[self.lan]["export_script"]["export_info_title"], self.langs[self.lan]["export_script"]["export_info_desc"], parent=self.window)
 
             else:
-                messagebox.showinfo("Export Window", "Any changes made in the next window will be saved automatically.", parent=self.window)
+                messagebox.showinfo(self.langs[self.lan]["export_script"]["export_info_title"], self.langs[self.lan]["export_script"]["export_info_desc"], parent=self.window)
 
             #self.root.withdraw()
             plumgen_view_gen_export = PlumgenViewGenExport(
@@ -2830,8 +2753,7 @@ class PlumgenViewGen:
         try:
             #self.root.deiconify() # show the root window again
             #self.window.destroy() # destroy the Toplevel window
-            if messagebox.askyesno("Confirm Exit", "Are you sure you want to exit?"
-                                "\n\nAny changes will be lost unless you exported to LUA.", parent=self.window):
+            if messagebox.askyesno(self.langs[self.lan]["on_close"]["close_title"], self.langs[self.lan]["on_close"]["close_desc"], parent=self.window):
 
 
                 self.root.destroy()

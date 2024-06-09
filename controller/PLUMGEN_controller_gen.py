@@ -4,11 +4,8 @@ File: PLUMGEN_controller_gen.py
 
 import os   # os interactions
 import sys
-from datetime import datetime   # timestamping
-import time # time.sleep()
 import re
 import tkinter as tk
-from datetime import datetime   # timestamping
 import csv
 import random
 import copy
@@ -44,6 +41,7 @@ class PlumgenControllerGen():
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
                 self.biome_exmls_folder_dir = os.path.abspath(os.path.join(current_directory, self.subfolder))
                 self.default_bfn_folder_dir = os.path.abspath(os.path.join(current_directory, self.default_subfolder))
+                self.json_lang_path = os.path.abspath(os.path.join(self.default_bfn_folder_dir, 'languages.json'))
             else:
                 # if running as script, use these paths:
                 current_directory = os.path.dirname(os.path.realpath(__file__))
@@ -52,6 +50,7 @@ class PlumgenControllerGen():
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
                 self.biome_exmls_folder_dir = os.path.abspath(os.path.join(current_directory, '..', self.subfolder))
                 self.default_bfn_folder_dir = os.path.abspath(os.path.join(current_directory, '..', self.default_subfolder))
+                self.json_lang_path = os.path.abspath(os.path.join(self.default_bfn_folder_dir, 'languages.json'))
 
             #if not os.path.exists(self.csv_file): # check if the file exists
             #    print("_Current Vanilla+Pre NMS.csv file not found in '_Biome Templates' folder.")
@@ -84,9 +83,19 @@ class PlumgenControllerGen():
             self.sdl = DefaultSpawnDensityList()
             self.default_spawndensitylist = self.sdl.create_default_sdl()
 
+            # get language
+            self.langs = None
+            self.load_title_from_json()
+            # if new language window prompt, continue with making window anyway
+            if self.langs["Lan"] == "TBD":
+                self.lan = "English" # temporarily default to english if none selected
+            else:
+                self.lan = self.langs["Lan"]
+
             # pass to new view links on root frame and controller object
-            self.root.title("PLUMGEN - Biome Objects")
-            self.view = PlumgenViewGen(self.root, self)
+            #self.root.title("PLUMGEN - Biome Objects")
+            self.root.title(self.langs[self.lan]["controller_init"]["main_title"])
+            self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
 
@@ -95,6 +104,66 @@ class PlumgenControllerGen():
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
+
+
+    def confirm_language_selection(self):
+        
+        selected_lang = self.selected_language.get() # set new selected language
+
+        confirm = messagebox.askyesno(self.langs[selected_lang]["controller_init"]["confirm"], 
+                                    self.langs[selected_lang]["controller_init"]["confirm_desc"], parent=self.root)
+        if confirm:
+        
+            self.lang_window.destroy() # destroy window
+
+            # update JSON file with selected language
+            with open(self.json_lang_path, 'r+', encoding='utf-8') as file:
+                self.langs = json.load(file)
+                self.langs["Lan"] = selected_lang
+                file.seek(0)
+                json.dump(self.langs, file, indent=4, ensure_ascii=False)
+                file.truncate()
+
+
+    def prompt_lang_select(self):
+        # new window to select language
+        self.lang_window = tk.Toplevel(self.root)
+        self.lang_window.title("Language")
+        self.lang_window.configure(bg="#333333")
+        self.lang_window.geometry("400x125")
+        self.lang_window.resizable(False, False)  # prevent resizing
+        self.lang_window.grab_set()  # prevent this window from going behind main window
+
+        self.selected_language = tk.StringVar(value="English") # store selected language
+
+        languages = ["English", "German", "Français"] # language options
+
+        # dropdown menu for language selection
+        lang_dropdown = tk.OptionMenu(self.lang_window, self.selected_language, *languages)
+        lang_dropdown.grid(row=0, column=0, padx=(50,25), pady=(50,50), sticky=tk.NSEW)
+        lang_dropdown.config(bg='gray30', fg='white')
+        lang_dropdown["menu"].config(bg='gray30', fg='white')
+
+        # confirm button
+        confirm_button = tk.Button(self.lang_window, text="✔️", command=self.confirm_language_selection)
+        confirm_button.grid(row=0, column=1, padx=(25,50), pady=(50,50), sticky=tk.NSEW)
+        confirm_button.config(bg='green', fg='white')
+
+        # center elements vert & horiz
+        self.lang_window.grid_columnconfigure(0, weight=1)
+        self.lang_window.grid_columnconfigure(1, weight=1)
+        self.lang_window.grid_rowconfigure(0, weight=1)
+
+
+    def load_title_from_json(self):
+        with open(self.json_lang_path, 'r+', encoding='utf-8') as file:
+            self.langs = json.load(file)
+
+        if self.langs["Lan"] == "TBD":
+            self.prompt_lang_select() # on startup, ask for language
+
+
+
 
 
     def show_error_message(self, message, max_length=200):
