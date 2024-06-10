@@ -7,7 +7,7 @@ from tkinter import ttk
 import tkinter as tk
 
 class ScrollableNotebook(ttk.Frame):
-    def __init__(self,parent,wheelscroll=False,tabmenu=False,ind_listbox=None,*args,**kwargs):
+    def __init__(self,parent,langgs,langg,wheelscroll=False,tabmenu=False,ind_listbox=None,*args,**kwargs):
         ttk.Frame.__init__(self, parent, *args)
         self.xLocation = 0
         self.notebookContent = ttk.Notebook(self,**kwargs)
@@ -35,6 +35,8 @@ class ScrollableNotebook(ttk.Frame):
         self.contentsManaged = []
         
         # Added:
+        self.langs = langgs
+        self.lan = langg
         self.timer = None  # Initialize timer
         self.ind_listbox = ind_listbox
 
@@ -56,7 +58,7 @@ class ScrollableNotebook(ttk.Frame):
     def _tabChanger(self, event):
         if self.ind_listbox is not None:
             self.ind_listbox.delete(0, tk.END)
-            self.ind_listbox.insert(tk.END, "None selected")
+            self.ind_listbox.insert(tk.END, self.langs[self.lan]["tabChanger"]["None_selected"])
 
         try: self.notebookContent.select(self.notebookTab.index("current"))
         except: pass

@@ -5,6 +5,7 @@ File: PLUMGEN_controller_gen.py
 import os   # os interactions
 import sys
 import re
+import subprocess
 import tkinter as tk
 import csv
 import random
@@ -36,6 +37,7 @@ class PlumgenControllerGen():
             if getattr(sys, 'frozen', False):
                 # if frozen (and running as exe), use these paths:
                 current_directory = os.path.dirname(sys.executable)
+                self.plum_exe = os.path.abspath(os.path.join(current_directory, '_PLUMGEN.exe'))
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '_Presets'))
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
@@ -45,6 +47,7 @@ class PlumgenControllerGen():
             else:
                 # if running as script, use these paths:
                 current_directory = os.path.dirname(os.path.realpath(__file__))
+                self.plum_exe = None
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '..', '_Presets'))
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
@@ -85,7 +88,7 @@ class PlumgenControllerGen():
 
             # get language
             self.langs = None
-            self.load_title_from_json()
+            self.get_set_lang_from_json()
             # if new language window prompt, continue with making window anyway
             if self.langs["Lan"] == "TBD":
                 self.lan = "English" # temporarily default to english if none selected
@@ -94,7 +97,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(self.langs[self.lan]["controller_init"]["main_title"])
+            self.root.title(f"1.1 - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -111,7 +114,7 @@ class PlumgenControllerGen():
         selected_lang = self.selected_language.get() # set new selected language
 
         confirm = messagebox.askyesno(self.langs[selected_lang]["controller_init"]["confirm"], 
-                                    self.langs[selected_lang]["controller_init"]["confirm_desc"], parent=self.root)
+                                    self.langs[selected_lang]["controller_init"]["confirm_desc"], parent=self.lang_window)
         if confirm:
         
             self.lang_window.destroy() # destroy window
@@ -123,6 +126,12 @@ class PlumgenControllerGen():
                 file.seek(0)
                 json.dump(self.langs, file, indent=4, ensure_ascii=False)
                 file.truncate()
+
+            if self.new_lang: # if user selected to choose new lang using main menu
+                if messagebox.askyesno(self.langs[selected_lang]["on_close"]["close_title"], self.langs[selected_lang]["on_close"]["close_desc"], parent=self.root):
+                    if self.plum_exe is not None:
+                        subprocess.Popen(self.plum_exe)
+                    self.root.destroy()
 
 
     def prompt_lang_select(self):
@@ -136,7 +145,19 @@ class PlumgenControllerGen():
 
         self.selected_language = tk.StringVar(value="English") # store selected language
 
-        languages = ["English", "German", "Français"] # language options
+        languages = [ # language options
+            "Chinese - Simplified (简体中文)",
+            "English",
+            "Finnish (Suomi)",
+            "French (Français)",
+            "German (Deutsch)",
+            "Italian (Italiano)",
+            "Japanese (日本語)",
+            "Korean (한국어)",
+            "Portuguese (Português)",
+            "Russian (Русский)",
+            "Spanish (Español)",
+                ]
 
         # dropdown menu for language selection
         lang_dropdown = tk.OptionMenu(self.lang_window, self.selected_language, *languages)
@@ -145,9 +166,9 @@ class PlumgenControllerGen():
         lang_dropdown["menu"].config(bg='gray30', fg='white')
 
         # confirm button
-        confirm_button = tk.Button(self.lang_window, text="✔️", command=self.confirm_language_selection)
+        confirm_button = tk.Button(self.lang_window, text=">>>", command=self.confirm_language_selection)
         confirm_button.grid(row=0, column=1, padx=(25,50), pady=(50,50), sticky=tk.NSEW)
-        confirm_button.config(bg='green', fg='white')
+        confirm_button.config(bg='#38943a', fg='white')
 
         # center elements vert & horiz
         self.lang_window.grid_columnconfigure(0, weight=1)
@@ -155,12 +176,16 @@ class PlumgenControllerGen():
         self.lang_window.grid_rowconfigure(0, weight=1)
 
 
-    def load_title_from_json(self):
+    def get_set_lang_from_json(self, force_select_new_lang=False):
+        self.new_lang = force_select_new_lang
+        
         with open(self.json_lang_path, 'r+', encoding='utf-8') as file:
             self.langs = json.load(file)
 
-        if self.langs["Lan"] == "TBD":
+        if self.langs["Lan"] == "TBD" or self.new_lang:
             self.prompt_lang_select() # on startup, ask for language
+    
+
 
 
 

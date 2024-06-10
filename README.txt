@@ -1,4 +1,4 @@
-PLUMGEN (v1.0)
+PLUMGEN (v1.1)
 
 -- APP FEATURES: --------------------------------------------------------------------------------------------------
 
@@ -6,7 +6,7 @@ PLUMGEN (v1.0)
 	-IMPORT and merge multiple biome mods.
 	-Bulk replace OR multiply flora traits (scale, density, etc).
 	-Auto-rename and auto-add biomes to sub-biomes (for spawning).
-	-EXPORT to directly to PAK, EXML, MBIN, and LUA (AMUMSS optional).
+	-EXPORT directly to PAK, EXML, MBIN, and LUA (AMUMSS optional).
 	-"LUA-ize" or remix almost any biome mod.
 	-Save and share individual biomes (JSON files).
 	-Validates all input and data = very stable mods.
@@ -18,7 +18,15 @@ PLUMGEN (v1.0)
 
 -- CHANGELOG: -----------------------------------------------------------------------------------------------------
 
-v1.0 Full Release Notes:
+v1.1 Update:
+
+	-Added support for 10 languages - reworked all text elements, translated them via. DeepL (take these with a grain of salt) ;)
+		(Chinese-Simplified, English, Finnish, French, German, Italian, Japanese, Korean, Portuguese, Russian, & Spanish)
+	-Fixed issue - Bug preventing bulk editing model SCENE paths.
+	-Readme clarifications - e.g. how to update biome mods in Q&A section.
+
+
+v1.0 Full Release:
 
 	-Overhauled exporting. AMUMSS no longer required. You can now export directly to .PAK using PLUMGEN's new, very efficient export system.
 
@@ -79,8 +87,9 @@ v1.0 Full Release Notes:
 	-Is this a paid app?
 	No, although donations are accepted.
 
-	-Will my exported biome mods break after game updates?
-	They can with fundamental changes to game structure or game files. When/if this happens, wait for a PLUMGEN update, then download the app again.
+	-Will my exported biome mod break after game updates?
+	If it breaks, import your mod and export it again. Note: wait for MBINCompiler to update after game updates (see: https://github.com/monkeyman192/MBINCompiler/releases). 
+	Although rare, if a new game update fundamentally changes game structure or biome files, wait for a PLUMGEN update, then download the app again.
 
 	-The PLUMGEN window looks blurry and parts are cut-off by the edge of the window, like the tooltip.
 	This shouldn't happen after v1.0. If it does, please let me know.

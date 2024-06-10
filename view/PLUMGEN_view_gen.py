@@ -156,11 +156,6 @@ class PlumgenViewGen:
             self.logger.exception(f"{self.langs[self.lan]["messagebox"]["error"]}{e}") # log the exception
             self.show_error_message(f"{self.langs[self.lan]["messagebox"]["error_desc_short"]}{e}")
 
-
-    def change_language(self, language):
-        # update language menu title
-        self.la = language
-
     def show_error_message(self, message, max_length=200):
         if len(message) > max_length:
             truncated_message = message[:max_length] + "..."
@@ -218,6 +213,11 @@ class PlumgenViewGen:
         red_bg_color = '#473d5c'
         
         self.style.configure('.', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 10))
+
+
+
+
+
         self.style.configure('TitleLabel.TLabel', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 14, 'bold'))
         self.style.configure('Title2Label.TLabel', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 12, 'bold'))
         self.style.configure('Title3Label.TLabel', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 12))
@@ -299,10 +299,8 @@ class PlumgenViewGen:
         self.editmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["about"], command=self.open_about)
 
         # language menu
-        #self.langmenu = tk.Menu(self.mb)
-        #self.langmenu.add_command(label='English', command=lambda: self.change_language('English'))
-        #self.langmenu.add_command(label='German', command=lambda: self.change_language('German'))
-        #self.langmenu.add_command(label='French', command=lambda: self.change_language('French'))
+        self.langmenu = tk.Menu(self.mb)
+        self.langmenu.add_command(label='>>>', command=lambda: self.controller.get_set_lang_from_json(force_select_new_lang=True))
 
         self.donatemenu = tk.Menu(self.mb)
         self.donatemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["donate_page"], command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
@@ -311,7 +309,7 @@ class PlumgenViewGen:
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Presets"], self.presetsmenu)
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Tools"], self.toolsmenu)
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Help_2"], self.editmenu)
-        #self.mb.add_menu('Language', self.langmenu)
+        self.mb.add_menu("Language", self.langmenu)
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Donate"], self.donatemenu)
         
 
@@ -575,6 +573,11 @@ class PlumgenViewGen:
                 
             help_window = tk.Toplevel(self.window)
             help_window.title("Help")
+
+            # set DPI awareness, handle scaling better
+            try: ctypes.windll.shcore.SetProcessDpiAwareness(2)
+            except: pass  # DPI awareness not available
+
             parent_x = self.window.winfo_rootx()
             parent_y = self.window.winfo_rooty()
             help_window.geometry(f"+{parent_x}+{parent_y}")
@@ -598,7 +601,6 @@ class PlumgenViewGen:
 
     def open_about(self):
         try:
-                
             messagebox.showinfo(self.langs[self.lan]["about"]["about_title"], f"{self.langs[self.lan]["about"]["author"]}SunnySummit aka goosetehmoose"
                                 f"\n{self.langs[self.lan]["about"]["website"]}https://github.com/SunnySummit"
                                 f"\n{self.langs[self.lan]["about"]["license"]}GPL-3.0"
@@ -2728,6 +2730,8 @@ class PlumgenViewGen:
                 bfn_all_tile_types,
                 all_biome_tile_types,
                 self.icon_path,
+                self.langs,
+                self.lan,
                 self.apply_export_settings
             )
 
@@ -2751,11 +2755,7 @@ class PlumgenViewGen:
     # called when the Toplevel window is closed
     def on_close(self):
         try:
-            #self.root.deiconify() # show the root window again
-            #self.window.destroy() # destroy the Toplevel window
             if messagebox.askyesno(self.langs[self.lan]["on_close"]["close_title"], self.langs[self.lan]["on_close"]["close_desc"], parent=self.window):
-
-
                 self.root.destroy()
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception

@@ -27,6 +27,8 @@ class PlumgenViewGenExport:
                 bfn_all_tile_types,
                 all_biome_tile_types,
                 icon_path,
+                lngs,
+                ln,
                 apply_callback):
         
         self.logger = logging.getLogger(__name__)  #set up logging
@@ -48,6 +50,8 @@ class PlumgenViewGenExport:
             self.all_biome_tile_types = all_biome_tile_types  # **each** biome file
 
             self.icon_path = icon_path
+            self.langs = lngs
+            self.lan = ln
 
             #if not self.bfn_all_valid_start_planets: # check that valid_start_planets is not empty -- happens with pre-next NMS
             #    self.bfn_all_valid_start_planets.append("!! Don't leave blank [ADD THEN DELETE ME]")
@@ -67,7 +71,7 @@ class PlumgenViewGenExport:
             self.parent.withdraw()
             
             self.window = tk.Toplevel(self.grandparent)
-            self.window.title("PLUMGEN - Biome Spawner")
+            self.window.title(f"1.1 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
             
 
             # retrieve parent window's position & size
@@ -214,27 +218,27 @@ class PlumgenViewGenExport:
         mb.grid(row=0, column=0, columnspan=10, sticky="ew")
 
         filemenu = tk.Menu(mb)
-        filemenu.add_command(label='Auto-Add Biome Objects to Tiles', command=self.auto_add_all_biomes)
+        filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Auto_Add_To_Tiles"], command=self.auto_add_all_biomes)
         filemenu.add_separator()
-        filemenu.add_command(label='Select All Biomes', command=self.select_all)
-        filemenu.add_command(label='Deselect All Biomes', command=self.deselect_all)
+        filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Select_All"], command=self.select_all)
+        filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Deselect_All"], command=self.deselect_all)
         filemenu.add_separator()
-        filemenu.add_command(label='Exit', command=self.on_close)
+        filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Exit"], command=self.on_close)
 
         toolmenu = tk.Menu(mb)
-        toolmenu.add_command(label='Replace Spawner Data with JSON', command=self.replace_spawner_data)
+        toolmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Replace_Spawner_Json"], command=self.replace_spawner_data)
 
         editmenu = tk.Menu(mb)
-        editmenu.add_command(label='Help', command=self.open_help)
-        editmenu.add_command(label='About...', command=self.open_about)
+        editmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Help_2"], command=self.open_help)
+        editmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["About"], command=self.open_about)
 
         donatemenu = tk.Menu(mb)
-        donatemenu.add_command(label='Open Donate Page', command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
+        donatemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Donate_3"], command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
 
-        mb.add_menu('File', filemenu)
-        mb.add_menu('Tools', toolmenu)
-        mb.add_menu('Help', editmenu)
-        mb.add_menu('Donate', donatemenu)
+        mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["File"], filemenu)
+        mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["Tools"], toolmenu)
+        mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["Help"], editmenu)
+        mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["Donate_4"], donatemenu)
         
         # listboxes
         self.biome_list_lb = Listbox(self.window, selectmode=tk.MULTIPLE, bg=self.background_c, fg=self.white_c, font=('TkDefaultFont', 10), width=42, height=10)
@@ -253,27 +257,27 @@ class PlumgenViewGenExport:
         self.indiv_planet_type_lb.configure(xscrollcommand=self.indiv_scroll_x.set, yscrollcommand=self.indiv_scroll_y.set)
 
         # buttons
-        self.go_back_button = ttk.Button(self.window, text="<< Go Back", style='Start.TButton', command=self.on_close, width=20)
+        self.go_back_button = ttk.Button(self.window, text=f"<< {self.langs[self.lan]["buttons_2"]["Go_Back"]}", style='Start.TButton', command=self.on_close, width=20)
         
         #self.select_all_button = ttk.Button(self.window, text="Select All", style='TButton', command=self.select_all)
         #self.deselect_all_button = ttk.Button(self.window, text="Deselect All", style='TButton', command=self.deselect_all)
         
         #self.auto_add_all_biomes_button = ttk.Button(self.window, text="Auto Add ALL Biomes", style='Start.TButton', command=self.auto_add_all_biomes)
-        self.add_each_biome_button = ttk.Button(self.window, text=">> Add Biomes >>", style='Gen.TButton', command=self.add_each_biome, width=20)
-        self.delete_each_biome_button = ttk.Button(self.window, text="Remove Biome >>", style='Delete.TButton', command=self.delete_each_biome, width=20)
+        self.add_each_biome_button = ttk.Button(self.window, text=f">> {self.langs[self.lan]["buttons_2"]["Add_Biomes"]} >>", style='Gen.TButton', command=self.add_each_biome, width=20)
+        self.delete_each_biome_button = ttk.Button(self.window, text=f"{self.langs[self.lan]["buttons_2"]["Remove_Biome"]} >>", style='Delete.TButton', command=self.delete_each_biome, width=20)
 
-        self.add_tile_type_button = ttk.Button(self.window, text=">> Add Biomes >>", style='Gen.TButton', command=self.add_tile_type, width=20)
-        self.delete_tile_type_button = ttk.Button(self.window, text="Remove Biome >>", style='Delete.TButton', command=self.delete_tile_type, width=20)
+        self.add_tile_type_button = ttk.Button(self.window, text=f">> {self.langs[self.lan]["buttons_2"]["Add_Biomes"]} >>", style='Gen.TButton', command=self.add_tile_type, width=20)
+        self.delete_tile_type_button = ttk.Button(self.window, text=f"{self.langs[self.lan]["buttons_2"]["Remove_Biome"]} >>", style='Delete.TButton', command=self.delete_tile_type, width=20)
 
-        self.add_tiletype_set_button = ttk.Button(self.window, text="<< Add Tile Type", style='Gen.TButton', command=self.add_tile_type_set, width=20)
-        self.delete_tiletype_set_button = ttk.Button(self.window, text="<< Delete Tile Type", style='Delete.TButton', command=self.delete_tile_type_set, width=20)
+        self.add_tiletype_set_button = ttk.Button(self.window, text=f"<< {self.langs[self.lan]["buttons_2"]["Add_Tile_Type"]}", style='Gen.TButton', command=self.add_tile_type_set, width=20)
+        self.delete_tiletype_set_button = ttk.Button(self.window, text=f"<< {self.langs[self.lan]["buttons_2"]["Delete_Tile_Type"]}", style='Delete.TButton', command=self.delete_tile_type_set, width=20)
 
-        self.add_validp_button = ttk.Button(self.window, text="Add Valid Start Planet", style='Gen.TButton', command=self.add_valid_start_planet, width=20)
-        self.delete_validp_button = ttk.Button(self.window, text="Remove Start Planet", style='Delete.TButton', command=self.delete_valid_start_planet, width=20)
+        self.add_validp_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons_2"]["Add_Valid_Start"], style='Gen.TButton', command=self.add_valid_start_planet, width=20)
+        self.delete_validp_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons_2"]["Remove_Valid_Start"], style='Delete.TButton', command=self.delete_valid_start_planet, width=20)
 
-        self.export_button = ttk.Button(self.window, text="Export (Generate mod files) >>", style='Start.TButton', command=self.apply_export_settings)
+        self.export_button = ttk.Button(self.window, text=f"{self.langs[self.lan]["buttons_2"]["Export"]} >>", style='Start.TButton', command=self.apply_export_settings)
         
-        self.save_weight_button = ttk.Button(self.window, text="Save Weight", style='Gen.TButton', command=self.save_weight, width=20)
+        self.save_weight_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons_2"]["Save Weight"], style='Gen.TButton', command=self.save_weight, width=20)
 
         # entry
         self.weight_entry = ttk.Entry(self.window, style='TEntry', font=('TkDefaultFont', 12))
@@ -285,15 +289,15 @@ class PlumgenViewGenExport:
         self.separator4 = ttk.Separator(self.window, orient="vertical")
 
         # create labels
-        self.biome_list_label = ttk.Label(self.window, text=" Biome Objects List ", style='TitleLabel.TLabel', justify=tk.CENTER)
-        self.planet_type_label = ttk.Label(self.window, text=" Sub-Biome Tile Types ", style='TitleLabel.TLabel', justify=tk.CENTER)
-        self.planet_type_info1_label = ttk.Label(self.window, text="      Tips n' Tricks      ", style='SmallLabel.TLabel')
+        self.biome_list_label = ttk.Label(self.window, text=self.langs[self.lan]["labels"]["title_1"], style='TitleLabel.TLabel', justify=tk.CENTER)
+        self.planet_type_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_2"]["sub_tile_types"], style='TitleLabel.TLabel', justify=tk.CENTER)
+        self.planet_type_info1_label = ttk.Label(self.window, text=f"      {self.langs[self.lan]["labels_2"]["tips"]}      ", style='SmallLabel.TLabel')
         #self.planet_type_info2_label = ttk.Label(self.window, text="each biome .MBIN", style='SmallLabel.TLabel', justify=tk.LEFT)
-        self.tile_type_label = ttk.Label(self.window, text=" Universal Tile Types ", style='TitleLabel.TLabel', justify=tk.CENTER)
+        self.tile_type_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_2"]["universal_tile_types"], style='TitleLabel.TLabel', justify=tk.CENTER)
         #self.tile_type_info_label = ttk.Label(self.window, text="(BIOMEFILENAMES.MBIN)", style='SmallLabel.TLabel', justify=tk.CENTER)
-        self.biome_file_list_weights_label = ttk.Label(self.window, text=" Biome Files List + Weights ", style='TitleLabel.TLabel', justify=tk.CENTER)
+        self.biome_file_list_weights_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_2"]["bfl_weights"], style='TitleLabel.TLabel', justify=tk.CENTER)
         #self.biome_file_list_weights_info_label = ttk.Label(self.window, text="(BIOMEFILENAMES.MBIN)", style='SmallLabel.TLabel', justify=tk.CENTER)
-        self.valid_start_planet_label = ttk.Label(self.window, text=" Valid Start Planets ", style='TitleLabel.TLabel', justify=tk.CENTER)
+        self.valid_start_planet_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_2"]["valid_start"], style='TitleLabel.TLabel', justify=tk.CENTER)
         #self.valid_start_planet_info_label = ttk.Label(self.window, text="(BIOMEFILENAMES.MBIN)", style='SmallLabel.TLabel', justify=tk.CENTER)
 
         # tooltip
@@ -301,10 +305,10 @@ class PlumgenViewGenExport:
 
         # checkbox
         self.hide_tooltip_var = tk.BooleanVar(value=False)
-        self.hide_tooltip_cb = ttk.Checkbutton(self.window, text="Hide Tooltip", variable=self.hide_tooltip_var, command=self.toggle_tooltip)
+        self.hide_tooltip_cb = ttk.Checkbutton(self.window, text=self.langs[self.lan]["checkboxes"]["hide_tooltip"], variable=self.hide_tooltip_var, command=self.toggle_tooltip)
 
         # Notebook widgets
-        self.planet_type_notebook = ScrollableNotebook(self.window, wheelscroll=True, tabmenu=True, ind_listbox=self.indiv_planet_type_lb)
+        self.planet_type_notebook = ScrollableNotebook(self.window, self.langs, self.lan, wheelscroll=True, tabmenu=True, ind_listbox=self.indiv_planet_type_lb)
         self.tile_type_notebook = ttk.Notebook(self.window)
         self.biome_files_list_weights_notebook = ttk.Notebook(self.window)
 
@@ -379,21 +383,12 @@ class PlumgenViewGenExport:
 
         # UI element descriptions
         self.listbox_descriptions = {
-            self.biome_list_lb: "> Biome Objects List:\nEach biome represents a potential \"spawning point\" on a given planet.",
+            self.biome_list_lb: f"> {self.langs[self.lan]["tooltip_2"]["biome_list_lb"]}",
             #self.indiv_planet_type_lb: "Select any biomes you want to add from the Biome Objects List, then click 'Add Biome(s)' button. Now, when you visit planets of this type, there's a chance you'll encounter your newly added biome.",
-            self.tile_type_notebook: "> Universal Tile Types:\nAny biome objects you add here affect ALL planets, e.g., a 'Cave' Tile Type biome can spawn in ANY planet's caves. Tile types may have specific requirements, e.g. for 'Underwater,' set props MinHeight to -128 or they won't spawn.\nNote: Adding new tile types here increases performance demands exponentially and might cause crashes.",
-            self.biome_files_list_weights_notebook: "> BiomeFiles List + Weights:\nProbability of specific biomes spawning per Sub-Biome Tile Type (E.g. used to change biome rarity). AFAIK total weights should add up to at least 1.0. I personally don't change these, but do what ya want. This isn't the place to add/remove biome files-- instead, modify: \nMETADATA\\SIMULATION\\SOLARSYSTEM\\ BIOMES\\BIOMELISTPERSTARTYPE.MBIN",
-            self.valid_start_planet_lb: "> Valid Start Planets:\nPossible starting planet/biome on a new save.",
-            self.planet_type_info1_label: (
-                "#1 Scroll sub-biome tabs using your mouse wheel.\n"
-                "#2 Use an asterisk to multiply an attribute's value, e.g. 3*5\n"
-                "#3 Import & auto merge multiple 'BIOMES' or 'CUSTOMBIOMES' folders by adding a number to the start or end, e.g. BIOMES2\n"
-                "#4 Make a shortcut to the exe for easier access.\n"
-                "#5 Instead of deleting props, try setting coverage to 0.\n"
-                "#6 To merge old and new NMS biomes, import the old ones, export Lua, create EXML/PAK, then import/merge both NMS biomes.\n"
-                "#7 Try 'No Man's Model Viewer' to view prop models.\n"
-                "#8 Since v1.0, you can export directly to PAK! Exporting automatically creates vanilla and mod EXMLs for quick importing."
-            )
+            self.tile_type_notebook: f"> {self.langs[self.lan]["tooltip_2"]["tile_type_notebook"]}",
+            self.biome_files_list_weights_notebook: f"> {self.langs[self.lan]["tooltip_2"]["biome_files_list_weights_notebook"]}",
+            self.valid_start_planet_lb: f"> {self.langs[self.lan]["tooltip_2"]["valid_start_planet_lb"]}",
+            self.planet_type_info1_label: self.langs[self.lan]["tooltip_2"]["planet_type_info1_label"]
         }
         # *bind motion later when making listboxes in notebook
 
@@ -409,10 +404,10 @@ class PlumgenViewGenExport:
         self.biome_files_list_weights_notebook.bind("<<NotebookTabChanged>>", self.on_bfn_weights_tab_changed)
 
 
-    #TODO: Add actual github link
+
     def open_help(self):
         try:
-            
+                
             help_window = tk.Toplevel(self.window)
             help_window.title("Help")
 
@@ -425,13 +420,13 @@ class PlumgenViewGenExport:
             help_window.geometry(f"+{parent_x}+{parent_y}")
             help_window.grab_set()  # prevent this window from going behind main window
 
-            label = tk.Label(help_window, text="To read documentation, please visit: ")
+            label = tk.Label(help_window, text=self.langs[self.lan]["help"]["read_doc_visit"])
             label.grid(row=0, column=0, padx=10, pady=10)
             link_label = tk.Label(help_window, text="https://github.com/SunnySummit", fg="blue", cursor="hand2")
             link_label.grid(row=1, column=0, padx=10, pady=5)
             link_label.bind("<Button-1>", lambda event: webbrowser.open_new("https://github.com/SunnySummit"))
 
-            close_button = tk.Button(help_window, text="Close", command=help_window.destroy)
+            close_button = tk.Button(help_window, text=self.langs[self.lan]["help"]["close"], command=help_window.destroy)
             close_button.grid(row=2, column=0, pady=10)
 
             help_window.mainloop()
@@ -441,15 +436,14 @@ class PlumgenViewGenExport:
             self.show_error_message("An error occurred: {}".format(str(e)))
 
 
-    #TODO: Add actual github link
+
     def open_about(self):
         try:
-            messagebox.showinfo("About PLUMGEN", f"Author: SunnySummit aka goosetehmoose"
-                                "\nWebsite: https://github.com/SunnySummit"
-                                "\nLicense: GPL-3.0"
-                                "\n\nI kindly ask that you do not distribute this application "
-                                "for use in other Hello Games-related projects or games other than No Man's Sky.", parent=self.window)
-            
+            messagebox.showinfo(self.langs[self.lan]["about"]["about_title"], f"{self.langs[self.lan]["about"]["author"]}SunnySummit aka goosetehmoose"
+                                f"\n{self.langs[self.lan]["about"]["website"]}https://github.com/SunnySummit"
+                                f"\n{self.langs[self.lan]["about"]["license"]}GPL-3.0"
+                                f"\n\n{self.langs[self.lan]["about"]["desc"]}", parent=self.window)
+
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
@@ -615,10 +609,7 @@ class PlumgenViewGenExport:
             listbox.bind("<<ListboxSelect>>", lambda event, lb=listbox: self.on_planet_type_selected(event, lb))
 
             self.listbox_descriptions.update({
-                listbox: "> Sub-Biome Tile Types:\nEach tab lists tile types, representing spawning points. Click the first row to start adding biome objects. "
-                "(Typically, add biome objects only to the first row in each tab)"
-                "\nNext, select any biome objects you want to add from your Biome Objects List, then click 'Add Biomes' button. "
-                "Now, when you visit planets of this sub-biome type, there's a chance you'll encounter your newly added biome.",
+                listbox: f"> {self.langs[self.lan]["tooltip_2"]["inside_notebook_lb"]}",
             })
 
             self.populate_planet_type_lbs.append(listbox)
@@ -661,7 +652,7 @@ class PlumgenViewGenExport:
                 for data in biome_data:
                     filename = list(data.keys())[0]
                     weight = data[filename]
-                    listbox.insert(tk.END, f"Filename: {filename}, Weight: {weight}")
+                    listbox.insert(tk.END, f"{self.langs[self.lan]["misc"]["Filename"]}: {filename}, {self.langs[self.lan]["misc"]["Weight"]}: {weight}")
                 # Add the listbox to the tab
                 listbox.grid(row=0, column=0, sticky=tk.NSEW)
                 scroll_x.grid(row=1, column=0, sticky=tk.EW)
@@ -697,14 +688,7 @@ class PlumgenViewGenExport:
     def auto_add_all_biomes(self):
         try:
             
-            confirmed = messagebox.askyesno("Confirm Add All", "---------------------------WARNING---------------------------"
-                                    "\nDo NOT do this more than once, or else you will have to manually remove each duplicate biome from each Sub-Biome tab."
-                                    "\n\nIf you clicked 'Auto Rename All' in the previous window, this will attempt to "
-                                    "match each word following the underscores in the biome name with the names of each Sub-Biome, "
-                                    "If a match is found, the custom biome will be added to the Sub-Biome."
-                                    "\n\nKeep in mind, not every keyword has a matching Sub-Biome (e.g. Industrial, Alpine, Livingship, Nevada, Rainforest, etc). "
-                                    "You will need to manually add these custom biomes to a Sub-Biome."
-                                    "\n\nYou cannot undo this. Do you want to proceed?", parent=self.window)
+            confirmed = messagebox.askyesno(self.langs[self.lan]["auto_add_all_biomes"]["add_all_title"], self.langs[self.lan]["auto_add_all_biomes"]["add_all_desc"], parent=self.window)
             if not confirmed:
                 return # user clicked no or closed
 
@@ -759,7 +743,7 @@ class PlumgenViewGenExport:
         try:
             
             first_value = self.indiv_planet_type_lb.get(0)  # get value at index 0
-            if first_value != "None selected": # means user selected an item in lb and didn't just change tabs
+            if first_value != self.langs[self.lan]["tabChanger"]["None_selected"]: # means user selected an item in lb and didn't just change tabs
 
                 selected_indices = self.biome_list_lb.curselection() # get selected items from biome objects listbox
                 selected_items = [self.biome_list_lb.get(idx) for idx in selected_indices]
@@ -796,11 +780,9 @@ class PlumgenViewGenExport:
         try:
             
             first_value = self.indiv_planet_type_lb.get(0)  # get value at index 0
-            if first_value != "None selected": # means user selected an item in lb and didn't just change tabs
+            if first_value != self.langs[self.lan]["tabChanger"]["None_selected"]: # means user selected an item in lb and didn't just change tabs
 
-                confirmed = messagebox.askyesno("Confirm Remove", "Remove biome object from sub-biome?"
-                                                "\n\nNote: Some biomes are needed for gameplay reasons."
-                                                "\nE.g. crystals, leveloneobjects, fullsafeplants, etc.", parent=self.window)
+                confirmed = messagebox.askyesno(self.langs[self.lan]["delete_add_stuff"]["delete_biome_title"], self.langs[self.lan]["delete_add_stuff"]["delete_biome_desc"], parent=self.window)
                 if not confirmed:
                     return # user clicked no or closed
 
@@ -863,8 +845,7 @@ class PlumgenViewGenExport:
     def delete_tile_type(self):
         try:
             
-            confirmed = messagebox.askyesno("Confirm Remove", "Remove biome object from tile type?"
-                                                "\n\nNote: Some vanilla biomes are needed for gameplay reasons.", parent=self.window)
+            confirmed = messagebox.askyesno(self.langs[self.lan]["delete_add_stuff"]["delete_tile_type_title"], self.langs[self.lan]["delete_add_stuff"]["delete_tile_type_desc"], parent=self.window)
             if not confirmed:
                 return # user clicked no or closed
             
@@ -893,20 +874,10 @@ class PlumgenViewGenExport:
 
 
     def add_tile_type_set(self):
-        """Add a new tab with the specified tile_type and values."""
         try:
             
             # pop-up window to enter tile type and weight
-            tile_type = simpledialog.askstring("Add Tile Type", 
-                                            "Enter the tile type (text with a number at the end), followed by a space, then the weight of the tile type."
-                                            "\n\nExample: 'Base2 0.33'"
-                                            "\nWhere '2' is just an identifier and '0.33' represents the weight or likelihood of it spawning."
-                                            "\nWeight can be a decimal or integer '0.33' or '1'"
-                                            "\n\nVanilla tile types options: Base, Liquid, Cave, Underwater, or Mountain."
-                                            "\nBase = normal terrain, Liquid = sea level (props appear on top of water), etc."
-                                            "\nNote: Some tile types require lower prop MinHeight/MaxHeight, i.e. Underwater"
-                                            "\n\nDouble-check your spelling, any misspelling WILL cause crash.\n", 
-                                            parent=self.window)
+            tile_type = simpledialog.askstring(self.langs[self.lan]["delete_add_stuff"]["add_tile_type_title"], self.langs[self.lan]["delete_add_stuff"]["add_tile_type_desc"], parent=self.window)
 
             if tile_type is None: # check if user canceled the dialog
                 return
@@ -914,10 +885,7 @@ class PlumgenViewGenExport:
             # validate input using regular expression
             if not re.match(r'^[a-zA-Z]+\d+ \d+(\.\d+)?$', tile_type):
                 # show error message if invalid
-                messagebox.showerror("Invalid Input", "Tile type should consist of letters and a number, eg:\n"
-                                    "\nBase2 1"
-                                    "\nUnderwater4 0.25"
-                                    "\nMountain3 0.7", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["delete_add_stuff"]["invalid_input_title"], self.langs[self.lan]["delete_add_stuff"]["invalid_input_desc"], parent=self.window)
                 return
             
             target_item = self.bfn_all_tile_types
@@ -944,9 +912,7 @@ class PlumgenViewGenExport:
     def delete_tile_type_set(self):
         try:
             
-            confirmed = messagebox.askyesno("Confirm Delete", "Delete entire tile type?"
-                                                "\n\nNote: Some vanilla biomes are needed for gameplay reasons."
-                                                "\n\nThis is a little buggy. If you encounter issues, go back and return to this window.", parent=self.window)
+            confirmed = messagebox.askyesno(self.langs[self.lan]["delete_add_stuff"]["delete_tile_type_set_title"], self.langs[self.lan]["delete_add_stuff"]["delete_tile_type_set_desc"], parent=self.window)
             if not confirmed:
                 return # user clicked no or closed
             
@@ -979,7 +945,7 @@ class PlumgenViewGenExport:
 
                 # validate new_weight_value is number
                 if not re.match(r'^\d+(\.\d+)?$', new_weight_value):
-                    messagebox.showerror("Invalid Input", "Weight should be a number, i.e. '0.16'", parent=self.window)
+                    messagebox.showerror(self.langs[self.lan]["delete_add_stuff"]["invalid_input_wt_title"], self.langs[self.lan]["delete_add_stuff"]["invalid_input_wt_desc"], parent=self.window)
                     return
 
                 if "." in new_weight_value:
@@ -1009,7 +975,7 @@ class PlumgenViewGenExport:
                 for data in selected_biome_files:
                     filename = list(data.keys())[0]
                     weight = data[filename]
-                    listbox.insert(tk.END, f"Filename: {filename}, Weight: {weight}")
+                    listbox.insert(tk.END, f"{self.langs[self.lan]["misc"]["Filename"]}: {filename}, {self.langs[self.lan]["misc"]["Weight"]}: {weight}")
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1033,15 +999,13 @@ class PlumgenViewGenExport:
     def add_valid_start_planet(self):
         try:
             
-            starting_planet = simpledialog.askstring("Add Starting Planet", "Enter the starting planet's name."
-                                                    "\n\nOptions are any of the tab names under 'Biome Files List + Weights'"
-                                                    "\n\nDouble check your spelling, mispelling WILL cause crash.\n", parent=self.window)
+            starting_planet = simpledialog.askstring(self.langs[self.lan]["delete_add_stuff"]["add_start_plan_title"], self.langs[self.lan]["delete_add_stuff"]["add_start_plan_desc"], parent=self.window)
 
             if starting_planet is None: # check if user canceled the dialog
                 return
 
             if not re.match(r'^[a-zA-Z]+$', starting_planet):
-                messagebox.showerror("Invalid Input", "Starting planet name should contain only letters.", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["delete_add_stuff"]["invalid_start_input_title"], self.langs[self.lan]["delete_add_stuff"]["invalid_start_input_desc"], parent=self.window)
                 return
             
             #valid_start_planet_list = self.bfn_all_valid_start_planets[0]
@@ -1063,7 +1027,7 @@ class PlumgenViewGenExport:
             
             if self.valid_start_selected_idx is not None:
 
-                confirmed = messagebox.askyesno("Confirm Remove", "Remove valid start planet?", parent=self.window)
+                confirmed = messagebox.askyesno(self.langs[self.lan]["delete_add_stuff"]["delete_start_plan_title"], self.langs[self.lan]["delete_add_stuff"]["delete_start_plan_desc"], parent=self.window)
                 if not confirmed:
                     return # user clicked no or closed
                 
@@ -1094,12 +1058,7 @@ class PlumgenViewGenExport:
     def replace_spawner_data(self):
         try:
             
-            result = messagebox.askyesno("Replace?", "---------------------------WARNING---------------------------"
-                                        "\n*This replaces ALL spawner data."
-                                        "\n\nThis will import vanilla JSON data to create a basic spawner canvas."
-                                            "\nContinue with creating a basic spawner canvas?"
-                                            "\n\nThis will not replace your current Biome Objects List."
-                                            "\n\n---------------------------WARNING---------------------------", parent=self.window)
+            result = messagebox.askyesno(self.langs[self.lan]["replace_spawner_data"]["replace_spawn_json_title"], self.langs[self.lan]["replace_spawner_data"]["replace_spawn_json_desc"], parent=self.window)
             if not result:
                 return
 
@@ -1120,20 +1079,17 @@ class PlumgenViewGenExport:
 
             # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
             if not os.path.exists(default_bfn_folder_dir):
-                messagebox.showerror("Error", f"The default import directory does not exist: \n\n{default_bfn_folder_dir}"
-                                    "\n\nPlease do not delete or rename this directory.", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["replace_spawner_data"]["Error"], f"{self.langs[self.lan]["replace_spawner_data"]["error_1_desc_pt1"]}{default_bfn_folder_dir}{self.langs[self.lan]["replace_spawner_data"]["error_1_desc_pt2"]}", parent=self.window)
                 return
 
             if not os.path.isfile(json_file_path):
-                messagebox.showerror("Error", f"JSON filepath does not exist: \n\n{json_file_path}"
-                                        "\n\nPlease do not rename or delete this JSON file.", parent=self.window)
+                messagebox.showerror(self.langs[self.lan]["replace_spawner_data"]["Error"], f"{self.langs[self.lan]["replace_spawner_data"]["error_3_desc_pt1"]}{json_file_path}{self.langs[self.lan]["replace_spawner_data"]["error_3_desc_pt2"]}", parent=self.window)
                 return
 
             # import data from JSON file
             self.bfn_all_biome_files_weights, self.bfn_all_tile_types, self.bfn_all_valid_start_planets, self.all_biome_tile_types = self.import_from_json(json_file_path)
 
-            messagebox.showinfo("Import JSON Completed", "This window will now automatically close in order to refresh the GUI. "
-                                "Return to this window to view the refreshed spawner data.", parent=self.window)
+            messagebox.showinfo(self.langs[self.lan]["replace_spawner_data"]["import_json_complete_title"], self.langs[self.lan]["replace_spawner_data"]["import_json_complete_desc"], parent=self.window)
 
             self.on_close()
 
@@ -1152,7 +1108,7 @@ class PlumgenViewGenExport:
         # draw distance dialog
 
         self.export_settings_window = tk.Toplevel(self.window)
-        self.export_settings_window.title("Export Menu")
+        self.export_settings_window.title(self.langs[self.lan]["export_settings_window"]["main_title"])
         #export_settings_window.configure(bg="#333333")
         self.export_settings_window.iconbitmap(self.icon_path)
 
@@ -1165,13 +1121,11 @@ class PlumgenViewGenExport:
         self.export_settings_window.geometry(f"+{parent_x}+{parent_y}")
         self.export_settings_window.grab_set()  # prevent this window from going behind main window
 
-        dr_label = tk.Label(self.export_settings_window, text="[+] = More performance heavy"
-                            "\n[-] = Incompatible with mods changing GRAPHICS & ENVIRONMENT globals"
-                            "\n* = Enter letters, numbers, or _ - . (no empty spaces)", justify=tk.LEFT, font=("TkDefaultFont", 8))
+        dr_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["dr_label"], justify=tk.LEFT, font=("TkDefaultFont", 8))
         dr_label.grid(row=0, column=0, columnspan=2, padx=(20, 20), pady=(0, 20), sticky=tk.W)
 
         self.prop_dist_var = tk.BooleanVar()
-        dr_checkbox = tk.Checkbutton(self.export_settings_window, text="Increase prop draw distance [+]", variable=self.prop_dist_var)
+        dr_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["dr_checkbox"], variable=self.prop_dist_var)
         dr_checkbox.grid(row=1, column=0, columnspan=2, padx=(20, 20), sticky=tk.W)
 
         # global lod/draw distance dialog
@@ -1179,29 +1133,29 @@ class PlumgenViewGenExport:
         #global_label.grid(row=2, column=0, columnspan=2, padx=(10, 10))
 
         self.global_dist_var = tk.BooleanVar()
-        global_checkbox = tk.Checkbutton(self.export_settings_window, text="Increase global draw distance limit/decrease fade time [+][-]", variable=self.global_dist_var)
+        global_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["global_checkbox"], variable=self.global_dist_var)
         global_checkbox.grid(row=3, column=0, columnspan=2, padx=(20, 20), pady=(0, 20), sticky=tk.W)
 
         # mod author entry
         self.mod_author_entry = tk.Entry(self.export_settings_window)
-        mod_author_label = tk.Label(self.export_settings_window, text="*Mod Author:")
+        mod_author_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Mod_Author"])
         mod_author_label.grid(row=4, column=0, padx=(0, 0), sticky=tk.E)
         self.mod_author_entry.grid(row=4, column=1, padx=(0, 10), sticky=tk.W)
 
         # biomes filename entry
         self.biomes_filename_entry = tk.Entry(self.export_settings_window)
-        biomes_filename_label = tk.Label(self.export_settings_window, text="*Biomes Filename:")
+        biomes_filename_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Biomes_Filename"])
         biomes_filename_label.grid(row=5, column=0, padx=(0, 0), sticky=tk.E)
         self.biomes_filename_entry.grid(row=5, column=1, padx=(0, 10), sticky=tk.W)
 
         # spawner filename entry
         self.spawner_filename_entry = tk.Entry(self.export_settings_window)
-        spawner_filename_label = tk.Label(self.export_settings_window, text="*Spawner Filename:")
+        spawner_filename_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Spawner_Filename"])
         spawner_filename_label.grid(row=6, column=0, padx=(0, 0), sticky=tk.E)
         self.spawner_filename_entry.grid(row=6, column=1, padx=(0, 10), sticky=tk.W)
 
         # export button
-        export_button = tk.Button(self.export_settings_window, text="Export", command=self.export_all_the_files, width=10, background='#473d5c', foreground=self.white_c)
+        export_button = tk.Button(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Export"], command=self.export_all_the_files, width=10, background='#473d5c', foreground=self.white_c)
 
         export_button.grid(row=7, column=0, columnspan=2, padx=(10, 10), pady=(30, 10))
 
@@ -1219,24 +1173,24 @@ class PlumgenViewGenExport:
 
         # validate user input
         if not mod_author:
-            messagebox.showerror("Error", "Please enter Mod Author.", parent=self.window)
+            messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_1"], parent=self.window)
             return
         if not self.validate_input(mod_author):
-            messagebox.showerror("Error", "Invalid Mod Author. Please enter letters, numbers, or _ - .", parent=self.window)
+            messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_2"], parent=self.window)
             return
 
         if not biomes_filename:
-            messagebox.showerror("Error", "Please enter Biomes Filename.", parent=self.window)
+            messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_3"], parent=self.window)
             return
         if not self.validate_input(biomes_filename):
-            messagebox.showerror("Error", "Invalid Biomes Filename. Please enter letters, numbers, or _ - .", parent=self.window)
+            messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_4"], parent=self.window)
             return
 
         if not spawner_filename:
-            messagebox.showerror("Error", "Please enter Spawner Filename.", parent=self.window)
+            messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_5"], parent=self.window)
             return
         if not self.validate_input(spawner_filename):
-            messagebox.showerror("Error", "Invalid Spawner Filename. Please enter letters, numbers, or _ - .", parent=self.window)
+            messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_6"], parent=self.window)
             return
         
 
@@ -1284,6 +1238,8 @@ class PlumgenViewGenExport:
             self.bfn_all_tile_types,
             self.all_biome_tile_types,
             timestamp,
+            self.langs,
+            self.lan,
             self.window
         )
 
@@ -1315,9 +1271,7 @@ class PlumgenViewGenExport:
 
             # validate imported 16 sub-biomes
             if len(self.bfn_all_biome_files_weights) < 16:
-                confirmed = messagebox.askyesno("Spawner: < 16 Sub-biomes", "Spawner: Your spawner contains less than 16 sub-biomes. "
-                                    "Using this Spawner mod WILL crash your game. Select Tools > Replace Spawner Data, then add biome objects to each sub-biome."
-                                    "\n\nContinue anyway?", parent=self.window)
+                confirmed = messagebox.askyesno(self.langs[self.lan]["apply_export_settings"]["spawner_crash_title"], self.langs[self.lan]["apply_export_settings"]["spawner_crash_desc"], parent=self.window)
                 if not confirmed:
                     return # user clicked no or closed
 
@@ -1330,9 +1284,7 @@ class PlumgenViewGenExport:
                         break
                 
             if empty_list_found:
-                confirmed = messagebox.askyesno("Spawner: Empty Sub-Biome Lists", "Spawner: Empty list detected in at least one Sub-Biome Tile Type."
-                                    "\nUsing this Spawner mod WILL crash your game."
-                                    "\n\nContinue anyway?", parent=self.window)
+                confirmed = messagebox.askyesno(self.langs[self.lan]["apply_export_settings"]["spawner_crash_2_title"], self.langs[self.lan]["apply_export_settings"]["spawner_crash_2_desc"], parent=self.window)
                 if not confirmed:
                     return
 
@@ -1350,9 +1302,7 @@ class PlumgenViewGenExport:
 
             if missing_variables:
                 missing_variables_str = ", ".join(missing_variables)
-                confirmed = messagebox.askyesno("Missing data", f"You're missing important data to make both LUAs, which will crash your game. Details: \n{missing_variables_str}"
-                                                "\n\nIf necessary, go back to add missing biome objects or select Tools > Replace Spawner Data, then manually add stuff to the new spawner."
-                                                "\n\nContinue anyway?", parent=self.window)
+                confirmed = messagebox.askyesno(self.langs[self.lan]["apply_export_settings"]["missing_data_title"], f"{self.langs[self.lan]["apply_export_settings"]["missing_data_desc_pt1"]}{missing_variables_str}{self.langs[self.lan]["apply_export_settings"]["missing_data_desc_pt2"]}", parent=self.window)
                 if not confirmed:
                     return
 
@@ -1404,9 +1354,7 @@ class PlumgenViewGenExport:
     def on_close(self):
         try:
 
-            messagebox.showinfo("Biome Name Notice", 
-                        "To avoid export errors, remove biome objects from tile types before renaming or deleting them in the previous window.", 
-                        parent=self.window)
+            messagebox.showinfo(self.langs[self.lan]["on_close_2"]["biome_notice_title"], self.langs[self.lan]["on_close_2"]["biome_notice_desc"], parent=self.window)
             
             self.apply_callback(self.bfn_all_biome_files_weights, self.bfn_all_valid_start_planets, self.bfn_all_tile_types, self.all_biome_tile_types)
 
