@@ -20,25 +20,25 @@ PLUMGEN (v1.1)
 
 v1.1 Update:
 
-	-Added support for 10 languages - reworked all text elements, translated them via. DeepL (take these with a grain of salt) ;)
-		(Chinese-Simplified, English, Finnish, French, German, Italian, Japanese, Korean, Portuguese, Russian, & Spanish)
+	-Added support for 10 languages - Reworked all text elements, translated each via. DeepL (take these with a grain of salt). ;)
+		>These might be a little wacky, I figure better to have something than nothing for those who need it. Please suggest improvements if you can.
+		>These include: Chinese-Simplified, English, Finnish, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish
 	-Fixed issue - Bug preventing bulk editing model SCENE paths.
 	-Readme clarifications - e.g. how to update biome mods in Q&A section.
 
-
 v1.0 Full Release:
 
-	-Overhauled exporting. AMUMSS no longer required. You can now export directly to .PAK using PLUMGEN's new, very efficient export system.
+	-Overhauled exporting. AMUMSS no longer required. You can now export directly to .PAK using PLUMGEN's new efficient export system.
 
-		-10x faster export time vs. LUA - Exporting 20,000+ biomes now takes ~3 minutes, compared to 30+ minutes via. LUA/AMUMSS. [1]
-		-Improved stability - PLUMGEN's new export to PAK system is highly resilient against game updates. [2]
-		-Export all files - EXMLs, MBINs, LUAs, and PAKs. Immediately locate and import exported modded biomes/EXMLs.
-		-Automatic updates - Exporting fetches latest MBINCompiler and extracts vanilla game files = easily mod vanilla biomes too.
-		-Enhanced custom sub-biome support - Replicate modded or even *outdated* sub-biomes with a new export menu (should the issue arise).
-		-LUA now optional - Exporting still generates 2 LUA files, but making use of them (via. AMUMSS) is now optional.
-		-Please see updated 'Requirements' and 'Exporting Info' sections below for more info.
+		>10x faster export time vs. LUA - Exporting 20,000+ biomes now takes ~3 minutes, compared to 30+ minutes via. LUA/AMUMSS. [1]
+		>Improved stability - PLUMGEN's new export to PAK system is highly resilient against game updates. [2]
+		>Export all files - EXMLs, MBINs, LUAs, and PAKs. Immediately locate and import exported modded biomes/EXMLs.
+		>Automatic updates - Exporting fetches latest MBINCompiler and extracts vanilla game files = easily mod vanilla biomes too.
+		>Enhanced custom sub-biome support - Replicate modded or even *outdated* sub-biomes with a new export menu (should the issue arise).
+		>LUA now optional - Exporting still generates 2 LUA files, but making use of them (via. AMUMSS) is now optional.
+		>Please see updated 'Requirements' and 'Exporting Info' sections below for more info.
 
-		*[1] lxml wraps around C libraries = extremely well-optimized EXML parsing/processing. Plus, I just know Python better than LUA.
+		*[1] lxml wraps around C libraries = highly optimized EXML parsing/processing. Plus, I just understand Python better than I do LUA.
 		*[2] lxml follows XML standards for syntax, structure, & validation. This improves long-term EXML compatibility with NMS updates.
 
 
@@ -72,7 +72,7 @@ v1.0 Full Release:
 
 	-Using 'Reset Auto-Rename' on a filepath with multiple underscores can erase almost all of the path's name.
 	-If a link opens a *new* browser, then you quit PLUMGEN, the app will stay active until you quit the browser.
-		-This does not happen when your browser is *already* open. This issue seems to occur when creating the EXE via. cx_Freeze.
+		>This does not happen when your browser is *already* open. This issue seems to occur when creating the EXE via. cx_Freeze.
 
 
 
@@ -88,11 +88,17 @@ v1.0 Full Release:
 	No, although donations are accepted.
 
 	-Will my exported biome mod break after game updates?
-	If it breaks, import your mod and export it again. Note: wait for MBINCompiler to update after game updates (see: https://github.com/monkeyman192/MBINCompiler/releases). 
-	Although rare, if a new game update fundamentally changes game structure or biome files, wait for a PLUMGEN update, then download the app again.
+	If it breaks, import your mod and export it again. Note: wait for MBINCompiler update after game updates (see: https://github.com/monkeyman192/MBINCompiler/releases). 
+	Although typically rare, if a new game update fundamentally changes game structure/biome files, wait for a PLUMGEN update, then download the app again.
 
 	-The PLUMGEN window looks blurry and parts are cut-off by the edge of the window, like the tooltip.
 	This shouldn't happen after v1.0. If it does, please let me know.
+	
+	-I changed the language, and now text elements appear cut off, like the tooltip/info box.
+	Simply expand the window. This should let you see the rest of the text. Some translations require more space than the English version.
+	
+	-Some translations are not accurate.
+	Yeah, I used DeepL and a few other machine learning sources to translate. If you can, please open a new bug on nexus or issue on github with any suggested improvements. :)
 
 	Others: TBD.
 
@@ -103,7 +109,7 @@ v1.0 Full Release:
 	Video Tutorial - This predates v1.0 which added the ability to export directly to PAK:
 	https://www.youtube.com/watch?v=zzaeyRAobOQ
 
-	If you encounter issues, please report them on github with full details and the plumgen.log file. Niceties are appreciated:
+	If you encounter issues, please report them on nexus mods or github with full details and the plumgen.log file. Images or videos are always appreciated:
 	https://github.com/SunnySummit/
 
 

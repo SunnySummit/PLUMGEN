@@ -225,8 +225,8 @@ class PlumgenViewGenExport:
         filemenu.add_separator()
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Exit"], command=self.on_close)
 
-        toolmenu = tk.Menu(mb)
-        toolmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Replace_Spawner_Json"], command=self.replace_spawner_data)
+        self.toolmenu = tk.Menu(mb)
+        self.toolmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Replace_Spawner_Json"], command=self.replace_spawner_data)
 
         editmenu = tk.Menu(mb)
         editmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Help_2"], command=self.open_help)
@@ -236,7 +236,7 @@ class PlumgenViewGenExport:
         donatemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Donate_3"], command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
 
         mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["File"], filemenu)
-        mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["Tools"], toolmenu)
+        mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["Tools"], self.toolmenu)
         mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["Help"], editmenu)
         mb.add_menu(self.langs[self.lan]["filemenu_view_gen_export"]["Donate_4"], donatemenu)
         
@@ -1098,7 +1098,6 @@ class PlumgenViewGenExport:
             self.show_error_message("An error occurred: {}".format(str(e)))
 
 
-
     # function to validate input
     def validate_input(self, input_string):
         return re.match(r'^[a-zA-Z0-9_.-]+$', input_string) is not None
@@ -1194,9 +1193,12 @@ class PlumgenViewGenExport:
             return
         
 
+        self.export_button.config(state="disabled") # disable export button
+        self.go_back_button.config(state="disabled")
+        self.toolmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen_export"]["Replace_Spawner_Json"], state='disabled')
+
         # destroy export settings window
         self.export_settings_window.destroy()
-
 
         # initialize export lua class, pass arguments
         self.export_class = PlumgenExportLuaClass(
@@ -1264,10 +1266,13 @@ class PlumgenViewGenExport:
             self.export_exml_class.make_move_mbins_pak_and_validate(biomes_filename, spawner_filename)
             #print("\n8")
 
+        self.export_button.config(state="normal") # reenable export button
+        self.go_back_button.config(state="normal")
+        self.toolmenu.entryconfig(self.langs[self.lan]["filemenu_view_gen_export"]["Replace_Spawner_Json"], state="normal")
+
 
     def apply_export_settings(self):
         try:
-        
 
             # validate imported 16 sub-biomes
             if len(self.bfn_all_biome_files_weights) < 16:

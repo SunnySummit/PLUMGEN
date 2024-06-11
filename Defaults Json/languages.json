@@ -510,6 +510,8 @@
             "dld_fail_desc": "Error downloading MBINCompiler:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "MBINCompiler Update Available",
+            "Ask_MBC_Update_Desc": "New MBINCompiler update available. Download latest MBINCompiler?",
             "Error": "Error",
             "Error_1": "Failed to process with MBINCompiler: ",
             "Error_2": "MBINCompiler executable for version not found: ",
@@ -1069,6 +1071,8 @@
             "dld_fail_desc": "下载 MBINCompiler 时出错：\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "MBINCompiler 更新可用",
+            "Ask_MBC_Update_Desc": "新的 MBINCompiler 更新可用。下载最新的 MBINCompiler 吗？",
             "Error": "错误",
             "Error_1": "使用 MBINCompiler 处理时出错：",
             "Error_2": "未找到此版本的 MBINCompiler 可执行文件：",
@@ -1628,6 +1632,8 @@
             "dld_fail_desc": "Virhe ladattaessa MBINCompileria:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "MBINCompiler Päivitys Saatavilla",
+            "Ask_MBC_Update_Desc": "Uusi MBINCompiler päivitys saatavilla. Lataa uusin MBINCompiler?",
             "Error": "Virhe",
             "Error_1": "Ei voitu käsitellä MBINCompilerilla: ",
             "Error_2": "MBINCompiler-suoritettavaa versiolle ei löytynyt: ",
@@ -2187,6 +2193,8 @@
             "dld_fail_desc": "Erreur lors du téléchargement de MBINCompiler :\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Mise à jour de MBINCompiler disponible",
+            "Ask_MBC_Update_Desc": "Nouvelle mise à jour de MBINCompiler disponible. Télécharger la dernière version de MBINCompiler ?",
             "Error": "Erreur",
             "Error_1": "Échec du traitement avec MBINCompiler : ",
             "Error_2": "Exécutable MBINCompiler introuvable pour cette version : ",
@@ -2746,6 +2754,8 @@
             "dld_fail_desc": "Fehler beim Herunterladen von MBINCompiler:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "MBINCompiler Update Verfügbar",
+            "Ask_MBC_Update_Desc": "Neues MBINCompiler-Update verfügbar. Neuesten MBINCompiler herunterladen?",
             "Error": "Fehler",
             "Error_1": "Verarbeitung mit MBINCompiler fehlgeschlagen: ",
             "Error_2": "MBINCompiler ausführbar für Version nicht gefunden: ",
@@ -3305,6 +3315,8 @@
             "dld_fail_desc": "Errore durante il download di MBINCompiler:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Aggiornamento MBINCompiler Disponibile",
+            "Ask_MBC_Update_Desc": "Nuovo aggiornamento MBINCompiler disponibile. Scaricare l'ultima versione di MBINCompiler?",
             "Error": "Errore",
             "Error_1": "Impossibile elaborare con MBINCompiler: ",
             "Error_2": "Esecuzione di MBINCompiler per la versione non trovata: ",
@@ -3864,6 +3876,8 @@
             "dld_fail_desc": "MBINCompiler のダウンロード中にエラーが発生しました:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "MBINCompilerの更新が利用可能です",
+            "Ask_MBC_Update_Desc": "新しいMBINCompilerの更新が利用可能です。最新のMBINCompilerをダウンロードしますか？",
             "Error": "エラー",
             "Error_1": "MBINCompiler での処理に失敗しました: ",
             "Error_2": "バージョンの MBINCompiler 実行ファイルが見つかりません: ",
@@ -4423,6 +4437,8 @@
             "dld_fail_desc": "MBINCompiler 다운로드 중 오류 발생:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "MBINCompiler 업데이트 가능",
+            "Ask_MBC_Update_Desc": "새로운 MBINCompiler 업데이트가 가능합니다. 최신 MBINCompiler를 다운로드하시겠습니까?",
             "Error": "오류",
             "Error_1": "MBINCompiler로 처리하지 못했습니다: ",
             "Error_2": "버전용 MBINCompiler 실행 파일을 찾지 못했습니다: ",
@@ -4982,6 +4998,8 @@
             "dld_fail_desc": "Erro ao baixar o MBINCompiler:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Atualização do MBINCompiler Disponível",
+            "Ask_MBC_Update_Desc": "Nova atualização do MBINCompiler disponível. Baixar a versão mais recente do MBINCompiler?",
             "Error": "Erro",
             "Error_1": "Falha ao processar com o MBINCompiler: ",
             "Error_2": "Executável do MBINCompiler para esta versão não encontrado: ",
@@ -5541,6 +5559,8 @@
             "dld_fail_desc": "Ошибка загрузки MBINCompiler:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Доступно обновление MBINCompiler",
+            "Ask_MBC_Update_Desc": "Доступно новое обновление MBINCompiler. Загрузить последнюю версию MBINCompiler?",
             "Error": "Ошибка",
             "Error_1": "Не удалось обработать с помощью MBINCompiler: ",
             "Error_2": "Исполняемый файл MBINCompiler для этой версии не найден: ",
@@ -6100,6 +6120,8 @@
             "dld_fail_desc": "Error al descargar MBINCompiler:\n"
         },
         "decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Actualización de MBINCompiler disponible",
+            "Ask_MBC_Update_Desc": "Nueva actualización de MBINCompiler disponible. ¿Descargar la última versión de MBINCompiler?",
             "Error": "Error",
             "Error_1": "Error al procesar con MBINCompiler: ",
             "Error_2": "No se encontró el ejecutable de MBINCompiler para esta versión: ",
