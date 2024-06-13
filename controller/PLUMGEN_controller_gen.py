@@ -19,6 +19,7 @@ from model.PLUMGEN_model_gen import PlumgenModelGen
 from model.PLUMGEN_model_gen import DefaultModelPaths
 from model.PLUMGEN_model_gen import DefaultSpawnDensityList
 from view.PLUMGEN_view_gen import PlumgenViewGen
+from model.PLUMGEN_updater import PlumgenUpdater
 
 
 class PlumgenControllerGen():
@@ -37,7 +38,7 @@ class PlumgenControllerGen():
             if getattr(sys, 'frozen', False):
                 # if frozen (and running as exe), use these paths:
                 current_directory = os.path.dirname(sys.executable)
-                self.plum_exe = os.path.abspath(os.path.join(current_directory, '_PLUMGEN.exe'))
+                #self.plum_exe = os.path.abspath(os.path.join(current_directory, '_PLUMGEN.exe'))
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '_Presets'))
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
@@ -47,7 +48,7 @@ class PlumgenControllerGen():
             else:
                 # if running as script, use these paths:
                 current_directory = os.path.dirname(os.path.realpath(__file__))
-                self.plum_exe = None
+                #self.plum_exe = None
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '..', '_Presets'))
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
@@ -88,7 +89,7 @@ class PlumgenControllerGen():
 
             # get language
             self.langs = None
-            self.get_set_lang_from_json()
+            self.get_set_lang_from_json_update_plum()
             # if new language window prompt, continue with making window anyway
             if self.langs["Lan"] == "TBD":
                 self.lan = "English" # temporarily default to english if none selected
@@ -129,9 +130,13 @@ class PlumgenControllerGen():
 
             if self.new_lang: # if user selected to choose new lang using main menu
                 if messagebox.askyesno(self.langs[selected_lang]["on_close"]["close_title"], self.langs[selected_lang]["on_close"]["close_desc"], parent=self.root):
-                    if self.plum_exe is not None:
-                        subprocess.Popen(self.plum_exe)
-                    self.root.destroy()
+                    
+                    if getattr(sys, 'frozen', False):
+                        # if frozen (and running as exe), use these paths:
+                        #current_directory = os.path.dirname(sys.executable)
+                        os.execl(sys.executable, sys.executable, *sys.argv)
+                        #subprocess.Popen(sys.executable)
+                        #self.root.destroy()
 
 
     def prompt_lang_select(self):
@@ -176,7 +181,7 @@ class PlumgenControllerGen():
         self.lang_window.grid_rowconfigure(0, weight=1)
 
 
-    def get_set_lang_from_json(self, force_select_new_lang=False):
+    def get_set_lang_from_json_update_plum(self, force_select_new_lang=False):
         self.new_lang = force_select_new_lang
         
         with open(self.json_lang_path, 'r+', encoding='utf-8') as file:
@@ -185,6 +190,13 @@ class PlumgenControllerGen():
         if self.langs["Lan"] == "TBD" or self.new_lang:
             self.prompt_lang_select() # on startup, ask for language
     
+        self.lan = self.langs["Lan"]
+
+        # after selecting language, search and update app:
+        self.updater = PlumgenUpdater(self.root, self.langs, self.lan)
+
+        self.updater.update_plum()
+        
 
 
 
