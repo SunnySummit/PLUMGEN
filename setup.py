@@ -34,7 +34,7 @@ build_options = {
     ],
     
     "excludes": ['__pycache__', 'turtle.jpg'],
-    "packages": ["tkinter", "lxml"],
+    "packages": ["tkinter", "lxml", "requests"],
 }
  
 base = 'Win32GUI' if sys.platform=='win32' else None #Win32GUI #Console <- to debug stuff

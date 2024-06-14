@@ -71,7 +71,7 @@ class PlumgenViewGenExport:
             self.parent.withdraw()
             
             self.window = tk.Toplevel(self.grandparent)
-            self.window.title(f"1.1 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
+            self.window.title(f"v1.1 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
             
 
             # retrieve parent window's position & size
@@ -1250,7 +1250,13 @@ class PlumgenViewGenExport:
 
         connected_to_internet = self.export_exml_class.update_mbc_move_files() #
         #print("\n1")
-        if connected_to_internet:
+        if not connected_to_internet:
+
+            continue_process = messagebox.askyesno(self.langs[self.lan]["filemenu_view_gen_export"]["Question"], self.langs[self.lan]["filemenu_view_gen_export"]["Question_Desc"], parent=self.window)
+            if not continue_process:
+                return # user clicked no or closed
+
+
             self.export_exml_class.modify_prop_scenes()
             #print("\n2")
             self.export_exml_class.modify_each_subbiome()
@@ -1265,6 +1271,7 @@ class PlumgenViewGenExport:
             #print("\n7")
             self.export_exml_class.make_move_mbins_pak_and_validate(biomes_filename, spawner_filename)
             #print("\n8")
+
 
         self.export_button.config(state="normal") # reenable export button
         self.go_back_button.config(state="normal")

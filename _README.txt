@@ -25,6 +25,8 @@ v1.1 Update:
 		>These include: Chinese-Simplified, English, Finnish, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish
 	-Fixed issue - Bug preventing bulk editing model SCENE paths.
 	-Readme clarifications - e.g. how to update biome mods in Q&A section.
+	-Security improvements
+	-Plumgen now updates itself!
 
 v1.0 Full Release:
 

@@ -98,7 +98,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"1.1 - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.1 - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -195,11 +195,7 @@ class PlumgenControllerGen():
         # after selecting language, search and update app:
         self.updater = PlumgenUpdater(self.root, self.langs, self.lan)
 
-        self.updater.update_plum()
-        
-
-
-
+        connected_to_internet = self.updater.update_plum()
 
 
 

@@ -367,6 +367,8 @@
             "Select_All": "Select All Biomes",
             "Deselect_All": "Deselect All Biomes",
             "Exit": "Exit",
+            "Question": "Question",
+            "Question_Desc": "Issue getting latest MBINCompiler version number from GitHub. Check internet connection. Do you still want to proceed?",
             "Replace_Spawner_Json": "Replace Spawner Data with JSON",
             "Help_2": "Help",
             "About": "About...",
@@ -525,6 +527,35 @@
         "update_mbc_move_files": {
             "Error": "Error",
             "Error_Desc": "Failed to load latest MBINCompiler version number from JSON. Do not delete or rename this file!"
+        },
+        "plum_misc": {
+            "dang_title": "Dangerous Command Found",
+            "dang_pt1": "Potentially dangerous command found in the .bat file: \n",
+            "dang_pt2": "\nPlease delete 'model/Updater/move_updated_files.bat' file and notify the dev.",
+            "Error": "Error",
+            "something_off": "Something is off with the downloaded PLUMGEN version. Please delete the PLUMGEN version found in '/model/Updater/'",
+            "err_dld_plum_desc": "Error downloading PLUMGEN file: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Error",
+            "Error_Desc_pt1": "Error fetching latest PLUMGEN release:\n",
+            "Error_Desc_pt2": "\nMake sure you're connected to the internet."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "PLUMGEN Update",
+            "dld_good_desc_pt1": "Downloaded ",
+            "dld_good_desc_pt2": "\n\nThe application will now restart.",
+            "Error": "Error",
+            "dld_fail_desc": "Error downloading PLUMGEN:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "PLUMGEN Update Available",
+            "Ask_MBC_Update_Desc": "New PLUMGEN update available. Download latest PLUMGEN?",
+            "Error": "Error"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Error",
+            "Error_Desc": "Failed to load latest PLUMGEN version number from JSON. Do not delete or rename this file!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "Custom Sub-Biome File Found",
@@ -928,6 +959,8 @@
             "Select_All": "选择所有生物群落",
             "Deselect_All": "取消选择所有生物群落",
             "Exit": "退出",
+            "Question": "问题",
+            "Question_Desc": "从 GitHub 获取最新的 MBINCompiler 版本号时出现问题。检查互联网连接。您还要继续吗？",
             "Replace_Spawner_Json": "用 JSON 替换生成器数据",
             "Help_2": "帮助",
             "About": "关于...",
@@ -1086,6 +1119,35 @@
         "update_mbc_move_files": {
             "Error": "错误",
             "Error_Desc": "无法从 JSON 中加载最新的 MBINCompiler 版本号。不要删除或重命名此文件！"
+        },
+        "plum_misc": {
+            "dang_title": "发现危险命令",
+            "dang_pt1": "在.bat文件中发现潜在危险的命令：\n",
+            "dang_pt2": "\n请删除'model/Updater/move_updated_files.bat'文件并通知开发人员。",
+            "Error": "错误",
+            "something_off": "下载的PLUMGEN版本存在问题。请删除'/model/Updater/'中找到的PLUMGEN版本",
+            "err_dld_plum_desc": "下载PLUMGEN文件时出错："
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "错误",
+            "Error_Desc_pt1": "获取最新的 PLUMGEN 发布时出错：\n",
+            "Error_Desc_pt2": "\n确保您已连接到互联网。"
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "PLUMGEN 更新",
+            "dld_good_desc_pt1": "已下载 ",
+            "dld_good_desc_pt2": "应用程序现在将重新启动。\n\n",
+            "Error": "错误",
+            "dld_fail_desc": "下载 PLUMGEN 时出错：\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "PLUMGEN 更新可用",
+            "Ask_MBC_Update_Desc": "新的 PLUMGEN 更新可用。下载最新的 PLUMGEN 吗？",
+            "Error": "错误"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "错误",
+            "Error_Desc": "无法从 JSON 中加载最新的 PLUMGEN 版本号。不要删除或重命名此文件！"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "发现自定义子生物群文件",
@@ -1489,6 +1551,8 @@
             "Select_All": "Valitse kaikki biomet",
             "Deselect_All": "Poista valinta kaikista biomeista",
             "Exit": "Poistu",
+            "Question": "Kysymys",
+            "Question_Desc": "Ongelma saada uusin MBINCompiler-versionumero GitHubista. Tarkista Internet-yhteys. Haluatko silti jatkaa?",
             "Replace_Spawner_Json": "Korvaa hajasijoittimen tiedot JSON:lla",
             "Help_2": "Apua",
             "About": "Tietoja...",
@@ -1647,6 +1711,35 @@
         "update_mbc_move_files": {
             "Error": "Virhe",
             "Error_Desc": "Viimeisimmän MBINCompilerin versioluvun lataus epäonnistui JSONista. Älä poista tai muuta tätä tiedostoa!"
+        },
+        "plum_misc": {
+            "dang_title": "Vaarallinen komento löydetty",
+            "dang_pt1": "Mahdollisesti vaarallinen komento löydetty .bat-tiedostossa: \n",
+            "dang_pt2": "\nPoista 'model/Updater/move_updated_files.bat' tiedosto ja ilmoita kehittäjälle.",
+            "Error": "Virhe",
+            "something_off": "Jotain on vialla ladatun PLUMGEN-version kanssa. Poista PLUMGEN-versio kansiosta '/model/Updater/'",
+            "err_dld_plum_desc": "Virhe ladattaessa PLUMGEN-tiedostoa: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Virhe",
+            "Error_Desc_pt1": "Virhe haettaessa uusinta PLUMGEN-julkaisua:\n",
+            "Error_Desc_pt2": "\nVarmista, että olet yhteydessä internetiin."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "PLUMGEN Päivitys",
+            "dld_good_desc_pt1": "Ladattu ",
+            "dld_good_desc_pt2": "\n\nSovellus käynnistyy nyt uudelleen.",
+            "Error": "Virhe",
+            "dld_fail_desc": "Virhe ladattaessa PLUMGENia:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "PLUMGEN Päivitys Saatavilla",
+            "Ask_MBC_Update_Desc": "Uusi PLUMGEN päivitys saatavilla. Lataa uusin PLUMGEN?",
+            "Error": "Virhe"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Virhe",
+            "Error_Desc": "Viimeisimmän PLUMGENin versioluvun lataus epäonnistui JSONista. Älä poista tai muuta tätä tiedostoa!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "Löydetty räätälöity alabiomi-tiedosto",
@@ -2050,6 +2143,8 @@
             "Select_All": "Sélectionner tous les biomes",
             "Deselect_All": "Désélectionner tous les biomes",
             "Exit": "Quitter",
+            "Question": "Question",
+            "Question_Desc": "Problème pour obtenir le numéro de version le plus récent de MBINCompiler depuis GitHub. Vérifiez la connexion internet. Voulez-vous toujours continuer?",
             "Replace_Spawner_Json": "Remplacer les données de spawner par JSON",
             "Help_2": "Aide",
             "About": "À propos de...",
@@ -2208,6 +2303,35 @@
         "update_mbc_move_files": {
             "Error": "Erreur",
             "Error_Desc": "Impossible de charger le numéro de version le plus récent de MBINCompiler à partir du JSON. Ne supprimez pas ou ne renommez pas ce fichier !"
+        },
+        "plum_misc": {
+            "dang_title": "Commande dangereuse trouvée",
+            "dang_pt1": "Commande potentiellement dangereuse trouvée dans le fichier .bat : \n",
+            "dang_pt2": "\nVeuillez supprimer le fichier 'model/Updater/move_updated_files.bat' et notifier le développeur.",
+            "Error": "Erreur",
+            "something_off": "Quelque chose ne va pas avec la version téléchargée de PLUMGEN. Veuillez supprimer la version de PLUMGEN trouvée dans '/model/Updater/'",
+            "err_dld_plum_desc": "Erreur lors du téléchargement du fichier PLUMGEN : "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Erreur",
+            "Error_Desc_pt1": "Erreur lors de la récupération de la dernière version de PLUMGEN :\n",
+            "Error_Desc_pt2": "\nAssurez-vous d'être connecté à internet."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "Mise à jour de PLUMGEN",
+            "dld_good_desc_pt1": "Téléchargé ",
+            "dld_good_desc_pt2": "\n\nL'application va maintenant redémarrer.",
+            "Error": "Erreur",
+            "dld_fail_desc": "Erreur lors du téléchargement de PLUMGEN :\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Mise à jour de PLUMGEN disponible",
+            "Ask_MBC_Update_Desc": "Nouvelle mise à jour de PLUMGEN disponible. Télécharger la dernière version de PLUMGEN ?",
+            "Error": "Erreur"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Erreur",
+            "Error_Desc": "Impossible de charger le numéro de version le plus récent de PLUMGEN à partir du JSON. Ne supprimez pas ou ne renommez pas ce fichier !"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "Fichier de sous-biome personnalisé trouvé",
@@ -2611,6 +2735,8 @@
             "Select_All": "Alle Biome auswählen",
             "Deselect_All": "Alle Biome abwählen",
             "Exit": "Beenden",
+            "Question": "Frage",
+            "Question_Desc": "Problem beim Abrufen der neuesten MBINCompiler-Version von GitHub. Überprüfen Sie die Internetverbindung. Möchten Sie dennoch fortfahren?",
             "Replace_Spawner_Json": "Spawner-Daten durch JSON ersetzen",
             "Help_2": "Hilfe",
             "About": "Über...",
@@ -2769,6 +2895,35 @@
         "update_mbc_move_files": {
             "Error": "Fehler",
             "Error_Desc": "Fehler beim Laden der neuesten MBINCompiler-Version aus JSON. Löschen oder umbenennen Sie diese Datei nicht!"
+        },
+        "plum_misc": {
+            "dang_title": "Gefährlicher Befehl gefunden",
+            "dang_pt1": "Potenziell gefährlicher Befehl in der .bat-Datei gefunden: \n",
+            "dang_pt2": "\nBitte löschen Sie die Datei 'model/Updater/move_updated_files.bat' und benachrichtigen Sie den Entwickler.",
+            "Error": "Fehler",
+            "something_off": "Etwas stimmt nicht mit der heruntergeladenen PLUMGEN-Version. Bitte löschen Sie die PLUMGEN-Version, die unter '/model/Updater/' gefunden wurde",
+            "err_dld_plum_desc": "Fehler beim Herunterladen der PLUMGEN-Datei: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Fehler",
+            "Error_Desc_pt1": "Fehler beim Abrufen der neuesten PLUMGEN-Version:\n",
+            "Error_Desc_pt2": "\nStellen Sie sicher, dass Sie mit dem Internet verbunden sind."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "PLUMGEN Update",
+            "dld_good_desc_pt1": "Heruntergeladen ",
+            "dld_good_desc_pt2": "\n\nDie Anwendung wird nun neu gestartet.",
+            "Error": "Fehler",
+            "dld_fail_desc": "Fehler beim Herunterladen von PLUMGEN:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "PLUMGEN Update Verfügbar",
+            "Ask_MBC_Update_Desc": "Neues PLUMGEN-Update verfügbar. Neuesten PLUMGEN herunterladen?",
+            "Error": "Fehler"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Fehler",
+            "Error_Desc": "Fehler beim Laden der neuesten PLUMGEN-Version aus JSON. Löschen oder umbenennen Sie diese Datei nicht!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "Benutzerdefinierte Sub-Biome-Datei gefunden",
@@ -3172,6 +3327,8 @@
             "Select_All": "Seleziona tutti i biomi",
             "Deselect_All": "Deseleziona tutti i biomi",
             "Exit": "Uscita",
+            "Question": "Domanda",
+            "Question_Desc": "Problema nel ottenere l'ultima versione di MBINCompiler da GitHub. Controlla la connessione internet. Vuoi comunque procedere?",
             "Replace_Spawner_Json": "Sostituisci Dati di Spawner con JSON",
             "Help_2": "Aiuto",
             "About": "Informazioni...",
@@ -3330,6 +3487,35 @@
         "update_mbc_move_files": {
             "Error": "Errore",
             "Error_Desc": "Impossibile caricare il numero di versione più recente di MBINCompiler da JSON. Non eliminare o rinominare questo file!"
+        },
+        "plum_misc": {
+            "dang_title": "Comando Pericoloso Trovato",
+            "dang_pt1": "Comando potenzialmente pericoloso trovato nel file .bat: \n",
+            "dang_pt2": "\nSi prega di eliminare il file 'model/Updater/move_updated_files.bat' e notificare lo sviluppatore.",
+            "Error": "Errore",
+            "something_off": "Qualcosa non va con la versione di PLUMGEN scaricata. Si prega di eliminare la versione di PLUMGEN trovata in '/model/Updater/'",
+            "err_dld_plum_desc": "Errore durante il download del file PLUMGEN: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Errore",
+            "Error_Desc_pt1": "Errore durante il recupero dell'ultimo rilascio di PLUMGEN:\n",
+            "Error_Desc_pt2": "\nAssicurati di essere connesso a internet."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "Aggiornamento PLUMGEN",
+            "dld_good_desc_pt1": "Scaricato ",
+            "dld_good_desc_pt2": "\n\nL'applicazione si riavvierà ora.",
+            "Error": "Errore",
+            "dld_fail_desc": "Errore durante il download di PLUMGEN:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Aggiornamento PLUMGEN Disponibile",
+            "Ask_MBC_Update_Desc": "Nuovo aggiornamento PLUMGEN disponibile. Scaricare l'ultima versione di PLUMGEN?",
+            "Error": "Errore"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Errore",
+            "Error_Desc": "Impossibile caricare il numero di versione più recente di PLUMGEN da JSON. Non eliminare o rinominare questo file!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "File Sub-Biome Personalizzato Trovato",
@@ -3733,6 +3919,8 @@
             "Select_All": "すべてのバイオームを選択",
             "Deselect_All": "すべてのバイオームの選択を解除",
             "Exit": "終了",
+            "Question": "質問",
+            "Question_Desc": "GitHub から最新の MBINCompiler バージョン番号を取得する問題が発生しています。インターネット接続を確認してください。それでも続行しますか？",
             "Replace_Spawner_Json": "スポーナーデータをJSONで置換",
             "Help_2": "ヘルプ",
             "About": "情報...",
@@ -3891,6 +4079,35 @@
         "update_mbc_move_files": {
             "Error": "エラー",
             "Error_Desc": "最新の MBINCompiler バージョン番号を JSON から読み込めませんでした。このファイルを削除または名前を変更しないでください！"
+        },
+        "plum_misc": {
+            "dang_title": "危険なコマンドが見つかりました",
+            "dang_pt1": "バッチファイルで潜在的に危険なコマンドが見つかりました：\n",
+            "dang_pt2": "\n'model/Updater/move_updated_files.bat' ファイルを削除し、開発者に通知してください。",
+            "Error": "エラー",
+            "something_off": "ダウンロードした PLUMGEN バージョンに問題があります。'/model/Updater/' にある PLUMGEN バージョンを削除してください",
+            "err_dld_plum_desc": "PLUMGEN ファイルのダウンロードエラー："
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "エラー",
+            "Error_Desc_pt1": "最新の PLUMGEN リリースの取得中にエラーが発生しました:\n",
+            "Error_Desc_pt2": "\nインターネットに接続されていることを確認してください。"
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "PLUMGEN アップデート",
+            "dld_good_desc_pt1": "ダウンロードされました ",
+            "dld_good_desc_pt2": "\n\nアプリケーションは今再起動します。",
+            "Error": "エラー",
+            "dld_fail_desc": "PLUMGEN のダウンロード中にエラーが発生しました:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "PLUMGENの更新が利用可能です",
+            "Ask_MBC_Update_Desc": "新しいPLUMGENの更新が利用可能です。最新のPLUMGENをダウンロードしますか？",
+            "Error": "エラー"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "エラー",
+            "Error_Desc": "最新の PLUMGEN バージョン番号を JSON から読み込めませんでした。このファイルを削除または名前を変更しないでください！"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "カスタムサブバイオームファイルが見つかりました",
@@ -4294,6 +4511,8 @@
             "Select_All": "모든 생물군 선택",
             "Deselect_All": "모든 생물군 선택 해제",
             "Exit": "나가기",
+            "Question": "질문",
+            "Question_Desc": "깃허브에서 최신 MBINCompiler 버전 번호를 가져오는 데 문제가 있습니다. 인터넷 연결을 확인하십시오. 계속 진행하시겠습니까?",
             "Replace_Spawner_Json": "생성기 데이터를 JSON으로 대체",
             "Help_2": "도움말",
             "About": "정보...",
@@ -4452,6 +4671,35 @@
         "update_mbc_move_files": {
             "Error": "오류",
             "Error_Desc": "최신 MBINCompiler 버전 번호를 JSON에서 로드하지 못했습니다. 이 파일을 삭제하거나 이름을 변경하지 마십시오!"
+        },
+        "plum_misc": {
+            "dang_title": "위험한 명령어 발견됨",
+            "dang_pt1": "배치 파일에서 잠재적으로 위험한 명령어가 발견되었습니다: \n",
+            "dang_pt2": "\n'model/Updater/move_updated_files.bat' 파일을 삭제하고 개발자에게 알려주세요.",
+            "Error": "오류",
+            "something_off": "다운로드한 PLUMGEN 버전에 문제가 있습니다. '/model/Updater/'에서 발견된 PLUMGEN 버전을 삭제해주세요.",
+            "err_dld_plum_desc": "PLUMGEN 파일을 다운로드하는 중 오류가 발생했습니다: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "오류",
+            "Error_Desc_pt1": "최신 PLUMGEN 릴리스를 가져오는 중 오류 발생:\n",
+            "Error_Desc_pt2": "\n인터넷에 연결되어 있는지 확인하십시오."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "PLUMGEN 업데이트",
+            "dld_good_desc_pt1": "다음을 다운로드했습니다 ",
+            "dld_good_desc_pt2": "\n\n애플리케이션이 이제 다시 시작됩니다.",
+            "Error": "오류",
+            "dld_fail_desc": "PLUMGEN 다운로드 중 오류 발생:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "PLUMGEN 업데이트 가능",
+            "Ask_MBC_Update_Desc": "새로운 PLUMGEN 업데이트가 가능합니다. 최신 PLUMGEN 다운로드하시겠습니까?",
+            "Error": "오류"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "오류",
+            "Error_Desc": "최신 PLUMGEN 버전 번호를 JSON에서 로드하지 못했습니다. 이 파일을 삭제하거나 이름을 변경하지 마십시오!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "사용자 정의 Sub-Biome 파일 발견됨",
@@ -4855,6 +5103,8 @@
             "Select_All": "Selecionar Todos os Biomas",
             "Deselect_All": "Desmarcar Todos os Biomas",
             "Exit": "Sair",
+            "Question": "Pergunta",
+            "Question_Desc": "Problema ao obter o número da versão mais recente do MBINCompiler no GitHub. Verifique a conexão com a internet. Ainda deseja prosseguir?",
             "Replace_Spawner_Json": "Substituir Dados do Spawner com JSON",
             "Help_2": "Ajuda",
             "About": "Sobre...",
@@ -5013,6 +5263,35 @@
         "update_mbc_move_files": {
             "Error": "Erro",
             "Error_Desc": "Falha ao carregar o número da versão mais recente do MBINCompiler do JSON. Não exclua ou renomeie este arquivo!"
+        },
+        "plum_misc": {
+            "dang_title": "Comando Perigoso Encontrado",
+            "dang_pt1": "Comando potencialmente perigoso encontrado no arquivo .bat: \n",
+            "dang_pt2": "\nPor favor, exclua o arquivo 'model/Updater/move_updated_files.bat' e notifique o desenvolvedor.",
+            "Error": "Erro",
+            "something_off": "Algo está errado com a versão PLUMGEN baixada. Por favor, exclua a versão PLUMGEN encontrada em '/model/Updater/'",
+            "err_dld_plum_desc": "Erro ao baixar o arquivo PLUMGEN: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Erro",
+            "Error_Desc_pt1": "Erro ao buscar a última versão do PLUMGEN:\n",
+            "Error_Desc_pt2": "\nCertifique-se de que está conectado à internet."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "Atualização do PLUMGEN",
+            "dld_good_desc_pt1": "Baixado ",
+            "dld_good_desc_pt2": "\n\nA aplicação irá reiniciar agora.",
+            "Error": "Erro",
+            "dld_fail_desc": "Erro ao baixar o PLUMGEN:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Atualização do PLUMGEN Disponível",
+            "Ask_MBC_Update_Desc": "Nova atualização do PLUMGEN disponível. Baixar a versão mais recente do PLUMGEN?",
+            "Error": "Erro"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Erro",
+            "Error_Desc": "Falha ao carregar o número da versão mais recente do PLUMGEN do JSON. Não exclua ou renomeie este arquivo!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "Arquivo de Sub-Bioma Personalizado Encontrado",
@@ -5416,6 +5695,8 @@
             "Select_All": "Выбрать все биомы",
             "Deselect_All": "Снять выбор со всех биомов",
             "Exit": "Выход",
+            "Question": "Вопрос",
+            "Question_Desc": "Проблема получения последней версии MBINCompiler из GitHub. Проверьте подключение к интернету. Хотите ли вы продолжить?",
             "Replace_Spawner_Json": "Заменить данные спаунера на JSON",
             "Help_2": "Помощь",
             "About": "О программе...",
@@ -5574,6 +5855,35 @@
         "update_mbc_move_files": {
             "Error": "Ошибка",
             "Error_Desc": "Не удалось загрузить номер последней версии MBINCompiler из JSON. Не удаляйте и не переименовывайте этот файл!"
+        },
+        "plum_misc": {
+            "dang_title": "Опасная команда обнаружена",
+            "dang_pt1": "Обнаружена потенциально опасная команда в файле .bat: \n",
+            "dang_pt2": "\nПожалуйста, удалите файл 'model/Updater/move_updated_files.bat' и уведомите разработчика.",
+            "Error": "Ошибка",
+            "something_off": "Что-то не так с загруженной версией PLUMGEN. Пожалуйста, удалите версию PLUMGEN, найденную в '/model/Updater/'",
+            "err_dld_plum_desc": "Ошибка загрузки файла PLUMGEN: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Ошибка",
+            "Error_Desc_pt1": "Ошибка при получении последнего релиза PLUMGEN:\n",
+            "Error_Desc_pt2": "\nУбедитесь, что вы подключены к Интернету."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "Обновление PLUMGEN",
+            "dld_good_desc_pt1": "Загружено ",
+            "dld_good_desc_pt2": "\n\nПриложение теперь перезагрузится.",
+            "Error": "Ошибка",
+            "dld_fail_desc": "Ошибка загрузки PLUMGEN:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Доступно обновление PLUMGEN",
+            "Ask_MBC_Update_Desc": "Доступно новое обновление PLUMGEN. Загрузить последнюю версию PLUMGEN?",
+            "Error": "Ошибка"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Ошибка",
+            "Error_Desc": "Не удалось загрузить номер последней версии PLUMGEN из JSON. Не удаляйте и не переименовывайте этот файл!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "Обнаружен пользовательский файл под-биома",
@@ -5977,6 +6287,8 @@
             "Select_All": "Seleccionar todos los biomas",
             "Deselect_All": "Deseleccionar todos los biomas",
             "Exit": "Salir",
+            "Question": "Pregunta",
+            "Question_Desc": "Problema para obtener el número de versión más reciente de MBINCompiler desde GitHub. Verifique la conexión a internet. ¿Aún desea continuar?",
             "Replace_Spawner_Json": "Reemplazar datos del generador con JSON",
             "Help_2": "Ayuda",
             "About": "Acerca de...",
@@ -6135,6 +6447,35 @@
         "update_mbc_move_files": {
             "Error": "Error",
             "Error_Desc": "Error al cargar el número de versión más reciente de MBINCompiler desde JSON. ¡No elimines ni cambies este archivo!"
+        },
+        "plum_misc": {
+            "dang_title": "Comando Peligroso Encontrado",
+            "dang_pt1": "Comando potencialmente peligroso encontrado en el archivo .bat: \n",
+            "dang_pt2": "\nPor favor, elimine el archivo 'model/Updater/move_updated_files.bat' y notifique al desarrollador.",
+            "Error": "Error",
+            "something_off": "Algo está mal con la versión de PLUMGEN descargada. Por favor, elimine la versión de PLUMGEN encontrada en '/model/Updater/'",
+            "err_dld_plum_desc": "Error al descargar el archivo PLUMGEN: "
+        },
+        "plum_get_latest_mbc_release": {
+            "Error": "Error",
+            "Error_Desc_pt1": "Error al obtener la última versión de PLUMGEN:\n",
+            "Error_Desc_pt2": "\nAsegúrate de estar conectado a internet."
+        },
+        "plum_download_new_mbc": {
+            "dld_good_title": "Actualización de PLUMGEN",
+            "dld_good_desc_pt1": "Descargado ",
+            "dld_good_desc_pt2": "\n\nLa aplicación se reiniciará.",
+            "Error": "Error",
+            "dld_fail_desc": "Error al descargar PLUMGEN:\n"
+        },
+        "plum_decompile_mbins_and_move_files": {
+            "Ask_MBC_Update_Title": "Actualización de PLUMGEN disponible",
+            "Ask_MBC_Update_Desc": "Nueva actualización de PLUMGEN disponible. ¿Descargar la última versión de PLUMGEN?",
+            "Error": "Error"
+        },
+        "plum_update_mbc_move_files": {
+            "Error": "Error",
+            "Error_Desc": "Error al cargar el número de versión más reciente de PLUMGEN desde JSON. ¡No elimines ni cambies este archivo!"
         },
         "modify_each_subbiome": {
             "ques_cust_sub_biome_title": "Archivo de Sub-Bioma Personalizado Encontrado",
