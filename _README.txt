@@ -20,13 +20,13 @@ PLUMGEN (v1.1)
 
 v1.1 Update:
 
+	-New Update menu item - Fetches and downloads latest PLUMGEN update. You no longer have to manually download updates.
 	-Added support for 10 languages - Reworked all text elements, translated each via. DeepL (take these with a grain of salt). ;)
-		>These might be a little wacky, I figure better to have something than nothing for those who need it. Please suggest improvements if you can.
 		>These include: Chinese-Simplified, English, Finnish, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish
-	-Fixed issue - Bug preventing bulk editing model SCENE paths.
-	-Readme clarifications - e.g. how to update biome mods in Q&A section.
-	-Security improvements
-	-Plumgen now updates itself!
+	-Fixed issue - Bug preventing bulk editing model paths.
+	-Readme clarifications.
+	-Security improvements.
+	-New prompt asking to download latest MBINCompiler update - You can export offline or continue modding with outdated NMS/MBINCompiler versions.
 
 v1.0 Full Release:
 
@@ -91,7 +91,7 @@ v1.0 Full Release:
 
 	-Will my exported biome mod break after game updates?
 	If it breaks, import your mod and export it again. Note: wait for MBINCompiler update after game updates (see: https://github.com/monkeyman192/MBINCompiler/releases). 
-	Although typically rare, if a new game update fundamentally changes game structure/biome files, wait for a PLUMGEN update, then download the app again.
+	Although rare, if a new game update fundamentally changes game structure/biome files, wait for a PLUMGEN update. Check for updates via the "Update" menu item.
 
 	-The PLUMGEN window looks blurry and parts are cut-off by the edge of the window, like the tooltip.
 	This shouldn't happen after v1.0. If it does, please let me know.

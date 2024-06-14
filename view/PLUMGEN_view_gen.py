@@ -17,6 +17,7 @@ import ctypes
 from view.PLUMGEN_view_gen_bulk import PlumgenViewGenBulk
 from view.PLUMGEN_view_gen_export import PlumgenViewGenExport
 from view.PLUMGEN_view_menu import MenuBar
+from model.PLUMGEN_updater import PlumgenUpdater
 
 class PlumgenViewGen:
     #def __init__(self, parent):
@@ -151,6 +152,7 @@ class PlumgenViewGen:
             self.window.protocol("WM_DELETE_WINDOW", self.on_close)
 
             self.window.after(300, lambda: self.window.attributes("-alpha", 1.0))
+
 
         except Exception as e:
             self.logger.exception(f"{self.langs[self.lan]["messagebox"]["error"]}{e}") # log the exception
@@ -300,7 +302,11 @@ class PlumgenViewGen:
 
         # language menu
         self.langmenu = tk.Menu(self.mb)
-        self.langmenu.add_command(label='>>>', command=lambda: self.controller.get_set_lang_from_json(force_select_new_lang=True))
+        self.langmenu.add_command(label='>>>', command=lambda: self.controller.get_set_lang_from_json_update_plum(force_select_new_lang=True))
+
+        # update menu
+        self.updatemenu = tk.Menu(self.mb)
+        self.updatemenu.add_command(label='>>>', command=lambda: self.check_plum_update())
 
         self.donatemenu = tk.Menu(self.mb)
         self.donatemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["donate_page"], command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
@@ -309,6 +315,7 @@ class PlumgenViewGen:
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Presets"], self.presetsmenu)
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Tools"], self.toolsmenu)
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Help_2"], self.editmenu)
+        self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Update"], self.updatemenu)
         self.mb.add_menu("Language", self.langmenu)
         self.mb.add_menu(self.langs[self.lan]["filemenu_view_gen"]["Donate"], self.donatemenu)
         
@@ -567,6 +574,17 @@ class PlumgenViewGen:
         self.gen_using_template_data_cb.grid(row=1, column=6, columnspan=1, padx=5, sticky=tk.E)
         self.replace_lb_with_template_data_cb.grid(row=1, column=7, columnspan=2, padx=5, sticky=tk.W)
     
+
+    def check_plum_update(self):
+        try:
+            # search and update app:
+            self.updater = PlumgenUpdater(self.window, self.langs, self.lan)
+            connected_to_internet = self.updater.update_plum()
+
+        except Exception as e:
+            self.logger.exception("Error: %s", e) # log the exception
+            self.show_error_message("An error occurred: {}".format(str(e)))
+
 
     def open_help(self):
         try:

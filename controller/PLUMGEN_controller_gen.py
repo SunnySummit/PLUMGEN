@@ -5,7 +5,6 @@ File: PLUMGEN_controller_gen.py
 import os   # os interactions
 import sys
 import re
-import subprocess
 import tkinter as tk
 import csv
 import random
@@ -19,7 +18,6 @@ from model.PLUMGEN_model_gen import PlumgenModelGen
 from model.PLUMGEN_model_gen import DefaultModelPaths
 from model.PLUMGEN_model_gen import DefaultSpawnDensityList
 from view.PLUMGEN_view_gen import PlumgenViewGen
-from model.PLUMGEN_updater import PlumgenUpdater
 
 
 class PlumgenControllerGen():
@@ -191,11 +189,6 @@ class PlumgenControllerGen():
             self.prompt_lang_select() # on startup, ask for language
     
         self.lan = self.langs["Lan"]
-
-        # after selecting language, search and update app:
-        self.updater = PlumgenUpdater(self.root, self.langs, self.lan)
-
-        connected_to_internet = self.updater.update_plum()
 
 
 
