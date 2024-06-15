@@ -578,7 +578,7 @@ class PlumgenViewGen:
     def check_plum_update(self):
         try:
             # search and update app:
-            self.updater = PlumgenUpdater(self.window, self.langs, self.lan)
+            self.updater = PlumgenUpdater(self.window, self.root, self.langs, self.lan)
             connected_to_internet = self.updater.update_plum()
 
         except Exception as e:

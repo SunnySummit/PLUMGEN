@@ -20,7 +20,7 @@ build_options = {
         ("EMPTY_latest_versions.json", "Model/latest_versions.json"), # replaces with blank one
         ("EMPTY_plum_extract_biomes.xml", "Model/plum_extract_biomes.xml"), # replaces with blank one
         ("model/psarc.exe", "Model/psarc.exe"),
-        ("model/Updater/move_updated_files.bat", "Model/Updater/move_updated_files.bat"),
+        ("model/Updater/complete_update.bat", "Model/Updater/complete_update.bat"),
         ("logging.conf", "logging.conf"),
         ("logger_config.py", "logger_config.py"),
         ("_README.txt", "_README.txt"),

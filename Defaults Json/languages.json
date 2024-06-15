@@ -551,7 +551,9 @@
         },
         "plum_decompile_mbins_and_move_files": {
             "Ask_MBC_Update_Title": "PLUMGEN Update Available",
-            "Ask_MBC_Update_Desc": "New PLUMGEN update available. Download latest PLUMGEN?",
+            "Ask_MBC_Update_Desc": "New PLUMGEN update available. Update now? Note: Unsaved progress will be lost.",
+            "up_to_date_title": "PLUMGEN is up to date.",
+            "up_to_date_desc": "PLUMGEN is already up to date.",
             "Error": "Error"
         },
         "plum_update_mbc_move_files": {
@@ -1138,13 +1140,15 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN 更新",
             "dld_good_desc_pt1": "已下载 ",
-            "dld_good_desc_pt2": "应用程序现在将重新启动。\n\n",
+            "dld_good_desc_pt2": "\n\n应用程序现在将重新启动。",
             "Error": "错误",
             "dld_fail_desc": "下载 PLUMGEN 时出错：\n"
         },
         "plum_decompile_mbins_and_move_files": {
             "Ask_MBC_Update_Title": "PLUMGEN 更新可用",
-            "Ask_MBC_Update_Desc": "新的 PLUMGEN 更新可用。下载最新的 PLUMGEN 吗？",
+            "Ask_MBC_Update_Desc": "有新的 PLUMGEN 更新可用。立即更新吗？注意：未保存的进度将会丢失。",
+            "up_to_date_title": "PLUMGEN 已经是最新版本。",
+            "up_to_date_desc": "PLUMGEN 已经是最新版本。",
             "Error": "错误"
         },
         "plum_update_mbc_move_files": {
@@ -1736,8 +1740,10 @@
             "dld_fail_desc": "Virhe ladattaessa PLUMGENia:\n"
         },
         "plum_decompile_mbins_and_move_files": {
-            "Ask_MBC_Update_Title": "PLUMGEN Päivitys Saatavilla",
-            "Ask_MBC_Update_Desc": "Uusi PLUMGEN päivitys saatavilla. Lataa uusin PLUMGEN?",
+            "Ask_MBC_Update_Title": "PLUMGEN-päivitys saatavilla",
+            "Ask_MBC_Update_Desc": "Uusi PLUMGEN-päivitys saatavilla. Päivitetäänkö nyt? Huomautus: Tallentamattomat tiedot menetetään.",
+            "up_to_date_title": "PLUMGEN on ajan tasalla.",
+            "up_to_date_desc": "PLUMGEN on jo ajan tasalla.",
             "Error": "Virhe"
         },
         "plum_update_mbc_move_files": {
@@ -2329,8 +2335,10 @@
             "dld_fail_desc": "Erreur lors du téléchargement de PLUMGEN :\n"
         },
         "plum_decompile_mbins_and_move_files": {
-            "Ask_MBC_Update_Title": "Mise à jour de PLUMGEN disponible",
-            "Ask_MBC_Update_Desc": "Nouvelle mise à jour de PLUMGEN disponible. Télécharger la dernière version de PLUMGEN ?",
+            "Ask_MBC_Update_Title": "Mise à jour PLUMGEN disponible",
+            "Ask_MBC_Update_Desc": "Nouvelle mise à jour PLUMGEN disponible. Mettre à jour maintenant ? Note : Les progrès non sauvegardés seront perdus.",
+            "up_to_date_title": "PLUMGEN est à jour.",
+            "up_to_date_desc": "PLUMGEN est déjà à jour.",
             "Error": "Erreur"
         },
         "plum_update_mbc_move_files": {
@@ -2922,8 +2930,10 @@
             "dld_fail_desc": "Fehler beim Herunterladen von PLUMGEN:\n"
         },
         "plum_decompile_mbins_and_move_files": {
-            "Ask_MBC_Update_Title": "PLUMGEN Update Verfügbar",
-            "Ask_MBC_Update_Desc": "Neues PLUMGEN-Update verfügbar. Neuesten PLUMGEN herunterladen?",
+            "Ask_MBC_Update_Title": "PLUMGEN Update verfügbar",
+            "Ask_MBC_Update_Desc": "Neues PLUMGEN-Update verfügbar. Jetzt aktualisieren? Hinweis: Ungespeicherter Fortschritt geht verloren.",
+            "up_to_date_title": "PLUMGEN ist auf dem neuesten Stand.",
+            "up_to_date_desc": "PLUMGEN ist bereits auf dem neuesten Stand.",
             "Error": "Fehler"
         },
         "plum_update_mbc_move_files": {
@@ -3515,8 +3525,10 @@
             "dld_fail_desc": "Errore durante il download di PLUMGEN:\n"
         },
         "plum_decompile_mbins_and_move_files": {
-            "Ask_MBC_Update_Title": "Aggiornamento PLUMGEN Disponibile",
-            "Ask_MBC_Update_Desc": "Nuovo aggiornamento PLUMGEN disponibile. Scaricare l'ultima versione di PLUMGEN?",
+            "Ask_MBC_Update_Title": "Aggiornamento disponibile per PLUMGEN",
+            "Ask_MBC_Update_Desc": "Nuovo aggiornamento PLUMGEN disponibile. Aggiornare ora? Nota: I progressi non salvati andranno persi.",
+            "up_to_date_title": "PLUMGEN è aggiornato.",
+            "up_to_date_desc": "PLUMGEN è già aggiornato.",
             "Error": "Errore"
         },
         "plum_update_mbc_move_files": {
@@ -4108,8 +4120,10 @@
             "dld_fail_desc": "PLUMGEN のダウンロード中にエラーが発生しました:\n"
         },
         "plum_decompile_mbins_and_move_files": {
-            "Ask_MBC_Update_Title": "PLUMGENの更新が利用可能です",
-            "Ask_MBC_Update_Desc": "新しいPLUMGENの更新が利用可能です。最新のPLUMGENをダウンロードしますか？",
+            "Ask_MBC_Update_Title": "PLUMGENのアップデートが利用可能です",
+            "Ask_MBC_Update_Desc": "新しいPLUMGENのアップデートが利用可能です。今すぐアップデートしますか？注意：保存されていない進行状況は失われます。",
+            "up_to_date_title": "PLUMGENは最新です。",
+            "up_to_date_desc": "PLUMGENはすでに最新の状態です。",
             "Error": "エラー"
         },
         "plum_update_mbc_move_files": {
@@ -4702,7 +4716,9 @@
         },
         "plum_decompile_mbins_and_move_files": {
             "Ask_MBC_Update_Title": "PLUMGEN 업데이트 가능",
-            "Ask_MBC_Update_Desc": "새로운 PLUMGEN 업데이트가 가능합니다. 최신 PLUMGEN 다운로드하시겠습니까?",
+            "Ask_MBC_Update_Desc": "새로운 PLUMGEN 업데이트가 가능합니다. 지금 업데이트 하시겠습니까? 참고: 저장되지 않은 진행 상황이 손실될 수 있습니다.",
+            "up_to_date_title": "PLUMGEN은(는) 최신 상태입니다.",
+            "up_to_date_desc": "PLUMGEN은(는) 이미 최신 상태입니다.",
             "Error": "오류"
         },
         "plum_update_mbc_move_files": {
@@ -5295,7 +5311,9 @@
         },
         "plum_decompile_mbins_and_move_files": {
             "Ask_MBC_Update_Title": "Atualização do PLUMGEN Disponível",
-            "Ask_MBC_Update_Desc": "Nova atualização do PLUMGEN disponível. Baixar a versão mais recente do PLUMGEN?",
+            "Ask_MBC_Update_Desc": "Nova atualização do PLUMGEN disponível. Atualizar agora? Nota: O progresso não salvo será perdido.",
+            "up_to_date_title": "O PLUMGEN está atualizado.",
+            "up_to_date_desc": "O PLUMGEN já está atualizado.",
             "Error": "Erro"
         },
         "plum_update_mbc_move_files": {
@@ -5888,7 +5906,9 @@
         },
         "plum_decompile_mbins_and_move_files": {
             "Ask_MBC_Update_Title": "Доступно обновление PLUMGEN",
-            "Ask_MBC_Update_Desc": "Доступно новое обновление PLUMGEN. Загрузить последнюю версию PLUMGEN?",
+            "Ask_MBC_Update_Desc": "Доступно новое обновление PLUMGEN. Обновить сейчас? Примечание: Несохраненные данные будут потеряны.",
+            "up_to_date_title": "PLUMGEN обновлен",
+            "up_to_date_desc": "PLUMGEN уже обновлен.",
             "Error": "Ошибка"
         },
         "plum_update_mbc_move_files": {
@@ -6480,8 +6500,10 @@
             "dld_fail_desc": "Error al descargar PLUMGEN:\n"
         },
         "plum_decompile_mbins_and_move_files": {
-            "Ask_MBC_Update_Title": "Actualización de PLUMGEN disponible",
-            "Ask_MBC_Update_Desc": "Nueva actualización de PLUMGEN disponible. ¿Descargar la última versión de PLUMGEN?",
+            "Ask_MBC_Update_Title": "Actualización disponible de PLUMGEN",
+            "Ask_MBC_Update_Desc": "Nueva actualización disponible para PLUMGEN. ¿Actualizar ahora? Nota: Se perderán los progresos no guardados.",
+            "up_to_date_title": "PLUMGEN está actualizado.",
+            "up_to_date_desc": "PLUMGEN ya está actualizado.",
             "Error": "Error"
         },
         "plum_update_mbc_move_files": {
