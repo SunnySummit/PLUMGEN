@@ -114,8 +114,6 @@ class PlumgenControllerGen():
         confirm = messagebox.askyesno(self.langs[selected_lang]["controller_init"]["confirm"], 
                                     self.langs[selected_lang]["controller_init"]["confirm_desc"], parent=self.lang_window)
         if confirm:
-        
-            self.lang_window.destroy() # destroy window
 
             # update JSON file with selected language
             with open(self.json_lang_path, 'r+', encoding='utf-8') as file:
@@ -125,15 +123,14 @@ class PlumgenControllerGen():
                 json.dump(self.langs, file, indent=4, ensure_ascii=False)
                 file.truncate()
 
-            if self.new_lang: # if user selected to choose new lang using main menu
-                if messagebox.askyesno(self.langs[selected_lang]["on_close"]["close_title"], self.langs[selected_lang]["on_close"]["close_desc"], parent=self.root):
-                    
-                    if getattr(sys, 'frozen', False):
-                        # if frozen (and running as exe), use these paths:
-                        #current_directory = os.path.dirname(sys.executable)
-                        os.execl(sys.executable, sys.executable, *sys.argv)
-                        #subprocess.Popen(sys.executable)
-                        #self.root.destroy()
+            self.lang_window.destroy() # destroy window
+
+            if messagebox.askyesno(self.langs[selected_lang]["on_close"]["close_title"], self.langs[selected_lang]["on_close"]["close_desc"], parent=self.root):
+                
+                if getattr(sys, 'frozen', False):
+                    # if frozen (and running as exe), use these paths:
+                    self.root.destroy()
+                    os.execl(sys.executable, sys.executable, *sys.argv)
 
 
     def prompt_lang_select(self):
