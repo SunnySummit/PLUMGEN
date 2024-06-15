@@ -16,11 +16,11 @@ build_options = {
     "include_files": [
         #("controller", "controller"), # not needed
         #("view", "view"),
-        #("model", "model"),
-        ("EMPTY_latest_versions.json", "Model/latest_versions.json"), # replaces with blank one
-        ("EMPTY_plum_extract_biomes.xml", "Model/plum_extract_biomes.xml"), # replaces with blank one
-        ("model/psarc.exe", "Model/psarc.exe"),
-        ("model/Updater/complete_update.bat", "Model/Updater/complete_update.bat"),
+        #("Resources", "Resources"),
+        ("EMPTY_latest_versions.json", "Resources/latest_versions.json"), # replaces with blank one
+        ("EMPTY_plum_extract_biomes.xml", "Resources/plum_extract_biomes.xml"), # replaces with blank one
+        ("Resources/psarc.exe", "Resources/psarc.exe"),
+        ("Resources/Updater/complete_update.bat", "Resources/Updater/complete_update.bat"),
         ("logging.conf", "logging.conf"),
         ("logger_config.py", "logger_config.py"),
         ("_README.txt", "_README.txt"),

@@ -13,10 +13,9 @@ import webbrowser
 import ctypes
 from datetime import datetime   # timestamping
 from view.ScrollableNotebook import ScrollableNotebook
-from model.PLUMGEN_export_lua_class import PlumgenExportLuaClass
-from model.PLUMGEN_export_exml_class import PlumgenExportExmlClass
 from view.PLUMGEN_view_menu import MenuBar
-
+from Resources.PLUMGEN_export_lua_class import PlumgenExportLuaClass
+from Resources.PLUMGEN_export_exml_class import PlumgenExportExmlClass
 
 class PlumgenViewGenExport:
 
@@ -1257,20 +1256,20 @@ class PlumgenViewGenExport:
                 return # user clicked no or closed
 
 
-            self.export_exml_class.modify_prop_scenes()
-            #print("\n2")
-            self.export_exml_class.modify_each_subbiome()
-            #print("\n3")
-            self.export_exml_class.make_initial_bio_objs_file()
-            #print("\n4")
-            self.export_exml_class.modify_biome_objects() 
-            #print("\n5")
-            self.export_exml_class.modify_biomefilenames()
-            #print("\n6")
-            self.export_exml_class.modify_globals() #
-            #print("\n7")
-            self.export_exml_class.make_move_mbins_pak_and_validate(biomes_filename, spawner_filename)
-            #print("\n8")
+        self.export_exml_class.modify_prop_scenes()
+        #print("\n2")
+        self.export_exml_class.modify_each_subbiome()
+        #print("\n3")
+        self.export_exml_class.make_initial_bio_objs_file()
+        #print("\n4")
+        self.export_exml_class.modify_biome_objects() 
+        #print("\n5")
+        self.export_exml_class.modify_biomefilenames()
+        #print("\n6")
+        self.export_exml_class.modify_globals() #
+        #print("\n7")
+        self.export_exml_class.make_move_mbins_pak_and_validate(biomes_filename, spawner_filename)
+        #print("\n8")
 
 
         self.export_button.config(state="normal") # reenable export button

@@ -13,11 +13,10 @@ import json
 import xml.etree.ElementTree as ET
 import logging
 from tkinter import messagebox
-
-from model.PLUMGEN_model_gen import PlumgenModelGen
-from model.PLUMGEN_model_gen import DefaultModelPaths
-from model.PLUMGEN_model_gen import DefaultSpawnDensityList
 from view.PLUMGEN_view_gen import PlumgenViewGen
+from Resources.PLUMGEN_model_gen import PlumgenModelGen
+from Resources.PLUMGEN_model_gen import DefaultModelPaths
+from Resources.PLUMGEN_model_gen import DefaultSpawnDensityList
 
 
 class PlumgenControllerGen():

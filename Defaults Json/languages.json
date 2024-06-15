@@ -89,6 +89,7 @@
             "error_desc_long": "If you're struggling to resolve this error, please share the 'plumgen.log' file with the dev."
         },
         "filemenu_view_gen": {
+            "check_update": "Check for PLUMGEN update",
             "Update": "Update",
             "make_template": "Make Biome Template from EXML",
             "auto_rename": "Auto-Rename All Biomes",
@@ -171,7 +172,7 @@
             "warning_title": "Warning: Generating using Custom Models",
             "warning_desc": "It seems you're using a custom biome template (not '_Current Vanilla+Pre NMS.csv'). \n\nThis could indicate that your custom .CSV refers to outdated or broken models, which might cause issues with your mod. \n\nYou'll also need a PAK of the custom models for them to show up in-game. \n\nDo you want to proceed?",
             "info_title": "Info: Generation Switched",
-            "info_desc": "'Add Using Template Model' Checkbox checked.\n Switching to '_Current Vanilla+Pre NMS.csv' generation."
+            "info_desc": "'Add via Template Data' Checkbox checked.\n Switching to generation using:"
         },
         "attribute_desc": {
             "desc_0": "Model path.",
@@ -532,9 +533,9 @@
         "plum_misc": {
             "dang_title": "Dangerous Command Found",
             "dang_pt1": "Potentially dangerous command found in the .bat file.\n",
-            "dang_pt2": "\nPlease delete 'model/Updater/move_updated_files.bat' file and notify the dev.",
+            "dang_pt2": "\nPlease delete 'Resources/Updater/move_updated_files.bat' file and notify the dev.",
             "Error": "Error",
-            "something_off": "Something is off with the downloaded PLUMGEN version. Please delete the PLUMGEN version found in '/model/Updater/'",
+            "something_off": "Something is off with the downloaded PLUMGEN version. Please delete the PLUMGEN version found in '/Resources/Updater/'",
             "err_dld_plum_desc": "Error downloading PLUMGEN file: "
         },
         "plum_get_latest_mbc_release": {
@@ -545,7 +546,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN Update",
             "dld_good_desc_pt1": "Downloaded ",
-            "dld_good_desc_pt2": "\n\nThe application will now restart.",
+            "dld_good_desc_pt2": "\n\nThe application will now restart. \n\nAfter restarting, check '_README.txt' file for any update notes.\n\nIf no new console window appears, right-click 'Resources/Updater/complete_update.bat' and select 'Run as administrator'.",
             "Error": "Error",
             "dld_fail_desc": "Error downloading PLUMGEN:\n"
         },
@@ -591,7 +592,7 @@
             "new_mod_saved_desc_pt2": "\n\nWould you like to review the MBINCompiler log for any issues?",
             "error_1": "Could not locate MBINCompiler log file to check for export issues.",
             "error_2": "Failed to process with psarc.exe: ",
-            "error_3": "psarc.exe not found in 'model' folder. Do not delete or rename this file!",
+            "error_3": "psarc.exe not found in 'Resources' folder. Do not delete or rename this file!",
             "error_4": "Failed to load latest MBINCompiler version number from JSON. Do not delete or rename this file!"
         }
     },
@@ -684,6 +685,7 @@
             "error_desc_long": "如果您正在努力解决此错误，请与开发人员共享“plumgen.log”文件。"
         },
         "filemenu_view_gen": {
+            "check_update": "检查 PLUMGEN 更新",
             "Update": "更新",
             "make_template": "从EXML创建生物群模板",
             "auto_rename": "自动重命名所有生物群",
@@ -766,7 +768,7 @@
             "warning_title": "警告：使用自定义模型生成",
             "warning_desc": "看起来您正在使用自定义生物群系模板（不是'_Current Vanilla+Pre NMS.csv'）。\n\n这可能表示您的自定义.CSV引用了过时或损坏的模型，这可能会导致您的修改出现问题。\n\n您还需要一个自定义模型的PAK才能在游戏中显示它们。\n\n您要继续吗？",
             "info_title": "信息：生成已切换",
-            "info_desc": "'添加使用模板模型'复选框已选中。\n 切换到'_Current Vanilla+Pre NMS.csv'生成。"
+            "info_desc": "'使用 .csv 数据添加' 复选框已选中。\n 切换为使用生成："
         },
         "attribute_desc": {
             "desc_0": "模型路径。",
@@ -1127,9 +1129,9 @@
         "plum_misc": {
             "dang_title": "发现危险命令",
             "dang_pt1": "在.bat文件中发现潜在危险的命令.\n",
-            "dang_pt2": "\n请删除'model/Updater/move_updated_files.bat'文件并通知开发人员。",
+            "dang_pt2": "\n请删除'Resources/Updater/move_updated_files.bat'文件并通知开发人员。",
             "Error": "错误",
-            "something_off": "下载的PLUMGEN版本存在问题。请删除'/model/Updater/'中找到的PLUMGEN版本",
+            "something_off": "下载的PLUMGEN版本存在问题。请删除'/Resources/Updater/'中找到的PLUMGEN版本",
             "err_dld_plum_desc": "下载PLUMGEN文件时出错："
         },
         "plum_get_latest_mbc_release": {
@@ -1140,7 +1142,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN 更新",
             "dld_good_desc_pt1": "已下载 ",
-            "dld_good_desc_pt2": "\n\n应用程序现在将重新启动。",
+            "dld_good_desc_pt2": "\n\n应用程序现在将重新启动。\n\n重新启动后，请查看'_README.txt'文件以获取任何更新说明。\n\n如果没有新的控制台窗口出现，请右键单击'Resources/Updater/complete_update.bat'并选择'以管理员身份运行'。",
             "Error": "错误",
             "dld_fail_desc": "下载 PLUMGEN 时出错：\n"
         },
@@ -1279,6 +1281,7 @@
             "error_desc_long": "Jos sinulla on vaikeuksia ratkaista tämä virhe, jaa \"plumgen.log\"-tiedosto kehittäjän kanssa."
         },
         "filemenu_view_gen": {
+            "check_update": "Tarkista PLUMGEN-päivitys",
             "Update": "Päivitys",
             "make_template": "Tee Biomi pohjasta EXML-templaatti",
             "auto_rename": "Automaattinen nimeäminen kaikille biomeille",
@@ -1361,7 +1364,7 @@
             "warning_title": "Varoitus: Generointi käyttäen mukautettuja malleja",
             "warning_desc": "Näyttää siltä, ​​että käytät mukautettua biome-pohjaa (ei '_Current Vanilla+Pre NMS.csv'). \n\nTämä saattaa viitata siihen, että mukautettu .CSV viittaa vanhentuneisiin tai rikkinäisiin malleihin, mikä saattaa aiheuttaa ongelmia modillesi. \n\nSinun on myös oltava PAK mukautettuja malleja, jotta ne näkyvät pelissä. \n\nHaluatko jatkaa?",
             "info_title": "Tieto: Generointi vaihtui",
-            "info_desc": "'Lisää käyttämällä mallipohjaa' -valintaruutu valittu.\n Vaihdetaan '_Current Vanilla+Pre NMS.csv' -generointi."
+            "info_desc": "'Lisää .csv-tiedoston tiedot' Valintaruutu valittu.\n Vaihdetaan sukupolveen käyttäen:"
         },
         "attribute_desc": {
             "desc_0": "Mallin polku.",
@@ -1722,9 +1725,9 @@
         "plum_misc": {
             "dang_title": "Vaarallinen komento löydetty",
             "dang_pt1": "Mahdollisesti vaarallinen komento löydetty .bat-tiedostossa.\n",
-            "dang_pt2": "\nPoista 'model/Updater/move_updated_files.bat' tiedosto ja ilmoita kehittäjälle.",
+            "dang_pt2": "\nPoista 'Resources/Updater/move_updated_files.bat' tiedosto ja ilmoita kehittäjälle.",
             "Error": "Virhe",
-            "something_off": "Jotain on vialla ladatun PLUMGEN-version kanssa. Poista PLUMGEN-versio kansiosta '/model/Updater/'",
+            "something_off": "Jotain on vialla ladatun PLUMGEN-version kanssa. Poista PLUMGEN-versio kansiosta '/Resources/Updater/'",
             "err_dld_plum_desc": "Virhe ladattaessa PLUMGEN-tiedostoa: "
         },
         "plum_get_latest_mbc_release": {
@@ -1735,7 +1738,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN Päivitys",
             "dld_good_desc_pt1": "Ladattu ",
-            "dld_good_desc_pt2": "\n\nSovellus käynnistyy nyt uudelleen.",
+            "dld_good_desc_pt2": "\n\nSovellus käynnistyy nyt uudelleen. \n\nKun olet käynnistänyt sen uudelleen, tarkista '_README.txt' -tiedosto päivityshuomioista.\n\nJos uutta konsoli-ikkunaa ei ilmesty, napsauta hiiren kakkospainikkeella 'Resources/Updater/complete_update.bat' ja valitse 'Suorita järjestelmänvalvojana'.",
             "Error": "Virhe",
             "dld_fail_desc": "Virhe ladattaessa PLUMGENia:\n"
         },
@@ -1781,7 +1784,7 @@
             "new_mod_saved_desc_pt2": "\n\nHaluatko tarkastella MBINCompilerin lokitiedostoa mahdollisten ongelmien varalta?",
             "error_1": "MBINCompilerin lokitiedostoa ei voitu paikantaa viennin ongelmien tarkistamiseksi.",
             "error_2": "Ei voitu käsitellä psarc.exellä: ",
-            "error_3": "psarc.exeä ei löytynyt 'model'-kansiosta. Älä poista tai muuta tätä tiedostoa!",
+            "error_3": "psarc.exeä ei löytynyt 'Resources'-kansiosta. Älä poista tai muuta tätä tiedostoa!",
             "error_4": "Viimeisimmän MBINCompilerin versioluvun lataus epäonnistui JSONista. Älä poista tai muuta tätä tiedostoa!"
         }
     },
@@ -1874,6 +1877,7 @@
             "error_desc_long": "Si vous avez du mal à résoudre cette erreur, veuillez partager le fichier « plumgen.log » avec le développeur."
         },
         "filemenu_view_gen": {
+            "check_update": "Vérifier la mise à jour de PLUMGEN",
             "Update": "Mise à jour",
             "make_template": "Créer un modèle de biome à partir d'EXML",
             "auto_rename": "Renommer automatiquement tous les biomes",
@@ -1956,7 +1960,7 @@
             "warning_title": "Avertissement : Génération à l'aide de modèles personnalisés",
             "warning_desc": "Il semble que vous utilisiez un modèle de biome personnalisé (pas '_Current Vanilla+Pre NMS.csv'). \n\nCela pourrait indiquer que votre fichier .CSV personnalisé fait référence à des modèles obsolètes ou défectueux, ce qui pourrait entraîner des problèmes avec votre mod. \n\nVous aurez également besoin d'un PAK des modèles personnalisés pour qu'ils apparaissent en jeu. \n\nVoulez-vous continuer ?",
             "info_title": "Info : Génération basculée",
-            "info_desc": "Case à cocher 'Ajouter en utilisant le modèle de gabarit' cochée.\n Passage à la génération '_Current Vanilla+Pre NMS.csv'."
+            "info_desc": "Case à cocher 'Ajouter en utilisant les données .csv' cochée.\n Passage à la génération en utilisant:"
         },
         "attribute_desc": {
             "desc_0": "Chemin du modèle.",
@@ -2317,9 +2321,9 @@
         "plum_misc": {
             "dang_title": "Commande dangereuse trouvée",
             "dang_pt1": "Commande potentiellement dangereuse trouvée dans le fichier .bat.\n",
-            "dang_pt2": "\nVeuillez supprimer le fichier 'model/Updater/move_updated_files.bat' et notifier le développeur.",
+            "dang_pt2": "\nVeuillez supprimer le fichier 'Resources/Updater/move_updated_files.bat' et notifier le développeur.",
             "Error": "Erreur",
-            "something_off": "Quelque chose ne va pas avec la version téléchargée de PLUMGEN. Veuillez supprimer la version de PLUMGEN trouvée dans '/model/Updater/'",
+            "something_off": "Quelque chose ne va pas avec la version téléchargée de PLUMGEN. Veuillez supprimer la version de PLUMGEN trouvée dans '/Resources/Updater/'",
             "err_dld_plum_desc": "Erreur lors du téléchargement du fichier PLUMGEN : "
         },
         "plum_get_latest_mbc_release": {
@@ -2330,7 +2334,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Mise à jour de PLUMGEN",
             "dld_good_desc_pt1": "Téléchargé ",
-            "dld_good_desc_pt2": "\n\nL'application va maintenant redémarrer.",
+            "dld_good_desc_pt2": "\n\nL'application va maintenant redémarrer. \n\nAprès le redémarrage, vérifiez le fichier '_README.txt' pour toute note de mise à jour.\n\nSi aucune nouvelle fenêtre de console n'apparaît, faites un clic droit sur 'Resources/Updater/complete_update.bat' et sélectionnez 'Exécuter en tant qu'administrateur'.",
             "Error": "Erreur",
             "dld_fail_desc": "Erreur lors du téléchargement de PLUMGEN :\n"
         },
@@ -2376,7 +2380,7 @@
             "new_mod_saved_desc_pt2": "\n\nSouhaitez-vous consulter le journal de MBINCompiler pour d'éventuels problèmes ?",
             "error_1": "Impossible de localiser le fichier journal de MBINCompiler pour vérifier les problèmes d'exportation.",
             "error_2": "Échec du traitement avec psarc.exe : ",
-            "error_3": "psarc.exe introuvable dans le dossier 'model'. Ne supprimez pas ou ne renommez pas ce fichier !",
+            "error_3": "psarc.exe introuvable dans le dossier 'Resources'. Ne supprimez pas ou ne renommez pas ce fichier !",
             "error_4": "Impossible de charger le numéro de version le plus récent de MBINCompiler à partir du JSON. Ne supprimez pas ou ne renommez pas ce fichier !"
         }
     },
@@ -2469,6 +2473,7 @@
             "error_desc_long": "Wenn Sie Schwierigkeiten haben, diesen Fehler zu beheben, teilen Sie bitte die Datei „plumgen.log“ mit dem Entwickler."
         },
         "filemenu_view_gen": {
+            "check_update": "Suche nach PLUMGEN-Update",
             "Update": "Update",
             "make_template": "Biomschablone aus EXML erstellen",
             "auto_rename": "Alle Biome automatisch umbenennen",
@@ -2551,7 +2556,7 @@
             "warning_title": "Warnung: Generierung mit benutzerdefinierten Modellen",
             "warning_desc": "Es scheint, als würden Sie eine benutzerdefinierte Biomenvorlage verwenden (nicht '_Current Vanilla+Pre NMS.csv'). \n\nDies könnte darauf hinweisen, dass Ihre benutzerdefinierte .CSV auf veraltete oder defekte Modelle verweist, was möglicherweise Probleme mit Ihrem Mod verursacht. \n\nSie benötigen auch ein PAK der benutzerdefinierten Modelle, damit sie im Spiel angezeigt werden. \n\nMöchten Sie fortfahren?",
             "info_title": "Info: Generierung umgeschaltet",
-            "info_desc": "'Hinzufügen unter Verwendung des Vorlagenmodells'-Kontrollkästchen aktiviert.\n Umschalten auf Generierung mit '_Current Vanilla+Pre NMS.csv'."
+            "info_desc": "'Hinzufügen mit .csv-Daten' Kontrollkästchen aktiviert.\n Wechsel zur Generierung unter Verwendung von:"
         },
         "attribute_desc": {
             "desc_0": "Modelpfad.",
@@ -2912,9 +2917,9 @@
         "plum_misc": {
             "dang_title": "Gefährlicher Befehl gefunden",
             "dang_pt1": "Potenziell gefährlicher Befehl in der .bat-Datei gefunden.\n",
-            "dang_pt2": "\nBitte löschen Sie die Datei 'model/Updater/move_updated_files.bat' und benachrichtigen Sie den Entwickler.",
+            "dang_pt2": "\nBitte löschen Sie die Datei 'Resources/Updater/move_updated_files.bat' und benachrichtigen Sie den Entwickler.",
             "Error": "Fehler",
-            "something_off": "Etwas stimmt nicht mit der heruntergeladenen PLUMGEN-Version. Bitte löschen Sie die PLUMGEN-Version, die unter '/model/Updater/' gefunden wurde",
+            "something_off": "Etwas stimmt nicht mit der heruntergeladenen PLUMGEN-Version. Bitte löschen Sie die PLUMGEN-Version, die unter '/Resources/Updater/' gefunden wurde",
             "err_dld_plum_desc": "Fehler beim Herunterladen der PLUMGEN-Datei: "
         },
         "plum_get_latest_mbc_release": {
@@ -2925,7 +2930,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN Update",
             "dld_good_desc_pt1": "Heruntergeladen ",
-            "dld_good_desc_pt2": "\n\nDie Anwendung wird nun neu gestartet.",
+            "dld_good_desc_pt2": "\n\nDie Anwendung wird nun neu gestartet. \n\nNach dem Neustart überprüfen Sie die Datei '_README.txt' auf etwaige Update-Hinweise.\n\nWenn kein neues Konsolenfenster angezeigt wird, klicken Sie mit der rechten Maustaste auf 'Resources/Updater/complete_update.bat' und wählen Sie 'Als Administrator ausführen'.",
             "Error": "Fehler",
             "dld_fail_desc": "Fehler beim Herunterladen von PLUMGEN:\n"
         },
@@ -2971,7 +2976,7 @@
             "new_mod_saved_desc_pt2": "\n\nMöchten Sie das MBINCompiler-Protokoll zur Überprüfung von Problemen überprüfen?",
             "error_1": "Konnte die MBINCompiler-Protokolldatei nicht finden, um Exportprobleme zu überprüfen.",
             "error_2": "Verarbeitung mit psarc.exe fehlgeschlagen: ",
-            "error_3": "psarc.exe nicht im 'Model'-Ordner gefunden. Löschen oder umbenennen Sie diese Datei nicht!",
+            "error_3": "psarc.exe nicht im 'Resources'-Ordner gefunden. Löschen oder umbenennen Sie diese Datei nicht!",
             "error_4": "Fehler beim Laden der neuesten MBINCompiler-Version aus JSON. Löschen oder umbenennen Sie diese Datei nicht!"
         }
     },
@@ -3064,6 +3069,7 @@
             "error_desc_long": "Se hai difficoltà a risolvere questo errore, condividi il file \"plumgen.log\" con lo sviluppatore."
         },
         "filemenu_view_gen": {
+            "check_update": "Controlla aggiornamento PLUMGEN",
             "Update": "Aggiornamento",
             "make_template": "Crea modello di bioma da EXML",
             "auto_rename": "Rinomina automaticamente tutti i biomi",
@@ -3146,7 +3152,7 @@
             "warning_title": "Avviso: Generazione utilizzando Modelli Personalizzati",
             "warning_desc": "Sembra che tu stia utilizzando un modello di bioma personalizzato (non '_Current Vanilla+Pre NMS.csv'). \n\nQuesto potrebbe indicare che il tuo file .CSV personalizzato si riferisce a modelli obsoleti o danneggiati, che potrebbero causare problemi con la tua modifica. \n\nAvrai anche bisogno di un PAK dei modelli personalizzati perché compaiano nel gioco. \n\nVuoi procedere?",
             "info_title": "Informazione: Cambio Generazione",
-            "info_desc": "Casella di controllo 'Aggiungi Utilizzando Modello Template' selezionata.\n Passaggio alla generazione '_Current Vanilla+Pre NMS.csv'."
+            "info_desc": "'Aggiungi Utilizzando Dati .csv' Casella di controllo selezionata.\n Passaggio alla generazione utilizzando:"
         },
         "attribute_desc": {
             "desc_0": "Percorso del modello.",
@@ -3507,9 +3513,9 @@
         "plum_misc": {
             "dang_title": "Comando Pericoloso Trovato",
             "dang_pt1": "Comando potenzialmente pericoloso trovato nel file .bat.\n",
-            "dang_pt2": "\nSi prega di eliminare il file 'model/Updater/move_updated_files.bat' e notificare lo sviluppatore.",
+            "dang_pt2": "\nSi prega di eliminare il file 'Resources/Updater/move_updated_files.bat' e notificare lo sviluppatore.",
             "Error": "Errore",
-            "something_off": "Qualcosa non va con la versione di PLUMGEN scaricata. Si prega di eliminare la versione di PLUMGEN trovata in '/model/Updater/'",
+            "something_off": "Qualcosa non va con la versione di PLUMGEN scaricata. Si prega di eliminare la versione di PLUMGEN trovata in '/Resources/Updater/'",
             "err_dld_plum_desc": "Errore durante il download del file PLUMGEN: "
         },
         "plum_get_latest_mbc_release": {
@@ -3520,7 +3526,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Aggiornamento PLUMGEN",
             "dld_good_desc_pt1": "Scaricato ",
-            "dld_good_desc_pt2": "\n\nL'applicazione si riavvierà ora.",
+            "dld_good_desc_pt2": "\n\nL'applicazione si riavvierà ora. \n\nDopo il riavvio, controlla il file '_README.txt' per eventuali note di aggiornamento.\n\nSe non appare una nuova finestra di console, fai clic destro su 'Resources/Updater/complete_update.bat' e seleziona 'Esegui come amministratore'.",
             "Error": "Errore",
             "dld_fail_desc": "Errore durante il download di PLUMGEN:\n"
         },
@@ -3566,7 +3572,7 @@
             "new_mod_saved_desc_pt2": "\n\nDesideri rivedere il registro di MBINCompiler per eventuali problemi?",
             "error_1": "Impossibile individuare il file di registro di MBINCompiler per verificare problemi di esportazione.",
             "error_2": "Impossibile elaborare con psarc.exe: ",
-            "error_3": "psarc.exe non trovato nella cartella 'model'. Non eliminare o rinominare questo file!",
+            "error_3": "psarc.exe non trovato nella cartella 'Resources'. Non eliminare o rinominare questo file!",
             "error_4": "Impossibile caricare il numero di versione più recente di MBINCompiler da JSON. Non eliminare o rinominare questo file!"
         }
     },
@@ -3659,6 +3665,7 @@
             "error_desc_long": "このエラーの解決に苦労している場合は、「plumgen.log」ファイルを開発者と共有してください。"
         },
         "filemenu_view_gen": {
+            "check_update": "PLUMGENの更新を確認する",
             "Update": "更新",
             "make_template": "テンプレートを作成する（EXMLからバイオームのテンプレートを作成する）",
             "auto_rename": "すべてのバイオームを自動的に名前変更する",
@@ -3741,7 +3748,7 @@
             "warning_title": "警告: カスタムモデルを使用して生成する",
             "warning_desc": "カスタムバイオームテンプレート（'_Current Vanilla+Pre NMS.csv' ではない）を使用しているようです。\n\nこれは、カスタムの .CSV が古いか壊れているモデルを参照している可能性があり、それがモッドに問題を引き起こす可能性があります。\n\nまた、それらがゲーム内に表示されるようにするには、カスタムモデルの PAK も必要です。\n\n続行しますか？",
             "info_title": "情報: 生成が切り替わりました",
-            "info_desc": "'テンプレートモデルを使用して追加' チェックボックスがチェックされています。\n '_Current Vanilla+Pre NMS.csv' の生成に切り替わりました。"
+            "info_desc": "'.csvデータを使用して追加' チェックボックスがチェックされています。\n 生成方法を切り替えます:"
         },
         "attribute_desc": {
             "desc_0": "モデルのパス。",
@@ -4102,9 +4109,9 @@
         "plum_misc": {
             "dang_title": "危険なコマンドが見つかりました",
             "dang_pt1": "バッチファイルで潜在的に危険なコマンドが見つかりました.\n",
-            "dang_pt2": "\n'model/Updater/move_updated_files.bat' ファイルを削除し、開発者に通知してください。",
+            "dang_pt2": "\n'Resources/Updater/move_updated_files.bat' ファイルを削除し、開発者に通知してください。",
             "Error": "エラー",
-            "something_off": "ダウンロードした PLUMGEN バージョンに問題があります。'/model/Updater/' にある PLUMGEN バージョンを削除してください",
+            "something_off": "ダウンロードした PLUMGEN バージョンに問題があります。'/Resources/Updater/' にある PLUMGEN バージョンを削除してください",
             "err_dld_plum_desc": "PLUMGEN ファイルのダウンロードエラー："
         },
         "plum_get_latest_mbc_release": {
@@ -4115,7 +4122,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN アップデート",
             "dld_good_desc_pt1": "ダウンロードされました ",
-            "dld_good_desc_pt2": "\n\nアプリケーションは今再起動します。",
+            "dld_good_desc_pt2": "\n\nアプリケーションは今すぐ再起動します。\n\n再起動後、更新ノートを確認するには '_README.txt' ファイルをご覧ください。\n\n新しいコンソールウィンドウが表示されない場合は、「Resources/Updater/complete_update.bat」を右クリックし、「管理者として実行」を選択してください。",
             "Error": "エラー",
             "dld_fail_desc": "PLUMGEN のダウンロード中にエラーが発生しました:\n"
         },
@@ -4161,7 +4168,7 @@
             "new_mod_saved_desc_pt2": "\n\nMBINCompiler ログを確認して問題がないか確認しますか？",
             "error_1": "エクスポートの問題を確認するための MBINCompiler ログファイルが見つかりませんでした。",
             "error_2": "psarc.exe での処理に失敗しました: ",
-            "error_3": "'model' フォルダーに psarc.exe が見つかりませんでした。このファイルを削除または名前を変更しないでください！",
+            "error_3": "'Resources' フォルダーに psarc.exe が見つかりませんでした。このファイルを削除または名前を変更しないでください！",
             "error_4": "最新の MBINCompiler バージョン番号を JSON から読み込めませんでした。このファイルを削除または名前を変更しないでください！"
         }
     },
@@ -4254,6 +4261,7 @@
             "error_desc_long": "이 오류를 해결하는 데 어려움을 겪고 계시다면 'plumgen.log' 파일을 개발자에게 공유해 주세요."
         },
         "filemenu_view_gen": {
+            "check_update": "PLUMGEN 업데이트 확인",
             "Update": "업데이트",
             "make_template": "템플릿 만들기",
             "auto_rename": "모든 생물군 자동 이름 바꾸기",
@@ -4303,8 +4311,8 @@
         },
         "checkboxes": {
             "hide_tooltip": "정보 숨기기",
-            "add_template_data": "csv 데이터 사용",
-            "use_template_stuff": "csv 배치/SCENE 사용"
+            "add_template_data": ".csv 데이터 사용",
+            "use_template_stuff": ".csv 배치/SCENE 사용"
         },
         "tooltip": {
             "biome_lb": " 생물 군락 목록:\n각 생물 군락은 주어진 행성에서의 잠재적인 '생성 지점'을 나타냅니다 (예: 산, 기지, 해변 등 지형-- 나중에 선택할 것입니다). 예를 들어, 하나의 행성에 여러 생물 군락을 결합하려면 생물 군락 식물 밀도를 낮게 유지할 수 있습니다.",
@@ -4336,7 +4344,7 @@
             "warning_title": "경고: 커스텀 모델을 사용하여 생성",
             "warning_desc": "사용자 바이옴 템플릿( '_Current Vanilla+Pre NMS.csv'가 아님)을 사용하고 있는 것 같습니다. \n\n사용자 .CSV가 오래되었거나 손상된 모델을 참조할 수 있으며, 이는 모드에 문제를 일으킬 수 있습니다. \n\n게임 내에서 사용자 지정 모델이 표시되려면 해당 모델의 PAK도 필요합니다. \n\n계속하시겠습니까?",
             "info_title": "정보: 생성 전환됨",
-            "info_desc": "'템플릿 모델 사용 추가' 확인란이 선택되었습니다.\n '_Current Vanilla+Pre NMS.csv' 생성으로 전환됩니다."
+            "info_desc": "'.csv 데이터 사용' 확인란 선택됨.\n 생성 방식 전환:"
         },
         "attribute_desc": {
             "desc_0": "모델 경로.",
@@ -4697,9 +4705,9 @@
         "plum_misc": {
             "dang_title": "위험한 명령어 발견됨",
             "dang_pt1": "배치 파일에서 잠재적으로 위험한 명령어가 발견되었습니다.\n",
-            "dang_pt2": "\n'model/Updater/move_updated_files.bat' 파일을 삭제하고 개발자에게 알려주세요.",
+            "dang_pt2": "\n'Resources/Updater/move_updated_files.bat' 파일을 삭제하고 개발자에게 알려주세요.",
             "Error": "오류",
-            "something_off": "다운로드한 PLUMGEN 버전에 문제가 있습니다. '/model/Updater/'에서 발견된 PLUMGEN 버전을 삭제해주세요.",
+            "something_off": "다운로드한 PLUMGEN 버전에 문제가 있습니다. '/Resources/Updater/'에서 발견된 PLUMGEN 버전을 삭제해주세요.",
             "err_dld_plum_desc": "PLUMGEN 파일을 다운로드하는 중 오류가 발생했습니다: "
         },
         "plum_get_latest_mbc_release": {
@@ -4710,7 +4718,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN 업데이트",
             "dld_good_desc_pt1": "다음을 다운로드했습니다 ",
-            "dld_good_desc_pt2": "\n\n애플리케이션이 이제 다시 시작됩니다.",
+            "dld_good_desc_pt2": "\n\n애플리케이션은 이제 재시작됩니다. \n\n재시작 후에는 업데이트 노트를 확인하려면 '_README.txt' 파일을 참조하십시오.\n\n새로운 콘솔 창이 나타나지 않은 경우에는 'Resources/Updater/complete_update.bat'을(를) 마우스 오른쪽 버튼으로 클릭하고 '관리자 권한으로 실행'을 선택하십시오.",
             "Error": "오류",
             "dld_fail_desc": "PLUMGEN 다운로드 중 오류 발생:\n"
         },
@@ -4756,7 +4764,7 @@
             "new_mod_saved_desc_pt2": "\n\n어떤 문제가 있는지 MBINCompiler 로그를 검토하시겠습니까?",
             "error_1": "내보내기 문제를 확인하기 위해 MBINCompiler 로그 파일을 찾을 수 없습니다.",
             "error_2": "psarc.exe로 처리하지 못했습니다: ",
-            "error_3": "'model' 폴더에서 psarc.exe를 찾지 못했습니다. 이 파일을 삭제하거나 이름을 변경하지 마십시오!",
+            "error_3": "'Resources' 폴더에서 psarc.exe를 찾지 못했습니다. 이 파일을 삭제하거나 이름을 변경하지 마십시오!",
             "error_4": "최신 MBINCompiler 버전 번호를 JSON에서 로드하지 못했습니다. 이 파일을 삭제하거나 이름을 변경하지 마십시오!"
         }
     },
@@ -4849,6 +4857,7 @@
             "error_desc_long": "Se você estiver tendo dificuldades para resolver esse erro, compartilhe o arquivo 'plumgen.log' com o desenvolvedor."
         },
         "filemenu_view_gen": {
+            "check_update": "Verificar atualização do PLUMGEN",
             "Update": "Atualização",
             "make_template": "Criar Modelo de Bioma a partir de EXML",
             "auto_rename": "Renomear Automaticamente Todos os Biomas",
@@ -4931,7 +4940,7 @@
             "warning_title": "Aviso: Geração usando Modelos Personalizados",
             "warning_desc": "Parece que você está usando um modelo de bioma personalizado (não '_Current Vanilla+Pre NMS.csv'). \n\nIsso pode indicar que seu arquivo .CSV personalizado se refere a modelos desatualizados ou quebrados, o que pode causar problemas com seu mod. \n\nVocê também precisará de um PAK dos modelos personalizados para que eles apareçam no jogo. \n\nVocê deseja continuar?",
             "info_title": "Info: Geração Alterada",
-            "info_desc": "Caixa de seleção 'Adicionar Usando Modelo de Template' marcada.\n Mudando para geração '_Current Vanilla+Pre NMS.csv'."
+            "info_desc": "'Adicionar Usando Dados .csv' Caixa marcada.\n Mudando para geração usando:"
         },
         "attribute_desc": {
             "desc_0": "Caminho do modelo.",
@@ -5292,9 +5301,9 @@
         "plum_misc": {
             "dang_title": "Comando Perigoso Encontrado",
             "dang_pt1": "Comando potencialmente perigoso encontrado no arquivo .bat.\n",
-            "dang_pt2": "\nPor favor, exclua o arquivo 'model/Updater/move_updated_files.bat' e notifique o desenvolvedor.",
+            "dang_pt2": "\nPor favor, exclua o arquivo 'Resources/Updater/move_updated_files.bat' e notifique o desenvolvedor.",
             "Error": "Erro",
-            "something_off": "Algo está errado com a versão PLUMGEN baixada. Por favor, exclua a versão PLUMGEN encontrada em '/model/Updater/'",
+            "something_off": "Algo está errado com a versão PLUMGEN baixada. Por favor, exclua a versão PLUMGEN encontrada em '/Resources/Updater/'",
             "err_dld_plum_desc": "Erro ao baixar o arquivo PLUMGEN: "
         },
         "plum_get_latest_mbc_release": {
@@ -5305,7 +5314,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Atualização do PLUMGEN",
             "dld_good_desc_pt1": "Baixado ",
-            "dld_good_desc_pt2": "\n\nA aplicação irá reiniciar agora.",
+            "dld_good_desc_pt2": "\n\nA aplicação será reiniciada agora. \n\nApós a reinicialização, verifique o arquivo '_README.txt' para notas de atualização.\n\nSe nenhuma nova janela do console aparecer, clique com o botão direito em 'Resources/Updater/complete_update.bat' e selecione 'Executar como administrador'.",
             "Error": "Erro",
             "dld_fail_desc": "Erro ao baixar o PLUMGEN:\n"
         },
@@ -5351,7 +5360,7 @@
             "new_mod_saved_desc_pt2": "\n\nGostaria de revisar o log do MBINCompiler para verificar se há problemas?",
             "error_1": "Não foi possível localizar o arquivo de log do MBINCompiler para verificar problemas na exportação.",
             "error_2": "Falha ao processar com psarc.exe: ",
-            "error_3": "psarc.exe não encontrado na pasta 'model'. Não exclua ou renomeie este arquivo!",
+            "error_3": "psarc.exe não encontrado na pasta 'Resources'. Não exclua ou renomeie este arquivo!",
             "error_4": "Falha ao carregar o número da versão mais recente do MBINCompiler do JSON. Não exclua ou renomeie este arquivo!"
         }
     },
@@ -5444,6 +5453,7 @@
             "error_desc_long": "Если вы не можете устранить эту ошибку, поделитесь файлом plumgen.log с разработчиком."
         },
         "filemenu_view_gen": {
+            "check_update": "Проверить обновление PLUMGEN",
             "Update": "Обновление",
             "make_template": "Создать шаблон биома из EXML",
             "auto_rename": "Автоматически переименовать все биомы",
@@ -5526,7 +5536,7 @@
             "warning_title": "Предупреждение: Генерация с использованием Пользовательских Моделей",
             "warning_desc": "Похоже, вы используете пользовательский шаблон биома (не '_Current Vanilla+Pre NMS.csv'). \n\nЭто может указывать на то, что ваш пользовательский .CSV ссылается на устаревшие или поврежденные модели, что может вызвать проблемы с вашим модом. \n\nВам также понадобится PAK пользовательских моделей, чтобы они появились в игре. \n\nВы хотите продолжить?",
             "info_title": "Информация: Переключение Генерации",
-            "info_desc": "Флажок 'Добавить, Используя Шаблон Модели' установлен. \n Переход к генерации '_Current Vanilla+Pre NMS.csv'."
+            "info_desc": "'Добавить данные из .csv' Флажок установлен.\n Переключение на генерацию с использованием:"
         },
         "attribute_desc": {
             "desc_0": "Путь к модели.",
@@ -5887,9 +5897,9 @@
         "plum_misc": {
             "dang_title": "Опасная команда обнаружена",
             "dang_pt1": "Обнаружена потенциально опасная команда в файле .bat.\n",
-            "dang_pt2": "\nПожалуйста, удалите файл 'model/Updater/move_updated_files.bat' и уведомите разработчика.",
+            "dang_pt2": "\nПожалуйста, удалите файл 'Resources/Updater/move_updated_files.bat' и уведомите разработчика.",
             "Error": "Ошибка",
-            "something_off": "Что-то не так с загруженной версией PLUMGEN. Пожалуйста, удалите версию PLUMGEN, найденную в '/model/Updater/'",
+            "something_off": "Что-то не так с загруженной версией PLUMGEN. Пожалуйста, удалите версию PLUMGEN, найденную в '/Resources/Updater/'",
             "err_dld_plum_desc": "Ошибка загрузки файла PLUMGEN: "
         },
         "plum_get_latest_mbc_release": {
@@ -5900,7 +5910,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Обновление PLUMGEN",
             "dld_good_desc_pt1": "Загружено ",
-            "dld_good_desc_pt2": "\n\nПриложение теперь перезагрузится.",
+            "dld_good_desc_pt2": "\n\nПриложение будет перезапущено. \n\nПосле перезапуска проверьте файл '_README.txt' на наличие обновлений.\n\nЕсли новое окно консоли не появится, щелкните правой кнопкой мыши по 'Resources/Updater/complete_update.bat' и выберите 'Запуск от имени администратора'.",
             "Error": "Ошибка",
             "dld_fail_desc": "Ошибка загрузки PLUMGEN:\n"
         },
@@ -5946,7 +5956,7 @@
             "new_mod_saved_desc_pt2": "\n\nХотите просмотреть журнал MBINCompiler на наличие проблем?",
             "error_1": "Не удалось найти файл журнала MBINCompiler для проверки проблем с экспортом.",
             "error_2": "Не удалось обработать с помощью psarc.exe: ",
-            "error_3": "Файл psarc.exe не найден в папке 'model'. Не удаляйте и не переименовывайте этот файл!",
+            "error_3": "Файл psarc.exe не найден в папке 'Resources'. Не удаляйте и не переименовывайте этот файл!",
             "error_4": "Не удалось загрузить номер последней версии MBINCompiler из JSON. Не удаляйте и не переименовывайте этот файл!"
         }
     },
@@ -6039,6 +6049,7 @@
             "error_desc_long": "Si tiene dificultades para resolver este error, comparta el archivo 'plumgen.log' con el desarrollador."
         },
         "filemenu_view_gen": {
+            "check_update": "Buscar actualización de PLUMGEN",
             "Update": "Actualización",
             "make_template": "Hacer plantilla de Bioma desde EXML",
             "auto_rename": "Auto-Renombrar todos los Biomas",
@@ -6121,7 +6132,7 @@
             "warning_title": "Advertencia: Generando usando Modelos Personalizados",
             "warning_desc": "Parece que estás utilizando una plantilla de bioma personalizada (no '_Current Vanilla+Pre NMS.csv'). \n\nEsto podría indicar que tu archivo .CSV personalizado se refiere a modelos obsoletos o rotos, lo que podría causar problemas con tu mod. \n\nTambién necesitarás un PAK de los modelos personalizados para que aparezcan en el juego. \n\n¿Quieres continuar?",
             "info_title": "Información: Cambio de Generación",
-            "info_desc": "'Añadir Usando Modelo de Plantilla' Casilla marcada.\n Cambiando a generación de '_Current Vanilla+Pre NMS.csv'."
+            "info_desc": "Casilla 'Agregar usando Datos .csv' marcada.\n Cambiando a generación usando:"
         },
         "attribute_desc": {
             "desc_0": "Ruta del modelo.",
@@ -6482,9 +6493,9 @@
         "plum_misc": {
             "dang_title": "Comando Peligroso Encontrado",
             "dang_pt1": "Comando potencialmente peligroso encontrado en el archivo .bat.\n",
-            "dang_pt2": "\nPor favor, elimine el archivo 'model/Updater/move_updated_files.bat' y notifique al desarrollador.",
+            "dang_pt2": "\nPor favor, elimine el archivo 'Resources/Updater/move_updated_files.bat' y notifique al desarrollador.",
             "Error": "Error",
-            "something_off": "Algo está mal con la versión de PLUMGEN descargada. Por favor, elimine la versión de PLUMGEN encontrada en '/model/Updater/'",
+            "something_off": "Algo está mal con la versión de PLUMGEN descargada. Por favor, elimine la versión de PLUMGEN encontrada en '/Resources/Updater/'",
             "err_dld_plum_desc": "Error al descargar el archivo PLUMGEN: "
         },
         "plum_get_latest_mbc_release": {
@@ -6495,7 +6506,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Actualización de PLUMGEN",
             "dld_good_desc_pt1": "Descargado ",
-            "dld_good_desc_pt2": "\n\nLa aplicación se reiniciará.",
+            "dld_good_desc_pt2": "\n\nLa aplicación se reiniciará ahora. \n\nDespués de reiniciar, revise el archivo '_README.txt' para ver notas de actualización.\n\nSi no aparece una nueva ventana de consola, haga clic derecho en 'Resources/Updater/complete_update.bat' y seleccione 'Ejecutar como administrador'.",
             "Error": "Error",
             "dld_fail_desc": "Error al descargar PLUMGEN:\n"
         },
@@ -6541,7 +6552,7 @@
             "new_mod_saved_desc_pt2": "\n\n¿Te gustaría revisar el registro de MBINCompiler en busca de problemas?",
             "error_1": "No se pudo ubicar el archivo de registro de MBINCompiler para verificar problemas de exportación.",
             "error_2": "Error al procesar con psarc.exe: ",
-            "error_3": "psarc.exe no se encuentra en la carpeta 'model'. ¡No elimines ni cambies este archivo!",
+            "error_3": "psarc.exe no se encuentra en la carpeta 'Resources'. ¡No elimines ni cambies este archivo!",
             "error_4": "Error al cargar el número de versión más reciente de MBINCompiler desde JSON. ¡No elimines ni cambies este archivo!"
         }
     }

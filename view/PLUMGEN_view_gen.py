@@ -17,7 +17,9 @@ import ctypes
 from view.PLUMGEN_view_gen_bulk import PlumgenViewGenBulk
 from view.PLUMGEN_view_gen_export import PlumgenViewGenExport
 from view.PLUMGEN_view_menu import MenuBar
-from model.PLUMGEN_updater import PlumgenUpdater
+from Resources.PLUMGEN_updater import PlumgenUpdater
+
+
 
 class PlumgenViewGen:
     #def __init__(self, parent):
@@ -306,7 +308,7 @@ class PlumgenViewGen:
 
         # update menu
         self.updatemenu = tk.Menu(self.mb)
-        self.updatemenu.add_command(label='>>>', command=lambda: self.check_plum_update())
+        self.updatemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["check_update"], command=lambda: self.check_plum_update())
 
         self.donatemenu = tk.Menu(self.mb)
         self.donatemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["donate_page"], command=lambda: webbrowser.open_new("https://www.buymeacoffee.com/sunnysummit"))
@@ -769,12 +771,27 @@ class PlumgenViewGen:
                 self.attribute_entry.delete(0, 'end')
             # set generation to the biome template, if gen_using_template_data_var cb was checked
             if self.gen_using_template_data_var.get():
-                if selected_csv != "_Current Vanilla+Pre NMS.csv":
+                if selected_csv not in [
+                    "_Current Vanilla+Pre NMS.csv",
+                    "Barren.csv",
+                    "Cave.csv",
+                    "Dead.csv",
+                    "Frozen.csv",
+                    "Lava.csv",
+                    "Lush.csv",
+                    "Radioactive.csv",
+                    "Scorched.csv",
+                    "Swamp.csv",
+                    "Toxic.csv",
+                    "Underwater.csv",
+                    "Weird.csv",
+                    "_Found Path Atlas.csv"
+                ]:
                     result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
                         self.gen_using_template_data_var.set(False)
                         return
-                else: messagebox.showinfo(self.langs[self.lan]["csv_selected"]["info_title"], self.langs[self.lan]["csv_selected"]["info_desc"], parent=self.window)
+                else: messagebox.showinfo(self.langs[self.lan]["csv_selected"]["info_title"], f"{self.langs[self.lan]["csv_selected"]["info_desc"]} {selected_csv}", parent=self.window)
                 # replace default model path list with list of unique models in biome template
                 self.controller.set_custom_model_list()
             else:
@@ -1776,7 +1793,22 @@ class PlumgenViewGen:
             # show warning if user using custom biome template .csv
             if self.gen_using_template_data_var.get():
                 self.replace_lb_with_template_data_cb.config(state=tk.NORMAL)
-                if selected_csv != "_Current Vanilla+Pre NMS.csv":
+                if selected_csv not in [
+                    "_Current Vanilla+Pre NMS.csv",
+                    "Barren.csv",
+                    "Cave.csv",
+                    "Dead.csv",
+                    "Frozen.csv",
+                    "Lava.csv",
+                    "Lush.csv",
+                    "Radioactive.csv",
+                    "Scorched.csv",
+                    "Swamp.csv",
+                    "Toxic.csv",
+                    "Underwater.csv",
+                    "Weird.csv",
+                    "_Found Path Atlas.csv"
+                ]:
                     result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
                         self.gen_using_template_data_var.set(False)

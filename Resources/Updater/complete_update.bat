@@ -11,15 +11,15 @@ cd /d "%script_dir%"
 REM find and move to target directory ------------------------------
 set "target_dir=%script_dir%\_PLUMGEN"
 set "plumgen_dir=%script_dir%\..\..\"
-set "model_dir=%script_dir%\..\"
+set "resources_dir=%script_dir%\..\"
 
 if exist "%target_dir%" (
     cd /d "%target_dir%"
 
     REM check and move files ---------------------------------------
     if exist "%target_dir%\*.xml" (
-        robocopy "%target_dir%" "%model_dir%" *.xml /MOV
-        echo Moved XML files from "%target_dir%" to "%model_dir%"
+        robocopy "%target_dir%" "%resources_dir%" *.xml /MOV
+        echo Moved XML files from "%target_dir%" to "%resources_dir%"
     ) else (
         echo NOTE: No XML files found in "%target_dir%". Probably no issue.
     )
@@ -99,7 +99,7 @@ if exist "%target_dir%" (
     )
 
 ) else (
-    echo Either: Do not run this alone. OR: PLUMGEN folder not found in Model\Updater.
+    echo PLUMGEN folder not found in Resources\Updater.
 )
 
 pause
