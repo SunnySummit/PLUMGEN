@@ -359,7 +359,9 @@
         },
         "misc": {
             "Filename": "Filename",
-            "Weight": "Weight"
+            "Weight": "Weight",
+            "Prpl_Wt": "Prpl_Wt"
+
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Biome Spawner"
@@ -389,7 +391,8 @@
             "Add_Valid_Start": "Add Valid Start Planet",
             "Remove_Valid_Start": "Remove Start Planet",
             "Export": "Export (Generate mod files)",
-            "Save Weight": "Save Weight"
+            "Save Weight": "Save Weight",
+            "Save Purple Weight": "Save Purple Weight"
         },
         "labels_2": {
             "biome_objects": " Biome Objects List ",
@@ -955,7 +958,8 @@
         },
         "misc": {
             "Filename": "文件名",
-            "Weight": "权重"
+            "Weight": "权重",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - 生物群落生成器"
@@ -985,7 +989,8 @@
             "Add_Valid_Start": "添加有效的起始星球",
             "Remove_Valid_Start": "删除起始星球",
             "Export": "导出（生成模组文件）",
-            "Save Weight": "保存权重"
+            "Save Weight": "保存权重",
+            "Save Purple Weight": "拯救紫色权重"
         },
         "labels_2": {
             "biome_objects": " 生物群落对象列表 ",
@@ -1551,7 +1556,8 @@
         },
         "misc": {
             "Filename": "Tiedostonimi",
-            "Weight": "Paino"
+            "Weight": "Paino",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Biomi-Synnyttäjä"
@@ -1581,7 +1587,8 @@
             "Add_Valid_Start": "Lisää kelvollinen aloitusplaneetta",
             "Remove_Valid_Start": "Poista aloitusplaneetta",
             "Export": "Vie (Luo muodostetiedostoja)",
-            "Save Weight": "Tallenna paino"
+            "Save Weight": "Tallenna paino",
+            "Save Purple Weight": "Pelasta violetti paino"
         },
         "labels_2": {
             "biome_objects": " Biome-objektiluettelo ",
@@ -2147,7 +2154,8 @@
         },
         "misc": {
             "Filename": "Nom de fichier",
-            "Weight": "Poids"
+            "Weight": "Poids",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Générateur de spawn de biome"
@@ -2177,7 +2185,8 @@
             "Add_Valid_Start": "Ajouter un planète de départ valide",
             "Remove_Valid_Start": "Supprimer la planète de départ",
             "Export": "Exporter (Générer des fichiers de mod)",
-            "Save Weight": "Enregistrer le poids"
+            "Save Weight": "Enregistrer le poids",
+            "Save Purple Weight": "Sauvez le poids violet"
         },
         "labels_2": {
             "biome_objects": " Liste d'objets de biome ",
@@ -2743,7 +2752,8 @@
         },
         "misc": {
             "Filename": "Dateiname",
-            "Weight": "Gewicht"
+            "Weight": "Gewicht",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Biom-Erzeuger"
@@ -2773,7 +2783,8 @@
             "Add_Valid_Start": "Gültigen Startplaneten hinzufügen",
             "Remove_Valid_Start": "Startplaneten entfernen",
             "Export": "Exportieren (Mod-Dateien generieren)",
-            "Save Weight": "Gewicht speichern"
+            "Save Weight": "Gewicht speichern",
+            "Save Purple Weight": "Lila gewicht speichern"
         },
         "labels_2": {
             "biome_objects": " Liste der Biome-Objekte ",
@@ -3339,7 +3350,8 @@
         },
         "misc": {
             "Filename": "Nome file",
-            "Weight": "Peso"
+            "Weight": "Peso",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Generatore di Biomi"
@@ -3369,7 +3381,8 @@
             "Add_Valid_Start": "Aggiungi Pianeta di Inizio Valido",
             "Remove_Valid_Start": "Rimuovi Pianeta di Inizio",
             "Export": "Esporta (Genera file mod)",
-            "Save Weight": "Salva Peso"
+            "Save Weight": "Salva Peso",
+            "Save Purple Weight": "Salva Peso Viola"
         },
         "labels_2": {
             "biome_objects": " Lista di Oggetti Bioma ",
@@ -3935,7 +3948,8 @@
         },
         "misc": {
             "Filename": "ファイル名",
-            "Weight": "重み"
+            "Weight": "重み",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - バイオームスポーナー"
@@ -3965,7 +3979,8 @@
             "Add_Valid_Start": "有効な開始惑星を追加する",
             "Remove_Valid_Start": "開始惑星を削除する",
             "Export": "エクスポート（modファイルの生成）",
-            "Save Weight": "重みを保存する"
+            "Save Weight": "重みを保存する",
+            "Save Purple Weight": "紫色の重みを守る"
         },
         "labels_2": {
             "biome_objects": "バイオームオブジェクトリスト",
@@ -4531,7 +4546,8 @@
         },
         "misc": {
             "Filename": "파일 이름",
-            "Weight": "가중치"
+            "Weight": "가중치",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - 생물군 생성기"
@@ -4561,7 +4577,8 @@
             "Add_Valid_Start": "유효한 시작 행성 추가",
             "Remove_Valid_Start": "시작 행성 제거",
             "Export": "내보내기 (모드 파일 생성)",
-            "Save Weight": "가중치 저장"
+            "Save Weight": "가중치 저장",
+            "Save Purple Weight": "보라색 무게 저장하기"
         },
         "labels_2": {
             "biome_objects": "생물 객체 목록",
@@ -5127,7 +5144,8 @@
         },
         "misc": {
             "Filename": "Nome do Arquivo",
-            "Weight": "Peso"
+            "Weight": "Peso",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Spawner de Bioma"
@@ -5157,7 +5175,8 @@
             "Add_Valid_Start": "Adicionar Planeta Inicial Válido",
             "Remove_Valid_Start": "Remover Planeta Inicial",
             "Export": "Exportar (Gerar arquivos mod)",
-            "Save Weight": "Salvar Peso"
+            "Save Weight": "Salvar Peso",
+            "Save Purple Weight": "Salvar Peso Roxo"
         },
         "labels_2": {
             "biome_objects": " Lista de Objetos do Bioma ",
@@ -5723,7 +5742,8 @@
         },
         "misc": {
             "Filename": "Имя файла",
-            "Weight": "Вес"
+            "Weight": "Вес",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Спаунинг биомов"
@@ -5753,7 +5773,8 @@
             "Add_Valid_Start": "Добавить допустимую стартовую планету",
             "Remove_Valid_Start": "Удалить стартовую планету",
             "Export": "Экспорт (создание файлов модов)",
-            "Save Weight": "Сохранить вес"
+            "Save Weight": "Сохранить вес",
+            "Save Purple Weight": "Сохранить фиолетовый вес"
         },
         "labels_2": {
             "biome_objects": " Список объектов биома ",
@@ -6319,7 +6340,8 @@
         },
         "misc": {
             "Filename": "Nombre de archivo",
-            "Weight": "Peso"
+            "Weight": "Peso",
+            "Prpl_Wt": "Prpl_Wt"
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Generador de Biomas"
@@ -6349,7 +6371,8 @@
             "Add_Valid_Start": "Agregar Planeta de Inicio Válido",
             "Remove_Valid_Start": "Eliminar Planeta de Inicio",
             "Export": "Exportar (Generar archivos de mod)",
-            "Save Weight": "Guardar Peso"
+            "Save Weight": "Guardar Peso",
+            "Save Purple Weight": "Guardar Peso Morado"
         },
         "labels_2": {
             "biome_objects": "Lista de Objetos de Bioma",

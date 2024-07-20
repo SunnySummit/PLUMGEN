@@ -70,7 +70,7 @@ class PlumgenViewGenExport:
             self.parent.withdraw()
             
             self.window = tk.Toplevel(self.grandparent)
-            self.window.title(f"v1.1 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
+            self.window.title(f"v1.11 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
             
 
             # retrieve parent window's position & size
@@ -277,9 +277,11 @@ class PlumgenViewGenExport:
         self.export_button = ttk.Button(self.window, text=f"{self.langs[self.lan]["buttons_2"]["Export"]} >>", style='Start.TButton', command=self.apply_export_settings)
         
         self.save_weight_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons_2"]["Save Weight"], style='Gen.TButton', command=self.save_weight, width=20)
+        self.save_prpl_weight_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons_2"]["Save Purple Weight"], style='Gen.TButton', command=self.save_prpl_weight, width=20)
 
         # entry
-        self.weight_entry = ttk.Entry(self.window, style='TEntry', font=('TkDefaultFont', 12))
+        self.weight_entry = ttk.Entry(self.window, style='TEntry', font=('TkDefaultFont', 12), width=10)
+        self.prpl_weight_entry = ttk.Entry(self.window, style='TEntry', font=('TkDefaultFont', 12), width=10)
 
         # separators
         self.separator1 = ttk.Separator(self.window, orient="horizontal")
@@ -355,9 +357,11 @@ class PlumgenViewGenExport:
         self.export_button.grid(row=12, column=6, columnspan=2, padx=20, pady=5, sticky=tk.E)
 
         self.save_weight_button.grid(row=12, column=2, padx=15, pady=5, sticky=tk.E)
+        self.save_prpl_weight_button.grid(row=12, column=3, padx=15, pady=5, sticky=tk.E)
 
         # entry
         self.weight_entry.grid(row=12, column=3, padx=15, pady=5, sticky=tk.W)
+        self.prpl_weight_entry.grid(row=12, column=4, padx=15, pady=5, sticky=tk.W)
 
         # separators
         self.separator1.grid(row=1, column=0, columnspan=8, padx=(5, 5), pady=(5,0), sticky=tk.EW)
@@ -559,9 +563,13 @@ class PlumgenViewGenExport:
 
                     selected_biome_file_key, selected_biome_file_value = list(self.selected_biome_file.items())[0]
                     weight = selected_biome_file_value.split()[0]
+                    prpl_weight = selected_biome_file_value.split()[2]
 
                     self.weight_entry.delete(0, tk.END)
                     self.weight_entry.insert(0, str(weight))  # insert weight for clicked item
+
+                    self.prpl_weight_entry.delete(0, tk.END)
+                    self.prpl_weight_entry.insert(0, str(prpl_weight))  # insert weight for clicked item
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -651,7 +659,7 @@ class PlumgenViewGenExport:
                 for data in biome_data:
                     filename = list(data.keys())[0]
                     weight = data[filename]
-                    listbox.insert(tk.END, f"{self.langs[self.lan]["misc"]["Filename"]}: {filename}, {self.langs[self.lan]["misc"]["Weight"]}: {weight}")
+                    listbox.insert(tk.END, f"{self.langs[self.lan]["misc"]["Filename"]}: {filename}, {weight}")
                 # Add the listbox to the tab
                 listbox.grid(row=0, column=0, sticky=tk.NSEW)
                 scroll_x.grid(row=1, column=0, sticky=tk.EW)
@@ -959,9 +967,9 @@ class PlumgenViewGenExport:
 
                     selected_biome_file_key, selected_biome_file_value = list(self.selected_biome_file.items())[0]
                     # split existing value by whitespace to separate weight from rest of string
-                    existing_weight, existing_standard = self.selected_biome_file[selected_biome_file_key].split(' ', 1)
+                    existing_weight, existing_standard, existing_prpl_weight = self.selected_biome_file[selected_biome_file_key].split(' ', 2)
                     # replace weight part with the new new_weight_value
-                    self.selected_biome_file[selected_biome_file_key] = f"{new_weight_value} {existing_standard}"
+                    self.selected_biome_file[selected_biome_file_key] = f"{new_weight_value} {existing_standard} {existing_prpl_weight}"
 
 
                 # get frame (tab) corresponding to the selected tab index
@@ -974,13 +982,57 @@ class PlumgenViewGenExport:
                 for data in selected_biome_files:
                     filename = list(data.keys())[0]
                     weight = data[filename]
-                    listbox.insert(tk.END, f"{self.langs[self.lan]["misc"]["Filename"]}: {filename}, {self.langs[self.lan]["misc"]["Weight"]}: {weight}")
+                    listbox.insert(tk.END, f"{self.langs[self.lan]["misc"]["Filename"]}: {filename}, {weight}")
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
 
 
+    def save_prpl_weight(self): #TODO
+        try:
+            
+            if self.bfn_weight_selected_tab_index is not None and self.selected_biome_file is not None:
+
+                new_prpl_weight_value = self.prpl_weight_entry.get() # get value from entry
+
+                # validate new_prpl_weight_value is number
+                if not re.match(r'^\d+(\.\d+)?$', new_prpl_weight_value):
+                    messagebox.showerror(self.langs[self.lan]["delete_add_stuff"]["invalid_input_wt_title"], self.langs[self.lan]["delete_add_stuff"]["invalid_input_wt_desc"], parent=self.window)
+                    return
+
+                if "." in new_prpl_weight_value:
+                    new_prpl_weight_value = re.sub(r'(?<=\d)0+$', '', new_prpl_weight_value)
+
+                bfn_weights = self.bfn_all_biome_files_weights
+                selected_bfn_weight_values = bfn_weights[self.bfn_weight_selected_tab_index]
+                key_name = list(selected_bfn_weight_values.keys())[0]
+                selected_biome_files = selected_bfn_weight_values[key_name]
+
+                if self.bfn_wts_selected_idx is not None and self.bfn_wts_selected_idx != -1:
+
+                    selected_biome_file_key, selected_biome_file_value = list(self.selected_biome_file.items())[0]
+                    # split existing value by whitespace to separate weight from rest of string
+                    existing_weight, existing_standard, existing_prpl_weight = self.selected_biome_file[selected_biome_file_key].split(' ', 2)
+                    # replace weight part with the new new_prpl_weight_value
+                    self.selected_biome_file[selected_biome_file_key] = f"{existing_weight} {existing_standard} {new_prpl_weight_value}"
+
+
+                # get frame (tab) corresponding to the selected tab index
+                selected_tab_frame = self.biome_files_list_weights_notebook.winfo_children()[self.bfn_weight_selected_tab_index]
+
+                listbox = selected_tab_frame.winfo_children()[0] # find listbox widget within the selected tab frame
+
+                # repopulate listbox
+                listbox.delete(0, tk.END) # clear listbox
+                for data in selected_biome_files:
+                    filename = list(data.keys())[0]
+                    weight = data[filename]
+                    listbox.insert(tk.END, f"{self.langs[self.lan]["misc"]["Filename"]}: {filename}, {weight}")
+
+        except Exception as e:
+            self.logger.exception("Error: %s", e) # log the exception
+            self.show_error_message("An error occurred: {}".format(str(e)))
 
 
 

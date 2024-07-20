@@ -348,14 +348,15 @@ class PlumgenExportLuaClass():
                         for data in reversed(biome_data):
                             filename = list(data.keys())[0]
                             wt_stype = data[filename]
-                            weight, sub_type = wt_stype.split()
+                            weight, sub_type, prpl_weight = wt_stype.split()
 
                             #make sub_type quotes??
 
                             each_filename_weight_4_ed = self.each_filename_weight_4 \
                                 .replace("@sub_type@", sub_type) \
                                 .replace("@filename@", filename) \
-                                .replace("@weight@", weight)
+                                .replace("@weight@", weight) \
+                                .replace("@prpl_weight@", prpl_weight)
                             lua_file.write(each_filename_weight_4_ed)
 
 

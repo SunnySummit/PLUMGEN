@@ -95,7 +95,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"v1.1 - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.11 - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -874,13 +874,16 @@ class PlumgenControllerGen():
                                 biome_dict[prop.get("value")] = None  # initialize with None, as Weight will be handled separately
                             elif prop.get("name") == "Weight":
                                 weight = prop.get("value")
-                                biome_dict[next(iter(biome_dict))] = f"{weight} {sub_type}"  # update the value associated with "Filename"
+                                #biome_dict[next(iter(biome_dict))] = f"{weight} {sub_type}"  # update value associated with "Filename"
+                            elif prop.get("name") == "PurpleSystemWeight": #########################
+                                purple_weight = prop.get("value")
+                                biome_dict[next(iter(biome_dict))] = f"{weight} {sub_type} {purple_weight}"  # update value associated with "Filename"
                         biome_list.append(biome_dict)
 
                     # PRE-NEXT, uses different names + no weights
                     if not biome_list:
 
-                        for biome_option in biome_file.findall(".//Property[@value='NMSString0x80.xml']"):
+                        for biome_option in biome_file.findall(".//Property[@value='NMSString0x80.xml']") + biome_file.findall(".//Property[@value='VariableSizeString.xml']"):
                             biome_dict = {}
                             
                             # Extract information from each Property element
@@ -889,9 +892,11 @@ class PlumgenControllerGen():
                                 # FOR PRE-NEXT
                                 if prop.get("name") == "Value":
                                     filename = prop.get("value")
-                                    biome_dict[filename] = "1 Standard"  # initialize weight with 1 and subbiome Standard
+                                    biome_dict[filename] = "1 Standard 1"  # initialize weights with 1 and subbiome Standard
 
                             biome_list.append(biome_dict)
+                        
+                        
 
                     biome_files_weights.append({biome_name: biome_list})
 
@@ -922,7 +927,7 @@ class PlumgenControllerGen():
                 # 2. identify the first nested list (e.g., Cave or Underwater)
                 tile_type_values = []
                 
-                for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']"):
+                for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']") + external_object_list.findall(".//Property[@value='VariableSizeString.xml']"):
                     value = option.find("./Property[@name='Value']").get("value")
                     tile_type_values.append(value)
 
@@ -996,7 +1001,7 @@ class PlumgenControllerGen():
 
                                 # extract Options for the TileType
                                 tile_type_values = []
-                                for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']"):
+                                for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']") + external_object_list.findall(".//Property[@value='VariableSizeString.xml']"):
                                     value = option.find("./Property[@name='Value']").get("value")
                                     tile_type_values.append(value)
 

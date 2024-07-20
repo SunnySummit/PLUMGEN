@@ -3,5 +3,5 @@
 						{
 							["PRECEDING_KEY_WORDS"] = { "FileOptions", },
 							["ADD_OPTION"] 	= "ADDafterLINE",
-							["ADD"] = addFileListOption("@sub_type@", "@filename@", @weight@),
+							["ADD"] = addFileListOption("@sub_type@", "@filename@", @weight@, @prpl_weight@),
 						},

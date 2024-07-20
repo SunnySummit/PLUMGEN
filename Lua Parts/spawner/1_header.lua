@@ -22,7 +22,7 @@ return [[
 ]]
 end
 
-function addFileListOption(subType, filename, weight)
+function addFileListOption(subType, filename, weight, prpl_weight)
 return [[
         <Property value="GcBiomeFileListOption.xml">
           <Property name="SubType" value="GcBiomeSubType.xml">
@@ -30,6 +30,7 @@ return [[
           </Property>
           <Property name="Filename" value="]] .. filename .. [[" />
           <Property name="Weight" value="]] .. weight .. [[" />
+          <Property name="PurpleSystemWeight" value="]] .. prpl_weight .. [[" />
         </Property>
 ]]
 end
