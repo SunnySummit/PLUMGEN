@@ -1,4 +1,4 @@
-PLUMGEN (v1.1)
+PLUMGEN (v1.11)
 
 -- APP FEATURES: --------------------------------------------------------------------------------------------------
 
@@ -17,6 +17,11 @@ PLUMGEN (v1.1)
 
 
 -- CHANGELOG: -----------------------------------------------------------------------------------------------------
+
+v1.11 Update:
+
+	-Updated to NMS Update 'Worlds Part 1'
+	-Added 'Worlds Part 1.csv' biome template which include all of the newest props (not new "vfx props")
 
 v1.1 Update:
 

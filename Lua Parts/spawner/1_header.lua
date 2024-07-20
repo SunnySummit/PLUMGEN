@@ -78,7 +78,7 @@ end
 
 function addBiomeOptions(biomeObjectsName)
 return [[
-        <Property value="NMSString0x80.xml">
+        <Property value="VariableSizeString.xml">
           <Property name="Value" value="]] .. biomeObjectsName .. [[" />
         </Property>
 ]]
