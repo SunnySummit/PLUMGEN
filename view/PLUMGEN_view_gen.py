@@ -121,17 +121,33 @@ class PlumgenViewGen:
                 self.export_script_button, self.save_rename_biome_button
             ]
 
-            self.attribute_labels = [self.langs[self.lan]["attribute_labels"]["Filename"], self.langs[self.lan]["attribute_labels"]["Placement"],
-                        self.langs[self.lan]["attribute_labels"]["MinHeight"], self.langs[self.lan]["attribute_labels"]["MaxHeight"],
-                        self.langs[self.lan]["attribute_labels"]["MinAngle"], self.langs[self.lan]["attribute_labels"]["MaxAngle"],
-                        self.langs[self.lan]["attribute_labels"]["MinScale"], self.langs[self.lan]["attribute_labels"]["MaxScale"],
-                        self.langs[self.lan]["attribute_labels"]["MinScaleY"], self.langs[self.lan]["attribute_labels"]["MaxScaleY"],
-                        self.langs[self.lan]["attribute_labels"]["PatchEdgeScaling"], self.langs[self.lan]["attribute_labels"]["MaxXZRotation"],
-                        self.langs[self.lan]["attribute_labels"]["DestroyedByPlayerShip"], self.langs[self.lan]["attribute_labels"]["DestroyedByTerrainEdit"],
-                        self.langs[self.lan]["attribute_labels"]["CreaturesCanEat"], self.langs[self.lan]["attribute_labels"]["Coverage"],
-                        self.langs[self.lan]["attribute_labels"]["FlatDensity"], self.langs[self.lan]["attribute_labels"]["SlopeDensity"],
-                        self.langs[self.lan]["attribute_labels"]["SlopeMultiplier"], self.langs[self.lan]["attribute_labels"]["DrawDistance"],
-                        self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]]
+            self.attribute_labels = [
+						"Filename: ",
+						"Placement: ",
+                        "MinHeight: ",
+						"MaxHeight: ",
+                        "MinAngle: ",
+						"MaxAngle: ",
+                        "MinScale: ",
+						"MaxScale: ",
+                        "MinScaleY: ",
+						"MaxScaleY: ",
+                        "PatchEdgeScaling: ",
+						"MaxXZRotation: ",
+                        "MaxYRotation: ",
+                        "MaxRaise: ",
+                        "MaxLower: ",
+                        "DestroyedByPlayerShip: ",
+						"DestroyedByTerrainEdit: ",
+                        "IsFloatingIsland: ",
+                        "CreaturesCanEat: ",
+						"Coverage: ",
+                        "FlatDensity: ",
+						"SlopeDensity: ",
+                        "SlopeMultiplier: ",
+						"DrawDistance: ",
+                        "TotalCountInTemplate: "
+						]
             
             self.attribute_labels_edited = [label[:-2] for label in self.attribute_labels]
 
@@ -398,7 +414,7 @@ class PlumgenViewGen:
         self.model_info = tk.Text(self.window, bg='#444444', fg=self.white_c, wrap=tk.WORD, width=30, height=5)
 
         # combobox
-        self.csv_var = tk.StringVar(value="_Current Vanilla+Pre NMS.csv")
+        self.csv_var = tk.StringVar(value="_Vanilla+Pre NMS.csv")
         self.csv_combo = ttk.Combobox(self.window, textvariable=self.csv_var, style='TCombobox', state="readonly", width=30)
 
         # separators
@@ -772,20 +788,21 @@ class PlumgenViewGen:
             # set generation to the biome template, if gen_using_template_data_var cb was checked
             if self.gen_using_template_data_var.get():
                 if selected_csv not in [
-                    "_Current Vanilla+Pre NMS.csv",
-                    "Barren.csv",
-                    "Cave.csv",
-                    "Dead.csv",
-                    "Frozen.csv",
-                    "Lava.csv",
-                    "Lush.csv",
-                    "Radioactive.csv",
-                    "Scorched.csv",
-                    "Swamp.csv",
-                    "Toxic.csv",
-                    "Underwater.csv",
-                    "Weird.csv",
-                    "_Found Path Atlas.csv"
+                    "_Found Path Atlas.csv",
+                    "_Vanilla+Pre NMS.csv",
+                    "Barren_v2.csv",
+                    "Cave_v2.csv",
+                    "Dead_v2.csv",
+                    "Frozen_v2.csv",
+                    "Lava_v2.csv",
+                    "Lush_v2.csv",
+                    "Radioactive_v2.csv",
+                    "Scorched_v2.csv",
+                    "Swamp_v2.csv",
+                    "Toxic_v2.csv",
+                    "Underwater_v2.csv",
+                    "Weird_v2.csv",
+                    "Worlds Part 1.csv"
                 ]:
                     result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
@@ -836,16 +853,16 @@ class PlumgenViewGen:
 
                 for distant_obj_list in selected_biome.get_distant_obj_lists():
                     if distant_obj_list[0]:  # verify that the model filepath is not empty
-                        self.update_listbox(self.distant_objects_lb, distant_obj_list[20], distant_obj_list[0])
+                        self.update_listbox(self.distant_objects_lb, distant_obj_list[24], distant_obj_list[0])
                 for landmark_list in selected_biome.get_landmark_lists():
                     if landmark_list[0]:
-                        self.update_listbox(self.landmarks_lb, landmark_list[20], landmark_list[0])
+                        self.update_listbox(self.landmarks_lb, landmark_list[24], landmark_list[0])
                 for objects_list in selected_biome.get_objects_lists():
                     if objects_list[0]:
-                        self.update_listbox(self.objects_lb, objects_list[20], objects_list[0])
+                        self.update_listbox(self.objects_lb, objects_list[24], objects_list[0])
                 for detail_obj_list in selected_biome.get_detail_obj_lists():
                     if detail_obj_list[0]:
-                        self.update_listbox(self.detail_objects_lb, detail_obj_list[20], detail_obj_list[0])
+                        self.update_listbox(self.detail_objects_lb, detail_obj_list[24], detail_obj_list[0])
                 
                 self.prop_attributes_lb.delete(0, tk.END)
                 self.placem_val_at_index = None #reset selected placement/models
@@ -895,8 +912,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.dist_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_distant[20], self.prop_distant[:20]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_distant[24], self.prop_distant[:24]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -917,8 +934,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.landm_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_landmark[20], self.prop_landmark[:20]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_landmark[24], self.prop_landmark[:24]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -939,8 +956,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.objs_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_object[20], self.prop_object[:20]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_object[24], self.prop_object[:24]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -961,8 +978,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.detail_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 20th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_detail[20], self.prop_detail[:20]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_detail[24], self.prop_detail[:24]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -987,7 +1004,7 @@ class PlumgenViewGen:
                 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_distant[20]:
+                for matching_prop in self.prop_distant[24]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
                 
                 self.refresh_distant_attr_placem_models()
@@ -1013,7 +1030,7 @@ class PlumgenViewGen:
 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_landmark[20]:
+                for matching_prop in self.prop_landmark[24]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
 
                 self.refresh_landmark_attr_placem_models()
@@ -1039,7 +1056,7 @@ class PlumgenViewGen:
 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_object[20]:
+                for matching_prop in self.prop_object[24]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
 
                 self.refresh_object_attr_placem_models()
@@ -1065,7 +1082,7 @@ class PlumgenViewGen:
 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_detail[20]:
+                for matching_prop in self.prop_detail[24]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
 
                 self.refresh_detail_attr_placem_models()
@@ -1102,15 +1119,19 @@ class PlumgenViewGen:
                     9: self.langs[self.lan]["attribute_desc"]["desc_9"],
                     10: self.langs[self.lan]["attribute_desc"]["desc_10"],
                     11: self.langs[self.lan]["attribute_desc"]["desc_11"],
-                    12: self.langs[self.lan]["attribute_desc"]["desc_12"],
-                    13: self.langs[self.lan]["attribute_desc"]["desc_13"],
-                    14: "/ᐠ⎚-⎚マ",
-                    15: self.langs[self.lan]["attribute_desc"]["desc_15"],
-                    16: self.langs[self.lan]["attribute_desc"]["desc_16"],
-                    17: self.langs[self.lan]["attribute_desc"]["desc_17"],
-                    18: self.langs[self.lan]["attribute_desc"]["desc_18"],
-                    19: self.langs[self.lan]["attribute_desc"]["desc_19"],
-                    20: self.langs[self.lan]["attribute_desc"]["desc_20"]
+                    12: "MaxYRotation: UNKNOWN - WORLDS PART 1 UPDATE",
+                    13: "MaxRaise: UNKNOWN - WORLDS PART 1 UPDATE",
+                    14: "MaxLower: UNKNOWN - WORLDS PART 1 UPDATE",
+                    15: self.langs[self.lan]["attribute_desc"]["desc_12"],
+                    16: self.langs[self.lan]["attribute_desc"]["desc_13"],
+                    17: "IsFloatingIsland: UNKNOWN - WORLDS PART 1 UPDATE",
+                    18: "/ᐠ⎚-⎚マ",
+                    19: self.langs[self.lan]["attribute_desc"]["desc_15"],
+                    20: self.langs[self.lan]["attribute_desc"]["desc_16"],
+                    21: self.langs[self.lan]["attribute_desc"]["desc_17"],
+                    22: self.langs[self.lan]["attribute_desc"]["desc_18"],
+                    23: self.langs[self.lan]["attribute_desc"]["desc_19"],
+                    24: self.langs[self.lan]["attribute_desc"]["desc_20"]
                 }
 
                 # get description based on attribute index
@@ -1124,7 +1145,7 @@ class PlumgenViewGen:
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
                     # don't insert some items (either put these in listbox or they can't be modified)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 19 and self.prop_attribute_index != 20:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
                         self.attribute_entry.insert(0, self.prop_distant[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1134,7 +1155,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 19 and self.prop_attribute_index != 20:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
                         self.attribute_entry.insert(0, self.prop_landmark[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1144,7 +1165,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 19 and self.prop_attribute_index != 20:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
                         self.attribute_entry.insert(0, self.prop_object[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1154,7 +1175,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry 
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 19 and self.prop_attribute_index != 20:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
                         self.attribute_entry.insert(0, self.prop_detail[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1237,7 +1258,7 @@ class PlumgenViewGen:
 
                 # proceed with attribute replacement
                 if self.prop_draw_type == 1:
-                    replacement_prop = self.prop_distant[20][similar_prop_index]
+                    replacement_prop = self.prop_distant[24][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr) # deep copy because the copied item is mutable
                         selected_biome.set_custom_distant_attr(self.distant_index, index, copied_item)
@@ -1245,7 +1266,7 @@ class PlumgenViewGen:
                     self.refresh_distant_attr_placem_models()
 
                 elif self.prop_draw_type == 2:
-                    replacement_prop = self.prop_landmark[20][similar_prop_index]
+                    replacement_prop = self.prop_landmark[24][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr)
                         selected_biome.set_custom_landmark_attr(self.landmark_index, index, copied_item)
@@ -1253,7 +1274,7 @@ class PlumgenViewGen:
                     self.refresh_landmark_attr_placem_models()
 
                 elif self.prop_draw_type == 3:
-                    replacement_prop = self.prop_object[20][similar_prop_index]
+                    replacement_prop = self.prop_object[24][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr)
                         selected_biome.set_custom_object_attr(self.obj_index, index, copied_item)
@@ -1261,7 +1282,7 @@ class PlumgenViewGen:
                     self.refresh_object_attr_placem_models()
 
                 elif self.prop_draw_type == 4:
-                    replacement_prop = self.prop_detail[20][similar_prop_index]
+                    replacement_prop = self.prop_detail[24][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr)
                         selected_biome.set_custom_detail_attr(self.detail_index, index, copied_item)
@@ -1294,7 +1315,7 @@ class PlumgenViewGen:
                         self.distant_objects_lb.delete(0, tk.END)
                         for distant_obj_list in selected_biome.get_distant_obj_lists():
                             if distant_obj_list[0]:  # verify that the model filepath is not empty
-                                self.update_listbox(self.distant_objects_lb, distant_obj_list[20], distant_obj_list[0])
+                                self.update_listbox(self.distant_objects_lb, distant_obj_list[24], distant_obj_list[0])
                     elif self.prop_draw_type == 2:
                         selected_biome.set_custom_landmark_attr(self.landmark_index, 0, self.model_val_at_index)
                         
@@ -1303,7 +1324,7 @@ class PlumgenViewGen:
                         self.landmarks_lb.delete(0, tk.END)
                         for landmark_list in selected_biome.get_landmark_lists():
                             if landmark_list[0]:
-                                self.update_listbox(self.landmarks_lb, landmark_list[20], landmark_list[0])
+                                self.update_listbox(self.landmarks_lb, landmark_list[24], landmark_list[0])
                     elif self.prop_draw_type == 3:
                         selected_biome.set_custom_object_attr(self.obj_index, 0, self.model_val_at_index)
                         
@@ -1312,7 +1333,7 @@ class PlumgenViewGen:
                         self.objects_lb.delete(0, tk.END)
                         for objects_list in selected_biome.get_objects_lists():
                             if objects_list[0]:
-                                self.update_listbox(self.objects_lb, objects_list[20], objects_list[0])
+                                self.update_listbox(self.objects_lb, objects_list[24], objects_list[0])
                     elif self.prop_draw_type == 4:
                         selected_biome.set_custom_detail_attr(self.detail_index, 0, self.model_val_at_index)
                         
@@ -1321,7 +1342,7 @@ class PlumgenViewGen:
                         self.detail_objects_lb.delete(0, tk.END)
                         for detail_obj_list in selected_biome.get_detail_obj_lists():
                             if detail_obj_list[0]:
-                                self.update_listbox(self.detail_objects_lb, detail_obj_list[20], detail_obj_list[0])
+                                self.update_listbox(self.detail_objects_lb, detail_obj_list[24], detail_obj_list[0])
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -1415,15 +1436,15 @@ class PlumgenViewGen:
 
     # check if valid index -> validate new_value type -> set new value
     def set_custom_attr(self, selected_biome, index, new_val, set_val):
-        if index in {2, 3, 4, 5, 11}:
+        if index in {2, 3, 4, 5, 11, 12, 13, 14}:
             if not isinstance(new_val, int):
                 messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_integer"]}", parent=self.window)
                 return
-        elif index in {6, 7, 8, 9, 10, 15, 16, 17, 18}:
+        elif index in {6, 7, 8, 9, 10, 19, 20, 21, 22}:
             if not isinstance(new_val, numbers.Number):
                 messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_number"]}", parent=self.window)
                 return
-        elif index in {12, 13, 14}:
+        elif index in {15, 16, 17, 18}:
             if new_val not in {"TRUE", "FALSE"}:
                 messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_bool"]}", parent=self.window)
                 return
@@ -1433,7 +1454,7 @@ class PlumgenViewGen:
         
         if set_val:
             # apply modified value if no errors found
-            if index >= 2 and index <= 18:
+            if index >= 2 and index <= 22:
 
                 self.prop_attributes_lb.delete(0, tk.END)
 
@@ -1547,15 +1568,15 @@ class PlumgenViewGen:
                     
                     if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
 
-                        if self.prop_attribute_index in {2, 3, 4, 5, 11}:
+                        if self.prop_attribute_index in {2, 3, 4, 5, 11, 12, 13, 14}:
                             if not isinstance(bulk_new_value, int):
                                 messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_integer"]}", parent=self.window)
                                 return
-                        elif self.prop_attribute_index in {6, 7, 8, 9, 10, 15, 16, 17, 18}:
+                        elif self.prop_attribute_index in {6, 7, 8, 9, 10, 19, 20, 21, 22}:
                             if not isinstance(bulk_new_value, numbers.Number):
                                 messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_number"]}", parent=self.window)
                                 return
-                        elif self.prop_attribute_index in {12, 13, 14}:
+                        elif self.prop_attribute_index in {15, 16, 17, 18}:
                             if bulk_new_value not in {"TRUE", "FALSE"}:
                                 messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_bool"]}", parent=self.window)
                                 return
@@ -1794,20 +1815,21 @@ class PlumgenViewGen:
             if self.gen_using_template_data_var.get():
                 self.replace_lb_with_template_data_cb.config(state=tk.NORMAL)
                 if selected_csv not in [
-                    "_Current Vanilla+Pre NMS.csv",
-                    "Barren.csv",
-                    "Cave.csv",
-                    "Dead.csv",
-                    "Frozen.csv",
-                    "Lava.csv",
-                    "Lush.csv",
-                    "Radioactive.csv",
-                    "Scorched.csv",
-                    "Swamp.csv",
-                    "Toxic.csv",
-                    "Underwater.csv",
-                    "Weird.csv",
-                    "_Found Path Atlas.csv"
+                    "_Found Path Atlas.csv",
+                    "_Vanilla+Pre NMS.csv",
+                    "Barren_v2.csv",
+                    "Cave_v2.csv",
+                    "Dead_v2.csv",
+                    "Frozen_v2.csv",
+                    "Lava_v2.csv",
+                    "Lush_v2.csv",
+                    "Radioactive_v2.csv",
+                    "Scorched_v2.csv",
+                    "Swamp_v2.csv",
+                    "Toxic_v2.csv",
+                    "Underwater_v2.csv",
+                    "Weird_v2.csv",
+                    "Worlds Part 1.csv"
                 ]:
                     result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
@@ -2069,7 +2091,7 @@ class PlumgenViewGen:
         try: 
             listbox.delete(0, tk.END)
             for obj_list in get_list_func():
-                self.update_listbox(listbox, obj_list[20], obj_list[0])
+                self.update_listbox(listbox, obj_list[24], obj_list[0])
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
@@ -2251,7 +2273,7 @@ class PlumgenViewGen:
                         # repopulate listbox
                         listbox.delete(0, tk.END)
                         for obj_list in get_lists_func():
-                            self.update_listbox(listbox, obj_list[20], obj_list[0])
+                            self.update_listbox(listbox, obj_list[24], obj_list[0])
                         self.placem_val_at_index = None
                         self.model_val_at_index = None
 

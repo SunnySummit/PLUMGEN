@@ -38,7 +38,7 @@ class PlumgenControllerGen():
                 #self.plum_exe = os.path.abspath(os.path.join(current_directory, '_PLUMGEN.exe'))
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '_Presets'))
-                self.csv_file = os.path.abspath(os.path.join(current_directory, '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
+                self.csv_file = os.path.abspath(os.path.join(current_directory, '_Biome Templates', '_Vanilla+Pre NMS.csv'))
                 self.biome_exmls_folder_dir = os.path.abspath(os.path.join(current_directory, self.subfolder))
                 self.default_bfn_folder_dir = os.path.abspath(os.path.join(current_directory, self.default_subfolder))
                 self.json_lang_path = os.path.abspath(os.path.join(self.default_bfn_folder_dir, 'languages.json'))
@@ -48,13 +48,13 @@ class PlumgenControllerGen():
                 #self.plum_exe = None
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '..', '_Presets'))
-                self.csv_file = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates', '_Current Vanilla+Pre NMS.csv'))
+                self.csv_file = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates', '_Vanilla+Pre NMS.csv'))
                 self.biome_exmls_folder_dir = os.path.abspath(os.path.join(current_directory, '..', self.subfolder))
                 self.default_bfn_folder_dir = os.path.abspath(os.path.join(current_directory, '..', self.default_subfolder))
                 self.json_lang_path = os.path.abspath(os.path.join(self.default_bfn_folder_dir, 'languages.json'))
 
             #if not os.path.exists(self.csv_file): # check if the file exists
-            #    print("_Current Vanilla+Pre NMS.csv file not found in '_Biome Templates' folder.")
+            #    print("_Vanilla+Pre NMS.csv file not found in '_Biome Templates' folder.")
 
             self.name = ""
             self.counter = 0
@@ -63,7 +63,7 @@ class PlumgenControllerGen():
             self.biome_objs = [] # list of all biome objects
             self.csv_compare_list = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                         "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
-                        "MaxXZRotation", "DestroyedByPlayerShip", "DestroyedByTerrainEdit",
+                        "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip","DestroyedByTerrainEdit", "IsFloatingIsland",
                         "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"] #v4
             
 
@@ -649,6 +649,45 @@ class PlumgenControllerGen():
                 json.dump(model_json, json_file, indent=4)
 
 
+    '''
+    def update_presets(self, m_json, props_lists_key):
+        # update old presets with new prop attributes
+        for sublist in m_json[props_lists_key]:
+            if len(sublist) < 23:
+                # Optionally, add specific strings/numbers at other indices if needed
+                sublist.insert(12, "180")  # max_y_rotation
+                sublist.insert(13, "0")  # max_raise
+                sublist.insert(14, "0")  # max_lower
+                sublist.insert(17, "FALSE")  # is_floating_island
+
+                # check that sublist now has at least 23 items
+                #while len(sublist) < 23:
+                #    sublist.append("")  # append empty strings until it has at least 23 items
+    '''
+
+    def update_presets(self, m_json, props_lists_key):
+        # update old presets with new prop attributes
+        for sublist in m_json[props_lists_key]:
+            self.recursive_update(sublist)
+
+    def recursive_update(self, sublist):
+        if isinstance(sublist[-1], list):  # check if last item is a list (nested structure)
+            if len(sublist) < 23:
+                # add specific strings/numbers at indices to update to 'worlds part 1', etc.
+                sublist.insert(12, "180")  # max_y_rotation
+                sublist.insert(13, "0")    # max_raise
+                sublist.insert(14, "0")    # max_lower
+                sublist.insert(17, "FALSE")  # is_floating_island
+            for nested_sublist in sublist[-1]:
+                self.recursive_update(nested_sublist)
+        else:
+            if len(sublist) < 23:
+                # add specific strings/numbers at indices to update to 'worlds part 1', etc.
+                sublist.insert(12, "180")  # max_y_rotation
+                sublist.insert(13, "0")    # max_raise
+                sublist.insert(14, "0")    # max_lower
+                sublist.insert(17, "FALSE")  # is_floating_island
+
 
     def import_model_from_json(self, filename_json):
         # read JSON data from file
@@ -656,6 +695,12 @@ class PlumgenControllerGen():
             model_json = json.load(json_file)
 
         name = model_json["filename"]
+
+        # check if presets need to be updated, e.g. add new default prop attributes after Worlds Part 1 updated
+        self.update_presets(model_json, "all_distant_obj_lists")
+        self.update_presets(model_json, "all_landmarks_lists")
+        self.update_presets(model_json, "all_objects_lists")
+        self.update_presets(model_json, "all_detail_obj_lists")
 
         # create new instance of PlumgenModelGen using data from JSON
         self.model = PlumgenModelGen(name, self.dist_list, self.landm_list, self.objs_list, self.detail_list)
@@ -704,7 +749,7 @@ class PlumgenControllerGen():
                 # use old var names
                 for variable in ["Filename", "Placement", "RestrictionsMinHeight", "RestrictionsMaxHeight", "RestrictionsMinAngle",
                                 "RestrictionsMaxAngle", "PositioningMinScale", "PositioningMaxScale", "PositioningMinScaleY", "PositioningMaxScaleY",
-                                "PositioningPatchEdgeScaling", "PositioningMaxXZRotation", "DestroyedByPlayerVehicle", "DestroyedByTerrainEdit",
+                                "PositioningPatchEdgeScaling", "PositioningMaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerVehicle", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "ObjectCreaturesCanEat", "PlacementCoverage", "PlacementFlatDensity", "PlacementSlopeDensity",
                                 "PlacementSlopeMultiplier"]:
                     
@@ -713,7 +758,13 @@ class PlumgenControllerGen():
                     if props:
                         # make terrain edit true
                         if variable == "DestroyedByTerrainEdit":
-                            prop_value == "TRUE"
+                            prop_value = "TRUE"
+                        elif variable == "MaxYRotation":
+                            prop_value = 180
+                        elif variable == "MaxRaise" or variable == "MaxLower":
+                            prop_value = 0
+                        elif variable == "IsFloatingIsland":
+                            prop_value = "FALSE"
                         # check if there is more than one occurrence
                         elif category == "DetailObjects" and len(props) > 2:
                             # grab the third occurrence, aka "ultra" detail objects settings
@@ -725,6 +776,12 @@ class PlumgenControllerGen():
                             prop_value = props[0].get("value")
                     elif variable == "DestroyedByTerrainEdit": # make terrain edit true (did not exist)
                         prop_value = "TRUE"
+                    elif variable == "MaxYRotation":
+                        prop_value = 180
+                    elif variable == "MaxRaise" or variable == "MaxLower":
+                        prop_value = 0
+                    elif variable == "IsFloatingIsland":
+                        prop_value = "FALSE"
                     else:
                         prop_value = None
 
@@ -793,7 +850,7 @@ class PlumgenControllerGen():
 
                 for variable in ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                                 "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
-                                "MaxXZRotation", "DestroyedByPlayerShip", "DestroyedByTerrainEdit",
+                                "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier"]:
                     
                     props = obj_spawn_data.findall(f".//Property[@name='{variable}']")
@@ -811,7 +868,7 @@ class PlumgenControllerGen():
                     else:
                         prop_value = None
 
-                    if variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "CreaturesCanEat":
+                    if variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "IsFloatingIsland" or variable == "CreaturesCanEat":
                         prop_value = prop_value.upper() # temp fix to match similar props
                     
                     obj_data.append(prop_value)
@@ -869,14 +926,19 @@ class PlumgenControllerGen():
                         
                         # extract information from each Property element
                         for prop in biome_option.findall("./Property"):
+                            # default values
+                            weight = 1
+                            purple_weight = 0.3
                             # look for keywords
                             if prop.get("name") == "Filename":
-                                biome_dict[prop.get("value")] = None  # initialize with None, as Weight will be handled separately
+                                biome_dict[prop.get("value")] = None  # initialize with None, as Weights will be handled separately
                             elif prop.get("name") == "Weight":
                                 weight = prop.get("value")
                                 #biome_dict[next(iter(biome_dict))] = f"{weight} {sub_type}"  # update value associated with "Filename"
-                            elif prop.get("name") == "PurpleSystemWeight": #########################
+                            elif prop.get("name") == "PurpleSystemWeight":
                                 purple_weight = prop.get("value")
+                            
+                            if biome_dict:
                                 biome_dict[next(iter(biome_dict))] = f"{weight} {sub_type} {purple_weight}"  # update value associated with "Filename"
                         biome_list.append(biome_dict)
 
@@ -1235,7 +1297,7 @@ class PlumgenControllerGen():
                     # extract variables under GcObjectSpawnData.xml
                     variables = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                                 "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
-                                "MaxXZRotation", "DestroyedByPlayerShip", "DestroyedByTerrainEdit",
+                                "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier"]
                     
                     for variable in variables:
@@ -1262,7 +1324,7 @@ class PlumgenControllerGen():
         with open(output_csv_path, 'w', newline='') as csv_file:
             fieldnames = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                         "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
-                        "MaxXZRotation", "DestroyedByPlayerShip", "DestroyedByTerrainEdit",
+                        "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                         "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"]
             csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
@@ -1339,6 +1401,11 @@ class PlumgenControllerGen():
                             else:
                                 variable_value = variable_elements[0].get("value")
                             row[variable] = variable_value
+                    
+                    row["MaxYRotation"] = 180 ###
+                    row["MaxRaise"] = 0 ###
+                    row["MaxLower"] = 0 ###
+                    row["IsFloatingIsland"] = "FALSE" ###
                     row["DestroyedByTerrainEdit"] = "TRUE"
                     row["DrawDistance"] = keyword
 
@@ -1352,7 +1419,7 @@ class PlumgenControllerGen():
             fieldnames = ["Filename", "Placement", "PlacementCoverage", "PlacementFlatDensity", "PlacementSlopeDensity", "PlacementSlopeMultiplier", "RestrictionsMinHeight", "RestrictionsMaxHeight", 
                                 "RestrictionsMinAngle", "RestrictionsMaxAngle","PositioningMinScale", "PositioningMaxScale", "PositioningMinScaleY", 
                                 "PositioningMaxScaleY", "PositioningPatchEdgeScaling","PositioningMaxXZRotation", 
-                                "DestroyedByPlayerVehicle", "ObjectCreaturesCanEat", "DestroyedByTerrainEdit", "DrawDistance" ]
+                                "DestroyedByPlayerVehicle", "ObjectCreaturesCanEat", "MaxYRotation", "MaxRaise", "MaxLower", "IsFloatingIsland", "DestroyedByTerrainEdit", "DrawDistance" ]
             csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
             # write header row
@@ -1381,7 +1448,7 @@ class PlumgenControllerGen():
             # new column names
             new_column_names = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                                 "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
-                                "MaxXZRotation", "DestroyedByPlayerShip", "DestroyedByTerrainEdit",
+                                "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"]
 
             with open(output_csv_path, 'w', newline='') as new_csv_file:
@@ -1403,8 +1470,12 @@ class PlumgenControllerGen():
                         "MaxScaleY": row["PositioningMaxScaleY"],
                         "PatchEdgeScaling": row["PositioningPatchEdgeScaling"],
                         "MaxXZRotation": row["PositioningMaxXZRotation"],
+                        "MaxYRotation": row["MaxYRotation"],
+                        "MaxRaise": row["MaxRaise"],
+                        "MaxLower": row["MaxLower"],
                         "DestroyedByPlayerShip": row["DestroyedByPlayerVehicle"],
                         "DestroyedByTerrainEdit": row["DestroyedByTerrainEdit"],
+                        "IsFloatingIsland": row["IsFloatingIsland"],
                         "CreaturesCanEat": row["ObjectCreaturesCanEat"],
                         "Coverage": row["PlacementCoverage"],
                         "FlatDensity": row["PlacementFlatDensity"],

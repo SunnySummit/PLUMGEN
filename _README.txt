@@ -20,8 +20,10 @@ PLUMGEN (v1.11)
 
 v1.11 Update:
 
-	-Updated to NMS Update 'Worlds Part 1'
-	-Added 'Worlds Part 1.csv' biome template which include all of the newest props (not new "vfx props")
+	-Updated to "Worlds Part 1"
+		>Added support for 4 new prop attributes: MaxYRotation, MaxRaise, MaxLower & IsFloatingIsland.
+		>Updated each biome .csv ("v2" in filename), added 'Worlds Part 1.csv' biome template - includes newest props.
+		>Automatically updates old biome objects files, biome files, and presets.
 
 v1.1 Update:
 
@@ -36,7 +38,6 @@ v1.1 Update:
 v1.0 Full Release:
 
 	-Overhauled exporting. AMUMSS no longer required. You can now export directly to .PAK using PLUMGEN's new efficient export system.
-
 		>10x faster export time vs. LUA - Exporting 20,000+ biomes now takes ~3 minutes, compared to 30+ minutes via. LUA/AMUMSS. [1]
 		>Improved stability - PLUMGEN's new export to PAK system is highly resilient against game updates. [2]
 		>Export all files - EXMLs, MBINs, LUAs, and PAKs. Immediately locate and import exported modded biomes/EXMLs.

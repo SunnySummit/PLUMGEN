@@ -37,8 +37,12 @@ class PlumgenModelGen():
                 "max_scale_y": 0.0,
                 "patch_edge_scaling": 0.0,
                 "max_xz_rotation": 0,
+                "max_y_rotation": 180, ###
+                "max_raise": 0, ###
+                "max_lower": 0, ###
                 "destroyable_by_ship": True,
                 "destroyable_by_terrain_edit": True,
+                "is_floating_island": False, ###
                 "creature_can_eat": True,
                 "coverage": 0.0,
                 "flat_density": 0.0,
@@ -163,29 +167,29 @@ class PlumgenModelGen():
 
     # set "similar_items" for the latest appended list
     def set_distant_model_similar_props(self, similar_props):
-        self.all_distant_obj_lists[-1][20] = similar_props
+        self.all_distant_obj_lists[-1][24] = similar_props
     
     def set_landmark_model_similar_props(self, similar_props):
-        self.all_landmarks_lists[-1][20] = similar_props
+        self.all_landmarks_lists[-1][24] = similar_props
     
     def set_object_model_similar_props(self, similar_props):
-        self.all_objects_lists[-1][20] = similar_props
+        self.all_objects_lists[-1][24] = similar_props
     
     def set_detail_model_similar_props(self, similar_props):
-        self.all_detail_obj_lists[-1][20] = similar_props
+        self.all_detail_obj_lists[-1][24] = similar_props
 
     # set "similar_items" for specific index - used to refresh all counts
     def set_all_distant_model_similar_props(self, index, similar_props):
-        self.all_distant_obj_lists[index][20] = similar_props
+        self.all_distant_obj_lists[index][24] = similar_props
     
     def set_all_landmark_model_similar_props(self, index, similar_props):
-        self.all_landmarks_lists[index][20] = similar_props
+        self.all_landmarks_lists[index][24] = similar_props
     
     def set_all_object_model_similar_props(self, index, similar_props):
-        self.all_objects_lists[index][20] = similar_props
+        self.all_objects_lists[index][24] = similar_props
     
     def set_all_detail_model_similar_props(self, index, similar_props):
-        self.all_detail_obj_lists[index][20] = similar_props
+        self.all_detail_obj_lists[index][24] = similar_props
 
 
     # set custom attribute for specific index - used to save attribute
@@ -567,6 +571,11 @@ class DefaultSpawnDensityList():
             CoverageType: GridPatch
             PatchSize: 545
             RegionScale: 1
+
+            Name: LEVILARGEPATCH
+            CoverageType: SmoothPatch
+            PatchSize: 8
+            RegionScale: 16
             """
 
         blocks = sdl_blocks.strip().split('\n\n') # split data into individual blocks
