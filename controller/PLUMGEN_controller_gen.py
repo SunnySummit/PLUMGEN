@@ -856,6 +856,14 @@ class PlumgenControllerGen():
                     props = obj_spawn_data.findall(f".//Property[@name='{variable}']")
                     
                     if props:
+                        # set default value (for worlds part 1 update)
+                        if variable == "MaxYRotation":
+                            prop_value = '180'
+                        elif variable == "MaxRaise" or variable == "MaxLower":
+                            prop_value = '0'
+                        elif variable == "IsFloatingIsland":
+                            prop_value = "FALSE"
+                            
                         # check if there is more than one occurrence
                         if category == "DetailObjects" and len(props) > 2:
                             # grab the third occurrence, aka "ultra" detail objects settings
@@ -868,14 +876,8 @@ class PlumgenControllerGen():
                     else:
                         prop_value = None
 
-                    if variable == "MaxYRotation":
-                        prop_value = '180'
-                    elif variable == "MaxRaise" or variable == "MaxLower":
-                        prop_value = '0'
-                    elif variable == "IsFloatingIsland":
-                        prop_value = "FALSE"
 
-                    elif variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "IsFloatingIsland" or variable == "CreaturesCanEat":
+                    if variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "IsFloatingIsland" or variable == "CreaturesCanEat":
                         prop_value = prop_value.upper() # temp fix to match similar props
                     
                     obj_data.append(prop_value)

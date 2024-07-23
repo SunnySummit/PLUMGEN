@@ -361,7 +361,6 @@
             "Filename": "Filename",
             "Weight": "Weight",
             "Prpl_Wt": "Prpl_Wt"
-
         },
         "view_gen_export_init": {
             "main_title": "PLUMGEN - Biome Spawner"
