@@ -21,7 +21,7 @@ local PlanetLODMultiplier = 3		--planet lod distance multiplier
 ------------------------------------------------------------------------------------------------------------------------
 
 --This adds the exml "context" for each model, i.e. the max scale.
-function AddDistantProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, destroyableByShip, destroyableByTerrEdit, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddDistantProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
@@ -68,16 +68,16 @@ return [[
         <Property name="SlopeScaling" value="1" />
         <Property name="PatchEdgeScaling" value="]] .. patchEdgeSc .. [[" />
         <Property name="MaxXZRotation" value="]] .. maxRotation .. [[" />
-        <Property name="MaxYRotation" value="180" />
-        <Property name="MaxRaise" value="0" />
-        <Property name="MaxLower" value="0" />
+        <Property name="MaxYRotation" value="]] .. maxYRotation .. [[" />
+        <Property name="MaxRaise" value="]] .. maxRaise .. [[" />
+        <Property name="MaxLower" value="]] .. maxLower .. [[" />
         <Property name="AutoCollision" value="False" />
         <Property name="CollideWithPlayer" value="True" />
         <Property name="CollideWithPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerShip" value="]] .. destroyableByShip .. [[" />
         <Property name="DestroyedByTerrainEdit" value="]] .. destroyableByTerrEdit .. [[" />
-        <Property name="IsFloatingIsland" value="False" />
+        <Property name="IsFloatingIsland" value="]] .. isFloatingIsland .. [[" />
         <Property name="InvisibleToCamera" value="False" />
         <Property name="CreaturesCanEat" value="]] .. creatureCanEat .. [[" />
         <Property name="ShearWindStrength" value="0" />
@@ -128,7 +128,7 @@ return [[
 end
 
 
-function AddLandmarkProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, destroyableByShip, destroyableByTerrEdit, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddLandmarkProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
@@ -175,16 +175,16 @@ return [[
         <Property name="SlopeScaling" value="1" />
         <Property name="PatchEdgeScaling" value="]] .. patchEdgeSc .. [[" />
         <Property name="MaxXZRotation" value="]] .. maxRotation .. [[" />
-        <Property name="MaxYRotation" value="180" />
-        <Property name="MaxRaise" value="0" />
-        <Property name="MaxLower" value="0" />
+        <Property name="MaxYRotation" value="]] .. maxYRotation .. [[" />
+        <Property name="MaxRaise" value="]] .. maxRaise .. [[" />
+        <Property name="MaxLower" value="]] .. maxLower .. [[" />
         <Property name="AutoCollision" value="False" />
         <Property name="CollideWithPlayer" value="True" />
         <Property name="CollideWithPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerShip" value="]] .. destroyableByShip .. [[" />
         <Property name="DestroyedByTerrainEdit" value="]] .. destroyableByTerrEdit .. [[" />
-        <Property name="IsFloatingIsland" value="False" />
+        <Property name="IsFloatingIsland" value="]] .. isFloatingIsland .. [[" />
         <Property name="InvisibleToCamera" value="False" />
         <Property name="CreaturesCanEat" value="]] .. creatureCanEat .. [[" />
         <Property name="ShearWindStrength" value="0" />
@@ -235,7 +235,7 @@ return [[
 end
 
 
-function AddObjectProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, destroyableByShip, destroyableByTerrEdit, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddObjectProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
@@ -282,16 +282,16 @@ return [[
         <Property name="SlopeScaling" value="1" />
         <Property name="PatchEdgeScaling" value="]] .. patchEdgeSc .. [[" />
         <Property name="MaxXZRotation" value="]] .. maxRotation .. [[" />
-        <Property name="MaxYRotation" value="180" />
-        <Property name="MaxRaise" value="0" />
-        <Property name="MaxLower" value="0" />
+        <Property name="MaxYRotation" value="]] .. maxYRotation .. [[" />
+        <Property name="MaxRaise" value="]] .. maxRaise .. [[" />
+        <Property name="MaxLower" value="]] .. maxLower .. [[" />
         <Property name="AutoCollision" value="False" />
         <Property name="CollideWithPlayer" value="True" />
         <Property name="CollideWithPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerShip" value="]] .. destroyableByShip .. [[" />
         <Property name="DestroyedByTerrainEdit" value="]] .. destroyableByTerrEdit .. [[" />
-        <Property name="IsFloatingIsland" value="False" />
+        <Property name="IsFloatingIsland" value="]] .. isFloatingIsland .. [[" />
         <Property name="InvisibleToCamera" value="False" />
         <Property name="CreaturesCanEat" value="]] .. creatureCanEat .. [[" />
         <Property name="ShearWindStrength" value="0" />
@@ -342,7 +342,7 @@ return [[
 end
 
 
-function AddGrassProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, destroyableByShip, destroyableByTerrEdit, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddGrassProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
@@ -409,16 +409,16 @@ return [[
         <Property name="SlopeScaling" value="1" />
         <Property name="PatchEdgeScaling" value="]] .. patchEdgeSc .. [[" />
         <Property name="MaxXZRotation" value="]] .. maxRotation .. [[" />
-        <Property name="MaxYRotation" value="180" />
-        <Property name="MaxRaise" value="0" />
-        <Property name="MaxLower" value="0" />
+        <Property name="MaxYRotation" value="]] .. maxYRotation .. [[" />
+        <Property name="MaxRaise" value="]] .. maxRaise .. [[" />
+        <Property name="MaxLower" value="]] .. maxLower .. [[" />
         <Property name="AutoCollision" value="False" />
         <Property name="CollideWithPlayer" value="False" />
         <Property name="CollideWithPlayerVehicle" value="False" />
         <Property name="DestroyedByPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerShip" value="]] .. destroyableByShip .. [[" />
         <Property name="DestroyedByTerrainEdit" value="]] .. destroyableByTerrEdit .. [[" />
-        <Property name="IsFloatingIsland" value="False" />
+        <Property name="IsFloatingIsland" value="]] .. isFloatingIsland .. [[" />
         <Property name="InvisibleToCamera" value="True" />
         <Property name="CreaturesCanEat" value="]] .. creatureCanEat .. [[" />
         <Property name="ShearWindStrength" value="0.75" />
@@ -488,7 +488,7 @@ return [[
 end
 
 
-function AddRockProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, destroyableByShip, destroyableByTerrEdit, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddRockProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
@@ -555,16 +555,16 @@ return [[
         <Property name="SlopeScaling" value="1" />
         <Property name="PatchEdgeScaling" value="]] .. patchEdgeSc .. [[" />
         <Property name="MaxXZRotation" value="]] .. maxRotation .. [[" />
-        <Property name="MaxYRotation" value="180" />
-        <Property name="MaxRaise" value="0" />
-        <Property name="MaxLower" value="0" />
+        <Property name="MaxYRotation" value="]] .. maxYRotation .. [[" />
+        <Property name="MaxRaise" value="]] .. maxRaise .. [[" />
+        <Property name="MaxLower" value="]] .. maxLower .. [[" />
         <Property name="AutoCollision" value="False" />
         <Property name="CollideWithPlayer" value="False" />
         <Property name="CollideWithPlayerVehicle" value="False" />
         <Property name="DestroyedByPlayerVehicle" value="True" />
         <Property name="DestroyedByPlayerShip" value="]] .. destroyableByShip .. [[" />
         <Property name="DestroyedByTerrainEdit" value="]] .. destroyableByTerrEdit .. [[" />
-        <Property name="IsFloatingIsland" value="False" />
+        <Property name="IsFloatingIsland" value="]] .. isFloatingIsland .. [[" />
         <Property name="InvisibleToCamera" value="True" />
         <Property name="CreaturesCanEat" value="]] .. creatureCanEat .. [[" />
         <Property name="ShearWindStrength" value="0" />

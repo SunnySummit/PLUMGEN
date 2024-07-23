@@ -760,9 +760,9 @@ class PlumgenControllerGen():
                         if variable == "DestroyedByTerrainEdit":
                             prop_value = "TRUE"
                         elif variable == "MaxYRotation":
-                            prop_value = 180
+                            prop_value = '180'
                         elif variable == "MaxRaise" or variable == "MaxLower":
-                            prop_value = 0
+                            prop_value = '0'
                         elif variable == "IsFloatingIsland":
                             prop_value = "FALSE"
                         # check if there is more than one occurrence
@@ -777,9 +777,9 @@ class PlumgenControllerGen():
                     elif variable == "DestroyedByTerrainEdit": # make terrain edit true (did not exist)
                         prop_value = "TRUE"
                     elif variable == "MaxYRotation":
-                        prop_value = 180
+                        prop_value = '180'
                     elif variable == "MaxRaise" or variable == "MaxLower":
-                        prop_value = 0
+                        prop_value = '0'
                     elif variable == "IsFloatingIsland":
                         prop_value = "FALSE"
                     else:
@@ -868,7 +868,14 @@ class PlumgenControllerGen():
                     else:
                         prop_value = None
 
-                    if variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "IsFloatingIsland" or variable == "CreaturesCanEat":
+                    if variable == "MaxYRotation":
+                        prop_value = '180'
+                    elif variable == "MaxRaise" or variable == "MaxLower":
+                        prop_value = '0'
+                    elif variable == "IsFloatingIsland":
+                        prop_value = "FALSE"
+
+                    elif variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "IsFloatingIsland" or variable == "CreaturesCanEat":
                         prop_value = prop_value.upper() # temp fix to match similar props
                     
                     obj_data.append(prop_value)

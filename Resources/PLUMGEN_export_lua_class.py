@@ -178,7 +178,7 @@ class PlumgenExportLuaClass():
             ]
 
             # strings require quotes when passed as arguments in lua funciton
-            add_quotes_indices = [0, 1, 12, 13, 14]
+            add_quotes_indices = [0, 1, 15, 16, 17, 18]
 
             with open(self.first_save_path, "w") as lua_file:
 
@@ -226,7 +226,7 @@ class PlumgenExportLuaClass():
                     for distant_obj_list in reversed(biome.get_distant_obj_lists()):
                         if '.MBIN' in distant_obj_list[0]:  # verify '.MBIN' string is in the model filepath (otherwise would cause crash)
                             items = [] # empty list ot store prop attributes
-                            for i, item in enumerate(distant_obj_list[:19]): # iterate over attributes from index 0-18
+                            for i, item in enumerate(distant_obj_list[:23]): # iterate over attributes from index 0-18
                                 if item == "": items.append('"' + "FOREST" + '"') # check if missing placement
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"') # check if missing all caps bool
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"') # add quotes to certain indices
@@ -238,7 +238,7 @@ class PlumgenExportLuaClass():
                     for landmark_list in reversed(biome.get_landmark_lists()):
                         if '.MBIN' in landmark_list[0]:
                             items = []
-                            for i, item in enumerate(landmark_list[:19]):
+                            for i, item in enumerate(landmark_list[:23]):
                                 if item == "": items.append('"' + "FOREST" + '"')
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"')
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"')
@@ -250,7 +250,7 @@ class PlumgenExportLuaClass():
                     for objects_list in reversed(biome.get_objects_lists()):
                         if '.MBIN' in objects_list[0]:
                             items = []
-                            for i, item in enumerate(objects_list[:19]):
+                            for i, item in enumerate(objects_list[:23]):
                                 if item == "": items.append('"' + "FOREST" + '"')
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"')
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"')
@@ -268,7 +268,7 @@ class PlumgenExportLuaClass():
                                 function_call = "AddRockProp"
                             
                             items = []
-                            for i, item in enumerate(detail_obj_list[:19]):
+                            for i, item in enumerate(detail_obj_list[:23]):
                                 if item == "": items.append('"' + "FOREST" + '"')
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"')
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"')
