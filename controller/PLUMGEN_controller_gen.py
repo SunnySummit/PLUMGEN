@@ -12,6 +12,7 @@ import copy
 import json
 import xml.etree.ElementTree as ET
 import logging
+import shutil
 from tkinter import messagebox
 from view.PLUMGEN_view_gen import PlumgenViewGen
 from Resources.PLUMGEN_model_gen import PlumgenModelGen
@@ -35,6 +36,11 @@ class PlumgenControllerGen():
             if getattr(sys, 'frozen', False):
                 # if frozen (and running as exe), use these paths:
                 current_directory = os.path.dirname(sys.executable)
+                self.new_plum_to_delete = os.path.abspath(os.path.join(current_directory, 'Resources', 'Updater', '_PLUMGEN'))#####
+                self.new_plum_bts = os.path.abspath(os.path.join(current_directory, 'Resources', 'Updater', '_PLUMGEN', '_Biome Templates'))#####
+                self.old_plum_bts = os.path.abspath(os.path.join(current_directory, '_Biome Templates'))#####
+                self.new_plum_xml = os.path.abspath(os.path.join(current_directory, 'Resources', 'Updater', '_PLUMGEN', 'Resources', 'plum_extract_biomes.xml'))#####
+                self.old_plum_xml = os.path.abspath(os.path.join(current_directory, 'Resources', 'plum_extract_biomes.xml'))#####
                 #self.plum_exe = os.path.abspath(os.path.join(current_directory, '_PLUMGEN.exe'))
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '_Presets'))
@@ -45,6 +51,11 @@ class PlumgenControllerGen():
             else:
                 # if running as script, use these paths:
                 current_directory = os.path.dirname(os.path.realpath(__file__))
+                self.new_plum_to_delete = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'Updater', '_PLUMGEN'))#####
+                self.new_plum_bts = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'Updater', '_PLUMGEN', '_Biome Templates'))#####
+                self.old_plum_bts = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates'))
+                self.new_plum_xml = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'Updater', '_PLUMGEN', 'Resources', 'plum_extract_biomes.xml'))
+                self.old_plum_xml = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'plum_extract_biomes.xml'))
                 #self.plum_exe = None
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '..', '_Presets'))
@@ -55,6 +66,33 @@ class PlumgenControllerGen():
 
             #if not os.path.exists(self.csv_file): # check if the file exists
             #    print("_Vanilla+Pre NMS.csv file not found in '_Biome Templates' folder.")
+
+            ### Worlds Part 1 { ---------------------------------
+            # check if new AND old bt folders exist, delete old files ending with .csv if it does
+            if os.path.exists(self.new_plum_bts) and os.path.isdir(self.new_plum_bts):
+                if os.path.exists(self.old_plum_bts) and os.path.isdir(self.old_plum_bts):
+                    for item in os.listdir(self.old_plum_bts):
+                        item_path = os.path.join(self.old_plum_bts, item)
+                        if os.path.isfile(item_path) and item.endswith('.csv'):
+                            os.remove(item_path)
+
+            # check if new biome templates folder exists, if so, move it to replace the old one
+            if os.path.exists(self.new_plum_bts) and os.path.isdir(self.new_plum_bts):
+                for item in os.listdir(self.new_plum_bts):
+                    source = os.path.join(self.new_plum_bts, item)
+                    destination = os.path.join(self.old_plum_bts, item)
+                    if os.path.isfile(source):
+                        shutil.move(source, destination)
+
+            if os.path.exists(self.new_plum_xml) and os.path.isfile(self.new_plum_xml):
+                if os.path.exists(self.old_plum_xml) and os.path.isfile(self.old_plum_xml):
+                    os.remove(self.old_plum_xml)  # remove old plum_extract_biomes.xml file if it exists
+                shutil.move(self.new_plum_xml, self.old_plum_xml)  # move new plum_extract_biomes.xml to replace old one
+
+            # finally, check if new plum folder exists, if so, delete it (after an update, it is no longer needed):
+            if os.path.exists(self.new_plum_to_delete):
+                shutil.rmtree(self.new_plum_to_delete)
+            ### } Worlds Part 1 ---------------------------------
 
             self.name = ""
             self.counter = 0
