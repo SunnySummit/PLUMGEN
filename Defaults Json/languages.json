@@ -548,7 +548,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN Update",
             "dld_good_desc_pt1": "Downloaded ",
-            "dld_good_desc_pt2": "\n\nThe application will now restart. \n\nAfter restarting, check '_README.txt' file for any update notes.\n\nIf no new console window appears, right-click 'Resources/Updater/complete_update.bat' and select 'Run as administrator'.",
+            "dld_good_desc_pt2": "\n\nThe application will now restart. \n\nAfter restarting, check '_README.txt' file for any update notes.\n\nIf no new console window appears, right-click 'Resources/Updater/complete_update.bat' and select 'Run as administrator'.\n\nImportant: All .csv files in your '_Biome Templates' folder will be replaced. Old .csvs won't work with newer PLUMGEN versions due to recent biome updates.",
             "Error": "Error",
             "dld_fail_desc": "Error downloading PLUMGEN:\n"
         },
@@ -1146,7 +1146,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN 更新",
             "dld_good_desc_pt1": "已下载 ",
-            "dld_good_desc_pt2": "\n\n应用程序现在将重新启动。\n\n重新启动后，请查看'_README.txt'文件以获取任何更新说明。\n\n如果没有新的控制台窗口出现，请右键单击'Resources/Updater/complete_update.bat'并选择'以管理员身份运行'。",
+            "dld_good_desc_pt2": "\n\n应用程序现在将重新启动。\n\n重新启动后，请查看'_README.txt'文件以获取任何更新说明。\n\n如果没有新的控制台窗口出现，请右键单击'Resources/Updater/complete_update.bat'并选择'以管理员身份运行'。\n\n重要提示：您“_Biome Templates”文件夹中的所有.csv文件将被替换。由于最近的生物群系更新，旧的.csv文件将无法与较新的PLUMGEN版本兼容",
             "Error": "错误",
             "dld_fail_desc": "下载 PLUMGEN 时出错：\n"
         },
@@ -1744,7 +1744,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN Päivitys",
             "dld_good_desc_pt1": "Ladattu ",
-            "dld_good_desc_pt2": "\n\nSovellus käynnistyy nyt uudelleen. \n\nKun olet käynnistänyt sen uudelleen, tarkista '_README.txt' -tiedosto päivityshuomioista.\n\nJos uutta konsoli-ikkunaa ei ilmesty, napsauta hiiren kakkospainikkeella 'Resources/Updater/complete_update.bat' ja valitse 'Suorita järjestelmänvalvojana'.",
+            "dld_good_desc_pt2": "\n\nSovellus käynnistyy nyt uudelleen. \n\nKun olet käynnistänyt sen uudelleen, tarkista '_README.txt' -tiedosto päivityshuomioista.\n\nJos uutta konsoli-ikkunaa ei ilmesty, napsauta hiiren kakkospainikkeella 'Resources/Updater/complete_update.bat' ja valitse 'Suorita järjestelmänvalvojana'.\n\nTärkeää: Kaikki .csv-tiedostot '_Biome Templates' kansiossasi korvataan. Vanhat .csv-tiedostot eivät toimi uudempien PLUMGEN-versioiden kanssa johtuen viimeisimmistä biomepäivityksistä.",
             "Error": "Virhe",
             "dld_fail_desc": "Virhe ladattaessa PLUMGENia:\n"
         },
@@ -2342,7 +2342,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Mise à jour de PLUMGEN",
             "dld_good_desc_pt1": "Téléchargé ",
-            "dld_good_desc_pt2": "\n\nL'application va maintenant redémarrer. \n\nAprès le redémarrage, vérifiez le fichier '_README.txt' pour toute note de mise à jour.\n\nSi aucune nouvelle fenêtre de console n'apparaît, faites un clic droit sur 'Resources/Updater/complete_update.bat' et sélectionnez 'Exécuter en tant qu'administrateur'.",
+            "dld_good_desc_pt2": "\n\nL'application va maintenant redémarrer. \n\nAprès le redémarrage, vérifiez le fichier '_README.txt' pour toute note de mise à jour.\n\nSi aucune nouvelle fenêtre de console n'apparaît, faites un clic droit sur 'Resources/Updater/complete_update.bat' et sélectionnez 'Exécuter en tant qu'administrateur'.\n\nImportant : Tous les fichiers .csv dans votre dossier '_Biome Templates' seront remplacés. Les anciens .csv ne fonctionneront pas avec les nouvelles versions de PLUMGEN en raison des mises à jour récentes des biomes.",
             "Error": "Erreur",
             "dld_fail_desc": "Erreur lors du téléchargement de PLUMGEN :\n"
         },
@@ -2940,7 +2940,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN Update",
             "dld_good_desc_pt1": "Heruntergeladen ",
-            "dld_good_desc_pt2": "\n\nDie Anwendung wird nun neu gestartet. \n\nNach dem Neustart überprüfen Sie die Datei '_README.txt' auf etwaige Update-Hinweise.\n\nWenn kein neues Konsolenfenster angezeigt wird, klicken Sie mit der rechten Maustaste auf 'Resources/Updater/complete_update.bat' und wählen Sie 'Als Administrator ausführen'.",
+            "dld_good_desc_pt2": "\n\nDie Anwendung wird nun neu gestartet. \n\nNach dem Neustart überprüfen Sie die Datei '_README.txt' auf etwaige Update-Hinweise.\n\nWenn kein neues Konsolenfenster angezeigt wird, klicken Sie mit der rechten Maustaste auf 'Resources/Updater/complete_update.bat' und wählen Sie 'Als Administrator ausführen'.\n\nWichtig: Alle .csv-Dateien in Ihrem '_Biome Templates'-Ordner werden ersetzt. Alte .csv-Dateien funktionieren nicht mehr mit neueren PLUMGEN-Versionen aufgrund kürzlich erfolgter Biome-Aktualisierungen.",
             "Error": "Fehler",
             "dld_fail_desc": "Fehler beim Herunterladen von PLUMGEN:\n"
         },
@@ -3538,7 +3538,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Aggiornamento PLUMGEN",
             "dld_good_desc_pt1": "Scaricato ",
-            "dld_good_desc_pt2": "\n\nL'applicazione si riavvierà ora. \n\nDopo il riavvio, controlla il file '_README.txt' per eventuali note di aggiornamento.\n\nSe non appare una nuova finestra di console, fai clic destro su 'Resources/Updater/complete_update.bat' e seleziona 'Esegui come amministratore'.",
+            "dld_good_desc_pt2": "\n\nL'applicazione si riavvierà ora. \n\nDopo il riavvio, controlla il file '_README.txt' per eventuali note di aggiornamento.\n\nSe non appare una nuova finestra di console, fai clic destro su 'Resources/Updater/complete_update.bat' e seleziona 'Esegui come amministratore'.\n\nImportante: Tutti i file .csv nella tua cartella '_Biome Templates' verranno sostituiti. I vecchi .csv non funzioneranno con le versioni più recenti di PLUMGEN a causa degli aggiornamenti recenti dei biomi.",
             "Error": "Errore",
             "dld_fail_desc": "Errore durante il download di PLUMGEN:\n"
         },
@@ -4136,7 +4136,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN アップデート",
             "dld_good_desc_pt1": "ダウンロードされました ",
-            "dld_good_desc_pt2": "\n\nアプリケーションは今すぐ再起動します。\n\n再起動後、更新ノートを確認するには '_README.txt' ファイルをご覧ください。\n\n新しいコンソールウィンドウが表示されない場合は、「Resources/Updater/complete_update.bat」を右クリックし、「管理者として実行」を選択してください。",
+            "dld_good_desc_pt2": "\n\nアプリケーションは今すぐ再起動します。\n\n再起動後、更新ノートを確認するには '_README.txt' ファイルをご覧ください。\n\n新しいコンソールウィンドウが表示されない場合は、「Resources/Updater/complete_update.bat」を右クリックし、「管理者として実行」を選択してください。\n\n重要：'_Biome Templates' フォルダー内のすべての .csv ファイルが置き換えられます。古い .csv ファイルは、最近の生物群系の更新により、新しい PLUMGEN バージョンと互換性がありませんのでご注意ください。",
             "Error": "エラー",
             "dld_fail_desc": "PLUMGEN のダウンロード中にエラーが発生しました:\n"
         },
@@ -4734,7 +4734,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "PLUMGEN 업데이트",
             "dld_good_desc_pt1": "다음을 다운로드했습니다 ",
-            "dld_good_desc_pt2": "\n\n애플리케이션은 이제 재시작됩니다. \n\n재시작 후에는 업데이트 노트를 확인하려면 '_README.txt' 파일을 참조하십시오.\n\n새로운 콘솔 창이 나타나지 않은 경우에는 'Resources/Updater/complete_update.bat'을(를) 마우스 오른쪽 버튼으로 클릭하고 '관리자 권한으로 실행'을 선택하십시오.",
+            "dld_good_desc_pt2": "\n\n애플리케이션은 이제 재시작됩니다. \n\n재시작 후에는 업데이트 노트를 확인하려면 '_README.txt' 파일을 참조하십시오.\n\n새로운 콘솔 창이 나타나지 않은 경우에는 'Resources/Updater/complete_update.bat'을(를) 마우스 오른쪽 버튼으로 클릭하고 '관리자 권한으로 실행'을 선택하십시오.\n\n중요: '_Biome Templates' 폴더에 있는 모든 .csv 파일이 교체됩니다. 이전 .csv 파일들은 최신 PLUMGEN 버전과 호환되지 않습니다. 최근 생긴 바이옴 업데이트 때문입니다.",
             "Error": "오류",
             "dld_fail_desc": "PLUMGEN 다운로드 중 오류 발생:\n"
         },
@@ -5332,7 +5332,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Atualização do PLUMGEN",
             "dld_good_desc_pt1": "Baixado ",
-            "dld_good_desc_pt2": "\n\nA aplicação será reiniciada agora. \n\nApós a reinicialização, verifique o arquivo '_README.txt' para notas de atualização.\n\nSe nenhuma nova janela do console aparecer, clique com o botão direito em 'Resources/Updater/complete_update.bat' e selecione 'Executar como administrador'.",
+            "dld_good_desc_pt2": "\n\nA aplicação será reiniciada agora. \n\nApós a reinicialização, verifique o arquivo '_README.txt' para notas de atualização.\n\nSe nenhuma nova janela do console aparecer, clique com o botão direito em 'Resources/Updater/complete_update.bat' e selecione 'Executar como administrador'.\n\nImportante: Todos os arquivos .csv na sua pasta '_Biome Templates' serão substituídos. Os .csv antigos não funcionarão com as versões mais recentes do PLUMGEN devido às atualizações recentes nos biomas.",
             "Error": "Erro",
             "dld_fail_desc": "Erro ao baixar o PLUMGEN:\n"
         },
@@ -5930,7 +5930,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Обновление PLUMGEN",
             "dld_good_desc_pt1": "Загружено ",
-            "dld_good_desc_pt2": "\n\nПриложение будет перезапущено. \n\nПосле перезапуска проверьте файл '_README.txt' на наличие обновлений.\n\nЕсли новое окно консоли не появится, щелкните правой кнопкой мыши по 'Resources/Updater/complete_update.bat' и выберите 'Запуск от имени администратора'.",
+            "dld_good_desc_pt2": "\n\nПриложение будет перезапущено. \n\nПосле перезапуска проверьте файл '_README.txt' на наличие обновлений.\n\nЕсли новое окно консоли не появится, щелкните правой кнопкой мыши по 'Resources/Updater/complete_update.bat' и выберите 'Запуск от имени администратора'.\n\nВажно: Все файлы .csv в вашей папке '_Biome Templates' будут заменены. Старые .csv файлы не будут работать с более новыми версиями PLUMGEN из-за последних обновлений биомов.",
             "Error": "Ошибка",
             "dld_fail_desc": "Ошибка загрузки PLUMGEN:\n"
         },
@@ -6528,7 +6528,7 @@
         "plum_download_new_mbc": {
             "dld_good_title": "Actualización de PLUMGEN",
             "dld_good_desc_pt1": "Descargado ",
-            "dld_good_desc_pt2": "\n\nLa aplicación se reiniciará ahora. \n\nDespués de reiniciar, revise el archivo '_README.txt' para ver notas de actualización.\n\nSi no aparece una nueva ventana de consola, haga clic derecho en 'Resources/Updater/complete_update.bat' y seleccione 'Ejecutar como administrador'.",
+            "dld_good_desc_pt2": "\n\nLa aplicación se reiniciará ahora. \n\nDespués de reiniciar, revise el archivo '_README.txt' para ver notas de actualización.\n\nSi no aparece una nueva ventana de consola, haga clic derecho en 'Resources/Updater/complete_update.bat' y seleccione 'Ejecutar como administrador'.\n\nImportante: Todos los archivos .csv en la carpeta '_Biome Templates' serán reemplazados. Los archivos .csv antiguos no funcionarán con las versiones más nuevas de PLUMGEN debido a las actualizaciones recientes de biomas.",
             "Error": "Error",
             "dld_fail_desc": "Error al descargar PLUMGEN:\n"
         },

@@ -1,4 +1,4 @@
-PLUMGEN (v1.11)
+PLUMGEN (v1.11.1a)
 
 -- APP FEATURES: --------------------------------------------------------------------------------------------------
 
@@ -17,6 +17,13 @@ PLUMGEN (v1.11)
 
 
 -- CHANGELOG: -----------------------------------------------------------------------------------------------------
+
+v1.11.1a Update:
+
+	-Fixed bulk editing certain prop attributes, like "Coverage."
+	-Support for auto-renaming and auto-adding new 'Worlds Part 1' biomes.
+	-Fixed issue with making a biome template (.csv) with outdated after-NEXT biomes.
+	-Misc. bug fixes.
 
 v1.11 Update:
 

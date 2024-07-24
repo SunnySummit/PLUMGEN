@@ -133,7 +133,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"v1.11 - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.11.1a - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -570,7 +570,15 @@ class PlumgenControllerGen():
                             "livingship": "_Livingship",
                             "nevada": "_Nevada",
                             "rainforest": "_Rainforest",
-                            "huge": "_Huge"
+                            "huge": "_Huge",
+                            "burnt": "_Burnt", # worlds part 1
+                            "desolate": "_Desolate",
+                            "floral": "_Floral",
+                            "irradiated": "_Irradiated",
+                            "noxious": "_Noxious",
+                            "rocky": "_Rocky",
+                            "ruins": "_Ruins",
+                            "subzero": "_Subzero"
                         }
 
                         # iterate over dictionary to check for each keyword
@@ -598,7 +606,16 @@ class PlumgenControllerGen():
                             "scorched" not in prop_model and
                             "lava" not in prop_model and
                             "cave" not in prop_model and
-                            "hugering" not in prop_model):
+                            "hugering" not in prop_model and
+                            "burnt" not in prop_model and # worlds part 1
+                            "desolate" not in prop_model and
+                            "floral" not in prop_model and
+                            "irradiated" not in prop_model and
+                            "noxious" not in prop_model and
+                            "rocky" not in prop_model and
+                            "ruins" not in prop_model and
+                            "subzero" not in prop_model
+                            ):
                             auto_rename += "_Lush"
 
             # split string using underscores
@@ -1360,6 +1377,18 @@ class PlumgenControllerGen():
                             else:
                                 variable_value = variable_elements[0].get("value")
                             row[variable] = variable_value
+                        else:
+                            # set default value (for worlds part 1 update)
+                            if variable == "MaxYRotation":
+                                variable_value = '180'
+                                row[variable] = variable_value
+                            elif variable == "MaxRaise" or variable == "MaxLower":
+                                variable_value = '0'
+                                row[variable] = variable_value
+                            elif variable == "IsFloatingIsland":
+                                variable_value = "FALSE"
+                                row[variable] = variable_value
+
                     row["DrawDistance"] = keyword
 
                     csv_writer.writerow(row)
@@ -1438,6 +1467,15 @@ class PlumgenControllerGen():
                     for variable in variables:
                         variable_elements = object_spawn_data.findall(f'.//Property[@name="{variable}"]')
                         if variable_elements:
+
+                            # set default value (for worlds part 1 update)
+                            if variable == "MaxYRotation":
+                                variable_value = '180'
+                            elif variable == "MaxRaise" or variable == "MaxLower":
+                                variable_value = '0'
+                            elif variable == "IsFloatingIsland":
+                                variable_value = "FALSE"
+
                             # check if there is more than one occurrence
                             if keyword == "DetailObjects" and len(variable_elements) > 2:
                                 # grab the third occurrence, aka "ultra" detail objects coverage & flatdensity settings
@@ -1453,6 +1491,7 @@ class PlumgenControllerGen():
                     row["MaxRaise"] = 0 ###
                     row["MaxLower"] = 0 ###
                     row["IsFloatingIsland"] = "FALSE" ###
+                    row["DestroyedByTerrainEdit"] = "TRUE"
                     row["DestroyedByTerrainEdit"] = "TRUE"
                     row["DrawDistance"] = keyword
 

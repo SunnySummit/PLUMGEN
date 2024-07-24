@@ -234,10 +234,6 @@ class PlumgenViewGen:
         
         self.style.configure('.', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 10))
 
-
-
-
-
         self.style.configure('TitleLabel.TLabel', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 14, 'bold'))
         self.style.configure('Title2Label.TLabel', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 12, 'bold'))
         self.style.configure('Title3Label.TLabel', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 12))
@@ -1566,7 +1562,7 @@ class PlumgenViewGen:
 
                     selected_biome = self.controller.get_biome_objs()[self.biome_index]
                     
-                    if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
+                    if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
 
                         if self.prop_attribute_index in {2, 3, 4, 5, 11, 12, 13, 14}:
                             if not isinstance(bulk_new_value, int):
@@ -1604,18 +1600,18 @@ class PlumgenViewGen:
                     bulk_val_validated = False
 
                     # check what drawdistance lb was selected, then validate index, new_value type, & set new value
-                    if self.prop_draw_type == 1 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
+                    if self.prop_draw_type == 1 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
-                    elif self.prop_draw_type == 2 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
+                    elif self.prop_draw_type == 2 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
-                    elif self.prop_draw_type == 3 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
+                    elif self.prop_draw_type == 3 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
-                    elif self.prop_draw_type == 4 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
+                    elif self.prop_draw_type == 4 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
 
                     # instantiate bulk view - display new menu
                     if bulk_val_validated:
-                        if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 18:
+                        if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
                             plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, bulk_new_value, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.langs, self.lan, self.apply_bulk_settings)
                     
                     # if model selected - attempt to get cursor selection and specific model selected
@@ -2561,6 +2557,12 @@ class PlumgenViewGen:
 
         self.reenable_buttons()
         self.filemenu.entryconfig(self.langs[self.lan]["filemenu_view_gen"]["make_template"], state='normal') # re-enable template menu item
+
+        # repopulate listbox
+        all_biomes = self.controller.get_biome_objs()
+        self.biome_lb.delete(0, tk.END)
+        for index, biome in enumerate(all_biomes):
+            self.biome_lb.insert(tk.END, biome.get_filename())
 
         messagebox.showinfo(self.langs[self.lan]["complete_template"]["info_title"], self.langs[self.lan]["complete_template"]["info_desc"], parent=self.window)
 
