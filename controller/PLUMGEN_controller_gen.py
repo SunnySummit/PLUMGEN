@@ -133,7 +133,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"v1.11.1a - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.11.1b - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -928,6 +928,14 @@ class PlumgenControllerGen():
                             prop_value = props[1].get("value")
                         else:
                             prop_value = props[0].get("value")
+                    elif variable == "DestroyedByTerrainEdit": # make terrain edit true (did not exist)
+                        prop_value = "TRUE"
+                    elif variable == "MaxYRotation":
+                        prop_value = '180'
+                    elif variable == "MaxRaise" or variable == "MaxLower":
+                        prop_value = '0'
+                    elif variable == "IsFloatingIsland":
+                        prop_value = "FALSE"
                     else:
                         prop_value = None
 
