@@ -25,6 +25,7 @@ class PlumgenModelGen():
 
             # initialize variables and dictionary with default values
             self.defaults = {
+                "prop_type": "Instanced",
                 "model_path": "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
                 "placement": "WORDSTONE",
                 "min_height": 0,
@@ -63,13 +64,13 @@ class PlumgenModelGen():
             # set model_path for each list to a random item (excluding "--")
             # check if list is empty = won't create a blank asset
             if bool(self.distant_objs_defaults):
-                self.distant_obj_list[0] = random.choice([item for item in self.distant_objs_defaults if item != "--"])
+                self.distant_obj_list[1] = random.choice([item for item in self.distant_objs_defaults if item != "--"])
             if bool(self.landmarks_defaults):
-                self.landmarks_list[0] = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                self.landmarks_list[1] = random.choice([item for item in self.landmarks_defaults if item != "--"])
             if bool(self.objs_defaults):
-                self.objects_list[0] = random.choice([item for item in self.objs_defaults if item != "--"])
+                self.objects_list[1] = random.choice([item for item in self.objs_defaults if item != "--"])
             if bool(self.detail_objs_defaults):
-                self.detail_obj_list[0] = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                self.detail_obj_list[1] = random.choice([item for item in self.detail_objs_defaults if item != "--"])
 
             # create lists of lists
             self.all_distant_obj_lists = [self.distant_obj_list]
@@ -167,29 +168,29 @@ class PlumgenModelGen():
 
     # set "similar_items" for the latest appended list
     def set_distant_model_similar_props(self, similar_props):
-        self.all_distant_obj_lists[-1][24] = similar_props
+        self.all_distant_obj_lists[-1][25] = similar_props
     
     def set_landmark_model_similar_props(self, similar_props):
-        self.all_landmarks_lists[-1][24] = similar_props
+        self.all_landmarks_lists[-1][25] = similar_props
     
     def set_object_model_similar_props(self, similar_props):
-        self.all_objects_lists[-1][24] = similar_props
+        self.all_objects_lists[-1][25] = similar_props
     
     def set_detail_model_similar_props(self, similar_props):
-        self.all_detail_obj_lists[-1][24] = similar_props
+        self.all_detail_obj_lists[-1][25] = similar_props
 
     # set "similar_items" for specific index - used to refresh all counts
     def set_all_distant_model_similar_props(self, index, similar_props):
-        self.all_distant_obj_lists[index][24] = similar_props
+        self.all_distant_obj_lists[index][25] = similar_props
     
     def set_all_landmark_model_similar_props(self, index, similar_props):
-        self.all_landmarks_lists[index][24] = similar_props
+        self.all_landmarks_lists[index][25] = similar_props
     
     def set_all_object_model_similar_props(self, index, similar_props):
-        self.all_objects_lists[index][24] = similar_props
+        self.all_objects_lists[index][25] = similar_props
     
     def set_all_detail_model_similar_props(self, index, similar_props):
-        self.all_detail_obj_lists[index][24] = similar_props
+        self.all_detail_obj_lists[index][25] = similar_props
 
 
     # set custom attribute for specific index - used to save attribute
@@ -254,7 +255,7 @@ class PlumgenModelGen():
         try:
             if bool(self.distant_objs_defaults):
                 new_distant_obj_list = self.distant_obj_list.copy()
-                new_distant_obj_list[0] = random.choice([item for item in self.distant_objs_defaults if item != "--"])
+                new_distant_obj_list[1] = random.choice([item for item in self.distant_objs_defaults if item != "--"])
                 self.all_distant_obj_lists.append(new_distant_obj_list)
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -264,7 +265,7 @@ class PlumgenModelGen():
         try:
             if bool(self.landmarks_defaults):
                 new_landmarks_list = self.landmarks_list.copy()
-                new_landmarks_list[0] = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                new_landmarks_list[1] = random.choice([item for item in self.landmarks_defaults if item != "--"])
                 self.all_landmarks_lists.append(new_landmarks_list)
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -274,7 +275,7 @@ class PlumgenModelGen():
         try:
             if bool(self.objs_defaults):
                 new_objects_list = self.objects_list.copy()
-                new_objects_list[0] = random.choice([item for item in self.objs_defaults if item != "--"])
+                new_objects_list[1] = random.choice([item for item in self.objs_defaults if item != "--"])
                 self.all_objects_lists.append(new_objects_list)
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -284,7 +285,7 @@ class PlumgenModelGen():
         try:
             if bool(self.detail_objs_defaults):
                 new_detail_obj_list = self.detail_obj_list.copy()
-                new_detail_obj_list[0] = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                new_detail_obj_list[1] = random.choice([item for item in self.detail_objs_defaults if item != "--"])
                 self.all_detail_obj_lists.append(new_detail_obj_list)
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception

@@ -21,11 +21,11 @@ local PlanetLODMultiplier = 3		--planet lod distance multiplier
 ------------------------------------------------------------------------------------------------------------------------
 
 --This adds the exml "context" for each model, i.e. the max scale.
-function AddDistantProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddDistantProp(propType, modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
-        <Property name="Type" value="Instanced" />
+        <Property name="Type" value="]] .. propType .. [[" />
         <Property name="Resource" value="GcResourceElement.xml">
           <Property name="Filename" value="]] .. modelPath .. [[" />
           <Property name="ResHandle" value="GcResource.xml">
@@ -128,11 +128,11 @@ return [[
 end
 
 
-function AddLandmarkProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddLandmarkProp(propType, modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
-        <Property name="Type" value="Instanced" />
+        <Property name="Type" value="]] .. propType .. [[" />
         <Property name="Resource" value="GcResourceElement.xml">
           <Property name="Filename" value="]] .. modelPath .. [[" />
           <Property name="ResHandle" value="GcResource.xml">
@@ -235,11 +235,11 @@ return [[
 end
 
 
-function AddObjectProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddObjectProp(propType, modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
-        <Property name="Type" value="Instanced" />
+        <Property name="Type" value="]] .. propType .. [[" />
         <Property name="Resource" value="GcResourceElement.xml">
           <Property name="Filename" value="]] .. modelPath .. [[" />
           <Property name="ResHandle" value="GcResource.xml">
@@ -342,11 +342,11 @@ return [[
 end
 
 
-function AddGrassProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddGrassProp(propType, modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
-        <Property name="Type" value="Instanced" />
+        <Property name="Type" value="]] .. propType .. [[" />
         <Property name="Resource" value="GcResourceElement.xml">
           <Property name="Filename" value="]] .. modelPath .. [[" />
           <Property name="ResHandle" value="GcResource.xml">
@@ -488,11 +488,11 @@ return [[
 end
 
 
-function AddRockProp(modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
+function AddRockProp(propType, modelPath, placem, minHeight, maxHeight, minAngle, maxAngle, minScale, maxScale, minScaleY, maxScaleY, patchEdgeSc, maxRotation, maxYRotation, maxRaise, maxLower, destroyableByShip, destroyableByTerrEdit, isFloatingIsland, creatureCanEat, coverage, flatDensity, slopeDensity, slopeMultiplier)
 return [[
       <Property value="GcObjectSpawnData.xml">
         <Property name="DebugName" value="" />
-        <Property name="Type" value="Instanced" />
+        <Property name="Type" value="]] .. propType .. [[" />
         <Property name="Resource" value="GcResourceElement.xml">
           <Property name="Filename" value="]] .. modelPath .. [[" />
           <Property name="ResHandle" value="GcResource.xml">

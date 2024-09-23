@@ -95,6 +95,8 @@ class PlumgenViewGen:
             self.white_c = '#FFFFFF'
             self.placem_val_at_index = None
             self.model_val_at_index = None
+            self.open_export_window_and_wait = False
+            self.checked_mbc_update_already = False
             # get default model filepaths lists on start
             self.dist_model_list = self.controller.get_dist_list()
             self.landm_model_list = self.controller.get_landm_list()
@@ -122,7 +124,8 @@ class PlumgenViewGen:
             ]
 
             self.attribute_labels = [
-						"Filename: ",
+						"Type: ",
+                        "Filename: ",
 						"Placement: ",
                         "MinHeight: ",
 						"MaxHeight: ",
@@ -299,6 +302,8 @@ class PlumgenViewGen:
         self.filemenu.add_separator()
         self.filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["auto_rename"], command=self.auto_rename_biomes)
         self.filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["reset_auto_rename"], command=self.reset_rename_biomes)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Bulk Import & Update", command=self.bulk_import_update)
         self.filemenu.add_separator()
         self.filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["Exit"], command=self.on_close)
 
@@ -589,6 +594,12 @@ class PlumgenViewGen:
         self.replace_lb_with_template_data_cb.grid(row=1, column=7, columnspan=2, padx=5, sticky=tk.W)
     
 
+    # getter
+    def get_open_export_window_and_wait(self):
+        return self.open_export_window_and_wait
+
+
+
     def check_plum_update(self):
         try:
             # search and update app:
@@ -848,17 +859,17 @@ class PlumgenViewGen:
                 self.detail_objects_lb.delete(0, tk.END)
 
                 for distant_obj_list in selected_biome.get_distant_obj_lists():
-                    if distant_obj_list[0]:  # verify that the model filepath is not empty
-                        self.update_listbox(self.distant_objects_lb, distant_obj_list[24], distant_obj_list[0])
+                    if distant_obj_list[1]:  # verify that the model filepath is not empty
+                        self.update_listbox(self.distant_objects_lb, distant_obj_list[25], distant_obj_list[1])
                 for landmark_list in selected_biome.get_landmark_lists():
-                    if landmark_list[0]:
-                        self.update_listbox(self.landmarks_lb, landmark_list[24], landmark_list[0])
+                    if landmark_list[1]:
+                        self.update_listbox(self.landmarks_lb, landmark_list[25], landmark_list[1])
                 for objects_list in selected_biome.get_objects_lists():
-                    if objects_list[0]:
-                        self.update_listbox(self.objects_lb, objects_list[24], objects_list[0])
+                    if objects_list[1]:
+                        self.update_listbox(self.objects_lb, objects_list[25], objects_list[1])
                 for detail_obj_list in selected_biome.get_detail_obj_lists():
-                    if detail_obj_list[0]:
-                        self.update_listbox(self.detail_objects_lb, detail_obj_list[24], detail_obj_list[0])
+                    if detail_obj_list[1]:
+                        self.update_listbox(self.detail_objects_lb, detail_obj_list[25], detail_obj_list[1])
                 
                 self.prop_attributes_lb.delete(0, tk.END)
                 self.placem_val_at_index = None #reset selected placement/models
@@ -908,8 +919,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.dist_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_distant[24], self.prop_distant[:24]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 25th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_distant[25], self.prop_distant[:25]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -930,8 +941,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.landm_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_landmark[24], self.prop_landmark[:24]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 25th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_landmark[25], self.prop_landmark[:25]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -952,8 +963,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.objs_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_object[24], self.prop_object[:24]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 25th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_object[25], self.prop_object[:25]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -974,8 +985,8 @@ class PlumgenViewGen:
                 self.select_and_highlight_item(self.model_lb, self.detail_model_list, item)
             elif label == self.langs[self.lan]["attribute_labels"]["Placement"]:
                 self.select_and_highlight_item(self.placement_lb, self.placement_list, item)
-            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 24th index) in prop's list of similar_items
-                self.select_and_highlight_item(self.similar_props_lb, self.prop_detail[24], self.prop_detail[:24]) # item
+            elif label == self.langs[self.lan]["attribute_labels"]["TotalCountInTemplate"]: # find this prop (up to 25th index) in prop's list of similar_items
+                self.select_and_highlight_item(self.similar_props_lb, self.prop_detail[25], self.prop_detail[:25]) # item
                 display_text = f"{label}{len(item)}" # display similar items count
                 self.prop_attributes_lb.insert(tk.END, display_text)
 
@@ -1000,7 +1011,7 @@ class PlumgenViewGen:
                 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_distant[24]:
+                for matching_prop in self.prop_distant[25]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
                 
                 self.refresh_distant_attr_placem_models()
@@ -1026,7 +1037,7 @@ class PlumgenViewGen:
 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_landmark[24]:
+                for matching_prop in self.prop_landmark[25]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
 
                 self.refresh_landmark_attr_placem_models()
@@ -1052,7 +1063,7 @@ class PlumgenViewGen:
 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_object[24]:
+                for matching_prop in self.prop_object[25]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
 
                 self.refresh_object_attr_placem_models()
@@ -1078,7 +1089,7 @@ class PlumgenViewGen:
 
                 # add matching props to listbox
                 self.similar_props_lb.delete(0, tk.END) # empty listbox
-                for matching_prop in self.prop_detail[24]:
+                for matching_prop in self.prop_detail[25]:
                     self.similar_props_lb.insert(tk.END, matching_prop)
 
                 self.refresh_detail_attr_placem_models()
@@ -1103,31 +1114,32 @@ class PlumgenViewGen:
 
                 # dictionary to map attribute indexes to descriptions
                 attribute_descriptions = {
-                    0: self.langs[self.lan]["attribute_desc"]["desc_0"],
-                    1: self.langs[self.lan]["attribute_desc"]["desc_1"],
-                    2: self.langs[self.lan]["attribute_desc"]["desc_2"],
-                    3: self.langs[self.lan]["attribute_desc"]["desc_3"],
-                    4: self.langs[self.lan]["attribute_desc"]["desc_4"],
-                    5: self.langs[self.lan]["attribute_desc"]["desc_5"],
-                    6: self.langs[self.lan]["attribute_desc"]["desc_6"],
-                    7: self.langs[self.lan]["attribute_desc"]["desc_7"],
-                    8: self.langs[self.lan]["attribute_desc"]["desc_8"],
-                    9: self.langs[self.lan]["attribute_desc"]["desc_9"],
-                    10: self.langs[self.lan]["attribute_desc"]["desc_10"],
-                    11: self.langs[self.lan]["attribute_desc"]["desc_11"],
-                    12: "MaxYRotation: UNKNOWN - WORLDS PART 1 UPDATE",
-                    13: "MaxRaise: UNKNOWN - WORLDS PART 1 UPDATE",
-                    14: "MaxLower: UNKNOWN - WORLDS PART 1 UPDATE",
-                    15: self.langs[self.lan]["attribute_desc"]["desc_12"],
-                    16: self.langs[self.lan]["attribute_desc"]["desc_13"],
-                    17: "IsFloatingIsland: UNKNOWN - WORLDS PART 1 UPDATE",
-                    18: "/ᐠ⎚-⎚マ",
-                    19: self.langs[self.lan]["attribute_desc"]["desc_15"],
-                    20: self.langs[self.lan]["attribute_desc"]["desc_16"],
-                    21: self.langs[self.lan]["attribute_desc"]["desc_17"],
-                    22: self.langs[self.lan]["attribute_desc"]["desc_18"],
-                    23: self.langs[self.lan]["attribute_desc"]["desc_19"],
-                    24: self.langs[self.lan]["attribute_desc"]["desc_20"]
+                    0: "Type: Misc. attributes. 'Instanced' or 'Single'. Instanced = better performance. Single = extreme draw distance & does not disappear on slopes. Could cause crashes.",
+                    1: self.langs[self.lan]["attribute_desc"]["desc_0"],
+                    2: self.langs[self.lan]["attribute_desc"]["desc_1"],
+                    3: self.langs[self.lan]["attribute_desc"]["desc_2"],
+                    4: self.langs[self.lan]["attribute_desc"]["desc_3"],
+                    5: self.langs[self.lan]["attribute_desc"]["desc_4"],
+                    6: self.langs[self.lan]["attribute_desc"]["desc_5"],
+                    7: self.langs[self.lan]["attribute_desc"]["desc_6"],
+                    8: self.langs[self.lan]["attribute_desc"]["desc_7"],
+                    9: self.langs[self.lan]["attribute_desc"]["desc_8"],
+                    10: self.langs[self.lan]["attribute_desc"]["desc_9"],
+                    11: self.langs[self.lan]["attribute_desc"]["desc_10"],
+                    12: self.langs[self.lan]["attribute_desc"]["desc_11"],
+                    13: "MaxYRotation: UNKNOWN - WORLDS PART 1 UPDATE",
+                    14: "MaxRaise: UNKNOWN - WORLDS PART 1 UPDATE",
+                    15: "MaxLower: UNKNOWN - WORLDS PART 1 UPDATE",
+                    16: self.langs[self.lan]["attribute_desc"]["desc_12"],
+                    17: self.langs[self.lan]["attribute_desc"]["desc_13"],
+                    18: "IsFloatingIsland: UNKNOWN - WORLDS PART 1 UPDATE",
+                    19: "/ᐠ⎚-⎚マ",
+                    20: self.langs[self.lan]["attribute_desc"]["desc_15"],
+                    21: self.langs[self.lan]["attribute_desc"]["desc_16"],
+                    22: self.langs[self.lan]["attribute_desc"]["desc_17"],
+                    23: self.langs[self.lan]["attribute_desc"]["desc_18"],
+                    24: self.langs[self.lan]["attribute_desc"]["desc_19"],
+                    25: self.langs[self.lan]["attribute_desc"]["desc_20"]
                 }
 
                 # get description based on attribute index
@@ -1141,7 +1153,7 @@ class PlumgenViewGen:
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
                     # don't insert some items (either put these in listbox or they can't be modified)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_distant[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1151,7 +1163,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_landmark[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1161,7 +1173,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_object[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1171,7 +1183,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry 
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 23 and self.prop_attribute_index != 24:
+                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_detail[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1254,7 +1266,7 @@ class PlumgenViewGen:
 
                 # proceed with attribute replacement
                 if self.prop_draw_type == 1:
-                    replacement_prop = self.prop_distant[24][similar_prop_index]
+                    replacement_prop = self.prop_distant[25][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr) # deep copy because the copied item is mutable
                         selected_biome.set_custom_distant_attr(self.distant_index, index, copied_item)
@@ -1262,7 +1274,7 @@ class PlumgenViewGen:
                     self.refresh_distant_attr_placem_models()
 
                 elif self.prop_draw_type == 2:
-                    replacement_prop = self.prop_landmark[24][similar_prop_index]
+                    replacement_prop = self.prop_landmark[25][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr)
                         selected_biome.set_custom_landmark_attr(self.landmark_index, index, copied_item)
@@ -1270,7 +1282,7 @@ class PlumgenViewGen:
                     self.refresh_landmark_attr_placem_models()
 
                 elif self.prop_draw_type == 3:
-                    replacement_prop = self.prop_object[24][similar_prop_index]
+                    replacement_prop = self.prop_object[25][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr)
                         selected_biome.set_custom_object_attr(self.obj_index, index, copied_item)
@@ -1278,7 +1290,7 @@ class PlumgenViewGen:
                     self.refresh_object_attr_placem_models()
 
                 elif self.prop_draw_type == 4:
-                    replacement_prop = self.prop_detail[24][similar_prop_index]
+                    replacement_prop = self.prop_detail[25][similar_prop_index]
                     for index, replacement_attr in enumerate(replacement_prop):
                         copied_item = copy.deepcopy(replacement_attr)
                         selected_biome.set_custom_detail_attr(self.detail_index, index, copied_item)
@@ -1310,8 +1322,8 @@ class PlumgenViewGen:
 
                         self.distant_objects_lb.delete(0, tk.END)
                         for distant_obj_list in selected_biome.get_distant_obj_lists():
-                            if distant_obj_list[0]:  # verify that the model filepath is not empty
-                                self.update_listbox(self.distant_objects_lb, distant_obj_list[24], distant_obj_list[0])
+                            if distant_obj_list[1]:  # verify that the model filepath is not empty
+                                self.update_listbox(self.distant_objects_lb, distant_obj_list[25], distant_obj_list[1])
                     elif self.prop_draw_type == 2:
                         selected_biome.set_custom_landmark_attr(self.landmark_index, 0, self.model_val_at_index)
                         
@@ -1319,8 +1331,8 @@ class PlumgenViewGen:
 
                         self.landmarks_lb.delete(0, tk.END)
                         for landmark_list in selected_biome.get_landmark_lists():
-                            if landmark_list[0]:
-                                self.update_listbox(self.landmarks_lb, landmark_list[24], landmark_list[0])
+                            if landmark_list[1]:
+                                self.update_listbox(self.landmarks_lb, landmark_list[25], landmark_list[1])
                     elif self.prop_draw_type == 3:
                         selected_biome.set_custom_object_attr(self.obj_index, 0, self.model_val_at_index)
                         
@@ -1328,8 +1340,8 @@ class PlumgenViewGen:
 
                         self.objects_lb.delete(0, tk.END)
                         for objects_list in selected_biome.get_objects_lists():
-                            if objects_list[0]:
-                                self.update_listbox(self.objects_lb, objects_list[24], objects_list[0])
+                            if objects_list[1]:
+                                self.update_listbox(self.objects_lb, objects_list[25], objects_list[1])
                     elif self.prop_draw_type == 4:
                         selected_biome.set_custom_detail_attr(self.detail_index, 0, self.model_val_at_index)
                         
@@ -1337,8 +1349,8 @@ class PlumgenViewGen:
 
                         self.detail_objects_lb.delete(0, tk.END)
                         for detail_obj_list in selected_biome.get_detail_obj_lists():
-                            if detail_obj_list[0]:
-                                self.update_listbox(self.detail_objects_lb, detail_obj_list[24], detail_obj_list[0])
+                            if detail_obj_list[1]:
+                                self.update_listbox(self.detail_objects_lb, detail_obj_list[25], detail_obj_list[1])
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -2030,7 +2042,6 @@ class PlumgenViewGen:
             self.show_error_message("An error occurred: {}".format(str(e)))
             
 
-
     # biomes
     def add_default_biome(self):
         try: 
@@ -2087,7 +2098,7 @@ class PlumgenViewGen:
         try: 
             listbox.delete(0, tk.END)
             for obj_list in get_list_func():
-                self.update_listbox(listbox, obj_list[24], obj_list[0])
+                self.update_listbox(listbox, obj_list[25], obj_list[0])
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
@@ -2269,7 +2280,7 @@ class PlumgenViewGen:
                         # repopulate listbox
                         listbox.delete(0, tk.END)
                         for obj_list in get_lists_func():
-                            self.update_listbox(listbox, obj_list[24], obj_list[0])
+                            self.update_listbox(listbox, obj_list[25], obj_list[0])
                         self.placem_val_at_index = None
                         self.model_val_at_index = None
 
@@ -2537,6 +2548,7 @@ class PlumgenViewGen:
             
             if after_next_update is not None:  # check if user clicked Yes or No
 
+                self.open_export_window_and_wait = False
                 import_thread = threading.Thread(target=self.import_exml_biomes_threaded, args=(after_next_update, loading_screen))
                 import_thread.start()
             
@@ -2549,7 +2561,66 @@ class PlumgenViewGen:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
             
-        
+
+
+    def bulk_import_update(self):
+        try:
+                    
+            biom_exmls_folder_dir = self.controller.get_biom_exmls_folder_dir()
+            biomes_folder = os.path.abspath(os.path.join(biom_exmls_folder_dir, 'BIOMES'))
+
+            # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
+            if not os.path.exists(biom_exmls_folder_dir):
+                messagebox.showerror(self.langs[self.lan]["import_exml_biomes"]["Error"], f"{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt2"]}", parent=self.window)
+                return
+            else:
+                if not os.listdir(biom_exmls_folder_dir):
+                    messagebox.showerror(self.langs[self.lan]["import_exml_biomes"]["Error"], f"{self.langs[self.lan]["import_exml_biomes"]["empty_dir_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["empty_dir_pt2"]}", parent=self.window)
+                    return
+                else:
+                    if not os.path.exists(biomes_folder): # check if 'BIOMES' folder in directory
+                        response = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], f"{self.langs[self.lan]["import_exml_biomes"]["ques_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["ques_pt2"]}", parent=self.window)
+                        if not response:
+                            return
+
+            # check if imported already, show overwrite message if yes
+            imported_variables = []
+            if self.controller.get_biome_objs():  imported_variables.append("biome_objs")
+            if self.controller.get_bfn_all_biome_files_weights():  imported_variables.append("bfn_all_biome_files_weights")
+            if self.controller.get_bfn_all_tile_types(): imported_variables.append("bfn_all_tile_types")
+            if self.controller.get_bfn_all_valid_start_planets(): imported_variables.append("bfn_all_valid_start_planets")
+            if self.controller.get_all_biome_tile_types(): imported_variables.append("all_biome_tile_types")
+
+            if imported_variables:
+
+                response = messagebox.askyesno(self.langs[self.lan]["import_exml_biomes"]["overwrite_ques_title"], self.langs[self.lan]["import_exml_biomes"]["overwrite_ques_desc"], parent=self.window)
+                if not response:
+                    return
+
+
+            after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], self.langs[self.lan]["import_exml_biomes"]["after_before_next_ques_desc"], parent=self.window)
+            
+            self.import_exml_button.configure(state="disabled")
+            # show loading screen
+            #loading_screen = self.show_loading_screen()
+            self.window.update_idletasks()  # all pending events processed to show loading screen
+            
+            if after_next_update is not None:  # check if user clicked Yes or No
+
+                self.open_export_window_and_wait = True
+                self.controller.c_import_exml_biomes(after_next_update)
+                self.open_export_window_and_wait = False
+            
+            else:
+                self.reenable_buttons()
+                #loading_screen.destroy()
+                return
+
+        except Exception as e:
+            self.logger.exception("Error: %s", e) # log the exception
+            self.show_error_message("An error occurred: {}".format(str(e)))
+
+
 
     def complete_template(self, loading_screen):
         loading_screen.destroy()
@@ -2668,7 +2739,7 @@ class PlumgenViewGen:
     # export
     def export_script(self):
         try:
-                
+            
             biomes_objs = self.controller.get_biome_objs()
 
             # get any imported data
@@ -2789,10 +2860,13 @@ class PlumgenViewGen:
                     self.controller.set_bfn_all_tile_types(bfn_all_tile_types)
                     self.controller.set_bfn_all_valid_start_planets(bfn_all_valid_start_planets)
                     self.controller.set_all_biome_tile_types(all_biome_tile_types)
-                    messagebox.showinfo(self.langs[self.lan]["export_script"]["export_info_title"], self.langs[self.lan]["export_script"]["export_info_desc"], parent=self.window)
+
+                    if not self.open_export_window_and_wait:
+                        messagebox.showinfo(self.langs[self.lan]["export_script"]["export_info_title"], self.langs[self.lan]["export_script"]["export_info_desc"], parent=self.window)
 
             else:
-                messagebox.showinfo(self.langs[self.lan]["export_script"]["export_info_title"], self.langs[self.lan]["export_script"]["export_info_desc"], parent=self.window)
+                if not self.open_export_window_and_wait:
+                    messagebox.showinfo(self.langs[self.lan]["export_script"]["export_info_title"], self.langs[self.lan]["export_script"]["export_info_desc"], parent=self.window)
 
             #self.root.withdraw()
             plumgen_view_gen_export = PlumgenViewGenExport(
@@ -2806,20 +2880,25 @@ class PlumgenViewGen:
                 self.icon_path,
                 self.langs,
                 self.lan,
+                self.open_export_window_and_wait,
+                self.checked_mbc_update_already,
                 self.apply_export_settings
             )
+
+            self.root.wait_window(plumgen_view_gen_export.window)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
             
 
-    def apply_export_settings(self, bfn_all_biome_files_weights_c, bfn_all_valid_start_planets_c, bfn_all_tile_types_c, all_biome_tile_types_c):
+    def apply_export_settings(self, bfn_all_biome_files_weights_c, bfn_all_valid_start_planets_c, bfn_all_tile_types_c, all_biome_tile_types_c, checked_mbc_update_already):
         try:
             self.controller.set_bfn_all_biome_files_weights(bfn_all_biome_files_weights_c)
             self.controller.set_bfn_all_tile_types(bfn_all_tile_types_c)
             self.controller.set_bfn_all_valid_start_planets(bfn_all_valid_start_planets_c)
             self.controller.set_all_biome_tile_types(all_biome_tile_types_c)
+            self.checked_mbc_update_already = checked_mbc_update_already
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))

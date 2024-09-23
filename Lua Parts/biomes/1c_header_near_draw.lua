@@ -6,7 +6,7 @@ Import EXML back into PLUMGEN for swift and easy editing
 
 --]]
 
---## 1b_header_far_draw
+--## 1a_header_reg_draw
 
 --GCGRAPHICSGLOBALS.GLOBAL
 local ForceUncachedTerrain = "True"	--fix slow terrain textures loading (default = false)
@@ -89,17 +89,17 @@ return [[
           <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
           <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
           <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-          <Property name="MaxRegionRadius" value="9999" />
+          <Property name="MaxRegionRadius" value="3" />
           <Property name="MaxImposterRadius" value="10" />
           <Property name="FadeOutStartDistance" value="9999" />
           <Property name="FadeOutEndDistance" value="9999" />
           <Property name="FadeOutOffsetDistance" value="0" />
           <Property name="LodDistances">
             <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
+            <Property value="20" />
+            <Property value="60" />
+            <Property value="150" />
+            <Property value="500" />
           </Property>
         </Property>
         <Property name="QualityVariants">
@@ -109,17 +109,17 @@ return [[
             <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
             <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
             <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-            <Property name="MaxRegionRadius" value="9999" />
-            <Property name="MaxImposterRadius" value="9999" />
+            <Property name="MaxRegionRadius" value="3" />
+            <Property name="MaxImposterRadius" value="99" />
             <Property name="FadeOutStartDistance" value="9999" />
             <Property name="FadeOutEndDistance" value="9999" />
             <Property name="FadeOutOffsetDistance" value="0" />
             <Property name="LodDistances">
               <Property value="0" />
+              <Property value="20" />
+              <Property value="60" />
               <Property value="150" />
-              <Property value="450" />
-              <Property value="750" />
-              <Property value="1050" />
+              <Property value="500" />
             </Property>
           </Property>
         </Property>
@@ -196,17 +196,17 @@ return [[
           <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
           <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
           <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-          <Property name="MaxRegionRadius" value="9999" />
+          <Property name="MaxRegionRadius" value="3" />
           <Property name="MaxImposterRadius" value="10" />
           <Property name="FadeOutStartDistance" value="9999" />
           <Property name="FadeOutEndDistance" value="9999" />
           <Property name="FadeOutOffsetDistance" value="0" />
           <Property name="LodDistances">
             <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
+            <Property value="20" />
+            <Property value="60" />
+            <Property value="150" />
+            <Property value="500" />
           </Property>
         </Property>
         <Property name="QualityVariants">
@@ -216,15 +216,15 @@ return [[
             <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
             <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
             <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-            <Property name="MaxRegionRadius" value="20" />
-            <Property name="MaxImposterRadius" value="9999" />
+            <Property name="MaxRegionRadius" value="3" />
+            <Property name="MaxImposterRadius" value="99" />
             <Property name="FadeOutStartDistance" value="9999" />
             <Property name="FadeOutEndDistance" value="9999" />
             <Property name="FadeOutOffsetDistance" value="0" />
             <Property name="LodDistances">
               <Property value="0" />
-              <Property value="50" />
-              <Property value="100" />
+              <Property value="20" />
+              <Property value="60" />
               <Property value="150" />
               <Property value="500" />
             </Property>
@@ -310,11 +310,11 @@ return [[
           <Property name="FadeOutOffsetDistance" value="0" />
           <Property name="LodDistances">
             <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-          </Property>
+            <Property value="20" />
+            <Property value="60" />
+            <Property value="150" />
+            <Property value="500" />
+            </Property>
         </Property>
         <Property name="QualityVariants">
           <Property value="GcObjectSpawnDataVariant.xml">
@@ -323,16 +323,16 @@ return [[
             <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
             <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
             <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-            <Property name="MaxRegionRadius" value="5" />
+            <Property name="MaxRegionRadius" value="3" />
             <Property name="MaxImposterRadius" value="99" />
             <Property name="FadeOutStartDistance" value="9999" />
             <Property name="FadeOutEndDistance" value="9999" />
             <Property name="FadeOutOffsetDistance" value="0" />
             <Property name="LodDistances">
               <Property value="0" />
-              <Property value="20" />
-              <Property value="60" />
-              <Property value="150" />
+              <Property value="10" />
+              <Property value="30" />
+              <Property value="75" />
               <Property value="500" />
             </Property>
           </Property>
@@ -430,17 +430,17 @@ return [[
           <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
           <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
           <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-          <Property name="MaxRegionRadius" value="17998" />
-          <Property name="MaxImposterRadius" value="18" />
-          <Property name="FadeOutStartDistance" value="17998" />
-          <Property name="FadeOutEndDistance" value="17998" />
+          <Property name="MaxRegionRadius" value="9999" />
+          <Property name="MaxImposterRadius" value="10" />
+          <Property name="FadeOutStartDistance" value="9999" />
+          <Property name="FadeOutEndDistance" value="9999" />
           <Property name="FadeOutOffsetDistance" value="0" />
           <Property name="LodDistances">
             <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
-            <Property value="0" />
+            <Property value="20" />
+            <Property value="60" />
+            <Property value="150" />
+            <Property value="500" />
           </Property>
         </Property>
         <Property name="QualityVariants">
@@ -450,17 +450,17 @@ return [[
             <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
             <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
             <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-            <Property name="MaxRegionRadius" value="9" />
-            <Property name="MaxImposterRadius" value="18" />
-            <Property name="FadeOutStartDistance" value="96" />
-            <Property name="FadeOutEndDistance" value="114" />
+            <Property name="MaxRegionRadius" value="5" />
+            <Property name="MaxImposterRadius" value="10" />
+            <Property name="FadeOutStartDistance" value="35" />
+            <Property name="FadeOutEndDistance" value="45" />
             <Property name="FadeOutOffsetDistance" value="5" />
             <Property name="LodDistances">
               <Property value="0" />
-              <Property value="16" />
-              <Property value="30" />
-              <Property value="50" />
-              <Property value="1000" />
+              <Property value="8" />
+              <Property value="15" />
+              <Property value="25" />
+              <Property value="500" />
             </Property>
           </Property>
           <Property value="GcObjectSpawnDataVariant.xml">
@@ -469,17 +469,17 @@ return [[
             <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
             <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
             <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-            <Property name="MaxRegionRadius" value="5" />
-            <Property name="MaxImposterRadius" value="18" />
-            <Property name="FadeOutStartDistance" value="126" />
-            <Property name="FadeOutEndDistance" value="144" />
+            <Property name="MaxRegionRadius" value="3" />
+            <Property name="MaxImposterRadius" value="10" />
+            <Property name="FadeOutStartDistance" value="70" />
+            <Property name="FadeOutEndDistance" value="80" />
             <Property name="FadeOutOffsetDistance" value="10" />
             <Property name="LodDistances">
               <Property value="0" />
-              <Property value="16" />
-              <Property value="30" />
-              <Property value="50" />
-              <Property value="1000" />
+              <Property value="8" />
+              <Property value="15" />
+              <Property value="25" />
+              <Property value="500" />
             </Property>
           </Property>
         </Property>
@@ -576,10 +576,10 @@ return [[
           <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
           <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
           <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-          <Property name="MaxRegionRadius" value="17998" />
-          <Property name="MaxImposterRadius" value="18" />
-          <Property name="FadeOutStartDistance" value="17998" />
-          <Property name="FadeOutEndDistance" value="17998" />
+          <Property name="MaxRegionRadius" value="9999" />
+          <Property name="MaxImposterRadius" value="10" />
+          <Property name="FadeOutStartDistance" value="9999" />
+          <Property name="FadeOutEndDistance" value="9999" />
           <Property name="FadeOutOffsetDistance" value="0" />
           <Property name="LodDistances">
             <Property value="0" />
@@ -596,17 +596,17 @@ return [[
             <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
             <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
             <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-            <Property name="MaxRegionRadius" value="9" />
-            <Property name="MaxImposterRadius" value="18" />
-            <Property name="FadeOutStartDistance" value="63" />
-            <Property name="FadeOutEndDistance" value="81" />
-            <Property name="FadeOutOffsetDistance" value="5" />
+            <Property name="MaxRegionRadius" value="10" />
+            <Property name="MaxImposterRadius" value="10" />
+            <Property name="FadeOutStartDistance" value="70" />
+            <Property name="FadeOutEndDistance" value="80" />
+            <Property name="FadeOutOffsetDistance" value="10" />
             <Property name="LodDistances">
               <Property value="0" />
-              <Property value="16" />
-              <Property value="30" />
-              <Property value="50" />
-              <Property value="1000" />
+              <Property value="15" />
+              <Property value="35" />
+              <Property value="45" />
+              <Property value="500" />
             </Property>
           </Property>
           <Property value="GcObjectSpawnDataVariant.xml">
@@ -615,17 +615,17 @@ return [[
             <Property name="FlatDensity" value="]] .. flatDensity .. [[" />
             <Property name="SlopeDensity" value="]] .. slopeDensity .. [[" />
             <Property name="SlopeMultiplier" value="]] .. slopeMultiplier .. [[" />
-            <Property name="MaxRegionRadius" value="5" />
-            <Property name="MaxImposterRadius" value="18" />
-            <Property name="FadeOutStartDistance" value="126" />
-            <Property name="FadeOutEndDistance" value="144" />
+            <Property name="MaxRegionRadius" value="3" />
+            <Property name="MaxImposterRadius" value="10" />
+            <Property name="FadeOutStartDistance" value="70" />
+            <Property name="FadeOutEndDistance" value="80" />
             <Property name="FadeOutOffsetDistance" value="10" />
             <Property name="LodDistances">
               <Property value="0" />
-              <Property value="16" />
-              <Property value="30" />
-              <Property value="50" />
-              <Property value="1000" />
+              <Property value="15" />
+              <Property value="35" />
+              <Property value="45" />
+              <Property value="500" />
             </Property>
           </Property>
         </Property>
@@ -651,7 +651,7 @@ local replaceObjects =
 ]]
 
 --This adds basic collisions to pre-release models:
-local AddBasicCollisions = --scale y&z flipped compared to blender (v2.6: 0.24 from 0.189618)
+local AddBasicCollisions = --scale y&z flipped compared to blender
 [[
     <Property value="TkSceneNodeData.xml">
       <Property name="Name" value="CHILD1" />

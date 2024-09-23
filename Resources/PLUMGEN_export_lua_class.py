@@ -64,6 +64,7 @@ class PlumgenExportLuaClass():
             # initialize variables with default values
             self.header_reg_draw_1a = ""
             self.header_far_draw_1b = ""
+            self.header_near_draw_1c = ""
             self.body_2 = ""
             self.biome_3a1 = ""
             self.biome_last_3a2 = ""
@@ -136,6 +137,7 @@ class PlumgenExportLuaClass():
         '''
         self.header_reg_draw_1a
         self.header_far_draw_1b
+        self.header_near_draw_1c
         self.body_2 ------- @mod_title@ @mod_author@ @biome_name@
         self.biome_3 ------- @biome_name1@ @biome_name2@ @Distant@ @Landmark@ @Object@ @Detail@
         self.biome_3a1 ------- @biome_name1@ @biome_name2@
@@ -185,7 +187,7 @@ class PlumgenExportLuaClass():
             ]
 
             # strings require quotes when passed as arguments in lua funciton
-            add_quotes_indices = [0, 1, 15, 16, 17, 18]
+            add_quotes_indices = [0, 1, 2, 16, 17, 18, 19]
 
             with open(self.first_save_path, "w") as lua_file:
 
@@ -199,10 +201,14 @@ class PlumgenExportLuaClass():
                     # only do this once, at the start
                     if idx == 0:
 
-                        if self.prop_dist: # True
+                        if self.prop_dist == "far": # True
                             lua_file.write(self.header_far_draw_1b)
-                        else:
+                        elif self.prop_dist == "regular":
                             lua_file.write(self.header_reg_draw_1a)
+                        else:
+                            lua_file.write(self.header_near_draw_1c)
+
+
 
                         body_2_ed = self.body_2 \
                             .replace("@mod_title@", f"____Biomes_{entered_biomes_filen}") \
@@ -231,9 +237,9 @@ class PlumgenExportLuaClass():
                     
                     # reverse = exported exml order the same as imported exml, i.e. prop order
                     for distant_obj_list in reversed(biome.get_distant_obj_lists()):
-                        if '.MBIN' in distant_obj_list[0]:  # verify '.MBIN' string is in the model filepath (otherwise would cause crash)
+                        if '.MBIN' in distant_obj_list[1]:  # verify '.MBIN' string is in the model filepath (otherwise would cause crash)
                             items = [] # empty list ot store prop attributes
-                            for i, item in enumerate(distant_obj_list[:23]): # iterate over attributes from index 0-18
+                            for i, item in enumerate(distant_obj_list[:24]): # iterate over attributes from index 0-18
                                 if item == "": items.append('"' + "FOREST" + '"') # check if missing placement
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"') # check if missing all caps bool
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"') # add quotes to certain indices
@@ -243,9 +249,9 @@ class PlumgenExportLuaClass():
                             lua_file.write(biome_dist_3b_ed) # write function call to lua script
 
                     for landmark_list in reversed(biome.get_landmark_lists()):
-                        if '.MBIN' in landmark_list[0]:
+                        if '.MBIN' in landmark_list[1]:
                             items = []
-                            for i, item in enumerate(landmark_list[:23]):
+                            for i, item in enumerate(landmark_list[:24]):
                                 if item == "": items.append('"' + "FOREST" + '"')
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"')
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"')
@@ -255,9 +261,9 @@ class PlumgenExportLuaClass():
                             lua_file.write(biome_landm_3c_ed)
 
                     for objects_list in reversed(biome.get_objects_lists()):
-                        if '.MBIN' in objects_list[0]:
+                        if '.MBIN' in objects_list[1]:
                             items = []
-                            for i, item in enumerate(objects_list[:23]):
+                            for i, item in enumerate(objects_list[:24]):
                                 if item == "": items.append('"' + "FOREST" + '"')
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"')
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"')
@@ -267,15 +273,15 @@ class PlumgenExportLuaClass():
                             lua_file.write(biome_obj_3d_ed)
 
                     for detail_obj_list in reversed(biome.get_detail_obj_lists()):
-                        if '.MBIN' in detail_obj_list[0]:
+                        if '.MBIN' in detail_obj_list[1]:
                             function_call = ""
-                            if detail_obj_list[0] in windy_detail_objects:
+                            if detail_obj_list[1] in windy_detail_objects:
                                 function_call = "AddGrassProp"
                             else:
                                 function_call = "AddRockProp"
                             
                             items = []
-                            for i, item in enumerate(detail_obj_list[:23]):
+                            for i, item in enumerate(detail_obj_list[:24]):
                                 if item == "": items.append('"' + "FOREST" + '"')
                                 elif isinstance(item, bool): items.append('"' + "TRUE" + '"')
                                 elif i in add_quotes_indices: items.append('"' + str(item) + '"')
@@ -460,6 +466,7 @@ class PlumgenExportLuaClass():
     def populate_biome_objects_parts(self):
         self.header_reg_draw_1a = self.read_lua_file(os.path.join(self.lua_biomes_path, '1a_header_reg_draw.lua'))
         self.header_far_draw_1b = self.read_lua_file(os.path.join(self.lua_biomes_path, '1b_header_far_draw.lua'))
+        self.header_near_draw_1c = self.read_lua_file(os.path.join(self.lua_biomes_path, '1c_header_near_draw.lua'))
         self.body_2 = self.read_lua_file(os.path.join(self.lua_biomes_path, '2_body.lua'))
 
         self.biome_3a1 = self.read_lua_file(os.path.join(self.lua_biomes_path, '3a1_biome.lua'))

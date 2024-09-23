@@ -13,6 +13,7 @@ import json
 import xml.etree.ElementTree as ET
 import logging
 import shutil
+import threading
 from tkinter import messagebox
 from view.PLUMGEN_view_gen import PlumgenViewGen
 from Resources.PLUMGEN_model_gen import PlumgenModelGen
@@ -99,7 +100,7 @@ class PlumgenControllerGen():
             self.copy_counter = 1
             self.matching_lists_count = []
             self.biome_objs = [] # list of all biome objects
-            self.csv_compare_list = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
+            self.csv_compare_list = ["Type", "Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                         "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
                         "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip","DestroyedByTerrainEdit", "IsFloatingIsland",
                         "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"] #v4
@@ -133,7 +134,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"v1.11.1b - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.12 - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -280,7 +281,6 @@ class PlumgenControllerGen():
     
     def get_biome_objs(self):
         return self.biome_objs
-
     
     def get_placem_defaults(self):
         return self.placem_defaults
@@ -397,7 +397,7 @@ class PlumgenControllerGen():
         matching_lists = []
 
         for row in self.data:
-            if row['Filename'] == target_list[0]:
+            if row['Filename'] == target_list[1]:
                 #matching_list = [row[column] for column in self.csv_compare_list]
                 #replace '\' with '/'
                 matching_list = [row[column].replace('\\', '/') for column in self.csv_compare_list]
@@ -420,7 +420,7 @@ class PlumgenControllerGen():
         matching_lists = []
 
         for row in self.data:
-            if row['Filename'] == target_list[0]:
+            if row['Filename'] == target_list[1]:
                 matching_list = [row[column] for column in self.csv_compare_list]
                 matching_lists.append(matching_list)
 
@@ -440,7 +440,7 @@ class PlumgenControllerGen():
                 for j, target_list in enumerate(lists):
                     self.compare_and_recount(target_list)
                     
-                    #index = next(index for index, inner_list in enumerate(lists) if inner_list[0] == target_list[0])
+                    #index = next(index for index, inner_list in enumerate(lists) if inner_list[1] == target_list[1])
 
                     if i == 0:
                         biome_obj.set_all_distant_model_similar_props(j, self.matching_lists_count)
@@ -551,7 +551,7 @@ class PlumgenControllerGen():
                     # only rename based on objects, landmarks, and distantobjects model names
                     if i >= 0 and i <= 2:
 
-                        prop_model = (target_list[0]).lower()
+                        prop_model = (target_list[1]).lower()
 
                         # dictionary to map keywords to suffixes
                         keyword_suffix_mapping = {
@@ -727,16 +727,17 @@ class PlumgenControllerGen():
 
     def recursive_update(self, sublist):
         if isinstance(sublist[-1], list):  # check if last item is a list (nested structure)
-            if len(sublist) < 23:
+            if len(sublist) < 24:
                 # add specific strings/numbers at indices to update to 'worlds part 1', etc.
                 sublist.insert(12, "180")  # max_y_rotation
                 sublist.insert(13, "0")    # max_raise
                 sublist.insert(14, "0")    # max_lower
                 sublist.insert(17, "FALSE")  # is_floating_island
+
             for nested_sublist in sublist[-1]:
                 self.recursive_update(nested_sublist)
         else:
-            if len(sublist) < 23:
+            if len(sublist) < 24:
                 # add specific strings/numbers at indices to update to 'worlds part 1', etc.
                 sublist.insert(12, "180")  # max_y_rotation
                 sublist.insert(13, "0")    # max_raise
@@ -802,7 +803,7 @@ class PlumgenControllerGen():
             for obj_spawn_data in root.findall(f".//Property[@name='{category}']/Property[@value='GcObjectSpawnData.xml']"):
                 obj_data = []
                 # use old var names
-                for variable in ["Filename", "Placement", "RestrictionsMinHeight", "RestrictionsMaxHeight", "RestrictionsMinAngle",
+                for variable in ["Type", "Filename", "Placement", "RestrictionsMinHeight", "RestrictionsMaxHeight", "RestrictionsMinAngle",
                                 "RestrictionsMaxAngle", "PositioningMinScale", "PositioningMaxScale", "PositioningMinScaleY", "PositioningMaxScaleY",
                                 "PositioningPatchEdgeScaling", "PositioningMaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerVehicle", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "ObjectCreaturesCanEat", "PlacementCoverage", "PlacementFlatDensity", "PlacementSlopeDensity",
@@ -877,6 +878,7 @@ class PlumgenControllerGen():
 
 
     def after_next_process_directory(self, directory):
+        self.open_export_window_and_wait = self.view.get_open_export_window_and_wait() # check whether to auto open new window per subfolder
         # sort subfolders so that e.g. BIOMES2 is loaded after BIOMES1
         subfolders = sorted(next(os.walk(directory))[1], reverse=True)
         for subfolder in subfolders: # iterate over sorted subfolder names
@@ -889,6 +891,39 @@ class PlumgenControllerGen():
 
                         filepath = os.path.abspath(os.path.join(root, filename))
                         self.after_next_process_exml(filepath)
+        
+            if self.open_export_window_and_wait: # check whether to auto open new window per subfolder, e.g. for bulk importing & updating
+                # access processed biome objects data:
+                for exml_file in self.exml_files:
+                    distant_objects, landmarks, objects, detail_objects, name = exml_file
+                    self.name = name
+                    filepath_parts = self.name.split(self.subfolder)
+                    if len(filepath_parts) > 1:
+                        self.name = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('\\', '/')
+                        self.name = '/'.join([word.title() for word in self.name.split('/')])
+                        self.name = re.sub(r'[\\/]+', '/', self.name) # remove consecutive slashes or backslashes
+                        if self.name.startswith('/'): # remove the first slash if present
+                            self.name = self.name[1:]
+                    self.model = PlumgenModelGen(self.name, self.dist_list, self.landm_list, self.objs_list, self.detail_list)
+                    self.model.set_distant_obj_lists(distant_objects)
+                    self.model.set_landmark_lists(landmarks)
+                    self.model.set_objects_lists(objects)
+                    self.model.set_detail_obj_lists(detail_objects)
+                    self.biome_objs.append(self.model)
+                
+                # remove any biomes with /objects/ in name
+                biomes_to_delete = []
+                for index, biome in enumerate(self.biome_objs):
+                    if "/Objects/" in biome.get_filename():
+                        biomes_to_delete.append(index)
+                if len(biomes_to_delete) > 0:
+                    for index in reversed(biomes_to_delete):
+                        self.c_delete_biome(index) # delete biomes
+
+                # open second view so user can export quickly
+                self.view.export_script()
+                self.exml_files.clear()
+                self.biome_objs.clear()
 
 
     def after_next_process_exml(self, filepath):
@@ -903,7 +938,7 @@ class PlumgenControllerGen():
             for obj_spawn_data in root.findall(f".//Property[@name='{category}']/Property[@value='GcObjectSpawnData.xml']"):
                 obj_data = []
 
-                for variable in ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
+                for variable in ["Type", "Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                                 "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
                                 "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier"]:
@@ -940,7 +975,7 @@ class PlumgenControllerGen():
                         prop_value = None
 
 
-                    if variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "IsFloatingIsland" or variable == "CreaturesCanEat":
+                    if variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "CreaturesCanEat":
                         prop_value = prop_value.upper() # temp fix to match similar props
                     
                     obj_data.append(prop_value)
@@ -1189,7 +1224,7 @@ class PlumgenControllerGen():
 
                             else:
                                 all_biome_tile_types.append(biome_tile_types)
-                            
+
 
         return all_biome_tile_types
 
@@ -1259,7 +1294,7 @@ class PlumgenControllerGen():
                 for f_name in files:
 
                     
-                    if f_name.lower().endswith('.exml') and 'biomefilename' in f_name.lower():
+                    if f_name.lower().endswith('.exml') and 'biomefilename' in f_name.lower() and 'biomefilenamesarchive' not in f_name.lower():
                         path_to_bfn = os.path.abspath(os.path.join(root, f_name))
                         # process current BIOMEFILENAMES.EXML file and collect results
                         biome_files_wts_bfn, tile_types_bfn, valid_start_biomes_bfn = self.process_bfn_files(path_to_bfn)
@@ -1367,7 +1402,7 @@ class PlumgenControllerGen():
                     row = {"Filename": None}
 
                     # extract variables under GcObjectSpawnData.xml
-                    variables = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
+                    variables = ["Type", "Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                                 "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
                                 "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier"]
@@ -1406,7 +1441,7 @@ class PlumgenControllerGen():
     def after_next_make_biome_template(self, directory_path, output_csv_path):
         # open CSV file for writing
         with open(output_csv_path, 'w', newline='') as csv_file:
-            fieldnames = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
+            fieldnames = ["Type", "Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                         "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
                         "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                         "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"]
@@ -1467,7 +1502,7 @@ class PlumgenControllerGen():
                     row = {"Filename": None}
 
                     # extract specific variables under GcObjectSpawnData.xml
-                    variables = ["Filename", "Placement", "PlacementCoverage", "PlacementFlatDensity", "PlacementSlopeDensity", "PlacementSlopeMultiplier", "RestrictionsMinHeight", "RestrictionsMaxHeight", 
+                    variables = ["Type", "Filename", "Placement", "PlacementCoverage", "PlacementFlatDensity", "PlacementSlopeDensity", "PlacementSlopeMultiplier", "RestrictionsMinHeight", "RestrictionsMaxHeight", 
                                 "RestrictionsMinAngle", "RestrictionsMaxAngle","PositioningMinScale", "PositioningMaxScale", "PositioningMinScaleY", 
                                 "PositioningMaxScaleY", "PositioningPatchEdgeScaling","PositioningMaxXZRotation", 
                                 "DestroyedByPlayerVehicle", "ObjectCreaturesCanEat" ]
@@ -1510,7 +1545,7 @@ class PlumgenControllerGen():
     def before_next_make_biome_template(self, directory_path, output_csv_path):
         # open the CSV file for writing
         with open(output_csv_path, 'w', newline='') as csv_file:
-            fieldnames = ["Filename", "Placement", "PlacementCoverage", "PlacementFlatDensity", "PlacementSlopeDensity", "PlacementSlopeMultiplier", "RestrictionsMinHeight", "RestrictionsMaxHeight", 
+            fieldnames = ["Type", "Filename", "Placement", "PlacementCoverage", "PlacementFlatDensity", "PlacementSlopeDensity", "PlacementSlopeMultiplier", "RestrictionsMinHeight", "RestrictionsMaxHeight", 
                                 "RestrictionsMinAngle", "RestrictionsMaxAngle","PositioningMinScale", "PositioningMaxScale", "PositioningMinScaleY", 
                                 "PositioningMaxScaleY", "PositioningPatchEdgeScaling","PositioningMaxXZRotation", 
                                 "DestroyedByPlayerVehicle", "ObjectCreaturesCanEat", "MaxYRotation", "MaxRaise", "MaxLower", "IsFloatingIsland", "DestroyedByTerrainEdit", "DrawDistance" ]
@@ -1540,7 +1575,7 @@ class PlumgenControllerGen():
             reader = csv.DictReader(csv_file)
 
             # new column names
-            new_column_names = ["Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
+            new_column_names = ["Type", "Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
                                 "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
                                 "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip", "DestroyedByTerrainEdit", "IsFloatingIsland",
                                 "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"]
@@ -1552,6 +1587,7 @@ class PlumgenControllerGen():
                 for row in reader:
                     # map old column names to new column names
                     new_row = {
+                        "Type": row["Type"],
                         "Filename": row["Filename"],
                         "Placement": row["Placement"],
                         "MinHeight": row["RestrictionsMinHeight"],

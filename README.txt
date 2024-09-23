@@ -1,4 +1,4 @@
-PLUMGEN (v1.11.1v)
+PLUMGEN (v1.12)
 
 -- APP FEATURES: --------------------------------------------------------------------------------------------------
 
@@ -11,30 +11,38 @@ PLUMGEN (v1.11.1v)
 	-Save and share individual biomes (JSON files).
 	-Validates all input and data = very stable mods.
 	-Exhaustive error handling and logging (all done locally), helps fix app issues quickly.
-	-Responsive and intuitive interface, anyone can learn how to make badass biome mods!
+	-Responsive and intuitive interface, anyone can learn how to make badass biome mods.
 	-And more!
 
 
 
 -- CHANGELOG: -----------------------------------------------------------------------------------------------------
 
-v1.11.1b Update: Fix for importing outdated after-NEXT biomes.
+Update v1.12:
 
-v1.11.1a Update:
+	-New dropdown menu item (File > Bulk Import & Update) for bulk updating many BIOMES folders separately in '_BIOMES Exmls Folder Goes Here' directory.
+		>Video demo: https://www.youtube.com/watch?v=LbyHlvXGZXM
+	-New export draw distance option for better performance: 'Near'. Can be used for biomes with demanding/high res custom models.
+	-Added support for new prop attribute: 'Type'. Two values for this attribute: 'Instanced' or 'Single'.
+		>Type is an obfuscated attribute which controls e.g. whether props despawn on slopes or if a floating prop has collisions.
+
+Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
+
+Update v1.11.1a:
 
 	-Fixed bulk editing certain prop attributes, like "Coverage."
 	-Support for auto-renaming and auto-adding new 'Worlds Part 1' biomes.
 	-Fixed issue with making a biome template (.csv) with outdated after-NEXT biomes.
 	-Misc. bug fixes.
 
-v1.11 Update:
+Update v1.11:
 
 	-Updated to "Worlds Part 1"
 		>Added support for 4 new prop attributes: MaxYRotation, MaxRaise, MaxLower & IsFloatingIsland.
 		>Updated each biome .csv ("v2" in filename), added 'Worlds Part 1.csv' biome template - includes newest props.
 		>Automatically updates old biome objects files, biome files, and presets.
 
-v1.1 Update:
+Update v1.1:
 
 	-New Update menu item - Fetches and downloads latest PLUMGEN update. You no longer have to manually download updates.
 	-Added support for 10 languages - Reworked all text elements, translated each via. DeepL (take these with a grain of salt). ;)
@@ -44,7 +52,7 @@ v1.1 Update:
 	-Security improvements.
 	-New prompt asking to download latest MBINCompiler update - You can export offline or continue modding with outdated NMS/MBINCompiler versions.
 
-v1.0 Full Release:
+Full Release v1.0:
 
 	-Overhauled exporting. AMUMSS no longer required. You can now export directly to .PAK using PLUMGEN's new efficient export system.
 		>10x faster export time vs. LUA - Exporting 20,000+ biomes now takes ~3 minutes, compared to 30+ minutes via. LUA/AMUMSS. [1]

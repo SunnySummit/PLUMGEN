@@ -28,6 +28,8 @@ class PlumgenViewGenExport:
                 icon_path,
                 lngs,
                 ln,
+                oewaw,
+                checked_mbc_update_alr,
                 apply_callback):
         
         self.logger = logging.getLogger(__name__)  #set up logging
@@ -51,6 +53,8 @@ class PlumgenViewGenExport:
             self.icon_path = icon_path
             self.langs = lngs
             self.lan = ln
+            self.open_export_window_and_wait = oewaw
+            self.checked_mbc_update_already = checked_mbc_update_alr
 
             #if not self.bfn_all_valid_start_planets: # check that valid_start_planets is not empty -- happens with pre-next NMS
             #    self.bfn_all_valid_start_planets.append("!! Don't leave blank [ADD THEN DELETE ME]")
@@ -70,7 +74,7 @@ class PlumgenViewGenExport:
             self.parent.withdraw()
             
             self.window = tk.Toplevel(self.grandparent)
-            self.window.title(f"v1.11.1b - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
+            self.window.title(f"v1.12 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
             
 
             # retrieve parent window's position & size
@@ -129,6 +133,9 @@ class PlumgenViewGenExport:
             self.populate_biome_files_list_weights_notebook()
 
             #---------------------------------------------------------------------
+
+            if self.open_export_window_and_wait:
+                self.apply_export_settings()
 
             # set closing event handler for the Toplevel window
             self.window.protocol("WM_DELETE_WINDOW", self.on_close)
@@ -1174,9 +1181,29 @@ class PlumgenViewGenExport:
         dr_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["dr_label"], justify=tk.LEFT, font=("TkDefaultFont", 8))
         dr_label.grid(row=0, column=0, columnspan=2, padx=(20, 20), pady=(0, 20), sticky=tk.W)
 
-        self.prop_dist_var = tk.BooleanVar()
-        dr_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["dr_checkbox"], variable=self.prop_dist_var)
-        dr_checkbox.grid(row=1, column=0, columnspan=2, padx=(20, 20), sticky=tk.W)
+        draw_dist_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["draw_dist_label"], justify=tk.CENTER, font=("TkDefaultFont", 10))
+        draw_dist_label.grid(row=0, column=0, columnspan=3, padx=(20, 20), pady=(20, 0), sticky=tk.S)
+
+        #self.prop_dist_var = tk.BooleanVar()
+        #dr_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["dr_checkbox"], variable=self.prop_dist_var)
+        #dr_checkbox.grid(row=1, column=0, columnspan=2, padx=(20, 20), sticky=tk.W)
+
+        # StringVar to hold selected option
+        self.prop_dist_var = tk.StringVar(value="near")  # Default value
+
+        if self.open_export_window_and_wait: # set to regular automatically when bulk updating
+            self.prop_dist_var = tk.StringVar(value="regular")
+
+        # radio buttons for 'far', 'regular', and 'near'
+        far_radio = tk.Radiobutton(self.export_settings_window, text="Far[+][+]", variable=self.prop_dist_var, value="far")
+        regular_radio = tk.Radiobutton(self.export_settings_window, text="Regular[+]", variable=self.prop_dist_var, value="regular")
+        near_radio = tk.Radiobutton(self.export_settings_window, text="Near", variable=self.prop_dist_var, value="near")
+
+        # radio buttons in window
+        far_radio.grid(row=1, column=2, padx=(20, 20), sticky=tk.W)
+        regular_radio.grid(row=1, column=1, padx=(20, 20), sticky=tk.W)
+        near_radio.grid(row=1, column=0, padx=(20, 20), sticky=tk.W)
+
 
         # global lod/draw distance dialog
         #global_label = tk.Label(export_settings_window, text="Global LOD/draw distance limit/fade time [+]")
@@ -1184,25 +1211,30 @@ class PlumgenViewGenExport:
 
         self.global_dist_var = tk.BooleanVar()
         global_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["global_checkbox"], variable=self.global_dist_var)
-        global_checkbox.grid(row=3, column=0, columnspan=2, padx=(20, 20), pady=(0, 20), sticky=tk.W)
+        global_checkbox.grid(row=3, column=0, columnspan=3, padx=(20, 20), pady=(0, 20), sticky=tk.EW)
 
         # mod author entry
         self.mod_author_entry = tk.Entry(self.export_settings_window)
         mod_author_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Mod_Author"])
         mod_author_label.grid(row=4, column=0, padx=(0, 0), sticky=tk.E)
-        self.mod_author_entry.grid(row=4, column=1, padx=(0, 10), sticky=tk.W)
+        self.mod_author_entry.grid(row=4, column=1, columnspan=2, padx=(0, 50), sticky=tk.EW)
 
         # biomes filename entry
         self.biomes_filename_entry = tk.Entry(self.export_settings_window)
         biomes_filename_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Biomes_Filename"])
         biomes_filename_label.grid(row=5, column=0, padx=(0, 0), sticky=tk.E)
-        self.biomes_filename_entry.grid(row=5, column=1, padx=(0, 10), sticky=tk.W)
+        self.biomes_filename_entry.grid(row=5, column=1, columnspan=2, padx=(0, 50), sticky=tk.EW)
 
         # spawner filename entry
         self.spawner_filename_entry = tk.Entry(self.export_settings_window)
         spawner_filename_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Spawner_Filename"])
         spawner_filename_label.grid(row=6, column=0, padx=(0, 0), sticky=tk.E)
-        self.spawner_filename_entry.grid(row=6, column=1, padx=(0, 10), sticky=tk.W)
+        self.spawner_filename_entry.grid(row=6, column=1, columnspan=2, padx=(0, 50), sticky=tk.EW)
+
+        if self.open_export_window_and_wait: # set to me 'cause ain't nobody else usin this
+            self.mod_author_entry.insert(0, "goosetehmoose")
+            self.biomes_filename_entry.insert(0, "Las_")
+            self.spawner_filename_entry.insert(0, "Las_")
 
         # export button
         export_button = tk.Button(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Export"], command=self.export_all_the_files, width=10, background='#473d5c', foreground=self.white_c)
@@ -1213,6 +1245,7 @@ class PlumgenViewGenExport:
 
     def export_all_the_files(self):
         # get values from export settings window
+        #self.prop_dist = self.prop_dist_var.get()
         self.prop_dist = self.prop_dist_var.get()
         self.global_dist = self.global_dist_var.get()
         mod_author = self.mod_author_entry.get()
@@ -1293,19 +1326,25 @@ class PlumgenViewGenExport:
             timestamp,
             self.langs,
             self.lan,
+            self.open_export_window_and_wait,
+            self.checked_mbc_update_already,
             self.window
         )
 
 
         # begin exporting directly to pak
 
-        connected_to_internet = self.export_exml_class.update_mbc_move_files() #
-        #print("\n1")
-        if not connected_to_internet:
+        if not self.checked_mbc_update_already:
 
-            continue_process = messagebox.askyesno(self.langs[self.lan]["filemenu_view_gen_export"]["Question"], self.langs[self.lan]["filemenu_view_gen_export"]["Question_Desc"], parent=self.window)
-            if not continue_process:
-                return # user clicked no or closed
+            connected_to_internet = self.export_exml_class.update_mbc_move_files() #
+            #print("\n1")
+            if not connected_to_internet:
+
+                continue_process = messagebox.askyesno(self.langs[self.lan]["filemenu_view_gen_export"]["Question"], self.langs[self.lan]["filemenu_view_gen_export"]["Question_Desc"], parent=self.window)
+                if not continue_process:
+                    return # user clicked no or closed
+            
+            self.checked_mbc_update_already = True
 
 
         self.export_exml_class.modify_prop_scenes()
@@ -1417,9 +1456,10 @@ class PlumgenViewGenExport:
     def on_close(self):
         try:
 
-            messagebox.showinfo(self.langs[self.lan]["on_close_2"]["biome_notice_title"], self.langs[self.lan]["on_close_2"]["biome_notice_desc"], parent=self.window)
+            if not self.open_export_window_and_wait:
+                messagebox.showinfo(self.langs[self.lan]["on_close_2"]["biome_notice_title"], self.langs[self.lan]["on_close_2"]["biome_notice_desc"], parent=self.window)
             
-            self.apply_callback(self.bfn_all_biome_files_weights, self.bfn_all_valid_start_planets, self.bfn_all_tile_types, self.all_biome_tile_types)
+            self.apply_callback(self.bfn_all_biome_files_weights, self.bfn_all_valid_start_planets, self.bfn_all_tile_types, self.all_biome_tile_types, self.checked_mbc_update_already)
 
             self.parent.attributes("-alpha", 0.0) # remove flash
             self.parent.deiconify() # show the root window again
