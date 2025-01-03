@@ -1,5 +1,5 @@
 {
-    "Lan": "English",
+    "Lan": "TBD",
     "English": {
         "PLUMGEN_main": {
             "----NEW_FILE----": "-----------------------------------------------------------------------------------------------------------------------",
@@ -418,7 +418,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Confirm Add All",
-            "add_all_desc": "---------------------------WARNING---------------------------\nDo NOT do this more than once, or else you will have to manually remove each duplicate biome from each Sub-Biome tab.\n\nIf you clicked 'Auto Rename All' in the previous window, this will attempt to match each word following the underscores in the biome name with the names of each Sub-Biome, If a match is found, the custom biome will be added to the Sub-Biome.\n\nKeep in mind, not every keyword has a matching Sub-Biome (e.g. Industrial, Alpine, Livingship, Nevada, Rainforest, etc). You will need to manually add these custom biomes to a Sub-Biome.\n\nYou cannot undo this. Do you want to proceed?"
+            "add_all_desc": "---------------------------WARNING---------------------------\nDo NOT do this more than once, or else you will have to manually remove each duplicate biome from each Sub-Biome tab.\n\nIf you clicked 'Auto Rename All' in the previous window, this will attempt to match each word following the underscores in the biome name with the names of each Sub-Biome, If a match is found, the custom biome will be added to the Sub-Biome.\n\nYou cannot undo this. Do you want to proceed?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Confirm Remove",
@@ -1017,7 +1017,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "确认添加全部",
-            "add_all_desc": "---------------------------警告---------------------------\n不要多次执行此操作，否则您将不得不手动从每个子生物群系选项卡中删除每个重复的生物群系。\n\n如果您在上一个窗口中单击了“自动重命名所有”，则此操作将尝试将生物群系名称中下划线后的每个单词与每个子生物群系的名称匹配。如果找到匹配项，则将自定义生物群系添加到子生物群系中。\n\n请记住，并非每个关键字都有匹配的子生物群系（例如工业、高山、生活船、内华达、热带雨林等）。您需要手动将这些自定义生物群系添加到子生物群系中。\n\n您无法撤消此操作。您要继续吗？"
+            "add_all_desc": "---------------------------警告---------------------------\n不要多次执行此操作，否则您将不得不手动从每个子生物群系选项卡中删除每个重复的生物群系。\n\n您无法撤消此操作。您要继续吗？"
         },
         "delete_add_stuff": {
             "delete_biome_title": "确认移除",
@@ -1616,7 +1616,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Vahvista Lisää kaikki",
-            "add_all_desc": "---------------------------VAROITUS---------------------------\nÄLÄ tee tätä useammin kuin kerran, muuten joudut poistamaan jokaisen kaksoisbiomin jokaisesta alabiomin välilehdestä manuaalisesti.\n\nJos klikkasit 'Automaattinen Uudelleennimeäminen Kaikki' edellisessä ikkunassa, tämä yrittää sovittaa jokaisen alaviivan jälkeen tulevan sanan biomin nimeen jokaisen alabiomin nimen kanssa. Jos vastaavuus löytyy, mukautettu biome lisätään alabiomiin.\n\nMuista, että kaikki avainsanat eivät vastaa alabiomeja (esim. Teollisuus, Alppi, Elävälautta, Nevada, Sademetsä, jne.). Sinun täytyy lisätä nämä mukautetut biomit alabiomiin manuaalisesti.\n\nEt voi peruuttaa tätä. Haluatko jatkaa?"
+            "add_all_desc": "---------------------------VAROITUS---------------------------\nÄLÄ tee tätä useammin kuin kerran, muuten joudut poistamaan jokaisen kaksoisbiomin jokaisesta alabiomin välilehdestä manuaalisesti.\n\nJos klikkasit 'Automaattinen Uudelleennimeäminen Kaikki' edellisessä ikkunassa, tämä yrittää sovittaa jokaisen alaviivan jälkeen tulevan sanan biomin nimeen jokaisen alabiomin nimen kanssa. Jos vastaavuus löytyy, mukautettu biome lisätään alabiomiin.\n\nEt voi peruuttaa tätä. Haluatko jatkaa?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Vahvista poisto",
@@ -2215,7 +2215,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Confirmer Ajouter tout",
-            "add_all_desc": "---------------------------ATTENTION---------------------------\nNe faites PAS cela plus d'une fois, sinon vous devrez supprimer manuellement chaque biome en double de chaque onglet Sous-biome.\n\nSi vous avez cliqué sur 'Renommer tout automatiquement' dans la fenêtre précédente, cela tentera de faire correspondre chaque mot suivant les traits de soulignement dans le nom du biome avec les noms de chaque Sous-biome. Si une correspondance est trouvée, le biome personnalisé sera ajouté au Sous-biome.\n\nGardez à l'esprit que tous les mots-clés n'ont pas de Sous-biome correspondant (par exemple, Industriel, Alpin, Vaisseau-vivant, Nevada, Forêt tropicale, etc.). Vous devrez ajouter manuellement ces biomes personnalisés à un Sous-biome.\n\nVous ne pouvez pas annuler cela. Voulez-vous continuer?"
+            "add_all_desc": "---------------------------ATTENTION---------------------------\nNe faites PAS cela plus d'une fois, sinon vous devrez supprimer manuellement chaque biome en double de chaque onglet Sous-biome.\n\nSi vous avez cliqué sur 'Renommer tout automatiquement' dans la fenêtre précédente, cela tentera de faire correspondre chaque mot suivant les traits de soulignement dans le nom du biome avec les noms de chaque Sous-biome. Si une correspondance est trouvée, le biome personnalisé sera ajouté au Sous-biome.\n\nVous ne pouvez pas annuler cela. Voulez-vous continuer?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Confirmer la suppression",
@@ -2814,7 +2814,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Bestätigen Sie „Alle hinzufügen“.",
-            "add_all_desc": "---------------------------WARNUNG---------------------------\nFühren Sie dies NICHT mehr als einmal aus, sonst müssen Sie jede duplizierte Biome manuell aus jedem Unter-Biome-Tab entfernen.\n\nWenn Sie in dem vorherigen Fenster auf 'Alle automatisch umbenennen' geklickt haben, wird versucht, jedes Wort nach den Unterstrichen im Biomenamen mit den Namen jedes Unter-Biomes abzugleichen. Wenn eine Übereinstimmung gefunden wird, wird das benutzerdefinierte Biomen dem Unter-Biome hinzugefügt.\n\nBeachten Sie, dass nicht jedes Schlüsselwort ein passendes Unter-Biome hat (z.B. Industrie, Alpin, Lebensschiff, Nevada, Regenwald, etc.). Sie müssen diese benutzerdefinierten Biome manuell einem Unter-Biome hinzufügen.\n\nDies kann nicht rückgängig gemacht werden. Möchten Sie fortfahren?"
+            "add_all_desc": "---------------------------WARNUNG---------------------------\nFühren Sie dies NICHT mehr als einmal aus, sonst müssen Sie jede duplizierte Biome manuell aus jedem Unter-Biome-Tab entfernen.\n\nWenn Sie in dem vorherigen Fenster auf 'Alle automatisch umbenennen' geklickt haben, wird versucht, jedes Wort nach den Unterstrichen im Biomenamen mit den Namen jedes Unter-Biomes abzugleichen. Wenn eine Übereinstimmung gefunden wird, wird das benutzerdefinierte Biomen dem Unter-Biome hinzugefügt.\n\nDies kann nicht rückgängig gemacht werden. Möchten Sie fortfahren?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Bestätigen Löschen",
@@ -3413,7 +3413,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Conferma Aggiungi tutto",
-            "add_all_desc": "---------------------------AVVISO---------------------------\nNON farlo più di una volta, altrimenti dovrai rimuovere manualmente ogni biome duplicato da ciascuna scheda di Sotto-Biome.\n\nSe hai cliccato su 'Rinomina automaticamente tutti' nella finestra precedente, questo cercherà di abbinare ogni parola dopo gli underscore nel nome del biome con i nomi di ciascun Sotto-Biome. Se viene trovata una corrispondenza, il biome personalizzato verrà aggiunto al Sotto-Biome.\n\nTieni presente che non ogni parola chiave ha un corrispondente Sotto-Biome (ad es. Industriale, Alpino, Nave vivente, Nevada, Foresta pluviale, ecc.). Dovrai aggiungere manualmente questi biomi personalizzati a un Sotto-Biome.\n\nNon puoi annullare questa azione. Vuoi procedere?"
+            "add_all_desc": "---------------------------AVVISO---------------------------\nNON farlo più di una volta, altrimenti dovrai rimuovere manualmente ogni biome duplicato da ciascuna scheda di Sotto-Biome.\n\nSe hai cliccato su 'Rinomina automaticamente tutti' nella finestra precedente, questo cercherà di abbinare ogni parola dopo gli underscore nel nome del biome con i nomi di ciascun Sotto-Biome. Se viene trovata una corrispondenza, il biome personalizzato verrà aggiunto al Sotto-Biome.\n\nNon puoi annullare questa azione. Vuoi procedere?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Conferma Rimozione",
@@ -4012,7 +4012,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "すべて追加を確認",
-            "add_all_desc": "---------------------------警告---------------------------\nこれを1回以上行わないでください。そうしないと、各サブバイオームタブから各重複したバイオームを手動で削除する必要があります。\n\n前のウィンドウで「すべての自動名前変更」をクリックした場合、これはバイオーム名のアンダースコアに続く各単語をサブバイオームの名前と一致させようとします。一致が見つかった場合、カスタムバイオームがサブバイオームに追加されます。\n\n注意してください、すべてのキーワードには一致するサブバイオームがあるわけではありません（例：工業、アルパイン、リビングシップ、ネバダ、熱帯雨林など）。これらのカスタムバイオームをサブバイオームに手動で追加する必要があります。\n\nこれを元に戻すことはできません。続行しますか？"
+            "add_all_desc": "---------------------------警告---------------------------\nこれを1回以上行わないでください。そうしないと、各サブバイオームタブから各重複したバイオームを手動で削除する必要があります。\n\n前のウィンドウで「すべての自動名前変更」をクリックした場合、これはバイオーム名のアンダースコアに続く各単語をサブバイオームの名前と一致させようとします。一致が見つかった場合、カスタムバイオームがサブバイオームに追加されます。\n\nこれを元に戻すことはできません。続行しますか？"
         },
         "delete_add_stuff": {
             "delete_biome_title": "削除の確認",
@@ -4611,7 +4611,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "모두 추가 확인",
-            "add_all_desc": "---------------------------경고---------------------------\n이 작업을 한 번 이상 수행하지 마십시오. 그렇지 않으면 각 하위 바이옴 탭에서 각 중복 바이옴을 수동으로 제거해야 합니다.\n\n이전 창에서 '자동으로 모두 이름 바꾸기'를 클릭했다면 이 작업은 각 바이옴 이름 뒤의 밑줄 뒤의 각 단어를 각 하위 바이옴의 이름과 일치시키려고 합니다. 일치하는 경우 사용자 정의 바이옴이 하위 바이옴에 추가됩니다.\n\n기억해야 할 중요한 점은 모든 키워드가 일치하는 하위 바이옴이 있는 것은 아니라는 것입니다 (예: 산업, 고산, 리빙쉽, 네바다, 우림 등). 이러한 사용자 정의 바이옴을 수동으로 하위 바이옴에 추가해야 합니다.\n\n이 작업을 취소할 수 없습니다. 계속하시겠습니까?"
+            "add_all_desc": "---------------------------경고---------------------------\n이 작업을 한 번 이상 수행하지 마십시오. 그렇지 않으면 각 하위 바이옴 탭에서 각 중복 바이옴을 수동으로 제거해야 합니다.\n\n이전 창에서 '자동으로 모두 이름 바꾸기'를 클릭했다면 이 작업은 각 바이옴 이름 뒤의 밑줄 뒤의 각 단어를 각 하위 바이옴의 이름과 일치시키려고 합니다. 일치하는 경우 사용자 정의 바이옴이 하위 바이옴에 추가됩니다.\n\n이 작업을 취소할 수 없습니다. 계속하시겠습니까?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "확인 삭제",
@@ -5210,7 +5210,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Confirmar Adicionar tudo",
-            "add_all_desc": "---------------------------AVISO---------------------------\nNÃO faça isso mais de uma vez, caso contrário, você terá que remover manualmente cada bioma duplicado de cada guia de Sub-Bioma.\n\nSe você clicou em 'Renomear Todos Automaticamente' na janela anterior, isso tentará combinar cada palavra após os sublinhados no nome do bioma com os nomes de cada Sub-Bioma. Se for encontrada uma correspondência, o bioma personalizado será adicionado ao Sub-Bioma.\n\nTenha em mente que nem todas as palavras-chave têm um Sub-Bioma correspondente (por exemplo, Industrial, Alpino, Nave Vivente, Nevada, Floresta Tropical, etc.). Você precisará adicionar manualmente esses biomas personalizados a um Sub-Bioma.\n\nVocê não pode desfazer isso. Deseja prosseguir?"
+            "add_all_desc": "---------------------------AVISO---------------------------\nNÃO faça isso mais de uma vez, caso contrário, você terá que remover manualmente cada bioma duplicado de cada guia de Sub-Bioma.\n\nSe você clicou em 'Renomear Todos Automaticamente' na janela anterior, isso tentará combinar cada palavra após os sublinhados no nome do bioma com os nomes de cada Sub-Bioma. Se for encontrada uma correspondência, o bioma personalizado será adicionado ao Sub-Bioma.\n\nVocê não pode desfazer isso. Deseja prosseguir?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Confirmar Remoção",
@@ -5809,7 +5809,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Подтвердите добавление всех",
-            "add_all_desc": "---------------------------ПРЕДУПРЕЖДЕНИЕ---------------------------\nНе делайте этого более одного раза, иначе вам придется вручную удалить каждый дублирующийся биом из каждой вкладки Подбиома.\n\nЕсли вы щелкнули 'Автоматически переименовать все' в предыдущем окне, это попытается сопоставить каждое слово, следующее за подчеркиваниями в имени биома, с названиями каждого Подбиома. Если совпадение найдено, пользовательский биом будет добавлен в Подбиом.\n\nИмейте в виду, что не каждое ключевое слово имеет соответствующий Подбиом (например, Промышленный, Альпийский, Живущий корабль, Невада, Райский лес и т. д.). Вам придется вручную добавить эти пользовательские биомы в Подбиом.\n\nОтменить это действие невозможно. Желаете продолжить?"
+            "add_all_desc": "---------------------------ПРЕДУПРЕЖДЕНИЕ---------------------------\nНе делайте этого более одного раза, иначе вам придется вручную удалить каждый дублирующийся биом из каждой вкладки Подбиома.\n\nЕсли вы щелкнули 'Автоматически переименовать все' в предыдущем окне, это попытается сопоставить каждое слово, следующее за подчеркиваниями в имени биома, с названиями каждого Подбиома. Если совпадение найдено, пользовательский биом будет добавлен в Подбиом.\n\nОтменить это действие невозможно. Желаете продолжить?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Подтвердить удаление",
@@ -6408,7 +6408,7 @@
         },
         "auto_add_all_biomes": {
             "add_all_title": "Confirmar Agregar todo",
-            "add_all_desc": "---------------------------ADVERTENCIA---------------------------\nNO hagas esto más de una vez, o tendrás que eliminar manualmente cada bioma duplicado de cada pestaña de Sub-Bioma.\n\nSi hiciste clic en 'Renombrar Todo Automáticamente' en la ventana anterior, esto intentará hacer coincidir cada palabra que sigue a los guiones bajos en el nombre del bioma con los nombres de cada Sub-Bioma. Si se encuentra una coincidencia, el bioma personalizado se agregará al Sub-Bioma.\n\nTen en cuenta que no todas las palabras clave tienen un Sub-Bioma coincidente (por ejemplo, Industrial, Alpine, Livingship, Nevada, Rainforest, etc.). Deberás agregar manualmente estos biomas personalizados a un Sub-Bioma.\n\nNo podrás deshacer esto. ¿Quieres continuar?"
+            "add_all_desc": "---------------------------ADVERTENCIA---------------------------\nNO hagas esto más de una vez, o tendrás que eliminar manualmente cada bioma duplicado de cada pestaña de Sub-Bioma.\n\nSi hiciste clic en 'Renombrar Todo Automáticamente' en la ventana anterior, esto intentará hacer coincidir cada palabra que sigue a los guiones bajos en el nombre del bioma con los nombres de cada Sub-Bioma. Si se encuentra una coincidencia, el bioma personalizado se agregará al Sub-Bioma.\n\nNo podrás deshacer esto. ¿Quieres continuar?"
         },
         "delete_add_stuff": {
             "delete_biome_title": "Confirmar Eliminación",

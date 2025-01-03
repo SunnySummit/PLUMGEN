@@ -23,10 +23,12 @@ class PlumgenModelGen():
             self.objs_defaults = objs_def
             self.detail_objs_defaults = detail_def
 
+            self.biome_type_name = ""
+
             # initialize variables and dictionary with default values
             self.defaults = {
                 "prop_type": "Instanced",
-                "model_path": "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
+                "model_path": "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN",
                 "placement": "WORDSTONE",
                 "min_height": 0,
                 "max_height": 0,
@@ -56,27 +58,212 @@ class PlumgenModelGen():
             # create list by iterating over the keys of the dictionary
             self.distant_obj_list = [self.defaults[key] for key in self.defaults]
 
-            #  create copies of the lists
+            # create copies of the lists
             self.landmarks_list = self.distant_obj_list.copy()
-            self.objects_list = self.distant_obj_list.copy()
-            self.detail_obj_list = self.distant_obj_list.copy()
+            self.landmarks_list_2 = self.distant_obj_list.copy() # v1.2: add more landmarks
+            if random.randint(1, 4) == 1: # 1 in 4 chance of adding 1 more landmark:
+                self.landmarks_list_3 = self.distant_obj_list.copy()
 
+            self.objects_list = self.distant_obj_list.copy()
+            self.objects_list_2 = self.distant_obj_list.copy() # v1.2: add more objects
+            self.objects_list_3 = self.distant_obj_list.copy()
+            if random.randint(1, 4) == 1: # 1 in 4 chance of adding 1 more object:
+                self.objects_list_4 = self.distant_obj_list.copy()
+
+            self.detail_obj_list = self.distant_obj_list.copy()
+            self.detail_obj_list_2 = self.distant_obj_list.copy() # v1.2: add more detail
+            self.detail_obj_list_3 = self.distant_obj_list.copy()
+            self.detail_obj_list_4 = self.distant_obj_list.copy()
+            if random.randint(1, 4) == 1: # 1 in 4 chance of adding 2 more detail:
+                self.detail_obj_list_5 = self.distant_obj_list.copy()
+            if random.randint(1, 4) == 1:
+                self.detail_obj_list_6 = self.distant_obj_list.copy()
+
+
+            initial_biome_type = ""
             # set model_path for each list to a random item (excluding "--")
             # check if list is empty = won't create a blank asset
-            if bool(self.distant_objs_defaults):
-                self.distant_obj_list[1] = random.choice([item for item in self.distant_objs_defaults if item != "--"])
+            # landmarks
             if bool(self.landmarks_defaults):
-                self.landmarks_list[1] = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                initial_biome_type = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                self.landmarks_list[1] = initial_biome_type
+                self.describe_biome(initial_biome_type)
+                
+                landm_type_2 = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                attempts = 0
+                # loop until self.similar_biome_names(landm_type_2) is True or exceed 1000 attempts
+                while not self.similar_biome_names(landm_type_2) and attempts < 1000:
+                    landm_type_2 = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                    attempts += 1
+                self.landmarks_list_2[1] = landm_type_2
+
+                if hasattr(self, 'landmarks_list_3'):
+                    landm_type_3 = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                    attempts = 0
+                    while not self.similar_biome_names(landm_type_3) and attempts < 1000:
+                        landm_type_3 = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                        attempts += 1
+                    self.landmarks_list_3[1] = landm_type_3
+
+            # distant
+            if bool(self.distant_objs_defaults):
+                if random.randint(1, 4) == 4: # 1 in 4 chance of distant object (least variety, biggest props)
+                    distant_type = random.choice([item for item in self.distant_objs_defaults if item != "--"])
+                    attempts = 0
+                    while not self.similar_biome_names(distant_type) and attempts < 1000:
+                        distant_type = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                        attempts += 1
+                    self.distant_obj_list[1] = distant_type
+
+            # objects
             if bool(self.objs_defaults):
-                self.objects_list[1] = random.choice([item for item in self.objs_defaults if item != "--"])
+                objs_type_1 = random.choice([item for item in self.objs_defaults if item != "--"])
+                attempts = 0
+                while not self.similar_biome_names(objs_type_1) and attempts < 1000:
+                    objs_type_1 = random.choice([item for item in self.objs_defaults if item != "--"])
+                    attempts += 1
+                self.objects_list[1] = objs_type_1
+
+                objs_type_2 = random.choice([item for item in self.objs_defaults if item != "--"])
+                attempts = 0
+                while not self.similar_biome_names(objs_type_2) and attempts < 1000:
+                    objs_type_2 = random.choice([item for item in self.objs_defaults if item != "--"])
+                    attempts += 1
+                self.objects_list_2[1] = objs_type_2
+
+                objs_type_3 = random.choice([item for item in self.objs_defaults if item != "--"])
+                attempts = 0
+                while not self.similar_biome_names(objs_type_3) and attempts < 1000:
+                    objs_type_3 = random.choice([item for item in self.objs_defaults if item != "--"])
+                    attempts += 1
+                self.objects_list_3[1] = objs_type_3
+
+                if hasattr(self, 'objects_list_4'):
+                    objs_type_4 = random.choice([item for item in self.objs_defaults if item != "--"])
+                    attempts = 0
+                    while not self.similar_biome_names(objs_type_4) and attempts < 1000:
+                        objs_type_4 = random.choice([item for item in self.objs_defaults if item != "--"])
+                        attempts += 1
+                    self.objects_list_4[1] = objs_type_4
+
+            # detail
             if bool(self.detail_objs_defaults):
-                self.detail_obj_list[1] = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                detail_type_1 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                attempts = 0
+                while not self.similar_biome_names(detail_type_1) and attempts < 1000:
+                    detail_type_1 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                    attempts += 1
+                self.detail_obj_list[1] = detail_type_1
+
+                detail_type_2 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                attempts = 0
+                while not self.similar_biome_names(detail_type_2) and attempts < 1000:
+                    detail_type_2 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                    attempts += 1
+                self.detail_obj_list_2[1] = detail_type_2
+
+                detail_type_3 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                attempts = 0
+                while not self.similar_biome_names(detail_type_3) and attempts < 1000:
+                    detail_type_3 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                    attempts += 1
+                self.detail_obj_list_3[1] = detail_type_3
+
+                detail_type_4 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                attempts = 0
+                while not self.similar_biome_names(detail_type_4) and attempts < 1000:
+                    detail_type_4 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                    attempts += 1
+                self.detail_obj_list_4[1] = detail_type_4
+
+                if hasattr(self, 'detail_obj_list_5'):
+                    detail_type_5 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                    attempts = 0
+                    while not self.similar_biome_names(detail_type_5) and attempts < 1000:
+                        detail_type_5 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                        attempts += 1
+                    self.detail_obj_list_5[1] = detail_type_5
+
+                if hasattr(self, 'detail_obj_list_6'):
+                    detail_type_6 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                    attempts = 0
+                    while not self.similar_biome_names(detail_type_6) and attempts < 1000:
+                        detail_type_6 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
+                        attempts += 1
+                    self.detail_obj_list_6[1] = detail_type_6
 
             # create lists of lists
             self.all_distant_obj_lists = [self.distant_obj_list]
             self.all_landmarks_lists = [self.landmarks_list]
             self.all_objects_lists = [self.objects_list]
             self.all_detail_obj_lists = [self.detail_obj_list]
+
+
+
+            # v1.2: dynamically add new prop lists
+
+
+            # temp list to hold all detail object lists
+            landm_lists_to_check = [self.landmarks_list, self.landmarks_list_2, 
+                                        getattr(self, 'self.landmarks_list_3', None)]
+
+            # only add unique detail object lists, removes completely identical props
+            for landm_list in landm_lists_to_check:
+                if landm_list is not None and landm_list not in self.all_landmarks_lists:
+                    self.all_landmarks_lists.append(landm_list)
+
+            """
+            # landmarks
+            self.all_landmarks_lists.append(self.landmarks_list_2)
+            if hasattr(self, 'landmarks_list_3'):
+                self.all_landmarks_lists.append(self.landmarks_list_3)
+            """
+
+            objects_lists_to_check = [self.objects_list, self.objects_list_2, self.objects_list_3,
+                                        getattr(self, 'self.objects_list_4', None)]
+
+            for objects_list in objects_lists_to_check:
+                if objects_list is not None and objects_list not in self.all_objects_lists:
+                    self.all_objects_lists.append(objects_list)
+
+
+            """
+            # objects
+            self.all_objects_lists.append(self.objects_list_2)
+            self.all_objects_lists.append(self.objects_list_3)
+            if hasattr(self, 'objects_list_4'):
+                self.all_objects_lists.append(self.objects_list_4)
+            """
+
+            """
+            # detail objects
+            self.all_detail_obj_lists.append(self.detail_obj_list_2)
+            self.all_detail_obj_lists.append(self.detail_obj_list_3)
+            self.all_detail_obj_lists.append(self.detail_obj_list_4)
+            if hasattr(self, 'detail_obj_list_5'):
+                self.all_detail_obj_lists.append(self.detail_obj_list_5)
+            if hasattr(self, 'detail_obj_list_6'):
+                self.all_detail_obj_lists.append(self.detail_obj_list_6)
+            """
+
+
+            detail_obj_lists_to_check = [self.detail_obj_list, self.detail_obj_list_2, self.detail_obj_list_3, 
+                                        self.detail_obj_list_4, getattr(self, 'detail_obj_list_5', None), 
+                                        getattr(self, 'detail_obj_list_6', None)]
+
+            for detail_list in detail_obj_lists_to_check:
+                if detail_list is not None and detail_list not in self.all_detail_obj_lists:
+                    self.all_detail_obj_lists.append(detail_list)
+
+
+
+
+
+
+
+
+
+
         
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -179,7 +366,7 @@ class PlumgenModelGen():
     def set_detail_model_similar_props(self, similar_props):
         self.all_detail_obj_lists[-1][25] = similar_props
 
-    # set "similar_items" for specific index - used to refresh all counts
+    # set "similar_items" for specific index - used to refresh all counts or when user selects 'add new biome'
     def set_all_distant_model_similar_props(self, index, similar_props):
         self.all_distant_obj_lists[index][25] = similar_props
     
@@ -248,6 +435,86 @@ class PlumgenModelGen():
         else: 
             result_str = str(result)
         self.all_detail_obj_lists[index][attribute] = result_str
+
+
+    def describe_biome(self, prop_model):
+        prop_model = prop_model.lower()
+
+        self.biome_type_name = []
+
+        # dictionary to map keywords to suffixes
+        keyword_suffix_mapping = {
+            "toxic": "toxic",
+            "scorched": "scorched",
+            "radioactive": "radioactive",
+            "frozen": "frozen",
+            "barren": "barren",
+            "dead": "dead",
+            "weird": "weird",
+            "swamp": "swamp",
+            "lava": "lava",
+            "alien": "alien",
+            "alpine": "alpine",
+            "crystal": "crystal",
+            "livingship": "livingship",
+            "nevada": "nevada",
+            "rainforest": "rainforest",
+            "huge": "huge",
+            "burnt": "burnt", # worlds part 1
+            "desolate": "desolate",
+            "floral": "floral",
+            "irradiated": "irradiated",
+            "noxious": "noxious",
+            "rocky": "rocky",
+            "ruins": "ruins",
+            "subzero": "subzero"
+        }
+
+        # iterate over dictionary to check for each keyword
+        for keyword, suffix in keyword_suffix_mapping.items():
+            if keyword in prop_model:
+                self.biome_type_name.append(suffix)
+        
+        # check for other keywords for industrial & lush
+        if ("building" in prop_model or
+            "flag" in prop_model or
+            "construct" in prop_model or
+            "wreck" in prop_model and
+            "buildableparts" not in prop_model):
+            self.biome_type_name.append("industrial")
+        if "lush" in prop_model:
+            self.biome_type_name.append("lush")
+        elif ("tree" in prop_model and
+            "barren" not in prop_model and
+            "dead" not in prop_model and
+            "toxic" not in prop_model and
+            "underwater" not in prop_model and
+            "weird" not in prop_model and
+            "frozen" not in prop_model and
+            "radioactive" not in prop_model and
+            "scorched" not in prop_model and
+            "lava" not in prop_model and
+            "cave" not in prop_model and
+            "hugering" not in prop_model and
+            "burnt" not in prop_model and # worlds part 1
+            "desolate" not in prop_model and
+            "floral" not in prop_model and
+            "irradiated" not in prop_model and
+            "noxious" not in prop_model and
+            "rocky" not in prop_model and
+            "ruins" not in prop_model and
+            "subzero" not in prop_model
+            ):
+            self.biome_type_name.append("lush")
+
+
+    def similar_biome_names(self, input_prop_name):
+        input_prop_name = input_prop_name.lower()
+        for biome_name in self.biome_type_name:
+            if biome_name in input_prop_name:
+                return True
+        return False
+            
 
 
     # add new prop to lists. first check if lists are empty = won't create blank asset
@@ -702,13 +969,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/CRYSTALS/MEDIUM/CRYSTAL_MEDIUM.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/CRYSTALS/MEDIUM/CRYSTAL_MEDIUM_CAVE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/CRYSTALS/MEDIUM/CRYSTAL_MEDIUM_MOUNTAIN.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/BERRYPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/COMMODITYPLANT1.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/COMMODITYPLANT2.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/EXPLODEPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/FUELPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/HEALTHPLANT2.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/TENTACLEPLANT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/PLANTS/FERNLARGE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/PLANTS/LARGEPLANT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/PLANTS/MONSTERPLANT.SCENE.MBIN",
@@ -719,7 +979,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/CRYSTALS/SENTINELCRYSTALDRONESMALL.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/CRYSTALS/SENTINELCRYSTALSMALL.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/INAIR/FLOATINGGASBAGS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/UNDERWATER/SEAURCHIN.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/ROCKS/MEDIUM/MEDIUMROCK.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/ROCKS/SURFACEBLEND/LARGESANDBLENDROCK.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/TREES/LARGETREE1.SCENE.MBIN",
@@ -782,12 +1041,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/TOXIC/LARGE/FUNGALTREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/LARGE/SPORETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/MEDIUM/SPORETENDRIL.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUIMGLOWPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/ANENOMESHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CUCUMBERSHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/GASBAGS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/LAMPSHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/SAILPLANT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BONESPIRE/BONETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BONESPIRE/BONETREEBIGGLOW.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BONESPIRE/BONETREEDAMAGED.SCENE.MBIN",
@@ -946,13 +1199,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/CRYSTALS/MEDIUM/CRYSTAL_MEDIUM_CAVE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/CRYSTALS/MEDIUM/CRYSTAL_MEDIUM_MOUNTAIN.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/TALLGRASSBILLBOARD.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/BERRYPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/COMMODITYPLANT1.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/COMMODITYPLANT2.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/EXPLODEPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/FUELPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/HEALTHPLANT2.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/INTERACTIVEFLORA/TENTACLEPLANT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/PLANTS/FERNLARGE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/PLANTS/LARGEPLANT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/PLANTS/MEDIUMBUSH.SCENE.MBIN",
@@ -966,7 +1212,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/CRYSTALS/SENTINELCRYSTALDRONESMALL.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/CRYSTALS/SENTINELCRYSTALSMALL.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/INAIR/FLOATINGGASBAGS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/RARERESOURCE/UNDERWATER/SEAURCHIN.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/ROCKS/MEDIUM/MEDIUMROCK.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/ROCKS/SURFACEBLEND/LARGESANDBLENDROCK.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/ROCKS/SURFACEBLEND/MEDIUMSANDBLENDROCK.SCENE.MBIN",
@@ -1038,14 +1283,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/TOXIC/LARGE/SPORETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/MEDIUM/MEDIUMPLANT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/MEDIUM/SPORETENDRIL.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUIMGLOWPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUMJELLYPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPROP/MEDIUMGROWTHS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/ANENOMESHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CUCUMBERSHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/GASBAGS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/LAMPSHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/SAILPLANT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BONESPIRE/BONESPORE2.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/CONTOUR/CONTOUROBJECT.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/ELBUBBLE/DETAILBUBBLE.SCENE.MBIN",
@@ -1146,34 +1383,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/TOXIC/MEDIUM/MEDIUMTOXICEGG.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/MEDIUM/SPORETUBE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/MEDIUM/TOXICEGGCLUSTER.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPLANTS/LARGESTRANDS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPLANTS/UNDERWATERTREE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPROP/LARGELUMP.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPROP/LARGEPLATFORMROCK.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPROP/LARGEPROP.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPROP/LARGESPIKEROCK.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPROP/LARGESWIRLPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPROP/LARGETUBEROCK.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUIMGLOWPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUMJELLYPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUMSEAPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPROP/MEDIUMGROWTHS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPROP/MEDIUMLUMPS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/SMALLPLANTS/SEABUSH.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/ANENOMESHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CORALLIGHT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CORALLIGHTINST.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CORALTRUMPET.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CRYSTALSSHAPE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CRYSTALSSHAPELARGE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/CURVECORAL.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/GASBAGS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/HEXMONOLITH.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/MONOLITH.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/SMALLMONOLITH.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/TALLKELP.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/UNDERWATERCONTOURPOD.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/UPDATEPROPS/UNDERWATERSPORE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BEAMSTONE/BEAMSTONE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BEAMSTONE/BURST.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BEAMSTONE/BURSTB.SCENE.MBIN",
@@ -1299,14 +1508,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/TOXIC/SMALL/SPOREBARNACLE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/SMALL/SPORETUBESMALL.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/TOXIC/SMALL/TOXICGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPLANTS/LARGESTRANDS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/LARGEPLANTS/UNDERWATERTREE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUIMGLOWPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUMJELLYPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPLANTS/MEDIUMSEAPLANT.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPROP/MEDIUMLUMPS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/MEDIUMPROP/SEAURCHIN.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/UNDERWATER/SMALLPLANTS/SEABUSH.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BEAMSTONE/SMALLSTONE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BONESPIRE/BONEBLOBS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/WEIRD/BONESPIRE/BONEFRUIT.SCENE.MBIN",

@@ -1,8 +1,8 @@
-PLUMGEN (v1.12)
+PLUMGEN (v1.2)
 
 -- APP FEATURES: --------------------------------------------------------------------------------------------------
 
-	-Make a biome mod in as little as 30 seconds.
+	-Make a biome mod in as little as 30 seconds!
 	-IMPORT and merge multiple biome mods.
 	-Bulk replace OR multiply flora traits (scale, density, etc).
 	-Auto-rename and auto-add biomes to sub-biomes (for spawning).
@@ -17,6 +17,24 @@ PLUMGEN (v1.12)
 
 
 -- CHANGELOG: -----------------------------------------------------------------------------------------------------
+
+Update v1.2:
+
+	-Reworked the 'Add Biome' button to create more curated, aesthetically pleasing, and detailed biomes.
+		>Instead of adding 4 completely random props to a biome, now, 9-14 props can be added, all based on a similar biome category.
+		>Before, what a biome used to look like:
+			-Huge crystal, cactus, toxic plant, lush grass
+		>After v1.2:
+			-Large fan shroom, huge bounder, large blue shroom, medium boulder02, medium blue shroom,
+			medium bounder01, small boulder, lush grass, small shroom cluster, decorative gravel
+		>This basically categorizes each new biome into 1 (or more) of 25 categories (lush, frozen, etc), and only grabs new props from a similar pool.
+		>More details:
+			-25% chance of adding 1 distant prop - biggest props & can be a huge eyesore if added to every planet.
+			-2-3 landmark props
+			-3-4 objects
+			-4-6 detail objects
+	-Changed 'Auto-add Biome Objects to Tiles' menu item to sort more biomes, like biomes with Nevada and Alpine props.
+	-Removed many huge props with short LODs from several CSVs (Vanilla+Pre NMS & FoundPathAtlas).
 
 Update v1.12:
 
@@ -158,5 +176,5 @@ Full Release v1.0:
 
 -- OTHER: --------------------------------------------------------------------------------------------------------
 
-	Support me via. Buy Me A Coffee - Uses Stripe for easy and secure transaction. Anonymous donations accepted (email address visible to me).
+	Give a tip 🍻 - Easy and secure transactions using Buy Me A Coffee & Stripe. No pressure whatsoever. :)
 	https://buymeacoffee.com/sunnysummit

@@ -74,7 +74,7 @@ class PlumgenViewGenExport:
             self.parent.withdraw()
             
             self.window = tk.Toplevel(self.grandparent)
-            self.window.title(f"v1.12 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
+            self.window.title(f"v1.2 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
             
 
             # retrieve parent window's position & size

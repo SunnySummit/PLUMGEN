@@ -134,7 +134,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"v1.12 - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.2 - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -474,6 +474,36 @@ class PlumgenControllerGen():
                 self.model.set_detail_model_similar_props(self.matching_lists_count)
 
 
+
+    #v1.2 process all recent lists
+    def process_all_recent_lists(self):
+        # process the latest asset list added to each list of assets
+        lists_to_process = [
+        self.model.get_distant_obj_lists(),
+        self.model.get_landmark_lists(),
+        self.model.get_objects_lists(),
+        self.model.get_detail_obj_lists()
+        ]
+
+        for i, target_list in enumerate(lists_to_process):
+            # iterate over each list
+            for j, target_item in enumerate(target_list):
+                self.compare_and_update(target_item)
+            
+                if i == 0:
+                    if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN":
+                        self.model.delete_distant_obj(j) # delete if none selected
+                    else:
+                        self.model.set_all_distant_model_similar_props(j, self.matching_lists_count)
+                elif i == 1:
+                    self.model.set_all_landmark_model_similar_props(j, self.matching_lists_count)
+                elif i == 2:
+                    self.model.set_all_object_model_similar_props(j, self.matching_lists_count)
+                elif i == 3:
+                    self.model.set_all_detail_model_similar_props(j, self.matching_lists_count)
+
+
+
     def process_distant_obj_list(self, biome):
         self.model = biome
         distant_obj_lists = self.model.get_distant_obj_lists()
@@ -517,7 +547,7 @@ class PlumgenControllerGen():
     
         self.model = PlumgenModelGen(self.name, self.dist_list, self.landm_list, self.objs_list, self.detail_list)
         # compare the 4 randomly selected "model paths" with those in csv and generate vanilla data for them
-        self.process_recent_lists()
+        self.process_all_recent_lists() #v1.2 process several props
         self.biome_objs.append(self.model)
         
         return self.model
@@ -564,20 +594,20 @@ class PlumgenControllerGen():
                             "weird": "_Weird",
                             "swamp": "_Swamp",
                             "lava": "_Lava",
-                            "alien": "_Alien",
-                            "alpine": "_Alpine",
+                            "alien": "_Alien_Weird", #v1.2
+                            "alpine": "_Alpine_Lush", #v1.2
                             "crystal": "_Weird",
-                            "livingship": "_Livingship",
-                            "nevada": "_Nevada",
-                            "rainforest": "_Rainforest",
+                            "livingship": "_Livingship_Weird", #v1.2
+                            "nevada": "_Nevada_Lush", #v1.2
+                            "rainforest": "_Rainforest_Lush", #v1.2
                             "huge": "_Huge",
                             "burnt": "_Burnt", # worlds part 1
                             "desolate": "_Desolate",
                             "floral": "_Floral",
                             "irradiated": "_Irradiated",
                             "noxious": "_Noxious",
-                            "rocky": "_Rocky",
-                            "ruins": "_Ruins",
+                            "rocky": "_Rocky_Lush", #v1.2
+                            "ruins": "_Ruins_Weird", #v1.2
                             "subzero": "_Subzero"
                         }
 
@@ -729,20 +759,22 @@ class PlumgenControllerGen():
         if isinstance(sublist[-1], list):  # check if last item is a list (nested structure)
             if len(sublist) < 24:
                 # add specific strings/numbers at indices to update to 'worlds part 1', etc.
-                sublist.insert(12, "180")  # max_y_rotation
-                sublist.insert(13, "0")    # max_raise
-                sublist.insert(14, "0")    # max_lower
-                sublist.insert(17, "FALSE")  # is_floating_island
+                sublist.insert(0, "Instanced")  # max_y_rotation
+                sublist.insert(13, "180")  # max_y_rotation
+                sublist.insert(14, "0")    # max_raise
+                sublist.insert(15, "0")    # max_lower
+                sublist.insert(18, "FALSE")  # is_floating_island
 
             for nested_sublist in sublist[-1]:
                 self.recursive_update(nested_sublist)
         else:
             if len(sublist) < 24:
                 # add specific strings/numbers at indices to update to 'worlds part 1', etc.
-                sublist.insert(12, "180")  # max_y_rotation
-                sublist.insert(13, "0")    # max_raise
-                sublist.insert(14, "0")    # max_lower
-                sublist.insert(17, "FALSE")  # is_floating_island
+                sublist.insert(0, "Instanced")  # max_y_rotation
+                sublist.insert(13, "180")  # max_y_rotation
+                sublist.insert(14, "0")    # max_raise
+                sublist.insert(15, "0")    # max_lower
+                sublist.insert(18, "FALSE")  # is_floating_island
 
 
     def import_model_from_json(self, filename_json):

@@ -23,7 +23,7 @@ build_options = {
         ("Resources/Updater/complete_update.bat", "Resources/Updater/complete_update.bat"),
         ("logging.conf", "logging.conf"),
         ("logger_config.py", "logger_config.py"),
-        ("_README.txt", "_README.txt"),
+        ("README.txt", "README.txt"),
         ("LICENSE", "LICENSE"),
         ("_Extracted Vanilla Game Files/DO_NOT_CHANGE_ANY_FILES_HERE.txt", "_Extracted Vanilla Game Files/DO_NOT_CHANGE_ANY_FILES_HERE.txt"),
         

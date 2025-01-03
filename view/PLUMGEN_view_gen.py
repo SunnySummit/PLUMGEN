@@ -1153,7 +1153,7 @@ class PlumgenViewGen:
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
                     # don't insert some items (either put these in listbox or they can't be modified)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
+                    if self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_distant[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1163,7 +1163,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
+                    if self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_landmark[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1173,7 +1173,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
+                    if self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_object[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1183,7 +1183,7 @@ class PlumgenViewGen:
                     self.attribute_entry.config(state="normal") # enable if can set via entry 
                     self.save_prop_changes_button.config(state=tk.NORMAL)
                     self.attribute_entry.delete(0, tk.END)
-                    if self.prop_attribute_index != 0 and self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
+                    if self.prop_attribute_index != 1 and self.prop_attribute_index != 2 and self.prop_attribute_index != 24 and self.prop_attribute_index != 25:
                         self.attribute_entry.insert(0, self.prop_detail[self.prop_attribute_index])
                     else:
                         self.attribute_entry.insert(0, "N/A")
@@ -1316,7 +1316,7 @@ class PlumgenViewGen:
                     # set model path of selected prop based on what was selected in model listbox
                     # refresh 4 prop listboxes and attribute listbox
                     if self.prop_draw_type == 1:
-                        selected_biome.set_custom_distant_attr(self.distant_index, 0, self.model_val_at_index)
+                        selected_biome.set_custom_distant_attr(self.distant_index, 1, self.model_val_at_index)
                         
                         self.refresh_distant_attr_placem_models()
 
@@ -1325,7 +1325,7 @@ class PlumgenViewGen:
                             if distant_obj_list[1]:  # verify that the model filepath is not empty
                                 self.update_listbox(self.distant_objects_lb, distant_obj_list[25], distant_obj_list[1])
                     elif self.prop_draw_type == 2:
-                        selected_biome.set_custom_landmark_attr(self.landmark_index, 0, self.model_val_at_index)
+                        selected_biome.set_custom_landmark_attr(self.landmark_index, 1, self.model_val_at_index)
                         
                         self.refresh_landmark_attr_placem_models()
 
@@ -1334,7 +1334,7 @@ class PlumgenViewGen:
                             if landmark_list[1]:
                                 self.update_listbox(self.landmarks_lb, landmark_list[25], landmark_list[1])
                     elif self.prop_draw_type == 3:
-                        selected_biome.set_custom_object_attr(self.obj_index, 0, self.model_val_at_index)
+                        selected_biome.set_custom_object_attr(self.obj_index, 1, self.model_val_at_index)
                         
                         self.refresh_object_attr_placem_models()
 
@@ -1343,7 +1343,7 @@ class PlumgenViewGen:
                             if objects_list[1]:
                                 self.update_listbox(self.objects_lb, objects_list[25], objects_list[1])
                     elif self.prop_draw_type == 4:
-                        selected_biome.set_custom_detail_attr(self.detail_index, 0, self.model_val_at_index)
+                        selected_biome.set_custom_detail_attr(self.detail_index, 1, self.model_val_at_index)
                         
                         self.refresh_detail_attr_placem_models()
 
@@ -1371,22 +1371,22 @@ class PlumgenViewGen:
 
                     # placement
                     if self.prop_draw_type == 1:
-                        selected_biome.set_custom_distant_attr(self.distant_index, 1, self.placem_val_at_index)
+                        selected_biome.set_custom_distant_attr(self.distant_index, 2, self.placem_val_at_index)
                         
                         self.refresh_distant_attr_placem_models()
 
                     elif self.prop_draw_type == 2:
-                        selected_biome.set_custom_landmark_attr(self.landmark_index, 1, self.placem_val_at_index)
+                        selected_biome.set_custom_landmark_attr(self.landmark_index, 2, self.placem_val_at_index)
                         
                         self.refresh_landmark_attr_placem_models()
 
                     elif self.prop_draw_type == 3:
-                        selected_biome.set_custom_object_attr(self.obj_index, 1, self.placem_val_at_index)
+                        selected_biome.set_custom_object_attr(self.obj_index, 2, self.placem_val_at_index)
                         
                         self.refresh_object_attr_placem_models()
 
                     elif self.prop_draw_type == 4:
-                        selected_biome.set_custom_detail_attr(self.detail_index, 1, self.placem_val_at_index)
+                        selected_biome.set_custom_detail_attr(self.detail_index, 2, self.placem_val_at_index)
                         
                         self.refresh_detail_attr_placem_models()
 
@@ -1444,15 +1444,19 @@ class PlumgenViewGen:
 
     # check if valid index -> validate new_value type -> set new value
     def set_custom_attr(self, selected_biome, index, new_val, set_val):
-        if index in {2, 3, 4, 5, 11, 12, 13, 14}:
+        
+        if self.prop_attribute_index == 0:
+            if new_val not in {"Single", "Instanced"}:
+                return
+        elif index in {3, 4, 5, 6, 12, 13, 14, 15}:
             if not isinstance(new_val, int):
                 messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_integer"]}", parent=self.window)
                 return
-        elif index in {6, 7, 8, 9, 10, 19, 20, 21, 22}:
+        elif index in {7, 8, 9, 10, 11, 20, 21, 22, 23}:
             if not isinstance(new_val, numbers.Number):
                 messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_number"]}", parent=self.window)
                 return
-        elif index in {15, 16, 17, 18}:
+        elif index in {16, 17, 18, 19}:
             if new_val not in {"TRUE", "FALSE"}:
                 messagebox.showinfo(self.langs[self.lan]["set_custom_attr"]["Error"], f"{self.attribute_labels_edited[index]}{self.langs[self.lan]["set_custom_attr"]["warn_bool"]}", parent=self.window)
                 return
@@ -1462,7 +1466,7 @@ class PlumgenViewGen:
         
         if set_val:
             # apply modified value if no errors found
-            if index >= 2 and index <= 22:
+            if index == 0 or (index >= 3 and index <= 23):
 
                 self.prop_attributes_lb.delete(0, tk.END)
 
@@ -1574,17 +1578,20 @@ class PlumgenViewGen:
 
                     selected_biome = self.controller.get_biome_objs()[self.biome_index]
                     
-                    if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
+                    if self.prop_attribute_index == 0 or (self.prop_attribute_index >= 3 and self.prop_attribute_index <= 23):
 
-                        if self.prop_attribute_index in {2, 3, 4, 5, 11, 12, 13, 14}:
+                        if self.prop_attribute_index == 0:
+                            if bulk_new_value not in {"Single", "Instanced"}:
+                                return
+                        elif self.prop_attribute_index in {3, 4, 5, 6, 12, 13, 14, 15}:
                             if not isinstance(bulk_new_value, int):
                                 messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_integer"]}", parent=self.window)
                                 return
-                        elif self.prop_attribute_index in {6, 7, 8, 9, 10, 19, 20, 21, 22}:
+                        elif self.prop_attribute_index in {7, 8, 9, 10, 11, 20, 21, 22, 23}:
                             if not isinstance(bulk_new_value, numbers.Number):
                                 messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_number"]}", parent=self.window)
                                 return
-                        elif self.prop_attribute_index in {15, 16, 17, 18}:
+                        elif self.prop_attribute_index in {16, 17, 18, 19}:
                             if bulk_new_value not in {"TRUE", "FALSE"}:
                                 messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Error"], f"{self.attribute_labels_edited[self.prop_attribute_index]}{self.langs[self.lan]["set_custom_attr"]["warn_bool"]}", parent=self.window)
                                 return
@@ -1612,22 +1619,22 @@ class PlumgenViewGen:
                     bulk_val_validated = False
 
                     # check what drawdistance lb was selected, then validate index, new_value type, & set new value
-                    if self.prop_draw_type == 1 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
+                    if self.prop_draw_type == 1 and self.prop_attribute_index == 0 or (self.prop_attribute_index >= 3 and self.prop_attribute_index <= 23):
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
-                    elif self.prop_draw_type == 2 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
+                    elif self.prop_draw_type == 2 and self.prop_attribute_index == 0 or (self.prop_attribute_index >= 3 and self.prop_attribute_index <= 23):
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
-                    elif self.prop_draw_type == 3 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
+                    elif self.prop_draw_type == 3 and self.prop_attribute_index == 0 or (self.prop_attribute_index >= 3 and self.prop_attribute_index <= 23):
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
-                    elif self.prop_draw_type == 4 and self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
+                    elif self.prop_draw_type == 4 and self.prop_attribute_index == 0 or (self.prop_attribute_index >= 3 and self.prop_attribute_index <= 23):
                         bulk_val_validated = self.set_custom_attr(selected_biome, self.prop_attribute_index, bulk_new_value, False)
 
                     # instantiate bulk view - display new menu
                     if bulk_val_validated:
-                        if self.prop_attribute_index >= 2 and self.prop_attribute_index <= 22:
+                        if self.prop_attribute_index == 0 or (self.prop_attribute_index >= 3 and self.prop_attribute_index <= 23):
                             plumgen_view_gen_bulk = PlumgenViewGenBulk(self.root, bulk_new_value, selected_biome, self.attribute_labels_edited, self.prop_attribute_index, self.icon_path, self.langs, self.lan, self.apply_bulk_settings)
                     
                     # if model selected - attempt to get cursor selection and specific model selected
-                    if self.prop_attribute_index == 0:
+                    if self.prop_attribute_index == 1:
                         selected_indices = self.model_lb.curselection()
                         if selected_indices:
                             selected_index = self.model_lb.curselection()[0]
@@ -1639,7 +1646,7 @@ class PlumgenViewGen:
                         else:
                             messagebox.showinfo(self.langs[self.lan]["bulk_edit_menu"]["Click_Model"], self.langs[self.lan]["bulk_edit_menu"]["Click_Model_Desc"], parent=self.window)
                     # if placement selected
-                    if self.prop_attribute_index == 1:
+                    if self.prop_attribute_index == 2:
                         selected_indices = self.placement_lb.curselection()
                         if selected_indices:
                             selected_index = self.placement_lb.curselection()[0]
@@ -2098,7 +2105,7 @@ class PlumgenViewGen:
         try: 
             listbox.delete(0, tk.END)
             for obj_list in get_list_func():
-                self.update_listbox(listbox, obj_list[25], obj_list[0])
+                self.update_listbox(listbox, obj_list[25], obj_list[1])
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
@@ -2280,7 +2287,7 @@ class PlumgenViewGen:
                         # repopulate listbox
                         listbox.delete(0, tk.END)
                         for obj_list in get_lists_func():
-                            self.update_listbox(listbox, obj_list[25], obj_list[0])
+                            self.update_listbox(listbox, obj_list[25], obj_list[1])
                         self.placem_val_at_index = None
                         self.model_val_at_index = None
 
@@ -2610,6 +2617,9 @@ class PlumgenViewGen:
                 self.open_export_window_and_wait = True
                 self.controller.c_import_exml_biomes(after_next_update)
                 self.open_export_window_and_wait = False
+                self.biome_lb.delete(0, tk.END)
+                self.import_exml_button.configure(state="normal")
+                self.reenable_buttons()
             
             else:
                 self.reenable_buttons()
