@@ -1,6 +1,6 @@
 # PLUMGEN (v1.2)
 
-### APP FEATURES
+### App Features
 
 + Make a detailed & aesthetically pleasing biome mod in as little as 30 seconds!
 + IMPORT and merge multiple biome mods.
@@ -14,7 +14,7 @@
 + Responsive and intuitive interface.
 + And more!
 
-### CHANGELOG
+### Changelog
 
 <details>
 
@@ -87,7 +87,7 @@ Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
 
 </details>
 
-### v1.0 REQUIREMENTS
+### Requirements
 
 + **[Required]** Download .NET 6 - Select appropriate download under "Run desktop apps"
 	https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime
@@ -95,7 +95,7 @@ Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
 + [*Optional*] PLUMGEN generates .LUA scripts too. AMUMSS is needed to make use of these .LUA scripts. AMUMSS Guide:
 	https://www.nexusmods.com/nomanssky/mods/2626
 
-### v1.0 EXPORTING INFO
+### Exporting Details
 
 After exporting, you'll find a folder inside '__Exported Mod Files' containing:
 
@@ -109,7 +109,7 @@ After exporting, you'll find a folder inside '__Exported Mod Files' containing:
 	*[2] Spawner LUA may throw errors if you use any custom 'sub-biomes' (PLUMGEN's PAKs are designed to avoid this issue). Watch video^ for more info.
 
 
-### KNOWN ISSUES
+### Known Issues
 
 + Using 'Reset Auto-Rename' on a filepath with multiple underscores can erase almost all of the path's name.
 + If a link opens a *new* browser, then you quit PLUMGEN, the app will stay active until you quit the browser.
@@ -117,7 +117,7 @@ After exporting, you'll find a folder inside '__Exported Mod Files' containing:
 
 
 
-### Q&A/TROUBLESHOOTING
+### Q&A/Troubleshooting
 
 <details>
 
@@ -153,7 +153,7 @@ Yeah, I used DeepL and a few other machine learning sources to translate. Consid
 
 </details>
 
-### NEED HELP?
+### Need Help?
 
 - Video Tutorial - FYI this predates v1.0 which added the ability to export directly to PAK:
 	https://www.youtube.com/watch?v=zzaeyRAobOQ
@@ -162,7 +162,7 @@ Yeah, I used DeepL and a few other machine learning sources to translate. Consid
 
 
 
-### CREDITS & ACKNOWLEDGEMENTS:
+### Credits & Acknowledgements
 
 + PSARC Archive Tool - Decompiles PAK files to MBIN
 + [MBINCompiler](https://github.com/monkeyman192/MBINCompiler/) - Decompiles MBIN files to EXML
@@ -171,7 +171,7 @@ Yeah, I used DeepL and a few other machine learning sources to translate. Consid
 
 
 
-### DISCLAIMER/NOTES:
+### Disclaimer/Notes
 
 + PLUMGEN lets you import and mod almost any biomes. Always seek permission before distributing others' work.
 + Note: If a mod author grants you permission to share their work, they cannot later retract it, per Nexus Mods rules.
@@ -179,6 +179,6 @@ Yeah, I used DeepL and a few other machine learning sources to translate. Consid
 
 
 
-### DONATE:
+### Other
 
 Give a tip 🍻 - Easy and secure transactions using *Buy Me A Coffee* & *Stripe*. No pressure whatsoever :) https://buymeacoffee.com/sunnysummit
