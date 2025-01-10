@@ -2,7 +2,7 @@
 
 ### App Features
 
-+ Make a detailed & aesthetically pleasing biome mod in as little as 30 seconds!
++ Make a detailed & aesthetically pleasing biome mod in as little as 30 seconds.
 + IMPORT and merge multiple biome mods.
 + Bulk replace OR multiply flora traits (scale, density, etc).
 + Auto-rename and auto-add biomes to sub-biomes (for spawning).
