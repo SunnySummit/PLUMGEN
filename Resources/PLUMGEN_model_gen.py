@@ -61,8 +61,10 @@ class PlumgenModelGen():
             # create copies of the lists
             self.landmarks_list = self.distant_obj_list.copy()
             self.landmarks_list_2 = self.distant_obj_list.copy() # v1.2: add more landmarks
-            if random.randint(1, 4) == 1: # 1 in 4 chance of adding 1 more landmark:
+            if random.randint(1, 2) == 1: # 1 in 2 chance of adding 1 more landmark:
                 self.landmarks_list_3 = self.distant_obj_list.copy()
+            if random.randint(1, 2) == 1:
+                self.landmarks_list_4 = self.distant_obj_list.copy()
 
             self.objects_list = self.distant_obj_list.copy()
             self.objects_list_2 = self.distant_obj_list.copy() # v1.2: add more objects
@@ -78,6 +80,8 @@ class PlumgenModelGen():
                 self.detail_obj_list_5 = self.distant_obj_list.copy()
             if random.randint(1, 4) == 1:
                 self.detail_obj_list_6 = self.distant_obj_list.copy()
+            if random.randint(1, 2) == 1:
+                self.detail_obj_list_7 = self.distant_obj_list.copy()
 
 
             initial_biome_type = ""
@@ -104,6 +108,14 @@ class PlumgenModelGen():
                         landm_type_3 = random.choice([item for item in self.landmarks_defaults if item != "--"])
                         attempts += 1
                     self.landmarks_list_3[1] = landm_type_3
+
+                if hasattr(self, 'landmarks_list_4'):
+                    landm_type_4 = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                    attempts = 0
+                    while not self.similar_biome_names(landm_type_4) and attempts < 1000:
+                        landm_type_4 = random.choice([item for item in self.landmarks_defaults if item != "--"])
+                        attempts += 1
+                    self.landmarks_list_4[1] = landm_type_4
 
             # distant
             if bool(self.distant_objs_defaults):
@@ -205,51 +217,25 @@ class PlumgenModelGen():
 
             # temp list to hold all detail object lists
             landm_lists_to_check = [self.landmarks_list, self.landmarks_list_2, 
-                                        getattr(self, 'self.landmarks_list_3', None)]
+                                        getattr(self, 'landmarks_list_3', None), getattr(self, 'landmarks_list_4', None)]
 
             # only add unique detail object lists, removes completely identical props
             for landm_list in landm_lists_to_check:
                 if landm_list is not None and landm_list not in self.all_landmarks_lists:
                     self.all_landmarks_lists.append(landm_list)
 
-            """
-            # landmarks
-            self.all_landmarks_lists.append(self.landmarks_list_2)
-            if hasattr(self, 'landmarks_list_3'):
-                self.all_landmarks_lists.append(self.landmarks_list_3)
-            """
 
             objects_lists_to_check = [self.objects_list, self.objects_list_2, self.objects_list_3,
-                                        getattr(self, 'self.objects_list_4', None)]
+                                        getattr(self, 'objects_list_4', None)]
 
             for objects_list in objects_lists_to_check:
                 if objects_list is not None and objects_list not in self.all_objects_lists:
                     self.all_objects_lists.append(objects_list)
 
 
-            """
-            # objects
-            self.all_objects_lists.append(self.objects_list_2)
-            self.all_objects_lists.append(self.objects_list_3)
-            if hasattr(self, 'objects_list_4'):
-                self.all_objects_lists.append(self.objects_list_4)
-            """
-
-            """
-            # detail objects
-            self.all_detail_obj_lists.append(self.detail_obj_list_2)
-            self.all_detail_obj_lists.append(self.detail_obj_list_3)
-            self.all_detail_obj_lists.append(self.detail_obj_list_4)
-            if hasattr(self, 'detail_obj_list_5'):
-                self.all_detail_obj_lists.append(self.detail_obj_list_5)
-            if hasattr(self, 'detail_obj_list_6'):
-                self.all_detail_obj_lists.append(self.detail_obj_list_6)
-            """
-
-
             detail_obj_lists_to_check = [self.detail_obj_list, self.detail_obj_list_2, self.detail_obj_list_3, 
                                         self.detail_obj_list_4, getattr(self, 'detail_obj_list_5', None), 
-                                        getattr(self, 'detail_obj_list_6', None)]
+                                        getattr(self, 'detail_obj_list_6', None), getattr(self, 'detail_obj_list_7', None)]
 
             for detail_list in detail_obj_lists_to_check:
                 if detail_list is not None and detail_list not in self.all_detail_obj_lists:

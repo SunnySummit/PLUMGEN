@@ -74,7 +74,7 @@ class PlumgenViewGenExport:
             self.parent.withdraw()
             
             self.window = tk.Toplevel(self.grandparent)
-            self.window.title(f"v1.2 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
+            self.window.title(f"v1.21 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
             
 
             # retrieve parent window's position & size
@@ -225,6 +225,7 @@ class PlumgenViewGenExport:
 
         filemenu = tk.Menu(mb)
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Auto_Add_To_Tiles"], command=self.auto_add_all_biomes)
+        filemenu.add_command(label="Add ALL Biomes To ALL Tiles", command=self.add_all_biomes)
         filemenu.add_separator()
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Select_All"], command=self.select_all)
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Deselect_All"], command=self.deselect_all)
@@ -751,6 +752,38 @@ class PlumgenViewGenExport:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
 
+
+    def add_all_biomes(self):
+
+        try:
+            
+            confirmed = messagebox.askyesno("Confirm Add All Biomes To All Tiles", "---------------------------WARNING---------------------------\nDo NOT do this more than once, or else you will have to manually remove each duplicate biome from each Sub-Biome tab.\n\nThis will add ALL biomes to ALL Sub-Biomes.\n\nYou cannot undo this. Do you want to proceed?", parent=self.window)
+            if not confirmed:
+                return # user clicked no or closed
+
+            for biome in self.biomes_objs:
+                biome_name = biome.get_filename()
+                biome_name = biome_name.upper()
+                new_biome_name = "METADATA/SIMULATION/SOLARSYSTEM/" + biome_name + ".MBIN"
+
+                for idx, biome_tile_types in enumerate(self.all_biome_tile_types):
+                    # append biome_name to the first list in biome_tile_types
+                    biome_tile_types[list(biome_tile_types.keys())[0]].append(new_biome_name)
+
+            # update each listbox in the notebook with the new info
+            for listbox in self.populate_planet_type_lbs:
+                listbox.delete(0, tk.END) # clear
+
+                idx = self.populate_planet_type_lbs.index(listbox) # get index of listbox
+                biome_tile_types = self.all_biome_tile_types[idx] # get updated biome_tile_types
+
+                for key, value in biome_tile_types.items(): # populate the listbox with updated data
+                    if key != 'Filename':
+                        listbox.insert(tk.END, f"{key}: {value}")
+
+        except Exception as e:
+            self.logger.exception("Error: %s", e) # log the exception
+            self.show_error_message("An error occurred: {}".format(str(e)))
 
 
     def add_each_biome(self):

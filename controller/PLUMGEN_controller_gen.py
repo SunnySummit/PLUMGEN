@@ -134,7 +134,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"v1.2 - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.21 - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()

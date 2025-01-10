@@ -244,6 +244,7 @@ class PlumgenViewGen:
         self.style.configure('TButton', background='#666666', foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('Start.TButton', background=hover_bg_prpl_color, foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('Gen.TButton', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 10))
+        self.style.configure('Create.TButton', background='#008040', foreground=self.white_c, font=('TkDefaultFont', 10)) # make add biome button green
         self.style.configure('Delete.TButton', background=red_bg_color, foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('TEntry', fieldbackground='#444444', foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('TText', background='#444444', foreground=self.white_c, font=('TkDefaultFont', 10))
@@ -266,6 +267,10 @@ class PlumgenViewGen:
         
         self.style.map('Gen.TButton',
               background=[('disabled', 'gray30'), ('active', '#241c30'), ('pressed', '#333333')],
+              foreground=[('disabled', hover_fg_prpl_color), ('active', self.white_c), ('pressed', self.white_c)])
+        
+        self.style.map('Create.TButton', # make add biome button green
+              background=[('disabled', 'gray30'), ('active', '#004d26'), ('pressed', '#008040')],
               foreground=[('disabled', hover_fg_prpl_color), ('active', self.white_c), ('pressed', self.white_c)])
         
         self.style.map('Delete.TButton',
@@ -376,7 +381,7 @@ class PlumgenViewGen:
         self.similar_props_lb.configure(xscrollcommand=self.similar_props_scrollbar.set, yscrollcommand=self.similar_props_vscrollbar.set)
 
         #  add/delete buttons
-        self.biome_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Biome"], command=self.add_default_biome, style='Gen.TButton')
+        self.biome_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Biome"], command=self.add_default_biome, style='Create.TButton')
         self.biome_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_biome, style='Delete.TButton')
         self.distant_objects_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Distant"], command=self.add_default_distant_object, style='Gen.TButton')
         self.distant_objects_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_distant_object, style='Delete.TButton')
@@ -386,6 +391,9 @@ class PlumgenViewGen:
         self.objects_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_object, style='Delete.TButton')
         self.detail_objects_add_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Add_Detail"], command=self.add_default_detail_object, style='Gen.TButton')
         self.detail_objects_delete_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Delete"], command=self.delete_detail_object, style='Delete.TButton')
+        
+        self.biome_add_button.bind("<Button-3>", self.ask_number_biomes_to_add_menu) # display context menu on right-click
+        
         # other buttons
         #self.auto_rename_biomes_button = ttk.Button(self.window, text="Auto Rename All", command=self.auto_rename_biomes, style='Start.TButton')
         #self.reset_auto_names_biomes_button = ttk.Button(self.window, text="Reset Rename", command=self.reset_rename_biomes, style='TButton')
@@ -508,6 +516,7 @@ class PlumgenViewGen:
 
         # UI element descriptions
         self.gui_element_descriptions = {
+            self.biome_add_button: f">Add Biome: \nClick to make a biome.\nRight-click for multiple biomes.",
             self.biome_lb: f">{self.langs[self.lan]["tooltip"]["biome_lb"]}",
             self.distant_objects_lb: f">{self.langs[self.lan]["tooltip"]["distant_objects_lb"]}",
             self.landmarks_lb: f">{self.langs[self.lan]["tooltip"]["landmarks_lb"]}",
@@ -2050,13 +2059,45 @@ class PlumgenViewGen:
             
 
     # biomes
-    def add_default_biome(self):
+    def add_default_biome(self, times=1):
         try: 
-            new_biome = self.controller.c_create_default_biome()
-            self.biome_lb.insert(tk.END, new_biome.get_filename())
+            for _ in range(times):
+                new_biome = self.controller.c_create_default_biome()
+                self.biome_lb.insert(tk.END, new_biome.get_filename())
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
+
+
+    def ask_number_biomes_to_add_menu(self, event):
+        try: 
+
+            # display context menu on right-click. dialog to ask how many biomes to add
+            num_times = simpledialog.askstring("Enter Number", "How many biomes do you want to add?")
+            if num_times is not None:
+                if self.is_positive_integer(num_times): # validate input is positive integer
+                    
+                    num_times = int(num_times)  # convert string to int
+                    if num_times > 500:
+                        caution = messagebox.askyesno("Caution", 
+                            "Generating over 500 may cause crashes in-game in the galaxy map\n(i think this is the cause? as of NMS v5.29-Jan 8, '25)\n\nDo you want to proceed?", parent=self.window)
+                        if caution: # user clicks Yes
+                            self.add_default_biome(num_times)
+                    else:
+                        self.add_default_biome(num_times)
+
+                else:
+                    messagebox.showerror("Invalid Number", "Please enter a positive integer.", parent=self.window)
+        except Exception as e:
+            self.logger.exception("Error: %s", e) # log the exception
+            self.show_error_message("An error occurred: {}".format(str(e)))
+
+    def is_positive_integer(self, value):
+        try:
+            number = int(value)
+            return number > 0
+        except ValueError:
+            return False
             
 
     def delete_biome(self):
