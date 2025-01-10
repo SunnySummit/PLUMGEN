@@ -87,9 +87,9 @@ Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
     + LUA now optional - Exporting still generates 2 LUA files, but making use of them (via. AMUMSS) is now optional.
     + Please see updated 'Requirements' and 'Exporting Info' sections below for more info.
 
-		*[1] lxml wraps around C libraries = highly optimized EXML parsing/processing. Plus, I just understand Python better than I do LUA.
+	*[1] lxml wraps around C libraries = highly optimized EXML parsing/processing. Plus, I just understand Python better than I do LUA.
 
-		*[2] lxml follows XML standards for syntax, structure, & validation. This improves long-term EXML compatibility with NMS updates.
+	*[2] lxml follows XML standards for syntax, structure, & validation. This improves long-term EXML compatibility with NMS updates.
 
 
 ### v1.0 EXPORTING INFO
@@ -101,10 +101,9 @@ After exporting, you'll find a folder inside '__Exported Mod Files' containing:
 + MBINs - Compiled EXMLs.
 + LUAs - To be used with AMUMSS (optional). [2]
 
-		*[1] - If you have multiple BIOMES or CUSTOMBIOMES:  Rename the others, e.g. BIOMES2, BIOMES3, etc. PLUMGEN can auto-merge multiple mods via. this method: https://youtu.be/zzaeyRAobOQ?t=867
-		
-		*[2] - Spawner LUA may throw errors if you use any custom 'sub-biomes' (PLUMGEN's PAKs are designed to avoid this issue). Watch video^ for more info.
+	*[1] If you have multiple BIOMES or CUSTOMBIOMES:  Rename the others, e.g. BIOMES2, BIOMES3, etc. PLUMGEN can auto-merge multiple mods via. this method: https://youtu.be/zzaeyRAobOQ?t=867
 
+	*[2] Spawner LUA may throw errors if you use any custom 'sub-biomes' (PLUMGEN's PAKs are designed to avoid this issue). Watch video^ for more info.
 
 
 ### KNOWN ISSUES
