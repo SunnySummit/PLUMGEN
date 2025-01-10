@@ -101,9 +101,9 @@ After exporting, you'll find a folder inside '__Exported Mod Files' containing:
 + MBINs - Compiled EXMLs.
 + LUAs - To be used with AMUMSS (optional). [2]
 
-	*[1] - If you have multiple BIOMES or CUSTOMBIOMES: 
-		Rename the others, e.g. BIOMES2, BIOMES3, etc. PLUMGEN can auto-merge multiple mods via. this method: https://youtu.be/zzaeyRAobOQ?t=867
-	*[2] - Spawner LUA may throw errors if you use any custom 'sub-biomes' (PLUMGEN's PAKs are designed to avoid this issue). Watch video^ for more info.
+		*[1] - If you have multiple BIOMES or CUSTOMBIOMES:  Rename the others, e.g. BIOMES2, BIOMES3, etc. PLUMGEN can auto-merge multiple mods via. this method: https://youtu.be/zzaeyRAobOQ?t=867
+		
+		*[2] - Spawner LUA may throw errors if you use any custom 'sub-biomes' (PLUMGEN's PAKs are designed to avoid this issue). Watch video^ for more info.
 
 
 
