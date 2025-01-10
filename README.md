@@ -24,6 +24,8 @@
 
 ### CHANGELOG
 
+<details>
+
 #### Update v1.2:
 
 + Reworked the 'Add Biome' button to create more aesthetically pleasing and detailed biomes.
@@ -91,6 +93,7 @@ Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
 
 	*[2] lxml follows XML standards for syntax, structure, & validation. This improves long-term EXML compatibility with NMS updates.
 
+</details>
 
 ### v1.0 EXPORTING INFO
 
@@ -115,6 +118,8 @@ After exporting, you'll find a folder inside '__Exported Mod Files' containing:
 
 
 ### Q&A/TROUBLESHOOTING
+
+<details>
 
 + When running the app, I encounter a window that says, "Windows protected your PC"
 
@@ -146,7 +151,7 @@ Simply expand the window. This should let you see the rest of the text. Some tra
 
 Yeah, I used DeepL and a few other machine learning sources to translate. Consider opening an issue on github with any suggested improvements. :)
 
-
+</details>
 
 ### NEED HELP?
 
