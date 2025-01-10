@@ -11,16 +11,8 @@
 + Save and share individual biomes (JSON files).
 + Validates all input and data = stable mods.
 + Exhaustive error handling and logging (all done locally).
-+ Responsive and intuitive interface, anyone can learn how to make biome mods.
++ Responsive and intuitive interface.
 + And more!
-
-### v1.0 REQUIREMENTS
-
-+ **[Required]** Download .NET 6 - Select appropriate download under "Run desktop apps"
-	https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime
-
-+ [*Optional*] PLUMGEN generates .LUA scripts too. AMUMSS is needed to make use of these .LUA scripts. AMUMSS Guide:
-	https://www.nexusmods.com/nomanssky/mods/2626
 
 ### CHANGELOG
 
@@ -94,6 +86,14 @@ Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
 	*[2] lxml follows XML standards for syntax, structure, & validation. This improves long-term EXML compatibility with NMS updates.
 
 </details>
+
+### v1.0 REQUIREMENTS
+
++ **[Required]** Download .NET 6 - Select appropriate download under "Run desktop apps"
+	https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime
+
++ [*Optional*] PLUMGEN generates .LUA scripts too. AMUMSS is needed to make use of these .LUA scripts. AMUMSS Guide:
+	https://www.nexusmods.com/nomanssky/mods/2626
 
 ### v1.0 EXPORTING INFO
 
