@@ -1,4 +1,4 @@
-# PLUMGEN (v1.2)
+# Plumgen (v1.2)
 
 ### App Features
 
