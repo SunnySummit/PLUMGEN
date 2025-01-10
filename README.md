@@ -94,7 +94,7 @@ Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
 
 ### v1.0 EXPORTING INFO
 
-	After exporting, you'll find a folder inside '__Exported Mod Files' containing:
+After exporting, you'll find a folder inside '__Exported Mod Files' containing:
 
 + PAKs - Your mods. How to install mods: https://nomanssky.fandom.com/wiki/Mods#Summary
 + EXMLs - Look for any 'BIOMES' (or 'CUSTOMBIOMES') folder -> copy it to PLUMGEN's '_BIOMES Exmls Folder Goes Here' -> import. [1]
