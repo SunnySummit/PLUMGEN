@@ -475,7 +475,7 @@
             "spawner_crash_title": "Spawner: < 16 Sub-biomes",
             "spawner_crash_desc": "Spawner: Your spawner contains less than 16 sub-biomes. Using this Spawner mod WILL crash your game. Select Tools > Replace Spawner Data, then add biome objects to each sub-biome.\n\nContinue anyway?",
             "spawner_crash_2_title": "Spawner: Empty Sub-Biome Lists",
-            "spawner_crash_2_desc": "Spawner: Empty list detected in at least one Sub-Biome Tile Type.\nUsing this Spawner mod WILL crash your game.\n\nContinue anyway?",
+            "spawner_crash_2_desc": "Spawner: Empty list detected in at least one Sub-Biome Tile Type.*\nUsing this Spawner mod WILL crash your game.\n\nContinue anyway?",
             "missing_data_title": "Missing data",
             "missing_data_desc_pt1": "You're missing important data to make both LUAs, which will crash your game. Details: \n",
             "missing_data_desc_pt2": "\n\nIf necessary, go back to add missing biome objects or select Tools > Replace Spawner Data, then manually add stuff to the new spawner.\n\nContinue anyway?"
@@ -1074,7 +1074,7 @@
             "spawner_crash_title": "生成器：< 16 子生物群",
             "spawner_crash_desc": "生成器：您的生成器包含少于 16 个子生物群。使用此生成器 mod 会导致游戏崩溃。选择工具 > 替换生成器数据，然后为每个子生物群添加生物群对象。\n\n仍要继续吗？",
             "spawner_crash_2_title": "生成器：空子生物群列表",
-            "spawner_crash_2_desc": "生成器：至少一个子生物群瓦片类型中检测到空列表。\n使用此生成器 mod 会导致游戏崩溃。\n\n仍要继续吗？",
+            "spawner_crash_2_desc": "生成器：至少一个子生物群瓦片类型中检测到空列表。*\n使用此生成器 mod 会导致游戏崩溃。\n\n仍要继续吗？",
             "missing_data_title": "缺少数据",
             "missing_data_desc_pt1": "您缺少重要数据来创建两个 LUA，这将导致游戏崩溃。详细信息：\n",
             "missing_data_desc_pt2": "\n\n如果需要，返回添加缺失的生物群对象或选择工具 > 替换生成器数据，然后手动添加内容到新的生成器。\n\n仍要继续吗？"
@@ -1673,7 +1673,7 @@
             "spawner_crash_title": "Spawner: < 16 Alabiomea",
             "spawner_crash_desc": "Spawner: Spawnerissasi on vähemmän kuin 16 alabiomea. Käyttämällä tätä Spawner modausta PELI KAATUU. Valitse Työkalut > Korvaa Spawner Data, sitten lisää biome objekteja jokaiseen alabiomeen.\n\nHaluatko jatkaa silti?",
             "spawner_crash_2_title": "Spawner: Tyhjät Alabiomi Listat",
-            "spawner_crash_2_desc": "Spawner: Tyhjä lista havaittu ainakin yhdessä Alabiomityypissä.\nKäyttämällä tätä Spawner modausta PELI KAATUU.\n\nHaluatko jatkaa silti?",
+            "spawner_crash_2_desc": "Spawner: Tyhjä lista havaittu ainakin yhdessä Alabiomityypissä.*\nKäyttämällä tätä Spawner modausta PELI KAATUU.\n\nHaluatko jatkaa silti?",
             "missing_data_title": "Puuttuva data",
             "missing_data_desc_pt1": "Sinulta puuttuu tärkeää dataa molempien LUAn tekoon, mikä aiheuttaa pelin kaatumisen. Yksityiskohdat: \n",
             "missing_data_desc_pt2": "\n\nTarvittaessa palaa lisäämään puuttuvia biome objekteja tai valitse Työkalut > Korvaa Spawner Data, sitten lisää manuaalisesti asioita uuteen spawneriin.\n\nHaluatko jatkaa silti?"
@@ -2272,7 +2272,7 @@
             "spawner_crash_title": "Spawner : < 16 sous-biomes",
             "spawner_crash_desc": "Spawner : Votre spawner contient moins de 16 sous-biomes. Utiliser ce mod de spawner CAUSERA un crash de votre jeu. Sélectionnez Outils > Remplacer les données de spawner, puis ajoutez des objets de biome à chaque sous-biome.\n\nContinuer quand même ?",
             "spawner_crash_2_title": "Spawner : Listes de sous-biomes vides",
-            "spawner_crash_2_desc": "Spawner : Liste vide détectée dans au moins un type de tuile de sous-biome.\nUtiliser ce mod de spawner CAUSERA un crash de votre jeu.\n\nContinuer quand même ?",
+            "spawner_crash_2_desc": "Spawner : Liste vide détectée dans au moins un type de tuile de sous-biome.*\nUtiliser ce mod de spawner CAUSERA un crash de votre jeu.\n\nContinuer quand même ?",
             "missing_data_title": "Données manquantes",
             "missing_data_desc_pt1": "Vous manquez de données importantes pour créer les deux LUAs, ce qui provoquera un crash de votre jeu. Détails :\n",
             "missing_data_desc_pt2": "\n\nSi nécessaire, revenez en arrière pour ajouter des objets de biome manquants ou sélectionnez Outils > Remplacer les données de spawner, puis ajoutez manuellement des éléments au nouveau spawner.\n\nContinuer quand même ?"
@@ -2871,7 +2871,7 @@
             "spawner_crash_title": "Spawner: < 16 Unter-Biome",
             "spawner_crash_desc": "Spawner: Ihr Spawner enthält weniger als 16 Unter-Biome. Die Verwendung dieses Spawner-Mods VERURSACHT einen Absturz Ihres Spiels. Wählen Sie Tools > Spawnerdaten ersetzen und fügen Sie dann Biome-Objekte zu jedem Unter-Biome hinzu.\n\nTrotzdem fortfahren?",
             "spawner_crash_2_title": "Spawner: Leere Unter-Biome-Listen",
-            "spawner_crash_2_desc": "Spawner: Leere Liste in mindestens einem Unter-Biome-Kacheltyp festgestellt.\nDie Verwendung dieses Spawner-Mods VERURSACHT einen Absturz Ihres Spiels.\n\nTrotzdem fortfahren?",
+            "spawner_crash_2_desc": "Spawner: Leere Liste in mindestens einem Unter-Biome-Kacheltyp festgestellt.*\nDie Verwendung dieses Spawner-Mods VERURSACHT einen Absturz Ihres Spiels.\n\nTrotzdem fortfahren?",
             "missing_data_title": "Fehlende Daten",
             "missing_data_desc_pt1": "Es fehlen wichtige Daten zum Erstellen beider LUAs, was zu einem Spielabsturz führen wird. Details: \n",
             "missing_data_desc_pt2": "\n\nGehen Sie bei Bedarf zurück, um fehlende Biome-Objekte hinzuzufügen, oder wählen Sie Tools > Spawnerdaten ersetzen und fügen Sie dann manuell Dinge zum neuen Spawner hinzu.\n\nTrotzdem fortfahren?"
@@ -3470,7 +3470,7 @@
             "spawner_crash_title": "Creatore di Mostri: < 16 Sottobiomi",
             "spawner_crash_desc": "Creatore di Mostri: il tuo creatore di mostri contiene meno di 16 sottobiomi. Utilizzare questa mod del Creatore di Mostri CAUSERÀ un arresto anomalo del gioco. Seleziona Strumenti > Sostituisci Dati Creatore di Mostri, quindi aggiungi oggetti del bioma a ciascun sottobioma.\n\nContinuare comunque?",
             "spawner_crash_2_title": "Creatore di Mostri: Liste di Sottobiomi Vuote",
-            "spawner_crash_2_desc": "Creatore di Mostri: lista vuota rilevata in almeno un tipo di tessera del sottobioma.\nUtilizzare questa mod del Creatore di Mostri CAUSERÀ un arresto anomalo del gioco.\n\nContinuare comunque?",
+            "spawner_crash_2_desc": "Creatore di Mostri: lista vuota rilevata in almeno un tipo di tessera del sottobioma.*\nUtilizzare questa mod del Creatore di Mostri CAUSERÀ un arresto anomalo del gioco.\n\nContinuare comunque?",
             "missing_data_title": "Dati Mancanti",
             "missing_data_desc_pt1": "Ti mancano dati importanti per creare entrambi i LUA, che causeranno un arresto anomalo del gioco. Dettagli: \n",
             "missing_data_desc_pt2": "\n\nSe necessario, torna indietro per aggiungere oggetti del bioma mancanti o seleziona Strumenti > Sostituisci Dati Creatore di Mostri, quindi aggiungi manualmente oggetti alla nuova tela del creatore di mostri.\n\nContinuare comunque?"
@@ -4069,7 +4069,7 @@
             "spawner_crash_title": "スポナー: < 16 サブバイオーム",
             "spawner_crash_desc": "スポナー: スポナーには16未満のサブバイオームが含まれています。このスポナーMODを使用するとゲームがクラッシュします。ツール > スポナーデータの置き換えを選択し、各サブバイオームにバイオームオブジェクトを追加してください。\n\nそれでも続行しますか？",
             "spawner_crash_2_title": "スポナー: 空のサブバイオームリスト",
-            "spawner_crash_2_desc": "スポナー: 少なくとも1つのサブバイオームタイルタイプで空のリストが検出されました。\nこのスポナーMODを使用するとゲームがクラッシュします。\n\nそれでも続行しますか？",
+            "spawner_crash_2_desc": "スポナー: 少なくとも1つのサブバイオームタイルタイプで空のリストが検出されました。*\nこのスポナーMODを使用するとゲームがクラッシュします。\n\nそれでも続行しますか？",
             "missing_data_title": "データが不足しています",
             "missing_data_desc_pt1": "重要なデータが不足しており、両方のLUAsを作成するためにゲームがクラッシュします。詳細：\n",
             "missing_data_desc_pt2": "\n\n必要に応じて、不足しているバイオームオブジェクトを追加するか、ツール > スポナーデータの置き換えを選択し、新しいスポナーに手動で何かを追加してください。\n\nそれでも続行しますか？"
@@ -4668,7 +4668,7 @@
             "spawner_crash_title": "스포너: < 16 하위 바이옴",
             "spawner_crash_desc": "스포너: 스포너에 하위 바이옴이 16 개 미만 포함되어 있습니다. 이 스포너 모드를 사용하면 게임이 충돌합니다. 도구 > 스포너 데이터 교체를 선택한 다음 각 하위 바이옴에 바이옴 객체를 추가하세요.\n\n계속 하시겠습니까?",
             "spawner_crash_2_title": "스포너: 빈 하위 바이옴 목록",
-            "spawner_crash_2_desc": "스포너: 하나 이상의 하위 바이옴 타일 유형에서 빈 목록을 감지했습니다.\n이 스포너 모드를 사용하면 게임이 충돌합니다.\n\n계속 하시겠습니까?",
+            "spawner_crash_2_desc": "스포너: 하나 이상의 하위 바이옴 타일 유형에서 빈 목록을 감지했습니다.*\n이 스포너 모드를 사용하면 게임이 충돌합니다.\n\n계속 하시겠습니까?",
             "missing_data_title": "누락된 데이터",
             "missing_data_desc_pt1": "두 개의 LUA를 만들기 위한 중요한 데이터가 누락되었습니다. 이로 인해 게임이 충돌합니다. 세부 정보: \n",
             "missing_data_desc_pt2": "\n\n필요한 경우 누락된 바이옴 객체를 추가하거나 도구 > 스포너 데이터 교체를 선택한 다음 새 스포너에 수동으로 추가하세요.\n\n계속 하시겠습니까?"
@@ -5267,7 +5267,7 @@
             "spawner_crash_title": "Spawner: < 16 Sub-biomas",
             "spawner_crash_desc": "Spawner: Seu spawner contém menos de 16 sub-biomas. Usar este mod do Spawner FARÁ o jogo travar. Selecione Ferramentas > Substituir Dados do Spawner e adicione objetos de bioma a cada sub-bioma.\n\nContinuar mesmo assim?",
             "spawner_crash_2_title": "Spawner: Listas de Sub-biomas Vazias",
-            "spawner_crash_2_desc": "Spawner: Lista vazia detectada em pelo menos um Tipo de Bloco de Sub-bioma.\nUsar este mod do Spawner FARÁ o jogo travar.\n\nContinuar mesmo assim?",
+            "spawner_crash_2_desc": "Spawner: Lista vazia detectada em pelo menos um Tipo de Bloco de Sub-bioma.*\nUsar este mod do Spawner FARÁ o jogo travar.\n\nContinuar mesmo assim?",
             "missing_data_title": "Dados Ausentes",
             "missing_data_desc_pt1": "Você está sem dados importantes para criar ambas as LUAs, o que fará o jogo travar. Detalhes: \n",
             "missing_data_desc_pt2": "\n\nSe necessário, volte para adicionar objetos de bioma ausentes ou selecione Ferramentas > Substituir Dados do Spawner e adicione manualmente os itens ao novo spawner.\n\nContinuar mesmo assim?"
@@ -5866,7 +5866,7 @@
             "spawner_crash_title": "Спавнер: < 16 подбиомов",
             "spawner_crash_desc": "Спавнер: Ваш спавнер содержит менее 16 подбиомов. Использование этой модификации спавнера ПРИВЕДЕТ к сбою вашей игры. Выберите Инструменты > Заменить данные спавнера, затем добавьте объекты биомов в каждый подбиом.\n\nПродолжить?",
             "spawner_crash_2_title": "Спавнер: Пустые списки подбиомов",
-            "spawner_crash_2_desc": "Спавнер: Обнаружен пустой список хотя бы в одном типе тайла подбиома.\nИспользование этой модификации спавнера ПРИВЕДЕТ к сбою вашей игры.\n\nПродолжить?",
+            "spawner_crash_2_desc": "Спавнер: Обнаружен пустой список хотя бы в одном типе тайла подбиома.*\nИспользование этой модификации спавнера ПРИВЕДЕТ к сбою вашей игры.\n\nПродолжить?",
             "missing_data_title": "Отсутствующие данные",
             "missing_data_desc_pt1": "У вас отсутствуют важные данные для создания обеих LUA, что приведет к сбою вашей игры. Подробности: \n",
             "missing_data_desc_pt2": "\n\nПри необходимости вернитесь, чтобы добавить недостающие объекты биомов или выберите Инструменты > Заменить данные спавнера, затем вручную добавьте объекты в новый спавнер.\n\nПродолжить?"
@@ -6465,7 +6465,7 @@
             "spawner_crash_title": "Generador: < 16 Sub-biomas",
             "spawner_crash_desc": "Generador: Su generador contiene menos de 16 sub-biomas. Usar este mod de Generador CAUSARÁ un bloqueo en su juego. Seleccione Herramientas > Reemplazar Datos del Generador, luego agregue objetos de bioma a cada sub-bioma.\n\n¿Continuar de todos modos?",
             "spawner_crash_2_title": "Generador: Listas de Sub-Biomas Vacías",
-            "spawner_crash_2_desc": "Generador: Se detectó una lista vacía en al menos un tipo de baldosa de sub-bioma.\nUsar este mod de Generador CAUSARÁ un bloqueo en su juego.\n\n¿Continuar de todos modos?",
+            "spawner_crash_2_desc": "Generador: Se detectó una lista vacía en al menos un tipo de baldosa de sub-bioma.*\nUsar este mod de Generador CAUSARÁ un bloqueo en su juego.\n\n¿Continuar de todos modos?",
             "missing_data_title": "Datos Faltantes",
             "missing_data_desc_pt1": "Le faltan datos importantes para crear ambas LUAs, lo que causará un bloqueo en su juego. Detalles: \n",
             "missing_data_desc_pt2": "\n\nSi es necesario, regrese para agregar objetos de bioma faltantes o seleccione Herramientas > Reemplazar Datos del Generador, luego agregue manualmente elementos al nuevo generador.\n\n¿Continuar de todos modos?"

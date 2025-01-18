@@ -224,8 +224,8 @@ class PlumgenViewGenExport:
         mb.grid(row=0, column=0, columnspan=10, sticky="ew")
 
         filemenu = tk.Menu(mb)
-        filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Auto_Add_To_Tiles"], command=self.auto_add_all_biomes)
-        filemenu.add_command(label="Add ALL Biomes To ALL Tiles", command=self.add_all_biomes)
+        filemenu.add_command(label=f"1 {self.langs[self.lan]["filemenu_view_gen_export"]["Auto_Add_To_Tiles"]}", command=self.auto_add_all_biomes)
+        filemenu.add_command(label="2 Add *ALL* Biomes To all Tiles", command=self.add_all_biomes)
         filemenu.add_separator()
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Select_All"], command=self.select_all)
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Deselect_All"], command=self.deselect_all)
@@ -1412,14 +1412,30 @@ class PlumgenViewGenExport:
 
             # validate no empty lists in each sub-biome tiletype
             empty_list_found = False
+            # store filenames
+            empty_list_found_names = []
             for item in self.all_biome_tile_types:
                 for key, value in item.items():
                     if isinstance(value, list) and not value:
                         empty_list_found = True
+                        filename = item['Filename']
+
+                        filepath_parts = filename.split(self.subfolder) # format filename, so it's shorter
+                        if len(filepath_parts) > 1:
+                            filename = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('\\', '/')
+                            filename = ' / '.join([word.title() for word in filename.split('/')])
+                            filename = re.sub(r'[\\/]+', '/', filename) # Remove consecutive slashes or backslashes
+                            if filename.startswith('/'): # Remove the first slash if present
+                                filename = filename[1:]
+                            final_filename = filename.split('/')[-1]
+                            final_filename = final_filename.replace("biome", "").replace("Biome", "").replace("BIOME", "")
+
+                            empty_list_found_names.append(final_filename.strip())
+
                         break
                 
             if empty_list_found:
-                confirmed = messagebox.askyesno(self.langs[self.lan]["apply_export_settings"]["spawner_crash_2_title"], self.langs[self.lan]["apply_export_settings"]["spawner_crash_2_desc"], parent=self.window)
+                confirmed = messagebox.askyesno(self.langs[self.lan]["apply_export_settings"]["spawner_crash_2_title"], f"{self.langs[self.lan]["apply_export_settings"]["spawner_crash_2_desc"]}\n\n*{', '.join(empty_list_found_names)}", parent=self.window)
                 if not confirmed:
                     return
 
