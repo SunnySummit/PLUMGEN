@@ -491,7 +491,7 @@ class PlumgenControllerGen():
                 self.compare_and_update(target_item)
             
                 if i == 0:
-                    if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN":
+                    if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWLUSHGRASS.SCENE.MBIN":
                         self.model.delete_distant_obj(j) # delete if none selected
                     else:
                         self.model.set_all_distant_model_similar_props(j, self.matching_lists_count)
