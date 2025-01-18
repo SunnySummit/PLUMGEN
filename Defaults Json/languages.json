@@ -111,7 +111,7 @@
         },
         "buttons": {
             "Delete": "Delete",
-            "Add_Biome": "Add Biome",
+            "Add_Biome": "New Biome",
             "Add_Distant": "Add Distant Object",
             "Add_Landmark": "Add Landmark",
             "Add_Object": "Add Object",
@@ -135,7 +135,7 @@
             "subtitle_3": "Attribute Description",
             "subtitle_4": "Default Placement List",
             "subtitle_5": "Biome Template: ",
-            "tooltip_def": "Click 'Add Biome' to get started."
+            "tooltip_def": "Click 'New Biome' to get started."
         },
         "checkboxes": {
             "hide_tooltip": "Hide Tooltip",
@@ -166,7 +166,7 @@
             "desc": "I kindly ask that you do not distribute this application for use in other Hello Games-related projects or games other than No Man's Sky."
         },
         "lb_mouse_leave": {
-            "default": "Click 'Add Biome' to get started."
+            "default": "Click 'New Biome' to get started."
         },
         "csv_selected": {
             "warning_title": "Warning: Generating using Custom Models",
@@ -247,7 +247,7 @@
             "Add_BT_Landmark": "Add BT Landmark",
             "Add_BT_Object": "Add BT Object",
             "Add_BT_Detail": "Add BT Detail Object",
-            "Add_Biome": "Add Biome",
+            "Add_Biome": "New Biome",
             "Add_Distant": "Add Distant Object",
             "Add_Landmark": "Add Landmark",
             "Add_Object": "Add Object",

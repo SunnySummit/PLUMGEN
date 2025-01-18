@@ -69,16 +69,16 @@ class PlumgenModelGen():
             self.objects_list = self.distant_obj_list.copy()
             self.objects_list_2 = self.distant_obj_list.copy() # v1.2: add more objects
             self.objects_list_3 = self.distant_obj_list.copy()
-            if random.randint(1, 4) == 1: # 1 in 4 chance of adding 1 more object:
+            if random.randint(1, 2) == 1: # 1 in 2 chance of adding 1 more object:
                 self.objects_list_4 = self.distant_obj_list.copy()
 
             self.detail_obj_list = self.distant_obj_list.copy()
             self.detail_obj_list_2 = self.distant_obj_list.copy() # v1.2: add more detail
             self.detail_obj_list_3 = self.distant_obj_list.copy()
             self.detail_obj_list_4 = self.distant_obj_list.copy()
-            if random.randint(1, 4) == 1: # 1 in 4 chance of adding 2 more detail:
+            if random.randint(1, 2) == 1: # 1 in 2 chance of adding 2 more detail:
                 self.detail_obj_list_5 = self.distant_obj_list.copy()
-            if random.randint(1, 4) == 1:
+            if random.randint(1, 2) == 1:
                 self.detail_obj_list_6 = self.distant_obj_list.copy()
             if random.randint(1, 2) == 1:
                 self.detail_obj_list_7 = self.distant_obj_list.copy()
@@ -102,11 +102,7 @@ class PlumgenModelGen():
                 self.landmarks_list_2[1] = landm_type_2
 
                 if hasattr(self, 'landmarks_list_3'):
-                    landm_type_3 = random.choice([item for item in self.landmarks_defaults if item != "--"])
-                    attempts = 0
-                    while not self.similar_biome_names(landm_type_3) and attempts < 1000:
-                        landm_type_3 = random.choice([item for item in self.landmarks_defaults if item != "--"])
-                        attempts += 1
+                    landm_type_3 = random.choice([item for item in self.landmarks_defaults if item != "--"]) # random landmark
                     self.landmarks_list_3[1] = landm_type_3
 
                 if hasattr(self, 'landmarks_list_4'):
@@ -188,12 +184,8 @@ class PlumgenModelGen():
                     attempts += 1
                 self.detail_obj_list_4[1] = detail_type_4
 
-                if hasattr(self, 'detail_obj_list_5'):
+                if hasattr(self, 'detail_obj_list_5'): # random detail
                     detail_type_5 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
-                    attempts = 0
-                    while not self.similar_biome_names(detail_type_5) and attempts < 1000:
-                        detail_type_5 = random.choice([item for item in self.detail_objs_defaults if item != "--"])
-                        attempts += 1
                     self.detail_obj_list_5[1] = detail_type_5
 
                 if hasattr(self, 'detail_obj_list_6'):
@@ -430,36 +422,62 @@ class PlumgenModelGen():
 
         # dictionary to map keywords to suffixes
         keyword_suffix_mapping = {
-            "toxic": "toxic",
-            "scorched": "scorched",
-            "radioactive": "radioactive",
-            "frozen": "frozen",
-            "barren": "barren",
-            "dead": "dead",
-            "weird": "weird",
-            "swamp": "swamp",
-            "lava": "lava",
-            "alien": "alien",
-            "alpine": "alpine",
-            "crystal": "crystal",
+            "toxic": ["radioactive", "tallgrass", "rocks", "scrubbush", "fragments", "flower"],
+            "scorched": ["radioactive", "grass", "scrubbush", "fragments"],
+            "radioactive": ["radioactive", "procshape1", "underwater", "grass", "scrubbush", "fragments", "flower"],
+            "frozen": ["frozen", "grass", "flower"],
+            "barren": ["barren", "rocks", "grass"],
+            "dead": ["dead", "hugerock", "hugering", "boulder", "rocks", "fragments", "rocky"],
+            "swamp": ["swamp", "grass", "rocks", "flower", "plants", "foliage", "mediumshroom", "smallshroom", "bush", "mosshut", "hqlush"],
+            "mosshut": ["swamp", "grass", "rocks", "flower", "plants", "foliage", "mediumshroom", "smallshroom", "bush", "mosshut", "hqlush"],
+            "lava": ["lava", "scorched", "rocks", "grass", "bush"],
+            "alien": ["alien", "grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            "alpine": ["alpine", "grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            "crystal": ["crystal", "grass", "rocks", "flower", "plants", "foliage", "tree1", "hqlush"],
             "livingship": "livingship",
-            "nevada": "nevada",
-            "rainforest": "rainforest",
-            "huge": "huge",
-            "burnt": "burnt", # worlds part 1
-            "desolate": "desolate",
-            "floral": "floral",
-            "irradiated": "irradiated",
-            "noxious": "noxious",
-            "rocky": "rocky",
-            "ruins": "ruins",
-            "subzero": "subzero"
+            "nevada": ["nevada", "grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            "rainforest": ["rainforest", "grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            #"huge": "huge",
+            "hugelush": ["hugelush", "hugering", "grass", "rocks", "flower", "plants", "hqlush"],
+            "hugering": ["hugering", "grass", "rocks", "flower", "plants", "hqlush"],
+            "hugerock": ["hugerock", "grass", "rocks", "flower", "plants", "hqlush"],
+            "hugescorched": ["hugescorched", "grass", "rocks", "flower", "plants", "scorched"],
+            "hugetoxic": ["hugetoxic", "grass", "rocks", "plants", "toxic"],
+            "hugewplant": ["hugewplant", "grass", "rocks", "plants", "radioactive"],
+            "burnt": ["burnt", "noxious", "hqlush"], # worlds part 1
+            "desolate": ["desolate", "noxious", "rocky"],
+            "floral": ["floral", "rocks", "hqlush", "grass", "flower", "plants", "foliage"],
+            "irradiated": ["irradiated", "noxious"],
+            "noxious": ["noxious", "rocky"],
+            "rocky": ["rocky", "rocks", "swamp", "hqlush", "grass", "flower", "plants", "foliage", "tree1"],
+            "ruins": ["ruins", "rocks", "hqlush", "grass", "flower", "plants", "foliage", "tree1"],
+            "subzero": ["subzero", "noxious"],
+            "flower": ["grass", "rocks", "flower", "plants", "foliage", "tree1", "hqlush"], # v1.3
+            "plants": ["grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            "tree1": ["grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            "hqlush": ["hqlush", "grass", "rocks", "flower", "plants", "foliage"],
+            "lushroom": ["lushroom", "hqlush", "grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            "rocks": ["rocks", "hqlush", "grass", "flower", "plants", "foliage", "tree1"],
+            "underwater": "underwater",
+            #"weird": "weird",
+            "beamstone": ["beamstone", "rocks", "grass", "flower", "plants", "foliage"],
+            "bonespire": ["bonespire", "rocks", "grass", "flower", "plants", "foliage"],
+            "contour": ["contour", "rocks", "grass", "flower", "plants", "foliage"],
+            "elbubble": ["elbubble", "rocks", "grass", "flower", "plants", "foliage"],
+            "fractalcube": ["fractalcube", "rocks", "grass", "flower", "plants", "foliage"],
+            "hexagon": ["hexagon", "rocks", "grass", "flower", "plants", "foliage"],
+            "houdiniprops": ["houdiniprops", "weird", "rocks", "grass", "flower", "plants", "foliage"], # houdiniprops = crashes on mountain terrain = less options so added "weird"
+            "hydrogarden": ["hydrogarden", "rocks", "grass", "flower", "plants", "foliage"],
+            "irrishells": ["irrishells", "rocks", "grass", "flower", "plants", "foliage"],
+            "mstructures": ["mstructures", "rocks", "grass", "flower", "plants", "foliage"],
+            "shards": ["shards", "rocks", "grass", "flower", "plants", "foliage"],
+            "wirecells": ["wirecells", "rocks", "grass", "flower", "plants", "foliage"]
         }
 
         # iterate over dictionary to check for each keyword
-        for keyword, suffix in keyword_suffix_mapping.items():
+        for keyword, suffixes in keyword_suffix_mapping.items():
             if keyword in prop_model:
-                self.biome_type_name.append(suffix)
+                self.biome_type_name.extend(suffixes)
         
         # check for other keywords for industrial & lush
         if ("building" in prop_model or
@@ -468,8 +486,6 @@ class PlumgenModelGen():
             "wreck" in prop_model and
             "buildableparts" not in prop_model):
             self.biome_type_name.append("industrial")
-        if "lush" in prop_model:
-            self.biome_type_name.append("lush")
         elif ("tree" in prop_model and
             "barren" not in prop_model and
             "dead" not in prop_model and

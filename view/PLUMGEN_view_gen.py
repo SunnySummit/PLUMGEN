@@ -244,7 +244,7 @@ class PlumgenViewGen:
         self.style.configure('TButton', background='#666666', foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('Start.TButton', background=hover_bg_prpl_color, foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('Gen.TButton', background='#333333', foreground=self.white_c, font=('TkDefaultFont', 10))
-        self.style.configure('Create.TButton', background='#008040', foreground=self.white_c, font=('TkDefaultFont', 10)) # make add biome button green
+        self.style.configure('Create.TButton', background='#008040', foreground=self.white_c, font=('TkDefaultFont', 10)) # make New biome button green
         self.style.configure('Delete.TButton', background=red_bg_color, foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('TEntry', fieldbackground='#444444', foreground=self.white_c, font=('TkDefaultFont', 10))
         self.style.configure('TText', background='#444444', foreground=self.white_c, font=('TkDefaultFont', 10))
@@ -269,7 +269,7 @@ class PlumgenViewGen:
               background=[('disabled', 'gray30'), ('active', '#241c30'), ('pressed', '#333333')],
               foreground=[('disabled', hover_fg_prpl_color), ('active', self.white_c), ('pressed', self.white_c)])
         
-        self.style.map('Create.TButton', # make add biome button green
+        self.style.map('Create.TButton', # make New biome button green
               background=[('disabled', 'gray30'), ('active', '#004d26'), ('pressed', '#008040')],
               foreground=[('disabled', hover_fg_prpl_color), ('active', self.white_c), ('pressed', self.white_c)])
         
@@ -516,7 +516,7 @@ class PlumgenViewGen:
 
         # UI element descriptions
         self.gui_element_descriptions = {
-            self.biome_add_button: f">Add Biome: \nClick to make a biome.\nRight-click for multiple biomes.",
+            self.biome_add_button: f">New Biome: \nClick to make a biome.\nRight-click for multiple biomes.",
             self.biome_lb: f">{self.langs[self.lan]["tooltip"]["biome_lb"]}",
             self.distant_objects_lb: f">{self.langs[self.lan]["tooltip"]["distant_objects_lb"]}",
             self.landmarks_lb: f">{self.langs[self.lan]["tooltip"]["landmarks_lb"]}",
