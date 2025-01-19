@@ -4,9 +4,7 @@
 [![Downloads](https://img.shields.io/github/downloads/SunnySummit/PLUMGEN/total.svg)](https://github.com/SunnySummit/PLUMGEN/releases)
 [![Stars](https://img.shields.io/github/stars/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/stargazers)
 [![Issues](https://img.shields.io/github/issues/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/commits/main)
 [![Version](https://img.shields.io/github/v/release/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/releases)
-[![Contributors](https://img.shields.io/github/contributors/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/graphs/contributors)
 
 ### App Features
 
