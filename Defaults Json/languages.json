@@ -242,7 +242,7 @@
         },
         "gen_using_biome_template_data": {
             "Error": "Warning: Generating using Custom Models",
-            "Add_BT_Biome": "Add BT Biome",
+            "Add_BT_Biome": "New BT Biome",
             "Add_BT_Distant": "Add BT Distant Object",
             "Add_BT_Landmark": "Add BT Landmark",
             "Add_BT_Object": "Add BT Object",

@@ -208,34 +208,35 @@ class PlumgenModelGen():
 
 
             # temp list to hold all detail object lists
-            landm_lists_to_check = [self.landmarks_list, self.landmarks_list_2, 
-                                        getattr(self, 'landmarks_list_3', None), getattr(self, 'landmarks_list_4', None)]
+            landm_lists_to_check = [self.landmarks_list_2, getattr(self, 'landmarks_list_3', None),
+                                    getattr(self, 'landmarks_list_4', None)]
 
             # only add unique detail object lists, removes completely identical props
             for landm_list in landm_lists_to_check:
-                if landm_list is not None and landm_list not in self.all_landmarks_lists:
+                if landm_list is not None: #and landm_list not in self.all_landmarks_lists:
                     self.all_landmarks_lists.append(landm_list)
 
 
-            objects_lists_to_check = [self.objects_list, self.objects_list_2, self.objects_list_3,
+            objects_lists_to_check = [self.objects_list_2, self.objects_list_3,
                                         getattr(self, 'objects_list_4', None)]
 
             for objects_list in objects_lists_to_check:
-                if objects_list is not None and objects_list not in self.all_objects_lists:
+                if objects_list is not None: # and objects_list not in self.all_objects_lists:
                     self.all_objects_lists.append(objects_list)
 
 
-            detail_obj_lists_to_check = [self.detail_obj_list, self.detail_obj_list_2, self.detail_obj_list_3, 
+            detail_obj_lists_to_check = [self.detail_obj_list_2, self.detail_obj_list_3, 
                                         self.detail_obj_list_4, getattr(self, 'detail_obj_list_5', None), 
                                         getattr(self, 'detail_obj_list_6', None), getattr(self, 'detail_obj_list_7', None)]
             
+            
             high_density_grass_count = 0
-
-            # check initial detail for high density grass
+            # check initial detail prop whether high density grass
             file_path = self.detail_obj_list[1] if len(self.detail_obj_list) > 1 else ""
             if "crossgrass" in file_path.lower() or "newlushgrass" in file_path.lower() or "bubblelushgrass" in file_path.lower():
                 high_density_grass_count += 1
 
+            # do others, don't append if multiple found
             for detail_list in detail_obj_lists_to_check:
                 if detail_list is not None and detail_list not in self.all_detail_obj_lists:
                     # self.all_detail_obj_lists.append(detail_list)
@@ -249,15 +250,11 @@ class PlumgenModelGen():
                         # else don't append two high density grass types on one biome = low perf/crash
                     else:
                         self.all_detail_obj_lists.append(detail_list)
-
-
-
-
-
-
-
-
-
+            '''
+            for detail_list in detail_obj_lists_to_check:
+                if detail_list is not None:
+                    self.all_detail_obj_lists.append(detail_list)
+            '''
         
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception

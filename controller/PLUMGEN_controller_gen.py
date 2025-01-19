@@ -27,6 +27,8 @@ class PlumgenControllerGen():
         self.logger = logging.getLogger(__name__)  #set up logging
         
         try:
+
+            random.seed()
                 
             self.root = tk.Tk()
 
@@ -393,7 +395,7 @@ class PlumgenControllerGen():
         return data
 
 
-    def compare_and_update(self, target_list):
+    def compare_and_update(self, target_list, big_list):
         matching_lists = []
 
         for row in self.data:
@@ -408,9 +410,18 @@ class PlumgenControllerGen():
 
         if matching_lists:
             selected_matching_list = random.choice(matching_lists)
+            selected_matching_list_copy = copy.deepcopy(selected_matching_list) # deep copy when assigning new duplicate item
+            
+
+            #debugging
+            #for i, item in enumerate(target_list):
+            #    print(f"Item {i}: ID {id(item)}")
+
+
+
             # Update values in target_list with the randomly selected matching_list values
             for i in range(len(self.csv_compare_list)):
-                target_list[i] = selected_matching_list[i]
+                target_list[i] = selected_matching_list_copy[i]
         
         #print(f"matching_lists: {matching_lists}")
         #print(f"target_list 2: {target_list}\n")
@@ -488,8 +499,23 @@ class PlumgenControllerGen():
         for i, target_list in enumerate(lists_to_process):
             # iterate over each list
             for j, target_item in enumerate(target_list):
-                self.compare_and_update(target_item)
+
+                self.compare_and_update(target_item, target_list)
             
+                # check if the updated prop + attributes is unique
+                # exclude current item's position when checking for duplicates
+                other_items = target_list[:j]
+                
+                for idx, other in enumerate(other_items):
+                    if target_item[:-1] == other[:-1]:
+                        # means two props = exact same, so divide coverage & density to space out props
+                        divisor_c = random.choice([1, 1.25, 1.5, 1.75, 2, 2.25, 3])
+                        divisor_fd = random.choice([1, 1.25, 1.5, 1.75, 2, 2.25, 3])
+                        
+                        # convert to floats and apply random divisor
+                        target_item[20] = str(float(target_item[20]) / divisor_c) # coverage
+                        target_item[21] = str(float(target_item[21]) / divisor_fd) # flatdensity
+
                 if i == 0:
                     if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWLUSHGRASS.SCENE.MBIN":
                         self.model.delete_distant_obj(j) # delete if none selected
@@ -608,7 +634,8 @@ class PlumgenControllerGen():
                             "noxious": "_Noxious",
                             "rocky": "_Rocky_Lush", #v1.2
                             "ruins": "_Ruins_Weird", #v1.2
-                            "subzero": "_Subzero"
+                            "subzero": "_Subzero",
+                            "snow": "_Frozen", #v1.3
                         }
 
                         # iterate over dictionary to check for each keyword
