@@ -230,6 +230,12 @@ class PlumgenModelGen():
                                         getattr(self, 'detail_obj_list_6', None), getattr(self, 'detail_obj_list_7', None)]
             
             high_density_grass_count = 0
+
+            # check initial detail for high density grass
+            file_path = self.detail_obj_list[1] if len(self.detail_obj_list) > 1 else ""
+            if "crossgrass" in file_path.lower() or "newlushgrass" in file_path.lower() or "bubblelushgrass" in file_path.lower():
+                high_density_grass_count += 1
+
             for detail_list in detail_obj_lists_to_check:
                 if detail_list is not None and detail_list not in self.all_detail_obj_lists:
                     # self.all_detail_obj_lists.append(detail_list)
@@ -432,8 +438,8 @@ class PlumgenModelGen():
 
         # dictionary to map keywords to suffixes
         keyword_suffix_mapping = {
-            "toxic": ["radioactive", "tallgrass", "rocks", "scrubbush", "fragments", "flower"],
-            "scorched": ["radioactive", "grass", "scrubbush", "fragments"],
+            "toxic": ["toxic", "radioactive", "tallgrass", "rocks", "scrubbush", "fragments", "flower"],
+            "scorched": ["scorched", "radioactive", "grass", "scrubbush", "fragments"],
             "radioactive": ["radioactive", "procshape1", "underwater", "grass", "scrubbush", "fragments", "flower"],
             "frozen": ["frozen", "grass", "flower"],
             "barren": ["barren", "rocks", "grass"],
@@ -462,11 +468,9 @@ class PlumgenModelGen():
             "rocky": ["rocky", "rocks", "swamp", "hqlush", "grass", "flower", "plants", "foliage", "tree1"],
             "ruins": ["ruins", "rocks", "hqlush", "grass", "flower", "plants", "foliage", "tree1"],
             "subzero": ["subzero", "frozen", "noxious"],
-            "flower": ["grass", "rocks", "flower", "plants", "foliage", "tree1", "hqlush"], # v1.3
-            "plants": ["grass", "rocks", "flower", "plants", "foliage", "tree1"],
             "tree1": ["grass", "rocks", "flower", "plants", "foliage", "tree1"], # og trees e.g. mediumtree1
             "hqlush": ["hqlush", "grass", "rocks", "flower", "plants", "foliage"],
-            "lushroom": ["lushroom", "hqlush", "grass", "rocks", "flower", "plants", "foliage", "tree1"],
+            "lushroom": ["lushroom", "hqlush", "grass", "rocks", "flower", "plants", "foliage"],
             "rocks": ["rocks", "hqlush", "grass", "flower", "plants", "foliage", "tree1"],
             "underwater": "underwater",
             #"weird": "weird",
@@ -495,7 +499,7 @@ class PlumgenModelGen():
             "construct" in prop_model or
             "wreck" in prop_model and
             "buildableparts" not in prop_model):
-            self.biome_type_name.extend(["industrial", "grass", "flower", "tree1"])
+            self.biome_type_name.extend(["industrial", "rocks"])
         elif ("tree" in prop_model and
             "barren" not in prop_model and
             "dead" not in prop_model and
@@ -938,6 +942,8 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/PARTS/HQTREE63.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HUGEPROPS/HUGERING/HUGERINGTREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HUGEPROPS/HUGERING/HUGEROCKRING.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/HUGEPROPS/HUGERING/HUGEROCKRING.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/HUGEPROPS/HUGERING/HUGEROCKRING.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HUGEPROPS/HUGEROCK/HUGEPLATFORMROCK.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HUGEPROPS/HUGEROCK/HUGESPIKEROCK.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HUGEPROPS/HUGESCORCHED/HUGESPIRE.SCENE.MBIN",
@@ -976,6 +982,11 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGEBARE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ROCKY/MEDIUMPROPS/ISLANDMEDIUMBARE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ROCKY/SWATERFALLSPIKEY.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGEBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/MEDIUMPROPS/ISLANDMEDIUMBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/SWATERFALLSPIKEY.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/SUBZERO/HUGE/HUGETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/SUBZERO/RARE/RARELARGE.SCENE.MBIN"
             "--",
@@ -989,7 +1000,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/LARGESPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/LARGESPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMDEADTREE01.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMUMBRELLA01.SCENE.MBIN",
@@ -1154,9 +1164,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/HQTREEREF.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/HQTREEREF.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/HQTREEREF.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/HQTREEREF.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/HQTREEREF.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/HQTREEREF.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HQLUSH/HQTREES/PARTS/HQTREE21.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/HQLUSH/LARGEPROPS/MOSSCOVEREDWEIRDPROP.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/LAVA/LARGEPROPS/DEADTREE.SCENE.MBIN",
@@ -1256,12 +1263,9 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMDEADTREE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMSPRUCE01.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/MEDIUMUMBRELLA01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/SMALLCEDAR01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/SMALLCEDAR01.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/SMALLCEDAR01.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/SMALLSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/SMALLSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ALPINE/LARGEPLANT/SMALLSPRUCE01.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/BARREN/HQ/MEDIUMBOULDER02.SCENE.MBIN",
@@ -1302,17 +1306,12 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/TREES/MEDIUMTREE1.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/TREES/MEDIUMTREE1.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/TREES/MEDIUMTREE1.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/TREES/MEDIUMTREE1.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/TREES/MEDIUMTREE1.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/TREES/SKINNEDTREES.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/CRYSTAL/LARGEPROP/GIANTCUBE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/CRYSTAL/LARGEPROP/GIANTSPIKE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/CRYSTAL/LARGEPROP/PILLAR1.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/CRYSTAL/LARGEPROP/SQUATPILLAR1.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/CRYSTAL/SMALLPROP/TINYCUBES.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/FROZEN/LARGEPROPS/LARGETREE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/FROZEN/LARGEPROPS/LARGETREE.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/FROZEN/LARGEPROPS/LARGETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/FROZEN/LARGEPROPS/LARGETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/FROZEN/LARGEPROPS/LARGETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/FROZEN/LARGEPROPS/LARGETREE.SCENE.MBIN",
@@ -1571,26 +1570,18 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/BUILDINGS/PARTS/BUILDABLEPARTS/FOLIAGE/WEIRDCUBE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/BUTTERCUP.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/BUTTERCUP.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/BUTTERCUP.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/SCABIOUS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/SCABIOUS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/SCABIOUS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/YARROW.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/YARROW.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/FLOWERS/YARROW.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/BUBBLELUSHGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/BUBBLELUSHGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/BUBBLELUSHGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/BUBBLELUSHGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/BUBBLELUSHGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/LONGALTGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/LONGALTGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/LONGALTGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/LONGALTGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/LONGALTGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
@@ -1600,7 +1591,7 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWLUSHGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWLUSHGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWLUSHGRASS.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWSCRUBGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWSCRUBGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/TALLGRASSBILLBOARD.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/PLANTS/FERN.SCENE.MBIN",
@@ -1698,8 +1689,6 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN",
-            "MODELS/PLANETS/BIOMES/COMMON/GRASS/CROSSGRASS.SCENE.MBIN"
         ]
 
         return placement_defaults, distant_objs_defaults, landmarks_defaults, objs_defaults, detail_objs_defaults
