@@ -469,6 +469,7 @@ class PlumgenModelGen():
             "hqlush": ["hqlush", "grass", "rocks", "flower", "plants", "foliage"],
             "lushroom": ["lushroom", "hqlush", "grass", "rocks", "flower", "plants", "foliage"],
             "rocks": ["rocks", "hqlush", "grass", "flower", "plants", "foliage", "tree1"],
+            "snow": ["frozen", "subzero"],
             "underwater": "underwater",
             #"weird": "weird",
             "beamstone": ["beamstone", "rocks", "grass", "flower", "plants", "foliage"],
@@ -551,11 +552,17 @@ class PlumgenModelGen():
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
 
-    def add_objects_list(self):
+    def add_objects_list(self, biome_name_ct=0):
         try:
+            self.biome_name_count = biome_name_ct
+
             if bool(self.objs_defaults):
                 new_objects_list = self.objects_list.copy()
-                new_objects_list[1] = random.choice([item for item in self.objs_defaults if item != "--"])
+
+                if self.biome_name_count > 0 and self.biome_name_count < 51:
+                    new_objects_list[1] = f"CUSTOMMODELS/ROCKDOOR_{self.biome_name_count}/ROCKDOOR_{self.biome_name_count}.SCENE.MBIN"
+                else:
+                    new_objects_list[1] = random.choice([item for item in self.objs_defaults if item != "--"])
                 self.all_objects_lists.append(new_objects_list)
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -959,6 +966,39 @@ class DefaultModelPaths():
             "MODELS/PLANETS/BIOMES/IRRADIATED/RARE/RARELARGE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/NOXIOUS/HUGE/HUGETREE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/NOXIOUS/RARE/RARELARGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGEBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/MEDIUMPROPS/ISLANDMEDIUMBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/SWATERFALLSPIKEY.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGEBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/MEDIUMPROPS/ISLANDMEDIUMBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/SWATERFALLSPIKEY.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGEBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/MEDIUMPROPS/ISLANDMEDIUMBARE.SCENE.MBIN",
+            "MODELS/PLANETS/BIOMES/ROCKY/SWATERFALLSPIKEY.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ROCKY/ISLANDSPIKEHUGE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGE.SCENE.MBIN",
             "MODELS/PLANETS/BIOMES/ROCKY/LARGEPROPS/ISLANDLARGEBARE.SCENE.MBIN",

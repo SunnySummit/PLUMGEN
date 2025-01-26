@@ -395,7 +395,7 @@ class PlumgenControllerGen():
         return data
 
 
-    def compare_and_update(self, target_list, big_list):
+    def compare_and_update(self, target_list):
         matching_lists = []
 
         for row in self.data:
@@ -500,7 +500,7 @@ class PlumgenControllerGen():
             # iterate over each list
             for j, target_item in enumerate(target_list):
 
-                self.compare_and_update(target_item, target_list)
+                self.compare_and_update(target_item)
             
                 # check if the updated prop + attributes is unique
                 # exclude current item's position when checking for duplicates
@@ -626,7 +626,7 @@ class PlumgenControllerGen():
                             "livingship": "_Livingship_Weird", #v1.2
                             "nevada": "_Nevada_Lush", #v1.2
                             "rainforest": "_Rainforest_Lush", #v1.2
-                            "huge": "_Huge",
+                            "huge": "_Huge_Ruins",
                             "burnt": "_Burnt", # worlds part 1
                             "desolate": "_Desolate",
                             "floral": "_Floral",

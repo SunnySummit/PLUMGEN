@@ -319,6 +319,8 @@ class PlumgenViewGen:
         self.toolsmenu = tk.Menu(self.mb)
         self.toolsmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["bulk_menu"], command=self.bulk_edit_menu)
         self.toolsmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["refresh_suggested"], command=self.refresh_suggested_props)
+        self.toolsmenu.add_separator()
+        self.toolsmenu.add_command(label="nums_for_testing", command=self.nums_for_testing_rockdoors_in_biomes)
 
         self.editmenu = tk.Menu(self.mb)
         self.editmenu.add_command(label=self.langs[self.lan]["filemenu_view_gen"]["Help"], command=self.open_help)
@@ -2073,7 +2075,7 @@ class PlumgenViewGen:
         try: 
 
             # display context menu on right-click. dialog to ask how many biomes to add
-            num_times = simpledialog.askstring("Enter Number", "How many biomes do you want to add?")
+            num_times = simpledialog.askstring("Enter Number", "Enter the number of biomes to generate:")
             if num_times is not None:
                 if self.is_positive_integer(num_times): # validate input is positive integer
                     
@@ -2234,7 +2236,19 @@ class PlumgenViewGen:
                 
             if self.biome_index is not None:
                 selected_biome = self.controller.get_biome_objs()[self.biome_index]
-                selected_biome.add_objects_list()
+
+                selected_csv = self.csv_var.get()
+                biome_number = 0
+                if "NUMBERS_FOR_TESTING" in selected_csv and self.replace_lb_with_template_data_var.get() and self.gen_using_template_data_var.get():
+                    name = selected_biome.get_filename()
+                    # split by spaces and check if the last part is a valid number
+                    parts = name.split()
+                    last_part = parts[-1]
+
+                    if last_part.isdigit():
+                        biome_number = int(last_part)
+
+                selected_biome.add_objects_list(biome_number)
                 self.controller.process_objects_list(selected_biome)
                 self.repopulate_listbox(self.objects_lb, selected_biome, selected_biome.get_objects_lists)
                 self.placem_val_at_index = None
@@ -2306,6 +2320,43 @@ class PlumgenViewGen:
             self.show_error_message("An error occurred: {}".format(str(e)))
             
 
+    def nums_for_testing_rockdoors_in_biomes(self):
+        try:
+
+            selected_csv = self.csv_var.get()
+            biome_number = 0
+            if "NUMBERS_FOR_TESTING" in selected_csv and self.replace_lb_with_template_data_var.get() and self.gen_using_template_data_var.get():
+                # repopulate listbox with new counts
+                all_biomes = self.controller.get_biome_objs()
+                for bme in all_biomes:
+                    name = bme.get_filename()
+                    # split by spaces and check if the last part is a valid number
+                    parts = name.split()
+                    last_part = parts[-1]
+
+                    if last_part.isdigit():
+                        biome_number = int(last_part)
+
+                    bme.add_objects_list(biome_number)
+                    self.controller.process_objects_list(bme)
+                    self.repopulate_listbox(self.objects_lb, bme, bme.get_objects_lists)
+                    self.placem_val_at_index = None
+                    self.model_val_at_index = None 
+
+                if self.biome_index is not None:
+                    selected_biome = self.controller.get_biome_objs()[self.biome_index]
+                    self.repopulate_listbox(self.objects_lb, selected_biome, selected_biome.get_objects_lists)
+
+                messagebox.showinfo("Affirmative, Dave. I read you.", "Rock doors correctly added to up to 50 biomes.", parent=self.window)
+            else:
+                messagebox.showinfo("I'm sorry, Dave. I'm afraid I can't do that.", "First, select NUMBERS_FOR_TESTING.csv and two checkmarks.\n\nThis requires ROCKDOORS_TEST_CustomModels.", parent=self.window)
+
+
+
+
+        except Exception as e:
+            self.logger.exception("Error: %s", e) # log the exception
+            self.show_error_message("An error occurred: {}".format(str(e)))
 
     # duplicate
     def duplicate_selected_prop(self):
