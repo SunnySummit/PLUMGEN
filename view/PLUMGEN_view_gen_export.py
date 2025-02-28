@@ -23,6 +23,8 @@ class PlumgenViewGenExport:
                 biomes_objs, 
                 bfn_all_biome_files_weights, 
                 bfn_all_valid_start_planets,
+                bfn_valid_purple_moon_biomes_planets, # worlds pt II
+                bfn_valid_giant_planet_biomes,
                 bfn_all_tile_types,
                 all_biome_tile_types,
                 icon_path,
@@ -46,6 +48,8 @@ class PlumgenViewGenExport:
 
             self.bfn_all_biome_files_weights = bfn_all_biome_files_weights
             self.bfn_all_valid_start_planets = bfn_all_valid_start_planets
+            self.bfn_valid_purple_moon_biomes_planets = bfn_valid_purple_moon_biomes_planets # worlds pt II
+            self.bfn_valid_giant_planet_biomes = bfn_valid_giant_planet_biomes
             self.bfn_all_tile_types = bfn_all_tile_types
 
             self.all_biome_tile_types = all_biome_tile_types  # **each** biome file
@@ -109,7 +113,7 @@ class PlumgenViewGenExport:
             self.highlight_c = '#0078d7'
             self.white_c = '#FFFFFF'
 
-            self.subfolder = '_BIOMES Exmls Folder Goes Here'
+            self.subfolder = '_BIOMES Xmls Folder Goes Here'
 
             self.style_current()
 
@@ -126,6 +130,14 @@ class PlumgenViewGenExport:
             self.valid_start_planet_lb.delete(0, tk.END)
             for valid_planet in self.bfn_all_valid_start_planets:
                 self.valid_start_planet_lb.insert(tk.END, valid_planet)
+
+            self.bfn_valid_purple_moons_lb.delete(0, tk.END)
+            for purple_moon in self.bfn_valid_purple_moon_biomes_planets:
+                self.bfn_valid_purple_moons_lb.insert(tk.END, purple_moon)
+
+            self.bfn_valid_giant_planets_lb.delete(0, tk.END)
+            for giant_planet in self.bfn_valid_giant_planet_biomes:
+                self.bfn_valid_giant_planets_lb.insert(tk.END, giant_planet)
 
             # populate notebooks with tabs and corresponding data
             self.populate_planet_type_notebook()
@@ -251,6 +263,8 @@ class PlumgenViewGenExport:
         self.biome_list_lb = Listbox(self.window, selectmode=tk.MULTIPLE, bg=self.background_c, fg=self.white_c, font=('TkDefaultFont', 10), width=42, height=10)
         self.indiv_planet_type_lb = Listbox(self.window, selectmode=tk.SINGLE, bg=self.background_c, fg=self.white_c, font=('TkDefaultFont', 10), width=42)
         self.valid_start_planet_lb = Listbox(self.window, selectmode=tk.SINGLE, bg=self.background_c, fg=self.white_c, font=('TkDefaultFont', 10), width=42)
+        self.bfn_valid_purple_moons_lb = Listbox(self.window, selectmode=tk.SINGLE, bg=self.background_c, fg=self.white_c, font=('TkDefaultFont', 10), width=19)
+        self.bfn_valid_giant_planets_lb = Listbox(self.window, selectmode=tk.SINGLE, bg=self.background_c, fg=self.white_c, font=('TkDefaultFont', 10), width=19)
 
         self.valid_start_planet_lb.bind("<Button-1>", self.on_valid_start_planet_click)
 
@@ -307,6 +321,8 @@ class PlumgenViewGenExport:
         self.biome_file_list_weights_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_2"]["bfl_weights"], style='TitleLabel.TLabel', justify=tk.CENTER)
         #self.biome_file_list_weights_info_label = ttk.Label(self.window, text="(BIOMEFILENAMES.MBIN)", style='SmallLabel.TLabel', justify=tk.CENTER)
         self.valid_start_planet_label = ttk.Label(self.window, text=self.langs[self.lan]["labels_2"]["valid_start"], style='TitleLabel.TLabel', justify=tk.CENTER)
+        self.valid_purple_moon_label = ttk.Label(self.window, text="Valid Purple Moons", style='SmallLabel.TLabel', justify=tk.CENTER)
+        self.valid_giant_planet_label = ttk.Label(self.window, text="Valid Giant Planets", style='SmallLabel.TLabel', justify=tk.CENTER)
         #self.valid_start_planet_info_label = ttk.Label(self.window, text="(BIOMEFILENAMES.MBIN)", style='SmallLabel.TLabel', justify=tk.CENTER)
 
         # tooltip
@@ -334,7 +350,9 @@ class PlumgenViewGenExport:
         # listboxes
         self.biome_list_lb.grid(row=2, column=0, columnspan=2, rowspan=10, padx=15, pady=(0, 20), sticky=tk.NSEW)
         self.indiv_planet_type_lb.grid(row=4, column=3, columnspan=3, rowspan=2, padx=(15, 30), pady=(5, 40), sticky=tk.NSEW)
-        self.valid_start_planet_lb.grid(row=2, column=6, columnspan=2, rowspan=2,  padx=15, sticky=tk.NSEW)
+        self.valid_start_planet_lb.grid(row=2, column=6, columnspan=2, rowspan=1,  padx=15, sticky=tk.NSEW)
+        self.bfn_valid_purple_moons_lb.grid(row=5, column=6, columnspan=1, rowspan=1,  padx=15, pady=(24,15), sticky=tk.NSEW)
+        self.bfn_valid_giant_planets_lb.grid(row=5, column=7, columnspan=1, rowspan=1,  padx=15, pady=(24,15), sticky=tk.NSEW)
 
         # scrollbars
         self.biome_scroll_x.grid(row=11, column=0, columnspan=2, padx=15, pady=(5, 5), sticky=tk.EW + tk.S)
@@ -359,8 +377,8 @@ class PlumgenViewGenExport:
         self.add_tiletype_set_button.grid(row=6, column=6, columnspan=2, padx=15, pady=5, sticky=tk.S)
         self.delete_tiletype_set_button.grid(row=7, column=6, columnspan=2, rowspan=2, padx=15, pady=5, sticky=tk.N)
 
-        self.add_validp_button.grid(row=4, column=6, columnspan=2, padx=15, pady=5, sticky=tk.S)
-        self.delete_validp_button.grid(row=5, column=6, columnspan=2, padx=15, pady=5, sticky=tk.N)
+        self.add_validp_button.grid(row=4, column=6, columnspan=1, padx=15, pady=(0, 5), sticky=tk.N)
+        self.delete_validp_button.grid(row=4, column=7, columnspan=1, padx=15, pady=(0, 5), sticky=tk.N)
 
         self.export_button.grid(row=12, column=6, columnspan=2, padx=20, pady=5, sticky=tk.E)
 
@@ -387,6 +405,8 @@ class PlumgenViewGenExport:
         self.biome_file_list_weights_label.grid(row=9, column=2, columnspan=3, padx=(30, 0), pady=(5,0), sticky=tk.SW)
         #self.biome_file_list_weights_info_label.grid(row=9, column=2, columnspan=3, padx=15, pady=5, sticky=tk.SW)
         self.valid_start_planet_label.grid(row=1, column=6, columnspan=2, padx=15, pady=(5,0), sticky=tk.S)
+        self.valid_purple_moon_label.grid(row=5, column=6, columnspan=1, padx=15, pady=(5,0), sticky=tk.N)
+        self.valid_giant_planet_label.grid(row=5, column=7, columnspan=1, padx=15, pady=(5,0), sticky=tk.N)
         #self.valid_start_planet_info_label.grid(row=2, column=6, columnspan=2, padx=(15,5), pady=(20, 5))
         
         # tooltip
@@ -594,7 +614,7 @@ class PlumgenViewGenExport:
 
             filepath_parts = filename.split(self.subfolder) # format filename, so it's shorter
             if len(filepath_parts) > 1:
-                filename = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('\\', '/')
+                filename = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('.mxml', '').replace('.MXML', '').replace('\\', '/')
                 filename = ' / '.join([word.title() for word in filename.split('/')])
                 filename = re.sub(r'[\\/]+', '/', filename) # Remove consecutive slashes or backslashes
                 if filename.startswith('/'): # Remove the first slash if present
@@ -703,7 +723,7 @@ class PlumgenViewGenExport:
     def auto_add_all_biomes(self):
         try:
             
-            confirmed = messagebox.askyesno(self.langs[self.lan]["auto_add_all_biomes"]["add_all_title"], self.langs[self.lan]["auto_add_all_biomes"]["add_all_desc"], parent=self.window)
+            confirmed = messagebox.askyesno(self.langs[self.lan]["auto_add_all_biomes"]["add_all_title"], f"*Doesn't work with 'DeepWater' keyword, so manually add those to 'Underwater' (beneath 'Universal Tile Types')\n\n{self.langs[self.lan]["auto_add_all_biomes"]["add_all_desc"]}", parent=self.window)
             if not confirmed:
                 return # user clicked no or closed
 
@@ -721,7 +741,7 @@ class PlumgenViewGenExport:
                 for idx, biome_tile_types in enumerate(self.all_biome_tile_types):
                     filename = biome_tile_types['Filename']
 
-                    # split filename to get the path after '_BIOMES Exmls Folder Goes Here'
+                    # split filename to get the path after '_BIOMES Xmls Folder Goes Here'
                     filepath_parts = filename.split(self.subfolder)
                     if len(filepath_parts) > 1:
                         final_filename = filepath_parts[1]
@@ -1142,9 +1162,11 @@ class PlumgenViewGenExport:
         bfn_all_biome_files_weights = data["bfn_all_biome_files_weights"]
         bfn_all_tile_types = data["bfn_all_tile_types"]
         bfn_all_valid_start_planets = data["bfn_all_valid_start_planets"]
+        bfn_valid_purple_moon_biomes_planets = data["bfn_valid_purple_moon_biomes_planets"] # worlds pt II
+        bfn_valid_giant_planet_biomes = data["bfn_valid_giant_planet_biomes"]
         all_biome_tile_types = data["all_biome_tile_types"]
 
-        return bfn_all_biome_files_weights, bfn_all_tile_types, bfn_all_valid_start_planets, all_biome_tile_types
+        return bfn_all_biome_files_weights, bfn_all_tile_types, bfn_all_valid_start_planets, bfn_valid_purple_moon_biomes_planets, bfn_valid_giant_planet_biomes, all_biome_tile_types
 
     def replace_spawner_data(self):
         try:
@@ -1168,7 +1190,7 @@ class PlumgenViewGenExport:
                 json_file_path = os.path.abspath(os.path.join(default_bfn_folder_dir, 'default_bfn_and_biomes.json'))
 
 
-            # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
+            # verify that the '_BIOMES Xmls Folder Goes Here' directory exists
             if not os.path.exists(default_bfn_folder_dir):
                 messagebox.showerror(self.langs[self.lan]["replace_spawner_data"]["Error"], f"{self.langs[self.lan]["replace_spawner_data"]["error_1_desc_pt1"]}{default_bfn_folder_dir}{self.langs[self.lan]["replace_spawner_data"]["error_1_desc_pt2"]}", parent=self.window)
                 return
@@ -1178,7 +1200,7 @@ class PlumgenViewGenExport:
                 return
 
             # import data from JSON file
-            self.bfn_all_biome_files_weights, self.bfn_all_tile_types, self.bfn_all_valid_start_planets, self.all_biome_tile_types = self.import_from_json(json_file_path)
+            self.bfn_all_biome_files_weights, self.bfn_all_tile_types, self.bfn_all_valid_start_planets, self.bfn_valid_purple_moon_biomes_planets, self.bfn_valid_giant_planet_biomes, self.all_biome_tile_types = self.import_from_json(json_file_path)
 
             messagebox.showinfo(self.langs[self.lan]["replace_spawner_data"]["import_json_complete_title"], self.langs[self.lan]["replace_spawner_data"]["import_json_complete_desc"], parent=self.window)
 
@@ -1190,8 +1212,11 @@ class PlumgenViewGenExport:
 
 
     # function to validate input
-    def validate_input(self, input_string):
-        return re.match(r'^[a-zA-Z0-9_.-]+$', input_string) is not None
+    def validate_input(self, input_string, string_is_author=False):
+        if string_is_author:
+            return input_string == "" or re.match(r'^[a-zA-Z0-9_.\s-]+$', input_string) is not None
+        else:
+            return re.match(r'^[a-zA-Z0-9_.\s-]+$', input_string) is not None
 
 
     def create_export_settings_window(self):
@@ -1209,42 +1234,44 @@ class PlumgenViewGenExport:
         parent_x = self.window.winfo_rootx()
         parent_y = self.window.winfo_rooty()
         self.export_settings_window.geometry(f"+{parent_x}+{parent_y}")
+        self.export_settings_window.resizable(False, False)  # prevent resizing
+
         self.export_settings_window.grab_set()  # prevent this window from going behind main window
 
         dr_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["dr_label"], justify=tk.LEFT, font=("TkDefaultFont", 8))
         dr_label.grid(row=0, column=0, columnspan=2, padx=(20, 20), pady=(0, 20), sticky=tk.W)
 
-        draw_dist_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["draw_dist_label"], justify=tk.CENTER, font=("TkDefaultFont", 10))
-        draw_dist_label.grid(row=0, column=0, columnspan=3, padx=(20, 20), pady=(20, 0), sticky=tk.S)
+        #draw_dist_label = tk.Label(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["draw_dist_label"], justify=tk.CENTER, font=("TkDefaultFont", 10))
+        #draw_dist_label.grid(row=0, column=0, columnspan=3, padx=(20, 20), pady=(20, 0), sticky=tk.S)
 
         #self.prop_dist_var = tk.BooleanVar()
         #dr_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["dr_checkbox"], variable=self.prop_dist_var)
         #dr_checkbox.grid(row=1, column=0, columnspan=2, padx=(20, 20), sticky=tk.W)
 
         # StringVar to hold selected option
-        self.prop_dist_var = tk.StringVar(value="near")  # Default value
+        #self.prop_dist_var = tk.StringVar(value="near")  # Default value
 
-        if self.open_export_window_and_wait: # set to regular automatically when bulk updating
-            self.prop_dist_var = tk.StringVar(value="regular")
+        #if self.open_export_window_and_wait: # set to regular automatically when bulk updating
+        #    self.prop_dist_var = tk.StringVar(value="regular")
 
         # radio buttons for 'far', 'regular', and 'near'
-        far_radio = tk.Radiobutton(self.export_settings_window, text="Far[+][+]", variable=self.prop_dist_var, value="far")
-        regular_radio = tk.Radiobutton(self.export_settings_window, text="Regular[+]", variable=self.prop_dist_var, value="regular")
-        near_radio = tk.Radiobutton(self.export_settings_window, text="Near", variable=self.prop_dist_var, value="near")
+        #far_radio = tk.Radiobutton(self.export_settings_window, text="Far[+][+]", variable=self.prop_dist_var, value="far")
+        #regular_radio = tk.Radiobutton(self.export_settings_window, text="Regular[+]", variable=self.prop_dist_var, value="regular")
+        #near_radio = tk.Radiobutton(self.export_settings_window, text="Near", variable=self.prop_dist_var, value="near")
 
         # radio buttons in window
-        far_radio.grid(row=1, column=2, padx=(20, 20), sticky=tk.W)
-        regular_radio.grid(row=1, column=1, padx=(20, 20), sticky=tk.W)
-        near_radio.grid(row=1, column=0, padx=(20, 20), sticky=tk.W)
+        #far_radio.grid(row=1, column=2, padx=(20, 20), sticky=tk.W)
+        #regular_radio.grid(row=1, column=1, padx=(20, 20), sticky=tk.W)
+        #near_radio.grid(row=1, column=0, padx=(20, 20), sticky=tk.W)
 
 
         # global lod/draw distance dialog
         #global_label = tk.Label(export_settings_window, text="Global LOD/draw distance limit/fade time [+]")
         #global_label.grid(row=2, column=0, columnspan=2, padx=(10, 10))
 
-        self.global_dist_var = tk.BooleanVar()
-        global_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["global_checkbox"], variable=self.global_dist_var)
-        global_checkbox.grid(row=3, column=0, columnspan=3, padx=(20, 20), pady=(0, 20), sticky=tk.EW)
+        #self.global_dist_var = tk.BooleanVar()
+        #global_checkbox = tk.Checkbutton(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["global_checkbox"], variable=self.global_dist_var)
+        #global_checkbox.grid(row=3, column=0, columnspan=3, padx=(20, 20), pady=(0, 20), sticky=tk.EW)
 
         # mod author entry
         self.mod_author_entry = tk.Entry(self.export_settings_window)
@@ -1264,10 +1291,13 @@ class PlumgenViewGenExport:
         spawner_filename_label.grid(row=6, column=0, padx=(0, 0), sticky=tk.E)
         self.spawner_filename_entry.grid(row=6, column=1, columnspan=2, padx=(0, 50), sticky=tk.EW)
 
-        if self.open_export_window_and_wait: # set to me 'cause ain't nobody else usin this
-            self.mod_author_entry.insert(0, "goosetehmoose")
-            self.biomes_filename_entry.insert(0, "Las_")
-            self.spawner_filename_entry.insert(0, "Las_")
+        #if self.open_export_window_and_wait: # set to me 'cause ain't nobody else usin this
+        #    self.mod_author_entry.insert(0, "goosetehmoose")
+        #    self.biomes_filename_entry.insert(0, "Las_Planets_")
+        #    self.spawner_filename_entry.insert(0, "Las_Spawner_")
+        #else:
+        self.biomes_filename_entry.insert(0, "Planets_")
+        self.spawner_filename_entry.insert(0, "Spawner_")
 
         # export button
         export_button = tk.Button(self.export_settings_window, text=self.langs[self.lan]["export_settings_window"]["Export"], command=self.export_all_the_files, width=10, background='#473d5c', foreground=self.white_c)
@@ -1279,8 +1309,8 @@ class PlumgenViewGenExport:
     def export_all_the_files(self):
         # get values from export settings window
         #self.prop_dist = self.prop_dist_var.get()
-        self.prop_dist = self.prop_dist_var.get()
-        self.global_dist = self.global_dist_var.get()
+        #self.prop_dist = self.prop_dist_var.get()
+        #self.global_dist = self.global_dist_var.get()
         mod_author = self.mod_author_entry.get()
         biomes_filename = self.biomes_filename_entry.get()
         spawner_filename = self.spawner_filename_entry.get()
@@ -1288,10 +1318,10 @@ class PlumgenViewGenExport:
         timestamp = datetime.now().strftime('%Y-%m-%d %H%M%S')
 
         # validate user input
-        if not mod_author:
-            messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_1"], parent=self.window)
-            return
-        if not self.validate_input(mod_author):
+        #if not mod_author:
+        #    messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_1"], parent=self.window)
+        #    return
+        if not self.validate_input(mod_author, string_is_author=True):
             messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_2"], parent=self.window)
             return
 
@@ -1308,6 +1338,10 @@ class PlumgenViewGenExport:
         if not self.validate_input(spawner_filename):
             messagebox.showerror(self.langs[self.lan]["export_all_files"]["Error"], self.langs[self.lan]["export_all_files"]["Error_Desc_6"], parent=self.window)
             return
+    
+        if mod_author:
+            biomes_filename = f"{biomes_filename} by {mod_author}"
+            spawner_filename = f"{spawner_filename} by {mod_author}"
         
 
         self.export_button.config(state="disabled") # disable export button
@@ -1318,22 +1352,26 @@ class PlumgenViewGenExport:
         self.export_settings_window.destroy()
 
         # initialize export lua class, pass arguments
+        '''
         self.export_class = PlumgenExportLuaClass(
             self.prop_dist,
-            self.global_dist,
+            #self.global_dist,
             self.biomes_objs,
             self.bfn_all_biome_files_weights,
             self.bfn_all_valid_start_planets,
+            self.bfn_valid_purple_moon_biomes_planets,
+            self.bfn_valid_giant_planet_biomes,
             self.bfn_all_tile_types,
             self.all_biome_tile_types,
             timestamp
         )
+        '''
 
         # write PlumgenBiomes.lua
-        self.export_class.export_biome_objects(mod_author, biomes_filename)
+        #self.export_class.export_biome_objects(mod_author, biomes_filename)
 
         # write PlumgenSpawner.lua
-        self.export_class.export_biome_spawner(mod_author, spawner_filename)
+        #self.export_class.export_biome_spawner(mod_author, spawner_filename)
         '''
         messagebox.showinfo("All Done!", "LUAs created:"
                         "\n\n1. PlumgenBiomes.lua - Contains biome objects" \
@@ -1349,11 +1387,13 @@ class PlumgenViewGenExport:
 
         # initialize export exml class, pass arguments
         self.export_exml_class = PlumgenExportExmlClass(
-            self.prop_dist,
-            self.global_dist,
+            #self.prop_dist,
+            #self.global_dist,
             self.biomes_objs,
             self.bfn_all_biome_files_weights,
             self.bfn_all_valid_start_planets,
+            self.bfn_valid_purple_moon_biomes_planets,
+            self.bfn_valid_giant_planet_biomes,
             self.bfn_all_tile_types,
             self.all_biome_tile_types,
             timestamp,
@@ -1361,6 +1401,8 @@ class PlumgenViewGenExport:
             self.lan,
             self.open_export_window_and_wait,
             self.checked_mbc_update_already,
+            biomes_filename,
+            spawner_filename,
             self.window
         )
 
@@ -1390,9 +1432,9 @@ class PlumgenViewGenExport:
         #print("\n5")
         self.export_exml_class.modify_biomefilenames()
         #print("\n6")
-        self.export_exml_class.modify_globals() #
+        #self.export_exml_class.modify_globals() #removed worlds part II - converted into EXML snippets = no need to update
         #print("\n7")
-        self.export_exml_class.make_move_mbins_pak_and_validate(biomes_filename, spawner_filename)
+        self.export_exml_class.make_move_mbins_and_validate()
         #print("\n8")
 
 
@@ -1405,7 +1447,7 @@ class PlumgenViewGenExport:
         try:
 
             # validate imported 16 sub-biomes
-            if len(self.bfn_all_biome_files_weights) < 16:
+            if len(self.bfn_all_biome_files_weights) < 17:
                 confirmed = messagebox.askyesno(self.langs[self.lan]["apply_export_settings"]["spawner_crash_title"], self.langs[self.lan]["apply_export_settings"]["spawner_crash_desc"], parent=self.window)
                 if not confirmed:
                     return # user clicked no or closed
@@ -1422,7 +1464,7 @@ class PlumgenViewGenExport:
 
                         filepath_parts = filename.split(self.subfolder) # format filename, so it's shorter
                         if len(filepath_parts) > 1:
-                            filename = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('\\', '/')
+                            filename = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('.mxml', '').replace('.MXML', '').replace('\\', '/')
                             filename = ' / '.join([word.title() for word in filename.split('/')])
                             filename = re.sub(r'[\\/]+', '/', filename) # Remove consecutive slashes or backslashes
                             if filename.startswith('/'): # Remove the first slash if present
@@ -1446,6 +1488,12 @@ class PlumgenViewGenExport:
                 missing_variables.append("A. Biome objects")
             if not self.bfn_all_valid_start_planets:
                 missing_variables.append("B. Valid start planets")
+
+            if not self.bfn_valid_purple_moon_biomes_planets:
+                missing_variables.append("B1. Valid purple moons - Weird error... report this pls.")
+            if not self.bfn_valid_giant_planet_biomes:
+                missing_variables.append("B2. Valid giant planets - Weird error... report this pls.")
+
             if not self.bfn_all_tile_types:
                 missing_variables.append("C. Tile types")
             if not self.all_biome_tile_types:
@@ -1508,7 +1556,7 @@ class PlumgenViewGenExport:
             if not self.open_export_window_and_wait:
                 messagebox.showinfo(self.langs[self.lan]["on_close_2"]["biome_notice_title"], self.langs[self.lan]["on_close_2"]["biome_notice_desc"], parent=self.window)
             
-            self.apply_callback(self.bfn_all_biome_files_weights, self.bfn_all_valid_start_planets, self.bfn_all_tile_types, self.all_biome_tile_types, self.checked_mbc_update_already)
+            self.apply_callback(self.bfn_all_biome_files_weights, self.bfn_all_valid_start_planets, self.bfn_valid_purple_moon_biomes_planets, self.bfn_valid_giant_planet_biomes, self.bfn_all_tile_types, self.all_biome_tile_types, self.checked_mbc_update_already)
 
             self.parent.attributes("-alpha", 0.0) # remove flash
             self.parent.deiconify() # show the root window again

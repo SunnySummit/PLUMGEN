@@ -13,7 +13,7 @@ import tkinter as tk
 
 class PlumgenExportLuaClass():
 
-    def __init__(self, prop_dist, global_dist, 
+    def __init__(self, prop_dist, #global_dist, 
         biomes_objs,
         bfn_all_biome_files_weights,
         bfn_all_valid_start_planets,
@@ -26,7 +26,7 @@ class PlumgenExportLuaClass():
         try:
             
             self.prop_dist = prop_dist # bool
-            self.global_dist = global_dist # bool
+            #self.global_dist = global_dist # bool
 
             self.biomes_objs = biomes_objs
             self.bfn_all_biome_files_weights = bfn_all_biome_files_weights
@@ -36,7 +36,7 @@ class PlumgenExportLuaClass():
 
             self.timestamp = timestamp
 
-            self.subfolder = '_BIOMES Exmls Folder Goes Here'
+            self.subfolder = '_BIOMES Xmls Folder Goes Here'
 
             # check if the code is frozen (compiled to exe) or running as a script
             if getattr(sys, 'frozen', False):
@@ -73,7 +73,7 @@ class PlumgenExportLuaClass():
             self.biome_obj_3d = ""
             self.biome_detail_3e = ""
             self.biome_end_3f = ""
-            self.global_distance_4a = ""
+            #self.global_distance_4a = ""
             self.footer_4b = ""
 
             self.header_1 = ""
@@ -147,7 +147,7 @@ class PlumgenExportLuaClass():
         self.biome_obj_3d ------- @Object@
         self.biome_detail_3e ------- @AddDetailPropOption@ @Detail@
         self.biome_end_3f
-        self.global_distance_4a
+        #self.global_distance_4a
         self.footer_4b
         '''
 
@@ -298,10 +298,10 @@ class PlumgenExportLuaClass():
                     lua_file.write(self.biome_end_3f)
 
                 # after loop - close lua file
-                if self.global_dist:  # True
-                    lua_file.write(self.global_distance_4a)
-                else:
-                    lua_file.write(self.footer_4b)
+                #if self.global_dist:  # True
+                #    lua_file.write(self.global_distance_4a)
+                #else:
+                lua_file.write(self.footer_4b)
 
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
@@ -477,7 +477,7 @@ class PlumgenExportLuaClass():
         self.biome_detail_3e = self.read_lua_file(os.path.join(self.lua_biomes_path, '3e_biome_detail.lua'))
         self.biome_end_3f = self.read_lua_file(os.path.join(self.lua_biomes_path, '3f_biome_end.lua'))
 
-        self.global_distance_4a = self.read_lua_file(os.path.join(self.lua_biomes_path, '4a_global_distance.lua'))
+        #self.global_distance_4a = self.read_lua_file(os.path.join(self.lua_biomes_path, '4a_global_distance.lua'))
         self.footer_4b = self.read_lua_file(os.path.join(self.lua_biomes_path, '4b_footer.lua'))
 
 

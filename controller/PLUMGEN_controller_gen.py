@@ -5,6 +5,7 @@ File: PLUMGEN_controller_gen.py
 import os   # os interactions
 import sys
 import re
+import ctypes
 import tkinter as tk
 import csv
 import random
@@ -13,7 +14,7 @@ import json
 import xml.etree.ElementTree as ET
 import logging
 import shutil
-import threading
+import webbrowser
 from tkinter import messagebox
 from view.PLUMGEN_view_gen import PlumgenViewGen
 from Resources.PLUMGEN_model_gen import PlumgenModelGen
@@ -32,7 +33,7 @@ class PlumgenControllerGen():
                 
             self.root = tk.Tk()
 
-            self.subfolder = '_BIOMES Exmls Folder Goes Here'
+            self.subfolder = '_BIOMES Xmls Folder Goes Here'
             self.default_subfolder = 'Defaults Json'
 
             # check if the code is frozen (compiled to exe) or running as script
@@ -42,35 +43,37 @@ class PlumgenControllerGen():
                 self.new_plum_to_delete = os.path.abspath(os.path.join(current_directory, 'Resources', 'Updater', '_PLUMGEN'))#####
                 self.new_plum_bts = os.path.abspath(os.path.join(current_directory, 'Resources', 'Updater', '_PLUMGEN', '_Biome Templates'))#####
                 self.old_plum_bts = os.path.abspath(os.path.join(current_directory, '_Biome Templates'))#####
-                self.new_plum_xml = os.path.abspath(os.path.join(current_directory, 'Resources', 'Updater', '_PLUMGEN', 'Resources', 'plum_extract_biomes.xml'))#####
-                self.old_plum_xml = os.path.abspath(os.path.join(current_directory, 'Resources', 'plum_extract_biomes.xml'))#####
+                #self.new_plum_xml = os.path.abspath(os.path.join(current_directory, 'Resources', 'Updater', '_PLUMGEN', 'Resources', 'plum_extract_biomes.xml'))#####
+                #self.old_plum_xml = os.path.abspath(os.path.join(current_directory, 'Resources', 'plum_extract_biomes.xml'))#####
                 #self.plum_exe = os.path.abspath(os.path.join(current_directory, '_PLUMGEN.exe'))
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '_Presets'))
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '_Biome Templates', '_Vanilla+Pre NMS.csv'))
-                self.biome_exmls_folder_dir = os.path.abspath(os.path.join(current_directory, self.subfolder))
+                self.biome_xmls_folder_dir = os.path.abspath(os.path.join(current_directory, self.subfolder))
                 self.default_bfn_folder_dir = os.path.abspath(os.path.join(current_directory, self.default_subfolder))
                 self.json_lang_path = os.path.abspath(os.path.join(self.default_bfn_folder_dir, 'languages.json'))
+                self.psarc_exe_path = os.path.abspath(current_directory, "Resources", "psarc.exe")
             else:
                 # if running as script, use these paths:
                 current_directory = os.path.dirname(os.path.realpath(__file__))
                 self.new_plum_to_delete = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'Updater', '_PLUMGEN'))#####
                 self.new_plum_bts = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'Updater', '_PLUMGEN', '_Biome Templates'))#####
                 self.old_plum_bts = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates'))
-                self.new_plum_xml = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'Updater', '_PLUMGEN', 'Resources', 'plum_extract_biomes.xml'))
-                self.old_plum_xml = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'plum_extract_biomes.xml'))
+                #self.new_plum_xml = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'Updater', '_PLUMGEN', 'Resources', 'plum_extract_biomes.xml'))
+                #self.old_plum_xml = os.path.abspath(os.path.join(current_directory, '..', 'Resources', 'plum_extract_biomes.xml'))
                 #self.plum_exe = None
                 self.resources_path = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates'))
                 self.presets_path = os.path.abspath(os.path.join(current_directory, '..', '_Presets'))
                 self.csv_file = os.path.abspath(os.path.join(current_directory, '..', '_Biome Templates', '_Vanilla+Pre NMS.csv'))
-                self.biome_exmls_folder_dir = os.path.abspath(os.path.join(current_directory, '..', self.subfolder))
+                self.biome_xmls_folder_dir = os.path.abspath(os.path.join(current_directory, '..', self.subfolder))
                 self.default_bfn_folder_dir = os.path.abspath(os.path.join(current_directory, '..', self.default_subfolder))
                 self.json_lang_path = os.path.abspath(os.path.join(self.default_bfn_folder_dir, 'languages.json'))
+                self.psarc_exe_path = os.path.abspath(os.path.join(current_directory, '..', 'Resources', "psarc.exe"))
 
             #if not os.path.exists(self.csv_file): # check if the file exists
             #    print("_Vanilla+Pre NMS.csv file not found in '_Biome Templates' folder.")
 
-            ### Worlds Part 1 { ---------------------------------
+            ### Worlds Part 1 ---------------------------------
             # check if new AND old bt folders exist, delete old files ending with .csv if it does
             if os.path.exists(self.new_plum_bts) and os.path.isdir(self.new_plum_bts):
                 if os.path.exists(self.old_plum_bts) and os.path.isdir(self.old_plum_bts):
@@ -86,11 +89,6 @@ class PlumgenControllerGen():
                     destination = os.path.join(self.old_plum_bts, item)
                     if os.path.isfile(source):
                         shutil.move(source, destination)
-
-            if os.path.exists(self.new_plum_xml) and os.path.isfile(self.new_plum_xml):
-                if os.path.exists(self.old_plum_xml) and os.path.isfile(self.old_plum_xml):
-                    os.remove(self.old_plum_xml)  # remove old plum_extract_biomes.xml file if it exists
-                shutil.move(self.new_plum_xml, self.old_plum_xml)  # move new plum_extract_biomes.xml to replace old one
 
             # finally, check if new plum folder exists, if so, delete it (after an update, it is no longer needed):
             if os.path.exists(self.new_plum_to_delete):
@@ -108,11 +106,12 @@ class PlumgenControllerGen():
                         "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"] #v4
             
 
-            # store imported EXMLs
+            # store imported XMLs
             self.bfn_all_biome_files_weights = []
             self.bfn_all_tile_types = {}
             self.bfn_all_valid_start_planets = []
-            
+            self.bfn_valid_purple_moon_biomes = [] # worlds pt II
+            self.bfn_valid_giant_planet_biomes = []
             self.all_biome_tile_types = [] # **each** biome file
 
             # create separate instance of default model paths, to be passed to PlumgenModelGen instance objects
@@ -125,6 +124,7 @@ class PlumgenControllerGen():
             self.sdl = DefaultSpawnDensityList()
             self.default_spawndensitylist = self.sdl.create_default_sdl()
 
+
             # get language
             self.langs = None
             self.get_set_lang_from_json_update_plum()
@@ -133,6 +133,49 @@ class PlumgenControllerGen():
                 self.lan = "English" # temporarily default to english if none selected
             else:
                 self.lan = self.langs["Lan"]
+
+
+            ### Worlds Part 2 ---------------------------------
+            # check if psarc exists, if so, tell user to manually download plumgen update
+            if os.path.exists(self.psarc_exe_path) and os.path.isfile(self.psarc_exe_path):
+                if self.lang_window and self.lang_window.winfo_exists():
+                    self.lang_window.withdraw() # temporarily hide language window
+
+                self.update_window = tk.Toplevel(self.root)
+                self.update_window.title("Manual Update Required")
+
+                try: ctypes.windll.shcore.SetProcessDpiAwareness(2)
+                except: pass  # DPI awareness not available
+
+                self.update_window.configure(borderwidth=1)
+                self.update_window.resizable(False, False)  # prevent resizing
+                self.update_window.grab_set()  # prevent this window from going behind main window
+
+                # center window
+                screen_width = self.update_window.winfo_screenwidth() # get screen dimensions (width and height)
+                screen_height = self.update_window.winfo_screenheight()
+                window_width = 335 # get dimensions of update window
+                window_height = 190
+                x_pos = (screen_width // 2) - (window_width // 2) # calc postion to center window
+                y_pos = (screen_height // 2) - (window_height // 2)
+                self.update_window.geometry(f"{window_width}x{window_height}+{x_pos}+{y_pos}") # set geometry of the window to center it
+                
+                # label with update message
+                message = "Outdated files detected (PSARC Archive Tool).\n\nTo make things work properly, please perform a clean install of the latest Plumgen release:"
+                label_message = tk.Label(self.update_window, text=message, wraplength=300)
+                label_message.grid(row=0, column=0, padx=10, pady=10)
+
+                # label with github link
+                link_label = tk.Label(self.update_window, text="https://github.com/SunnySummit/PLUMGEN/releases", fg="blue", cursor="hand2")
+                link_label.grid(row=1, column=0, padx=10, pady=10)
+
+                # Add a function to open the GitHub link when clicked
+                link_label.bind("<Button-1>", lambda e: webbrowser.open_new("https://github.com/SunnySummit/PLUMGEN/releases"))
+
+                # Add a close button
+                close_button = tk.Button(self.update_window, text="Close", command=self.root.destroy)
+                close_button.grid(row=2, column=0, padx=10, pady=10)
+
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
@@ -178,6 +221,10 @@ class PlumgenControllerGen():
         # new window to select language
         self.lang_window = tk.Toplevel(self.root)
         self.lang_window.title("Language")
+
+        try: ctypes.windll.shcore.SetProcessDpiAwareness(2)
+        except: pass  # DPI awareness not available
+
         self.lang_window.configure(bg="#333333")
         self.lang_window.geometry("400x125")
         self.lang_window.resizable(False, False)  # prevent resizing
@@ -244,7 +291,7 @@ class PlumgenControllerGen():
     def get_default_bfn_folder_dir(self):
         return self.default_bfn_folder_dir
     def get_biom_exmls_folder_dir(self):
-        return self.biome_exmls_folder_dir
+        return self.biome_xmls_folder_dir
     
     def get_bfn_all_biome_files_weights(self):
         return self.bfn_all_biome_files_weights
@@ -252,6 +299,11 @@ class PlumgenControllerGen():
         return self.bfn_all_tile_types
     def get_bfn_all_valid_start_planets(self):
         return self.bfn_all_valid_start_planets
+    def get_bfn_valid_purple_moon_biomes(self): # worlds pt II
+        return self.bfn_valid_purple_moon_biomes
+    def get_bfn_valid_giant_planet_biomes(self):
+        return self.bfn_valid_giant_planet_biomes
+
     def get_all_biome_tile_types(self):
         return self.all_biome_tile_types
 
@@ -307,6 +359,10 @@ class PlumgenControllerGen():
         self.bfn_all_tile_types = bfn_all_tile_types
     def set_bfn_all_valid_start_planets(self, bfn_all_valid_start_planets):
         self.bfn_all_valid_start_planets = bfn_all_valid_start_planets
+    def set_bfn_valid_purple_moon_biomes(self, bfn_valid_purple_moon_biomes): # worlds pt II
+        self.bfn_valid_purple_moon_biomes = bfn_valid_purple_moon_biomes
+    def set_bfn_valid_giant_planet_biomes(self, bfn_valid_giant_planet_biomes):
+        self.bfn_valid_giant_planet_biomes = bfn_valid_giant_planet_biomes
     def set_all_biome_tile_types(self, all_biome_tile_types):
         self.all_biome_tile_types = all_biome_tile_types
 
@@ -517,7 +573,7 @@ class PlumgenControllerGen():
                         target_item[21] = str(float(target_item[21]) / divisor_fd) # flatdensity
 
                 if i == 0:
-                    if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWLUSHGRASS.SCENE.MBIN":
+                    if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN":
                         self.model.delete_distant_obj(j) # delete if none selected
                     else:
                         self.model.set_all_distant_model_similar_props(j, self.matching_lists_count)
@@ -632,10 +688,19 @@ class PlumgenControllerGen():
                             "floral": "_Floral",
                             "irradiated": "_Irradiated",
                             "noxious": "_Noxious",
-                            "rocky": "_Rocky_Lush", #v1.2
-                            "ruins": "_Ruins_Weird", #v1.2
+                            "rocky": "_Rocky_Islands", #v1.2
+                            "ruins": "_Ruins", #v1.2
                             "subzero": "_Subzero",
                             "snow": "_Frozen", #v1.3
+                            "burntremix": "_BurntRemix", # worlds part 2
+                            "gasgiants": "_GasGiants",
+                            "irradremix": "_IrradRemix",
+                            "jungle": "_Jungle",
+                            "noxremix": "_NoxRemix",
+                            "ocean": "_Ocean",
+                            "subzremix": "_SubzRemix",
+                            "deepwater": "_DeepWater",
+                            "waterworld": "_WaterWorld"
                         }
 
                         # iterate over dictionary to check for each keyword
@@ -834,7 +899,7 @@ class PlumgenControllerGen():
 
 
 
-    # import each exml biome objects files -------------------------------------------
+    # import each xml biome objects files -------------------------------------------
 
     def before_next_process_directory(self, directory):
         # sort subfolders so that e.g. BIOMES2 is loaded after BIOMES1
@@ -843,21 +908,21 @@ class PlumgenControllerGen():
             subfolder_path = os.path.join(directory, subfolder)
             for root, _, files in os.walk(subfolder_path):
                 for filename in files:
-                    if (filename.lower().endswith('.exml')
+                    if (filename.lower().endswith(('.exml', '.mxml'))
                     and 'biomefilename' not in filename.lower()
                     and 'biomelistperstartype' not in filename.lower()):
                         filepath = os.path.abspath(os.path.join(root, filename))
-                        self.before_next_process_exml(filepath)
+                        self.before_next_process_xml(filepath)
 
 
-    def before_next_process_exml(self, filepath):
-        exml_data = [[], [], [], []]  # DistantObjects, Landmarks, Objects, DetailObjects
+    def before_next_process_xml(self, filepath):
+        xml_data = [[], [], [], []]  # DistantObjects, Landmarks, Objects, DetailObjects
 
         tree = ET.parse(filepath)
         root = tree.getroot()
 
         for category_idx, category in enumerate(["DistantObjects", "Landmarks", "Objects", "DetailObjects"]):
-            category_list = exml_data[category_idx]
+            category_list = xml_data[category_idx]
 
             for obj_spawn_data in root.findall(f".//Property[@name='{category}']/Property[@value='GcObjectSpawnData.xml']"):
                 obj_data = []
@@ -913,8 +978,8 @@ class PlumgenControllerGen():
 
                 category_list.append(obj_data)
 
-        # check if exml_data contains any data in 4 lists
-        has_data = any(len(category) > 0 for category in exml_data)
+        # check if xml_data contains any data in 4 lists
+        has_data = any(len(category) > 0 for category in xml_data)
 
         if has_data:
         
@@ -931,12 +996,12 @@ class PlumgenControllerGen():
                 for match in biomes_matches:
                     filepath = filepath.replace(match, "CUSTOMBIOMES")
 
-            exml_data.append(filepath) # append filename - to name biome objects and keep track of directory structure
-            self.exml_files.append(exml_data)
+            xml_data.append(filepath) # append filename - to name biome objects and keep track of directory structure
+            self.xml_files.append(xml_data)
 
 
 
-    def after_next_process_directory(self, directory):
+    def after_next_process_directory(self, directory, worlds2=False):
         self.open_export_window_and_wait = self.view.get_open_export_window_and_wait() # check whether to auto open new window per subfolder
         # sort subfolders so that e.g. BIOMES2 is loaded after BIOMES1
         subfolders = sorted(next(os.walk(directory))[1], reverse=True)
@@ -944,21 +1009,21 @@ class PlumgenControllerGen():
             subfolder_path = os.path.join(directory, subfolder)
             for root, _, files in os.walk(subfolder_path):
                 for filename in files:
-                    if (filename.lower().endswith('.exml')
+                    if (filename.lower().endswith(('.exml', '.mxml'))
                     and 'biomefilename' not in filename.lower()
                     and 'biomelistperstartype' not in filename.lower()):
 
                         filepath = os.path.abspath(os.path.join(root, filename))
-                        self.after_next_process_exml(filepath)
+                        self.after_next_process_xml(filepath, worlds2)
         
             if self.open_export_window_and_wait: # check whether to auto open new window per subfolder, e.g. for bulk importing & updating
                 # access processed biome objects data:
-                for exml_file in self.exml_files:
-                    distant_objects, landmarks, objects, detail_objects, name = exml_file
+                for xml_file in self.xml_files:
+                    distant_objects, landmarks, objects, detail_objects, name = xml_file
                     self.name = name
                     filepath_parts = self.name.split(self.subfolder)
                     if len(filepath_parts) > 1:
-                        self.name = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('\\', '/')
+                        self.name = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('.mxml', '').replace('.MXML', '').replace('\\', '/')
                         self.name = '/'.join([word.title() for word in self.name.split('/')])
                         self.name = re.sub(r'[\\/]+', '/', self.name) # remove consecutive slashes or backslashes
                         if self.name.startswith('/'): # remove the first slash if present
@@ -980,21 +1045,25 @@ class PlumgenControllerGen():
                         self.c_delete_biome(index) # delete biomes
 
                 # open second view so user can export quickly
-                self.view.export_script()
-                self.exml_files.clear()
+                self.view.export_to_xml()
+                self.xml_files.clear()
                 self.biome_objs.clear()
 
 
-    def after_next_process_exml(self, filepath):
-        exml_data = [[], [], [], []]  # DistantObjects, Landmarks, Objects, DetailObjects
+    def after_next_process_xml(self, filepath, worlds2):
+        xml_data = [[], [], [], []]  # DistantObjects, Landmarks, Objects, DetailObjects
 
         tree = ET.parse(filepath)
         root = tree.getroot()
 
         for category_idx, category in enumerate(["DistantObjects", "Landmarks", "Objects", "DetailObjects"]):
-            category_list = exml_data[category_idx]
+            category_list = xml_data[category_idx]
 
-            for obj_spawn_data in root.findall(f".//Property[@name='{category}']/Property[@value='GcObjectSpawnData.xml']"):
+            xml_objects = root.findall(f".//Property[@name='{category}']/Property[@value='GcObjectSpawnData.xml']")
+            basic_objects = root.findall(f".//Property[@name='{category}']/Property[@value='GcObjectSpawnData']")
+
+            # iterate over combined results
+            for obj_spawn_data in xml_objects + basic_objects:
                 obj_data = []
 
                 for variable in ["Type", "Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
@@ -1003,7 +1072,17 @@ class PlumgenControllerGen():
                                 "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier"]:
                     
                     props = obj_spawn_data.findall(f".//Property[@name='{variable}']")
+
+
+                    # # wtf 'MinScale ' if nothing found, add spaces and try again
+                    if not props:
+                        props = obj_spawn_data.findall(f".//Property[@name='{variable} ']")
+                    if not props:
+                        props = obj_spawn_data.findall(f".//Property[@name=' {variable}']")
+                    if not props:
+                        props = obj_spawn_data.findall(f".//Property[@name=' {variable} ']") 
                     
+
                     if props:
                         # set default value (for worlds part 1 update)
                         if variable == "MaxYRotation":
@@ -1016,10 +1095,13 @@ class PlumgenControllerGen():
                         # check if there is more than one occurrence
                         if category == "DetailObjects" and len(props) > 2:
                             # grab the third occurrence, aka "ultra" detail objects settings
-                            prop_value = props[2].get("value")
+                            prop_value = props[1].get("value") # worlds part 2... changed to 2nd = med
                         elif len(props) > 1:
                             # grab the second occurrence, aka "medium" settings
-                            prop_value = props[1].get("value")
+                            if worlds2:
+                                prop_value = props[0].get("value") # worlds part 2... changed to 1st
+                            else:
+                                prop_value = props[1].get("value")
                         else:
                             prop_value = props[0].get("value")
                     elif variable == "DestroyedByTerrainEdit": # make terrain edit true (did not exist)
@@ -1037,6 +1119,14 @@ class PlumgenControllerGen():
                     if variable == "DestroyedByPlayerShip" or variable == "DestroyedByTerrainEdit" or variable == "CreaturesCanEat":
                         prop_value = prop_value.upper() # temp fix to match similar props
                     
+                    try: # try converting to int
+                        prop_value = float(prop_value)
+                        if prop_value.is_integer():
+                            prop_value = int(prop_value)
+                        prop_value = f'{prop_value}' # back to string
+                    except ValueError:
+                        pass 
+
                     obj_data.append(prop_value)
 
                 obj_data.append(category)  # add DrawDistance
@@ -1044,8 +1134,8 @@ class PlumgenControllerGen():
 
                 category_list.append(obj_data)
 
-        # check if exml_data contains any data in 4 lists
-        has_data = any(len(category) > 0 for category in exml_data)
+        # check if xml_data contains any data in 4 lists
+        has_data = any(len(category) > 0 for category in xml_data)
 
         if has_data:
             # to merge BIOMES folders: regex pattern to match "BIOMES" possibly with numbers on either side
@@ -1061,11 +1151,11 @@ class PlumgenControllerGen():
                 for match in biomes_matches:
                     filepath = filepath.replace(match, "CUSTOMBIOMES")
 
-            exml_data.append(filepath) # append filename - to name biome objects and keep track of directory structure
-            self.exml_files.append(exml_data)
+            xml_data.append(filepath) # append filename - to name biome objects and keep track of directory structure
+            self.xml_files.append(xml_data)
 
 
-    # process each BIOMEFILENAMES.EXML file
+    # process each BIOMEFILENAMES file
     def process_bfn_files(self, file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             xml_data = file.read()
@@ -1081,7 +1171,15 @@ class PlumgenControllerGen():
                 biome_name = biome_file.get("name")
                 if biome_name is not None: # sometimes is None with pre-NEXT NMS
                     
-                    for biome_option in biome_file.findall(".//Property[@value='GcBiomeFileListOption.xml']"):
+                    #for biome_option in biome_file.findall(".//Property[@value='GcBiomeFileListOption.xml']"):
+
+
+                    xml_biome_option_objs = biome_file.findall(".//Property[@value='GcBiomeFileListOption.xml']")
+                    basic_biome_option_objs = biome_file.findall(".//Property[@value='GcBiomeFileListOption']")
+
+                    # iterate over combined results
+                    for biome_option in xml_biome_option_objs + basic_biome_option_objs:
+
                         biome_dict = {}
 
                         # XPath expression to target SubType property
@@ -1090,11 +1188,12 @@ class PlumgenControllerGen():
                         if sub_type_elem is not None:
                             sub_type = sub_type_elem.get("value")
                         
+
+                        # default values
+                        weight = 1
+                        purple_weight = 0.3
                         # extract information from each Property element
                         for prop in biome_option.findall("./Property"):
-                            # default values
-                            weight = 1
-                            purple_weight = 0.3
                             # look for keywords
                             if prop.get("name") == "Filename":
                                 biome_dict[prop.get("value")] = None  # initialize with None, as Weights will be handled separately
@@ -1103,6 +1202,24 @@ class PlumgenControllerGen():
                                 #biome_dict[next(iter(biome_dict))] = f"{weight} {sub_type}"  # update value associated with "Filename"
                             elif prop.get("name") == "PurpleSystemWeight":
                                 purple_weight = prop.get("value")
+
+
+                            try: # try converting to int
+                                weight = float(weight)
+                                if weight.is_integer():
+                                    weight = int(weight)
+                                weight = f'{weight}' # back to string
+                            except ValueError:
+                                pass 
+
+                            try: # try converting to int
+                                purple_weight = float(purple_weight)
+                                if purple_weight.is_integer():
+                                    purple_weight = int(purple_weight)
+                                purple_weight = f'{purple_weight}' # back to string
+                            except ValueError:
+                                pass 
+
                             
                             if biome_dict:
                                 biome_dict[next(iter(biome_dict))] = f"{weight} {sub_type} {purple_weight}"  # update value associated with "Filename"
@@ -1110,7 +1227,6 @@ class PlumgenControllerGen():
 
                     # PRE-NEXT, uses different names + no weights
                     if not biome_list:
-
                         for biome_option in biome_file.findall(".//Property[@value='NMSString0x80.xml']") + biome_file.findall(".//Property[@value='VariableSizeString.xml']"):
                             biome_dict = {}
                             
@@ -1133,9 +1249,23 @@ class PlumgenControllerGen():
             # 2. extract TileTypes as a dictionary
             tile_types = {}
 
-            for external_object_list in root.findall(".//Property[@name='CommonExternalObjectLists']/Property[@value='GcExternalObjectListOptions.xml']"):
+            xml_external_object_list_objs = root.findall(".//Property[@name='CommonExternalObjectLists']/Property[@value='GcExternalObjectListOptions.xml']")
+            basic_external_object_list_objs = root.findall(".//Property[@name='CommonExternalObjectLists']/Property[@value='GcExternalObjectListOptions']")
+
+            # iterate over combined results
+            for external_object_list in xml_external_object_list_objs + basic_external_object_list_objs:
+
+            #for external_object_list in root.findall(".//Property[@name='CommonExternalObjectLists']/Property[@value='GcExternalObjectListOptions.xml']"):
                 probability = external_object_list.find("./Property[@name='Probability']").get("value")
                 
+                try: # try converting to int
+                    probability = float(probability)
+                    if probability.is_integer():
+                        probability = int(probability)
+                    probability = f'{probability}' # back to string
+                except ValueError:
+                    pass 
+
                 tile_type_name = external_object_list.find("./Property[@name='TileType']/Property[@name='TileType']").get("value")
 
                 # check if the key already exists in the dictionary
@@ -1154,10 +1284,28 @@ class PlumgenControllerGen():
 
                 # 2. identify the first nested list (e.g., Cave or Underwater)
                 tile_type_values = []
-                
-                for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']") + external_object_list.findall(".//Property[@value='VariableSizeString.xml']"):
-                    value = option.find("./Property[@name='Value']").get("value")
+
+
+                #nmsstring_xml_options_objs = external_object_list.findall(".//Property[@value='NMSString0x80.xml']")
+                #vstring_xml_options_objs = external_object_list.findall(".//Property[@value='VariableSizeString.xml']")
+                #basic_xml_options_objs = root.findall(".//Property[@name='CommonExternalObjectLists']/Property[@value='GcExternalObjectListOptions']")
+
+                # iterate over combined results
+                #for option in nmsstring_xml_options_objs + vstring_xml_options_objs + basic_xml_options_objs:
+
+                is_next_to_worldspt1 = False # track if old file (next or later) = different format
+                for option in external_object_list.findall(".//Property[@name='Options']/Property"):
+                    value = option.get("value")
+                    if value == "VariableSizeString.xml":
+                        is_next_to_worldspt1 = True
+                        break
                     tile_type_values.append(value)
+
+                if is_next_to_worldspt1:
+                    for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']") + external_object_list.findall(".//Property[@value='VariableSizeString.xml']"):
+                        value = option.find("./Property[@name='Value']").get("value")
+                        tile_type_values.append(value)
+
 
                 tile_types[tile_type_name] = tile_type_values
 
@@ -1166,13 +1314,35 @@ class PlumgenControllerGen():
             valid_start_biomes = []
             valid_start_property = root.find(".//Property[@name='ValidStartPlanetBiome']")
             if valid_start_property is not None:
-                for biome_property in valid_start_property.findall(".//Property[@value='GcBiomeType.xml']"):
+
+                for biome_property in valid_start_property.findall(".//Property[@value='GcBiomeType.xml']") + valid_start_property.findall(".//Property[@value='GcBiomeType']"):
                     start_biome_value = biome_property.find("./Property[@name='Biome']").get("value")
                     valid_start_biomes.append(start_biome_value)
 
-            #print(tile_types)
 
-        return biome_files_weights, tile_types, valid_start_biomes
+            valid_purple_moon_biomes = []
+            valid_purp_moon_property = root.find(".//Property[@name='ValidPurpleMoonBiome']")
+            if valid_purp_moon_property is not None:
+
+                for biome_property in valid_purp_moon_property.findall(".//Property[@value='GcBiomeType.xml']") + valid_purp_moon_property.findall(".//Property[@value='GcBiomeType']"):
+                    start_biome_value = biome_property.find("./Property[@name='Biome']").get("value")
+                    valid_purple_moon_biomes.append(start_biome_value)
+            else:
+                # if pre-worlds pt 2 bfn, set defaults
+                valid_purple_moon_biomes = ['Lush', 'Toxic', 'Scorched', 'Radioactive', 'Frozen', 'Barren', 'Dead', 'Weird', 'Red', 'Green', 'Blue', 'Swamp', 'Lava']
+
+            valid_giant_planet_biomes = []
+            valid_giant_property = root.find(".//Property[@name='ValidGiantPlanetBiome']")
+            if valid_giant_property is not None:
+
+                for biome_property in valid_giant_property.findall(".//Property[@value='GcBiomeType.xml']") + valid_giant_property.findall(".//Property[@value='GcBiomeType']"):
+                    start_biome_value = biome_property.find("./Property[@name='Biome']").get("value")
+                    valid_giant_planet_biomes.append(start_biome_value)
+            else:
+                # if pre-worlds pt 2 bfn, set defaults
+                valid_giant_planet_biomes = ['Lush', 'Toxic', 'Scorched', 'Radioactive', 'Frozen', 'Barren', 'Dead', 'Weird', 'Red', 'Green', 'Blue', 'Swamp', 'Lava']
+
+        return biome_files_weights, tile_types, valid_start_biomes, valid_purple_moon_biomes, valid_giant_planet_biomes
 
 
     # 4. **each** biome:
@@ -1187,18 +1357,18 @@ class PlumgenControllerGen():
             for root, _, files in os.walk(subfolder_path):
                 for filename in files:
 
-                    # check if the file is an EXML file
+                    # check if the file is an XML file
                     #print(f"Processing file: {filename}")
-                    if (filename.lower().endswith('.exml') 
+                    if (filename.lower().endswith(('.exml', '.mxml'))
                     #and 'biome' in filename.lower() 
                     and 'biomefilename' not in filename.lower()
                     and 'biomelistperstartype' not in filename.lower()):
                         
-                        # construct full path to the EXML file
-                        exml_path = os.path.abspath(os.path.join(root, filename))
+                        # construct full path to the XML file
+                        xml_path = os.path.abspath(os.path.join(root, filename))
                         
-                        # read content of EXML file
-                        with open(exml_path, 'r', encoding='utf-8') as file:
+                        # read content of XML file
+                        with open(xml_path, 'r', encoding='utf-8') as file:
                             xml_data_biomes = file.read()
 
                         root_biomes = ET.fromstring(xml_data_biomes)  # parse XML data
@@ -1208,9 +1378,17 @@ class PlumgenControllerGen():
                         # iterate over each ExternalObjectLists Property
                         for external_object_lists in root_biomes.findall(".//Property[@name='ExternalObjectLists']"):
                             # iterate over each GcExternalObjectListOptions Property
-                            for external_object_list in external_object_lists.findall(".//Property[@value='GcExternalObjectListOptions.xml']"):
+                            for external_object_list in external_object_lists.findall(".//Property[@value='GcExternalObjectListOptions.xml']") + external_object_lists.findall(".//Property[@value='GcExternalObjectListOptions']"):
                                 # extract values
                                 probability = external_object_list.find("./Property[@name='Probability']").get("value")
+
+                                try: # try converting to int
+                                    probability = float(probability)
+                                    if probability.is_integer():
+                                        probability = int(probability)
+                                    probability = f'{probability}' # back to string
+                                except ValueError:
+                                    pass 
                                 
                                 tile_type_name = external_object_list.find("./Property[@name='TileType']/Property[@name='TileType']").get("value")
 
@@ -1229,9 +1407,23 @@ class PlumgenControllerGen():
 
                                 # extract Options for the TileType
                                 tile_type_values = []
-                                for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']") + external_object_list.findall(".//Property[@value='VariableSizeString.xml']"):
-                                    value = option.find("./Property[@name='Value']").get("value")
+
+                                is_next_to_worldspt1 = False # track if old file (next or later) = different format
+                                for option in external_object_list.findall(".//Property[@name='Options']/Property"):
+                                    value = option.get("value")
+                                    if value == "VariableSizeString.xml":
+                                        is_next_to_worldspt1 = True
+                                        break
                                     tile_type_values.append(value)
+
+                                if is_next_to_worldspt1:
+                                    for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']") + external_object_list.findall(".//Property[@value='VariableSizeString.xml']"):
+                                        value = option.find("./Property[@name='Value']").get("value")
+                                        tile_type_values.append(value)
+
+                                #for option in external_object_list.findall(".//Property[@value='NMSString0x80.xml']") + external_object_list.findall(".//Property[@value='VariableSizeString.xml']"):
+                                #    value = option.find("./Property[@name='Value']").get("value")
+                                #    tile_type_values.append(value)
 
                                 # Store the TileType and its Options in the dictionary
                                 biome_tile_types[tile_type_name] = tile_type_values
@@ -1246,20 +1438,20 @@ class PlumgenControllerGen():
                             # to merge BIOMES folders: regex pattern to match "BIOMES" possibly with numbers on either side
                             biomes_pattern = r'(?<=\\|/)(\d*BIOMES\d*)(?=\\|/|$)'
                             custombiomes_pattern = r'(?<=\\|/)(\d*CUSTOMBIOMES\d*)(?=\\|/|$)'
-                            biomes_matches = re.findall(biomes_pattern, exml_path) # find any BIOMES matches in filepath
-                            custombiomes_matches = re.findall(custombiomes_pattern, exml_path) # find any CUSTOMBIOMES matches in filepath
+                            biomes_matches = re.findall(biomes_pattern, xml_path) # find any BIOMES matches in filepath
+                            custombiomes_matches = re.findall(custombiomes_pattern, xml_path) # find any CUSTOMBIOMES matches in filepath
 
                             if biomes_matches: # replace them with "BIOMES" only
                                 for match in biomes_matches:
-                                    exml_path = exml_path.replace(match, "BIOMES")
+                                    xml_path = xml_path.replace(match, "BIOMES")
                             elif custombiomes_matches: # replace them with "CUSTOMBIOMES" only
                                 for match in biomes_matches:
-                                    exml_path = exml_path.replace(match, "CUSTOMBIOMES")
+                                    xml_path = xml_path.replace(match, "CUSTOMBIOMES")
 
 
-                            biome_tile_types["Filename"] = exml_path  # add filepath as the last item in list
+                            biome_tile_types["Filename"] = xml_path  # add filepath as the last item in list
 
-                            temp_name = os.path.splitext(os.path.basename(exml_path))[0]
+                            temp_name = os.path.splitext(os.path.basename(xml_path))[0]
 
                             # check if truncated biome file already exists in all_biome_tile_types, if so merge contents
                             if temp_name in existing_biome_types:
@@ -1289,38 +1481,43 @@ class PlumgenControllerGen():
 
 
 
-    def c_import_exml_biomes(self, after_next_update, use_default_bfn_dir=False):
+    def c_import_xml_biomes(self, date_import_folder, use_default_bfn_dir=False):
         # check whether to use default directory (import default bfn.mbin)
         if use_default_bfn_dir:
-            exml_directory = self.default_bfn_folder_dir
+            xml_directory = self.default_bfn_folder_dir
         else:
-            exml_directory = self.biome_exmls_folder_dir
+            xml_directory = self.biome_xmls_folder_dir
 
 
         # clear all of these-- otherwise, won't detect duplicates
-        self.exml_files = []
+        self.xml_files = []
         self.bfn_all_biome_files_weights = []
         self.bfn_all_valid_start_planets = []
+        self.bfn_valid_purple_moon_biomes = [] # worlds pt II
+        self.bfn_valid_giant_planet_biomes = []
+
         self.bfn_all_tile_types = {}
         self.all_biome_tile_types = []
         self.biome_objs = []
 
 
-        if after_next_update:
-            self.after_next_process_directory(exml_directory)
+        if date_import_folder == "3. Before NEXT":
+            self.before_next_process_directory(xml_directory)
+        elif date_import_folder == "1. After Worlds 1":
+            self.after_next_process_directory(xml_directory, worlds2=True)
         else:
-            self.before_next_process_directory(exml_directory)
+            self.after_next_process_directory(xml_directory)
 
         # access processed biome objects data:
-        for exml_file in self.exml_files:
+        for xml_file in self.xml_files:
             
-            distant_objects, landmarks, objects, detail_objects, name = exml_file
+            distant_objects, landmarks, objects, detail_objects, name = xml_file
 
             self.name = name
 
             filepath_parts = self.name.split(self.subfolder)
             if len(filepath_parts) > 1:
-                self.name = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('\\', '/')
+                self.name = filepath_parts[-1].replace('.exml', '').replace('.EXML', '').replace('.mxml', '').replace('.MXML', '').replace('\\', '/')
                 self.name = '/'.join([word.title() for word in self.name.split('/')])
 
                 # remove consecutive slashes or backslashes
@@ -1342,21 +1539,21 @@ class PlumgenControllerGen():
         # process each biome file name files & **each** biome file ---------------------------
 
         # 1-3 iterate through the directory and its subdirectories
-        #for root, dirs, files in os.walk(exml_directory):
+        #for root, dirs, files in os.walk(xml_directory):
         #    for f_name in files:
 
         # sort subfolders so that e.g. BIOMES2 is loaded after BIOMES1
-        subfolders = sorted(next(os.walk(exml_directory))[1], reverse=True)
+        subfolders = sorted(next(os.walk(xml_directory))[1], reverse=True)
         for subfolder in subfolders: # iterate over sorted subfolder names
-            subfolder_path = os.path.join(exml_directory, subfolder)
+            subfolder_path = os.path.join(xml_directory, subfolder)
             for root, _, files in os.walk(subfolder_path):
                 for f_name in files:
 
                     
-                    if f_name.lower().endswith('.exml') and 'biomefilename' in f_name.lower() and 'biomefilenamesarchive' not in f_name.lower():
+                    if f_name.lower().endswith(('.exml', '.mxml')) and 'biomefilename' in f_name.lower() and 'biomefilenamesarchive' not in f_name.lower():
                         path_to_bfn = os.path.abspath(os.path.join(root, f_name))
-                        # process current BIOMEFILENAMES.EXML file and collect results
-                        biome_files_wts_bfn, tile_types_bfn, valid_start_biomes_bfn = self.process_bfn_files(path_to_bfn)
+                        # process current BIOMEFILENAMES file and collect results
+                        biome_files_wts_bfn, tile_types_bfn, valid_start_biomes_bfn, valid_purple_moon_biomes_bfn, valid_giant_planet_biomes_bfn  = self.process_bfn_files(path_to_bfn)
                         
                         # update self.bfn_all_biome_files_weights
                         for item in biome_files_wts_bfn:
@@ -1414,12 +1611,20 @@ class PlumgenControllerGen():
                                 self.bfn_all_valid_start_planets.append(item)
                                 #else:
                                 #    self.bfn_all_valid_start_planets[0].append(item)
+                        
+                        for item in valid_purple_moon_biomes_bfn:
+                            if item not in self.bfn_valid_purple_moon_biomes:
+                                self.bfn_valid_purple_moon_biomes.append(item)
+                        
+                        for item in valid_giant_planet_biomes_bfn:
+                            if item not in self.bfn_valid_giant_planet_biomes:
+                                self.bfn_valid_giant_planet_biomes.append(item)
 
 
 
 
-        # 4 Process all EXML files in the specified directory
-        self.all_biome_tile_types = self.process_each_biome_file(exml_directory)
+        # 4 Process all XML files in the specified directory
+        self.all_biome_tile_types = self.process_each_biome_file(xml_directory)
 
         # print result
         #for idx, biome_tile_types in enumerate(self.all_biome_tile_types, start=1):
@@ -1436,10 +1641,10 @@ class PlumgenControllerGen():
 
 
 
-    # make biome template from exmls -------------------------------------------
+    # make biome template from xmls -------------------------------------------
 
     # after NEXT -------------------------------------------
-    def process_after_next_file(self, file_path, csv_writer):
+    def process_after_next_file(self, file_path, csv_writer, worlds2):
         tree = ET.parse(file_path)
         root = tree.getroot()
 
@@ -1456,8 +1661,14 @@ class PlumgenControllerGen():
             # if the section exists, iterate through Filename elements
             if section is not None:
                 # iterate through 'GcObjectSpawnData.xml' elements under keywords
-                object_spawn_data_elements = section.findall('.//Property[@value="GcObjectSpawnData.xml"]')
-                for object_spawn_data in object_spawn_data_elements:
+                #object_spawn_data_elements = section.findall('.//Property[@value="GcObjectSpawnData.xml"]')
+
+                xml_objects = section.findall('.//Property[@value="GcObjectSpawnData.xml"]')
+                basic_objects = section.findall('.//Property[@value="GcObjectSpawnData"]')
+
+                # iterate over combined results
+                for object_spawn_data in xml_objects + basic_objects:
+                #for object_spawn_data in object_spawn_data_elements:
                     row = {"Filename": None}
 
                     # extract variables under GcObjectSpawnData.xml
@@ -1468,16 +1679,42 @@ class PlumgenControllerGen():
                     
                     for variable in variables:
                         variable_elements = object_spawn_data.findall(f'.//Property[@name="{variable}"]')
+
+
+                        # # wtf 'MinScale ' if nothing found, add spaces and try again
+                        if not variable_elements:
+                            variable_elements = object_spawn_data.findall(f".//Property[@name='{variable} ']")
+                        if not variable_elements:
+                            variable_elements = object_spawn_data.findall(f".//Property[@name=' {variable}']")
+                        if not variable_elements:
+                            variable_elements = object_spawn_data.findall(f".//Property[@name=' {variable} ']") 
+
+
                         if variable_elements:
                             # check if there is more than one occurrence
                             if keyword == "DetailObjects" and len(variable_elements) > 2:
                                 # grab the third occurrence, aka "ultra" detail objects coverage & flatdensity settings
-                                variable_value = variable_elements[2].get("value")
+                                variable_value = variable_elements[1].get("value") # worlds part 2... changed to 2nd = med
                             elif len(variable_elements) > 1:
                                 # grab the second occurrence, aka "medium" coverage & flatdensity settings
-                                variable_value = variable_elements[1].get("value")
+                                variable_value = variable_elements[0].get("value") # worlds part 2... changed to 1st
+                                if worlds2:
+                                    variable_value = variable_elements[0].get("value") # worlds part 2... changed to 1st
+                                else:
+                                    variable_value = variable_elements[1].get("value")
                             else:
                                 variable_value = variable_elements[0].get("value")
+                            
+
+                            try: # try converting to int
+                                variable_value = float(variable_value)
+                                if variable_value.is_integer():
+                                    variable_value = int(variable_value)
+                                variable_value = f'{variable_value}' # back to string
+                            except ValueError:
+                                pass 
+
+
                             row[variable] = variable_value
                         else:
                             # set default value (for worlds part 1 update)
@@ -1491,13 +1728,14 @@ class PlumgenControllerGen():
                                 variable_value = "FALSE"
                                 row[variable] = variable_value
 
+
                     row["DrawDistance"] = keyword
 
                     csv_writer.writerow(row)
 
 
 
-    def after_next_make_biome_template(self, directory_path, output_csv_path):
+    def after_next_make_biome_template(self, directory_path, output_csv_path, worlds2=False):
         # open CSV file for writing
         with open(output_csv_path, 'w', newline='') as csv_file:
             fieldnames = ["Type", "Filename", "Placement", "MinHeight", "MaxHeight", "MinAngle", "MaxAngle",
@@ -1520,14 +1758,14 @@ class PlumgenControllerGen():
                 for root, _, files in os.walk(subfolder_path):
                     for filename in files:
 
-                        if filename.lower().endswith(".exml"):
+                        if filename.lower().endswith(('.exml', '.mxml')):
                             file_path = os.path.abspath(os.path.join(root, filename))
 
                             # extract portion of the file path starting from "METADATA"
                             #relative_path = "METADATA\\SIMULATION\\SOLARSYSTEM\\BIOMES" + file_path.split("BIOMES")[-1]
 
                             # Process the file and write to CSV
-                            self.process_after_next_file(file_path, csv_writer)
+                            self.process_after_next_file(file_path, csv_writer, worlds2)
 
 
 
@@ -1620,7 +1858,7 @@ class PlumgenControllerGen():
                 for root, _, files in os.walk(subfolder_path):
                     for filename in files:
 
-                        if filename.lower().endswith(".exml"):
+                        if filename.lower().endswith(('.exml', '.mxml')):
                             file_path = os.path.abspath(os.path.join(root, filename))
 
                             # process the file and write to CSV
@@ -1677,21 +1915,21 @@ class PlumgenControllerGen():
 
 
 
-    def c_make_template_from_exml(self, after_next_update, template_filename):
+    def c_make_template_from_xml(self, template_filename, date_import_folder):
         output_csv_path =  os.path.abspath(os.path.join(self.resources_path, template_filename))
         
-        if after_next_update:
-            # search and write to CSV
-            self.after_next_make_biome_template(self.biome_exmls_folder_dir, output_csv_path)
-            #print(f"Results saved to: {output_csv_path}")
 
-        else:
+        if date_import_folder == "3. Before NEXT":
             output_csv_path_part1 = os.path.abspath(os.path.join(self.resources_path, "_DELETE_THIS Pre-NEXT Biome Template-unsorted.csv"))
 
             # search and write to CSV
-            self.before_next_make_biome_template(self.biome_exmls_folder_dir, output_csv_path_part1)
+            self.before_next_make_biome_template(self.biome_xmls_folder_dir, output_csv_path_part1)
             #print(f"Results saved to: {output_csv_path_part1}")
 
             # before NEXT - part 2 --------------------------------------
             self.rename_and_rearrange_before_next_columns(output_csv_path_part1, output_csv_path)
             #print(f"Results saved to: {output_csv_path}")
+        elif date_import_folder == "1. After Worlds 1":
+            self.after_next_make_biome_template(self.biome_xmls_folder_dir, output_csv_path, worlds2=True)
+        else:
+            self.after_next_make_biome_template(self.biome_xmls_folder_dir, output_csv_path)

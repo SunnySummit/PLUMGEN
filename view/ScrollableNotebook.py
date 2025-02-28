@@ -76,7 +76,7 @@ class ScrollableNotebook(ttk.Frame):
     def _rightSlide(self, event):
         if self.notebookTab.winfo_width()>self.notebookContent.winfo_width()-self.menuSpace:
             if (self.notebookContent.winfo_width()-(self.notebookTab.winfo_width()+self.notebookTab.winfo_x()))<=self.menuSpace+5:
-                self.xLocation-=40
+                self.xLocation-=80
                 self.notebookTab.place(x=self.xLocation,y=0)
                 return True
         return False
@@ -87,7 +87,7 @@ class ScrollableNotebook(ttk.Frame):
 
     def _leftSlide(self, event):
         if not self.notebookTab.winfo_x()== 0:
-            self.xLocation+=40
+            self.xLocation+=80
             self.notebookTab.place(x=self.xLocation,y=0)
             return True
         return False

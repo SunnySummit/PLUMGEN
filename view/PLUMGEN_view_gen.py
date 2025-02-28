@@ -102,6 +102,7 @@ class PlumgenViewGen:
             self.landm_model_list = self.controller.get_landm_list()
             self.objs_model_list = self.controller.get_objs_list()
             self.detail_model_list = self.controller.get_detail_list()
+            self.date_of_import_folder = None
 
             self.style_parent()
             self.create_widgets()
@@ -120,7 +121,8 @@ class PlumgenViewGen:
                 self.detail_objects_add_button, self.detail_objects_delete_button,
                 self.duplicate_biome_button, self.duplicate_prop_button,
                 self.increment_prop_changes_button, self.decrement_prop_changes_button,
-                self.export_script_button, self.save_rename_biome_button
+                self.export_to_xml_button, self.save_rename_biome_button,
+                self.import_exml_button
             ]
 
             self.attribute_labels = [
@@ -191,7 +193,7 @@ class PlumgenViewGen:
         # splash screen
         self.splash = tk.Toplevel(self.root)
         self.splash.title("Loading...")
-        self.splash.geometry(f"400x225") # set size # 550x309
+        self.splash.geometry(f"400x225") # set size
         self.splash.configure(bg="#ffffff")
         self.splash.configure(borderwidth=1)
 
@@ -407,7 +409,7 @@ class PlumgenViewGen:
         #self.import_lua_button = ttk.Button(self.window, text="Import LUA Scripts", command=self.import_lua_biomes, style='Start.TButton')
         self.import_exml_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Import"], command=self.import_exml_biomes, style='Start.TButton')
         #self.make_template_from_exml_button = ttk.Button(self.window, text="Make Biome Template from EXML", command=self.make_template_from_exml, style='Gen.TButton')
-        self.export_script_button = ttk.Button(self.window, text=f"{self.langs[self.lan]["buttons"]["Continue"]}>>", command=self.export_script, style='Start.TButton', width=20)
+        self.export_to_xml_button = ttk.Button(self.window, text=f"{self.langs[self.lan]["buttons"]["Continue"]}>>", command=self.export_to_xml, style='Start.TButton', width=20)
         #self.refresh_suggested_props_button = ttk.Button(self.window, text="Refresh Suggested Props", command=self.refresh_suggested_props, style='Gen.TButton')
         self.save_prop_changes_button = ttk.Button(self.window, text=self.langs[self.lan]["buttons"]["Save"], width=5, command=self.save_prop_changes)
         self.increment_prop_changes_button = ttk.Button(self.window, text="↑", width=2, command=self.increment_prop_changes, style='Start.TButton')
@@ -558,7 +560,7 @@ class PlumgenViewGen:
         #self.import_lua_button.grid(row=12, column=7, columnspan=1, padx=20, pady=5, sticky=tk.NS)
         self.import_exml_button.grid(row=11, column=4, columnspan=2, padx=20, pady=5, sticky=tk.EW + tk.N)
         #self.make_template_from_exml_button.grid(row=12, column=8, columnspan=1, padx=20, pady=5, sticky=tk.NS)
-        self.export_script_button.grid(row=1, column=9, columnspan=1, rowspan = 2, padx=20, pady=5, sticky=tk.EW)
+        self.export_to_xml_button.grid(row=1, column=9, columnspan=1, rowspan = 2, padx=20, pady=5, sticky=tk.EW)
         #self.refresh_suggested_props_button.grid(row=1, column=9, padx=10, pady=5, sticky=tk.E)
         self.save_prop_changes_button.grid(row=3, column=6, columnspan=2, padx=(15,15), pady=(35,5))
         self.increment_prop_changes_button.grid(row=3, column=6, padx=(15,5), pady=(0,50), sticky=tk.W)
@@ -806,21 +808,23 @@ class PlumgenViewGen:
             # set generation to the biome template, if gen_using_template_data_var cb was checked
             if self.gen_using_template_data_var.get():
                 if selected_csv not in [
-                    "_Found Path Atlas.csv",
+                    "_FoundPathAtlas_v3.csv",
                     "_Vanilla+Pre NMS.csv",
-                    "Barren_v2.csv",
-                    "Cave_v2.csv",
-                    "Dead_v2.csv",
-                    "Frozen_v2.csv",
-                    "Lava_v2.csv",
-                    "Lush_v2.csv",
-                    "Radioactive_v2.csv",
-                    "Scorched_v2.csv",
-                    "Swamp_v2.csv",
-                    "Toxic_v2.csv",
-                    "Underwater_v2.csv",
-                    "Weird_v2.csv",
-                    "Worlds Part 1.csv"
+                    "Barren_v3.csv",
+                    "Cave_v3.csv",
+                    "Dead_v3.csv",
+                    "Frozen_v3.csv",
+                    "Lava_v3.csv",
+                    "Lush_v3.csv",
+                    "Radioactive_v3.csv",
+                    "Scorched_v3.csv",
+                    "Swamp_v3.csv",
+                    "Toxic_v3.csv",
+                    "Underwater_v3.csv",
+                    "Weird_v3.csv",
+                    "WorldsPart1_v3.csv",
+					"WorldsPart2_DeepWater_v3.csv",
+                    "WorldsPart2_Reg_v3.csv"
                 ]:
                     result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
@@ -1841,21 +1845,23 @@ class PlumgenViewGen:
             if self.gen_using_template_data_var.get():
                 self.replace_lb_with_template_data_cb.config(state=tk.NORMAL)
                 if selected_csv not in [
-                    "_Found Path Atlas.csv",
+                    "_FoundPathAtlas_v3.csv",
                     "_Vanilla+Pre NMS.csv",
-                    "Barren_v2.csv",
-                    "Cave_v2.csv",
-                    "Dead_v2.csv",
-                    "Frozen_v2.csv",
-                    "Lava_v2.csv",
-                    "Lush_v2.csv",
-                    "Radioactive_v2.csv",
-                    "Scorched_v2.csv",
-                    "Swamp_v2.csv",
-                    "Toxic_v2.csv",
-                    "Underwater_v2.csv",
-                    "Weird_v2.csv",
-                    "Worlds Part 1.csv"
+                    "Barren_v3.csv",
+                    "Cave_v3.csv",
+                    "Dead_v3.csv",
+                    "Frozen_v3.csv",
+                    "Lava_v3.csv",
+                    "Lush_v3.csv",
+                    "Radioactive_v3.csv",
+                    "Scorched_v3.csv",
+                    "Swamp_v3.csv",
+                    "Toxic_v3.csv",
+                    "Underwater_v3.csv",
+                    "Weird_v3.csv",
+                    "WorldsPart1_v3.csv",
+					"WorldsPart2_DeepWater_v3.csv",
+                    "WorldsPart2_Reg_v3.csv"
                 ]:
                     result = messagebox.askyesno(self.langs[self.lan]["csv_selected"]["warning_title"], self.langs[self.lan]["csv_selected"]["warning_desc"], parent=self.window)
                     if not result:
@@ -1991,9 +1997,9 @@ class PlumgenViewGen:
                 
             if self.biome_index is not None:
                 
-                result = messagebox.askyesno(self.langs[self.lan]["save_renamed_biome"]["Auto_Rename_title"], self.langs[self.lan]["save_renamed_biome"]["Auto_Rename_desc"], parent=self.window)
-                if not result:
-                    return
+                #result = messagebox.askyesno(self.langs[self.lan]["save_renamed_biome"]["Auto_Rename_title"], self.langs[self.lan]["save_renamed_biome"]["Auto_Rename_desc"], parent=self.window)
+                #if not result:
+                #    return
                 
                 index = self.biome_index
                 new_filename = self.rename_biome_entry.get().strip()
@@ -2082,7 +2088,7 @@ class PlumgenViewGen:
                     num_times = int(num_times)  # convert string to int
                     if num_times > 500:
                         caution = messagebox.askyesno("Caution", 
-                            "Generating over 500 may cause crashes in-game in the galaxy map\n(i think this is the cause? as of NMS v5.29-Jan 8, '25)\n\nDo you want to proceed?", parent=self.window)
+                            "Generating over 500 may cause crashes in-game in the galaxy map\ni think this is the cause? as of NMS v5.29-Jan, '25\nedit: might not be the case anymore with worlds 2, no time to test\n\nDo you want to proceed?", parent=self.window)
                         if caution: # user clicks Yes
                             self.add_default_biome(num_times)
                     else:
@@ -2333,9 +2339,25 @@ class PlumgenViewGen:
                     # split by spaces and check if the last part is a valid number
                     parts = name.split()
                     last_part = parts[-1]
+                    #all_but_last = parts[:-1]
+                    all_but_last = ' '.join(parts[:-1])
 
                     if last_part.isdigit():
                         biome_number = int(last_part)
+
+                        # rename biomes to fit rock door type
+                        if biome_number >= 1 and biome_number <= 50:
+                            new_name = all_but_last + f"_{biome_number}_SMALL_FLOAT"
+                            bme.set_filename(new_name)
+                        elif biome_number >= 51 and biome_number <= 100:
+                            new_name = all_but_last + f"_{biome_number-50}_REG"
+                            bme.set_filename(new_name)
+                        elif biome_number >= 101 and biome_number <= 150:
+                            new_name = all_but_last + f"_{biome_number-100}_BIG"
+                            bme.set_filename(new_name)
+                        elif biome_number >= 151 and biome_number <= 200:
+                            new_name = all_but_last + f"_{biome_number-150}_TALL"
+                            bme.set_filename(new_name)
 
                     bme.add_objects_list(biome_number)
                     self.controller.process_objects_list(bme)
@@ -2343,11 +2365,16 @@ class PlumgenViewGen:
                     self.placem_val_at_index = None
                     self.model_val_at_index = None 
 
+                self.biome_lb.delete(0, tk.END)
+                all_biomes = self.controller.get_biome_objs()
+                for biome in all_biomes:
+                    self.biome_lb.insert(tk.END, biome.get_filename())
+
                 if self.biome_index is not None:
                     selected_biome = self.controller.get_biome_objs()[self.biome_index]
                     self.repopulate_listbox(self.objects_lb, selected_biome, selected_biome.get_objects_lists)
 
-                messagebox.showinfo("Affirmative, Dave. I read you.", "Rock doors correctly added to up to 50 biomes.", parent=self.window)
+                messagebox.showinfo("Affirmative, Dave. I read you.", "Rock doors correctly added to up to 200 biomes.", parent=self.window)
             else:
                 messagebox.showinfo("I'm sorry, Dave. I'm afraid I can't do that.", "First, select NUMBERS_FOR_TESTING.csv and two checkmarks.\n\nThis requires ROCKDOORS_TEST_CustomModels.", parent=self.window)
 
@@ -2584,7 +2611,7 @@ class PlumgenViewGen:
         # reset biome index
         self.biome_index = None
 
-        if len(self.controller.get_bfn_all_biome_files_weights()) < 16:
+        if len(self.controller.get_bfn_all_biome_files_weights()) < 17:
             messagebox.showinfo(f"<{self.langs[self.lan]["complete_import"]["warn_missing_title"]}", self.langs[self.lan]["complete_import"]["warn_missing_desc"], parent=self.window)
         else:
             messagebox.showinfo(self.langs[self.lan]["complete_import"]["info_title"], self.langs[self.lan]["complete_import"]["info_desc"], parent=self.window)
@@ -2599,8 +2626,8 @@ class PlumgenViewGen:
     #    pass
         
 
-    def import_exml_biomes_threaded(self, after_next_update, loading_screen):
-        self.controller.c_import_exml_biomes(after_next_update)
+    def import_exml_biomes_threaded(self, loading_screen, temp_date_of_import_folder):
+        self.controller.c_import_xml_biomes(temp_date_of_import_folder)
         self.window.after(0, lambda: self.complete_import(loading_screen))
 
     def import_exml_biomes(self):
@@ -2609,7 +2636,7 @@ class PlumgenViewGen:
             biom_exmls_folder_dir = self.controller.get_biom_exmls_folder_dir()
             biomes_folder = os.path.abspath(os.path.join(biom_exmls_folder_dir, 'BIOMES'))
 
-            # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
+            # verify that the '_BIOMES Xmls Folder Goes Here' directory exists
             if not os.path.exists(biom_exmls_folder_dir):
                 messagebox.showerror(self.langs[self.lan]["import_exml_biomes"]["Error"], f"{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt2"]}", parent=self.window)
                 return
@@ -2629,6 +2656,8 @@ class PlumgenViewGen:
             if self.controller.get_bfn_all_biome_files_weights():  imported_variables.append("bfn_all_biome_files_weights")
             if self.controller.get_bfn_all_tile_types(): imported_variables.append("bfn_all_tile_types")
             if self.controller.get_bfn_all_valid_start_planets(): imported_variables.append("bfn_all_valid_start_planets")
+            if self.controller.get_bfn_valid_purple_moon_biomes(): imported_variables.append("bfn_valid_purple_moon_biomes_planets") # worlds pt II
+            if self.controller.get_bfn_valid_giant_planet_biomes(): imported_variables.append("bfn_valid_giant_planet_biomes")
             if self.controller.get_all_biome_tile_types(): imported_variables.append("all_biome_tile_types")
 
             if imported_variables:
@@ -2638,17 +2667,27 @@ class PlumgenViewGen:
                     return
 
 
-            after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], self.langs[self.lan]["import_exml_biomes"]["after_before_next_ques_desc"], parent=self.window)
+            #after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], self.langs[self.lan]["import_exml_biomes"]["after_before_next_ques_desc"], parent=self.window)
             
+
+
+            self.date_of_import_folder = None # reset
+            self.make_game_date_window()
+
+
+
+
+
             self.import_exml_button.configure(state="disabled")
             # show loading screen
             loading_screen = self.show_loading_screen()
             self.window.update_idletasks()  # all pending events processed to show loading screen
             
-            if after_next_update is not None:  # check if user clicked Yes or No
+            if self.date_of_import_folder is not None:  # check if user clicked Yes or No
 
                 self.open_export_window_and_wait = False
-                import_thread = threading.Thread(target=self.import_exml_biomes_threaded, args=(after_next_update, loading_screen))
+                temp_date_of_import_folder= self.date_of_import_folder
+                import_thread = threading.Thread(target=self.import_exml_biomes_threaded, args=(loading_screen, temp_date_of_import_folder))
                 import_thread.start()
             
             else:
@@ -2662,13 +2701,16 @@ class PlumgenViewGen:
             
 
 
+
+
+
     def bulk_import_update(self):
         try:
                     
             biom_exmls_folder_dir = self.controller.get_biom_exmls_folder_dir()
             biomes_folder = os.path.abspath(os.path.join(biom_exmls_folder_dir, 'BIOMES'))
 
-            # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
+            # verify that the '_BIOMES Xmls Folder Goes Here' directory exists
             if not os.path.exists(biom_exmls_folder_dir):
                 messagebox.showerror(self.langs[self.lan]["import_exml_biomes"]["Error"], f"{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["import_exml_biomes"]["no_dir_pt2"]}", parent=self.window)
                 return
@@ -2688,6 +2730,8 @@ class PlumgenViewGen:
             if self.controller.get_bfn_all_biome_files_weights():  imported_variables.append("bfn_all_biome_files_weights")
             if self.controller.get_bfn_all_tile_types(): imported_variables.append("bfn_all_tile_types")
             if self.controller.get_bfn_all_valid_start_planets(): imported_variables.append("bfn_all_valid_start_planets")
+            if self.controller.get_bfn_valid_purple_moon_biomes(): imported_variables.append("bfn_valid_purple_moon_biomes_planets") # worlds pt II
+            if self.controller.get_bfn_valid_giant_planet_biomes(): imported_variables.append("bfn_valid_giant_planet_biomes")
             if self.controller.get_all_biome_tile_types(): imported_variables.append("all_biome_tile_types")
 
             if imported_variables:
@@ -2697,17 +2741,23 @@ class PlumgenViewGen:
                     return
 
 
-            after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], self.langs[self.lan]["import_exml_biomes"]["after_before_next_ques_desc"], parent=self.window)
+            #after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["import_exml_biomes"]["Question"], self.langs[self.lan]["import_exml_biomes"]["after_before_next_ques_desc"], parent=self.window)
+
+            self.date_of_import_folder = None # reset
+            self.make_game_date_window()
+
+            #TODO
+
             
             self.import_exml_button.configure(state="disabled")
             # show loading screen
             #loading_screen = self.show_loading_screen()
             self.window.update_idletasks()  # all pending events processed to show loading screen
             
-            if after_next_update is not None:  # check if user clicked Yes or No
+            if self.date_of_import_folder is not None:  # check if user clicked
 
                 self.open_export_window_and_wait = True
-                self.controller.c_import_exml_biomes(after_next_update)
+                self.controller.c_import_xml_biomes(self.date_of_import_folder)
                 self.open_export_window_and_wait = False
                 self.biome_lb.delete(0, tk.END)
                 self.import_exml_button.configure(state="normal")
@@ -2721,6 +2771,54 @@ class PlumgenViewGen:
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
+
+
+
+    def make_game_date_window(self):
+        # create window
+        select_game_date_window = tk.Toplevel(self.window)
+        select_game_date_window.title("_BIOMES Xmls Folder Goes Here/BIOMES")
+        select_game_date_window.configure(bg="#333333")
+        select_game_date_window.iconbitmap(self.icon_path)
+        #select_game_date_window.geometry("300x150")
+        # set DPI awareness, handle scaling better
+        try: ctypes.windll.shcore.SetProcessDpiAwareness(2)
+        except: pass  # DPI awareness not available
+
+        parent_x = self.window.winfo_rootx()
+        parent_y = self.window.winfo_rooty()
+        select_game_date_window.geometry(f"+{parent_x}+{parent_y}")
+        select_game_date_window.resizable(False, False)  # prevent resizing
+        select_game_date_window.grab_set()  # prevent this window from going behind main window
+
+        # label with question
+        label = ttk.Label(select_game_date_window, text="When was the 'BIOMES' folder created?", style="Title3Label.TLabel", justify=tk.CENTER)
+        label2 = ttk.Label(select_game_date_window, text="--- Answering this incorrectly WILL cause issues. ---", style="TLabel", justify=tk.CENTER)
+        label.grid(row=0, column=0, columnspan=3, pady=10)
+        label2.grid(row=4, column=0, columnspan=3, pady=10)
+
+        # function to set result and close dialog
+        def set_result(option):
+            self.date_of_import_folder = option
+            select_game_date_window.destroy()
+
+        # buttons
+        button1 = tk.Button(select_game_date_window, text="Worlds Part 2 or later (02/25)", command=lambda: set_result("1. After Worlds 1"))
+        button1.grid(row=1, column=0, padx=(100), pady=(12,12), sticky=tk.NSEW)
+        button1.config(bg='#38943a', fg='white')
+
+        button2 = tk.Button(select_game_date_window, text="NEXT to Worlds Pt. 1 (07/18-01/25)", command=lambda: set_result("2. NEXT to Worlds Part 1"))
+        button2.grid(row=2, column=0, padx=(100), pady=(12,12), sticky=tk.NSEW)
+        button2.config(bg='#943866', fg='white')
+
+        button3 = tk.Button(select_game_date_window, text="Atlas Rises or earlier (07/18)", command=lambda: set_result("3. Before NEXT"))
+        button3.grid(row=3, column=0, padx=(100), pady=(12,12), sticky=tk.NSEW)
+        button3.config(bg='#389494', fg='white')
+
+        # Wait for the dialog to close and return the result
+        select_game_date_window.wait_window(select_game_date_window)
+
+
 
 
 
@@ -2740,9 +2838,9 @@ class PlumgenViewGen:
         messagebox.showinfo(self.langs[self.lan]["complete_template"]["info_title"], self.langs[self.lan]["complete_template"]["info_desc"], parent=self.window)
 
 
-    def make_template_from_exml_threaded(self, after_next_update, template_filename, loading_screen):
-        # import exml files in "_BIOMES Exmls Folder Goes Here" folder, pass if after next update or not
-        self.controller.c_make_template_from_exml(after_next_update, template_filename)
+    def make_template_from_exml_threaded(self, template_filename, loading_screen, temp_date_of_import_folder):
+        # import exml files in "_BIOMES Xmls Folder Goes Here" folder, pass if after next update or not
+        self.controller.c_make_template_from_xml(template_filename, temp_date_of_import_folder)
         self.window.after(0, lambda: self.complete_template(loading_screen))
 
 
@@ -2754,7 +2852,7 @@ class PlumgenViewGen:
             biom_exmls_folder_dir = self.controller.get_biom_exmls_folder_dir()
             biomes_folder = os.path.abspath(os.path.join(biom_exmls_folder_dir, 'BIOMES'))
 
-            # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
+            # verify that the '_BIOMES Xmls Folder Goes Here' directory exists
             if not os.path.exists(biom_exmls_folder_dir):
                 messagebox.showerror(self.langs[self.lan]["make_template_from_exml"]["Error"], f"{self.langs[self.lan]["make_template_from_exml"]["desc_1_pt1"]}{biom_exmls_folder_dir}{self.langs[self.lan]["make_template_from_exml"]["desc_1_pt2"]}", parent=self.window)
                 return
@@ -2768,9 +2866,17 @@ class PlumgenViewGen:
                         if not response:
                             return
 
-            after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["make_template_from_exml"]["Question"], self.langs[self.lan]["make_template_from_exml"]["desc_4"], parent=self.window)
+            #after_next_update = messagebox.askyesnocancel(self.langs[self.lan]["make_template_from_exml"]["Question"], self.langs[self.lan]["make_template_from_exml"]["desc_4"], parent=self.window)
+
+
+
+
+            self.date_of_import_folder = None # reset
+            self.make_game_date_window()
+
+
             
-            if after_next_update is not None:
+            if self.date_of_import_folder is not None:
                 # create pop-up window to enter filename
                 template_filename = simpledialog.askstring(self.langs[self.lan]["make_template_from_exml"]["template_title"], self.langs[self.lan]["make_template_from_exml"]["template_desc"], parent=self.window)
                 # verify filename contains numbers, letters, or underscores
@@ -2785,9 +2891,9 @@ class PlumgenViewGen:
             loading_screen = self.show_loading_screen()
             self.window.update_idletasks()  # all pending events processed to show loading screen
             
-            if after_next_update is not None:  # check if user clicked Yes or No
-                
-                import_thread = threading.Thread(target=self.make_template_from_exml_threaded, args=(after_next_update, template_filename, loading_screen))
+            if self.date_of_import_folder is not None:  # check if user clicked
+                temp_date_of_import_folder = self.date_of_import_folder
+                import_thread = threading.Thread(target=self.make_template_from_exml_threaded, args=(template_filename, loading_screen, temp_date_of_import_folder))
                 import_thread.start()
 
             else:
@@ -2813,6 +2919,8 @@ class PlumgenViewGen:
                 "bfn_all_biome_files_weights": self.controller.get_bfn_all_biome_files_weights(),
                 "bfn_all_tile_types": self.controller.get_bfn_all_tile_types(),
                 "bfn_all_valid_start_planets": self.controller.get_bfn_all_valid_start_planets(),
+                "bfn_valid_purple_moon_biomes_planets": self.controller.get_bfn_valid_purple_moon_biomes(), # worlds pt II
+                "bfn_valid_giant_planet_biomes": self.controller.get_bfn_valid_giant_planet_biomes(),
                 "all_biome_tile_types": self.controller.get_all_biome_tile_types()
             }
 
@@ -2822,7 +2930,6 @@ class PlumgenViewGen:
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
-            
     '''
 
     def import_from_json(self, filename):
@@ -2832,14 +2939,16 @@ class PlumgenViewGen:
         bfn_all_biome_files_weights = data["bfn_all_biome_files_weights"]
         bfn_all_tile_types = data["bfn_all_tile_types"]
         bfn_all_valid_start_planets = data["bfn_all_valid_start_planets"]
+        bfn_valid_purple_moon_biomes_planets = data["bfn_valid_purple_moon_biomes_planets"] # worlds pt II
+        bfn_valid_giant_planet_biomes = data["bfn_valid_giant_planet_biomes"]
         all_biome_tile_types = data["all_biome_tile_types"]
 
-        return bfn_all_biome_files_weights, bfn_all_tile_types, bfn_all_valid_start_planets, all_biome_tile_types
+        return bfn_all_biome_files_weights, bfn_all_tile_types, bfn_all_valid_start_planets, bfn_valid_purple_moon_biomes_planets, bfn_valid_giant_planet_biomes, all_biome_tile_types
 
 
 
     # export
-    def export_script(self):
+    def export_to_xml(self):
         try:
             
             biomes_objs = self.controller.get_biome_objs()
@@ -2848,6 +2957,8 @@ class PlumgenViewGen:
             bfn_all_biome_files_weights = self.controller.get_bfn_all_biome_files_weights()
             bfn_all_tile_types = self.controller.get_bfn_all_tile_types()
             bfn_all_valid_start_planets = self.controller.get_bfn_all_valid_start_planets()
+            bfn_valid_purple_moon_biomes_planets = self.controller.get_bfn_valid_purple_moon_biomes() # worlds pt II
+            bfn_valid_giant_planet_biomes = self.controller.get_bfn_valid_giant_planet_biomes()
             all_biome_tile_types = self.controller.get_all_biome_tile_types() # **each** biome file
             
             # -------------------------------------------------
@@ -2903,7 +3014,7 @@ class PlumgenViewGen:
                 default_bfn_folder_dir = self.controller.get_default_bfn_folder_dir()
                 json_file_path = os.path.abspath(os.path.join(default_bfn_folder_dir, 'default_bfn_and_biomes.json'))
 
-                # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
+                # verify that the '_BIOMES Xmls Folder Goes Here' directory exists
                 if not os.path.exists(default_bfn_folder_dir):
                     messagebox.showerror("Error", f"{self.langs[self.lan]["export_script"]["missing_dir_pt1"]}{default_bfn_folder_dir}{self.langs[self.lan]["export_script"]["missing_dir_pt2"]}", parent=self.window)
                     return
@@ -2913,7 +3024,7 @@ class PlumgenViewGen:
                     return
 
                 # import data from JSON file
-                bfn_all_biome_files_weights_c, bfn_all_tile_types_c, bfn_all_valid_start_planets_c, all_biome_tile_types_c = self.import_from_json(json_file_path)
+                bfn_all_biome_files_weights_c, bfn_all_tile_types_c, bfn_all_valid_start_planets_c, bfn_valid_purple_moon_biomes_planets_c, bfn_valid_giant_planet_biomes_c, all_biome_tile_types_c = self.import_from_json(json_file_path)
                 # set default values
                 if replace_missing_vars_w_json: # True
                     if missing_var_a:
@@ -2923,22 +3034,29 @@ class PlumgenViewGen:
                     if missing_var_c:
                         self.controller.set_all_biome_tile_types(all_biome_tile_types_c)
                     self.controller.set_bfn_all_valid_start_planets(bfn_all_valid_start_planets_c) # replace regardless
+                    self.controller.set_bfn_valid_purple_moon_biomes(bfn_valid_purple_moon_biomes_planets_c)
+                    self.controller.set_bfn_valid_giant_planet_biomes(bfn_valid_giant_planet_biomes_c)
+
 
                 else: # False - replace ALL
                     self.controller.set_bfn_all_biome_files_weights(bfn_all_biome_files_weights_c)
                     self.controller.set_bfn_all_tile_types(bfn_all_tile_types_c)
                     self.controller.set_bfn_all_valid_start_planets(bfn_all_valid_start_planets_c)
+                    self.controller.set_bfn_valid_purple_moon_biomes(bfn_valid_purple_moon_biomes_planets_c)
+                    self.controller.set_bfn_valid_giant_planet_biomes(bfn_valid_giant_planet_biomes_c)
                     self.controller.set_all_biome_tile_types(all_biome_tile_types_c)
 
                 # refresh for any recently modified imported data
                 bfn_all_biome_files_weights = self.controller.get_bfn_all_biome_files_weights()
                 bfn_all_tile_types = self.controller.get_bfn_all_tile_types()
                 bfn_all_valid_start_planets = self.controller.get_bfn_all_valid_start_planets()
+                bfn_valid_purple_moon_biomes_planets = self.controller.get_bfn_valid_purple_moon_biomes() # worlds pt II
+                bfn_valid_giant_planet_biomes = self.controller.get_bfn_valid_giant_planet_biomes()
                 all_biome_tile_types = self.controller.get_all_biome_tile_types() # **each** biome file
 
 
             # check if user ignored error message when importing
-            if len(bfn_all_biome_files_weights) < 16:
+            if len(bfn_all_biome_files_weights) < 17:
                 response = messagebox.askyesno(self.langs[self.lan]["export_script"]["error_missing_16_title"], self.langs[self.lan]["export_script"]["error_missing_16_desc"], parent=self.window)
                 if not response:
                     return
@@ -2946,7 +3064,7 @@ class PlumgenViewGen:
                     default_bfn_folder_dir = self.controller.get_default_bfn_folder_dir()
                     json_file_path = os.path.abspath(os.path.join(default_bfn_folder_dir, 'default_bfn_and_biomes.json'))
 
-                    # verify that the '_BIOMES Exmls Folder Goes Here' directory exists
+                    # verify that the '_BIOMES Xmls Folder Goes Here' directory exists
                     if not os.path.exists(default_bfn_folder_dir):
                         messagebox.showerror("Error", f"{self.langs[self.lan]["export_script"]["missing_dir_pt1"]}{default_bfn_folder_dir}{self.langs[self.lan]["export_script"]["missing_dir_pt2"]}", parent=self.window)
                         return
@@ -2956,11 +3074,13 @@ class PlumgenViewGen:
                         return
 
                     # import data from JSON file
-                    bfn_all_biome_files_weights, bfn_all_tile_types, bfn_all_valid_start_planets, all_biome_tile_types = self.import_from_json(json_file_path)
+                    bfn_all_biome_files_weights, bfn_all_tile_types, bfn_all_valid_start_planets, bfn_valid_purple_moon_biomes_planets, bfn_valid_giant_planet_biomes, all_biome_tile_types = self.import_from_json(json_file_path)
                     # set default values
                     self.controller.set_bfn_all_biome_files_weights(bfn_all_biome_files_weights)
                     self.controller.set_bfn_all_tile_types(bfn_all_tile_types)
                     self.controller.set_bfn_all_valid_start_planets(bfn_all_valid_start_planets)
+                    self.controller.set_bfn_valid_purple_moon_biomes(bfn_valid_purple_moon_biomes_planets)
+                    self.controller.set_bfn_valid_giant_planet_biomes(bfn_valid_giant_planet_biomes)
                     self.controller.set_all_biome_tile_types(all_biome_tile_types)
 
                     if not self.open_export_window_and_wait:
@@ -2977,6 +3097,8 @@ class PlumgenViewGen:
                 biomes_objs,
                 bfn_all_biome_files_weights,
                 bfn_all_valid_start_planets,
+                bfn_valid_purple_moon_biomes_planets, # worlds pt II
+                bfn_valid_giant_planet_biomes,
                 bfn_all_tile_types,
                 all_biome_tile_types,
                 self.icon_path,
@@ -2994,11 +3116,13 @@ class PlumgenViewGen:
             self.show_error_message("An error occurred: {}".format(str(e)))
             
 
-    def apply_export_settings(self, bfn_all_biome_files_weights_c, bfn_all_valid_start_planets_c, bfn_all_tile_types_c, all_biome_tile_types_c, checked_mbc_update_already):
+    def apply_export_settings(self, bfn_all_biome_files_weights_c, bfn_all_valid_start_planets_c, bfn_valid_purple_moon_biomes_planets_c, bfn_valid_giant_planet_biomes_c, bfn_all_tile_types_c, all_biome_tile_types_c, checked_mbc_update_already):
         try:
             self.controller.set_bfn_all_biome_files_weights(bfn_all_biome_files_weights_c)
             self.controller.set_bfn_all_tile_types(bfn_all_tile_types_c)
             self.controller.set_bfn_all_valid_start_planets(bfn_all_valid_start_planets_c)
+            self.controller.set_bfn_valid_purple_moon_biomes(bfn_valid_purple_moon_biomes_planets_c)
+            self.controller.set_bfn_valid_giant_planet_biomes(bfn_valid_giant_planet_biomes_c)
             self.controller.set_all_biome_tile_types(all_biome_tile_types_c)
             self.checked_mbc_update_already = checked_mbc_update_already
         except Exception as e:

@@ -91,7 +91,7 @@
         "filemenu_view_gen": {
             "check_update": "Check for PLUMGEN update",
             "Update": "Update",
-            "make_template": "Make Biome Template from EXML",
+            "make_template": "Make Biome Template from XML",
             "auto_rename": "Auto-Rename All Biomes",
             "reset_auto_rename": "Reset Auto-Rename",
             "Exit": "Exit",
@@ -119,7 +119,7 @@
             "Rename": "Rename",
             "Duplicate_Biome": "Duplicate Selected Biome",
             "Duplicate_Prop": "Duplicate Selected Prop",
-            "Import": "Import EXMLs/Merge Biomes",
+            "Import": "Import XMLs/Merge Biomes",
             "Continue": "Continue ",
             "Save": "Save",
             "Save_Model": "Save Model",
@@ -148,10 +148,10 @@
             "landmarks_lb": " Landmarks:\nProps with higher draw distance and medium to large scale.\ne.g. vanilla-sized trees.",
             "objects_lb": " Objects:\nProps with lower draw distance and smaller scale.\ne.g. vanilla-sized rocks, bushes.",
             "detail_objects_lb": " Detail Objects:\nProps with the lowest draw distance and smallest scale.\ne.g. vanilla-sized grass, small plants. For reference, this category holds the highest number of props in the vanilla game.",
-            "biome_template_label": " Biome Template:\nA giant collection of 'Object Spawn Data' from biome .MBIN files. Clicking any 'Add' button will create a new biome (or prop) based on the currently selected template. Click File > Make Biome Template from EXML to create your own biome template.",
-            "csv_combo": " Biome Template:\nA giant collection of 'Object Spawn Data' from biome .MBIN files. Clicking any 'Add' button will create a new biome (or prop) based on the currently selected template. Click File > Make Biome Template from EXML to create your own biome template.",
+            "biome_template_label": " Biome Template:\nA giant collection of 'Object Spawn Data' from biome .MBIN files. Clicking any 'Add' button will create a new biome (or prop) based on the currently selected template. Click File > Make Biome Template from XML to create your own biome template.",
+            "csv_combo": " Biome Template:\nA giant collection of 'Object Spawn Data' from biome .MBIN files. Clicking any 'Add' button will create a new biome (or prop) based on the currently selected template. Click File > Make Biome Template from XML to create your own biome template.",
             "gen_using_template_data_cb": "Uses selected biome template model filepaths as the key when adding new biomes/props via 'Add' buttons. If left off, it still uses the .CSV data but sticks to a standard model filepath list for the key. It will not add props to Biome Props list if none are found.",
-            "import_exml_button": "Analyze EXML files in your '_BIOMES Exmls Folder Goes Here' folder and convert to PLUMGEN's format. \n\n*To merge biome lists* FIRST, move all BIOMES folders to BEFGH, THEN import.",
+            "import_exml_button": "Analyze MXML/EXML files in your '_BIOMES Xmls Folder Goes Here' folder and convert to PLUMGEN's format. \n\n*To merge biome lists* FIRST, move all BIOMES folders to BEFGH, THEN import.",
             "model_lb": "Props after '--' line are pre-release models or models normally in a different prop draw distance category. They've been moved here to extend the draw distance for those props (e.g. some props don't have LOD imposters, so you could move those to Distant Objects). "
         },
         "help": {
@@ -298,23 +298,23 @@
             "warn_title": "Issue with Biome Objects Files",
             "warn_desc_pt1": "The imported biome objects files list contains ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nThese files may contain unique props with unique attributes, e.g. word stones, which PLUMGEN will make uninteractable.\n\nYes = Auto. remove these files for you from your Biome Objects List so props retain unique attributes.\n\nNo = Manually remove problematic MBINS in the /OBJECTS/ folder.\n\n(If 200+ found, remove subfolders as needed before importing)",
-            "warn_missing_title": " 16 Biome Entries",
-            "warn_missing_desc": "The missing or imported BIOMEFILENAMES.EXML contains less than 16 sub-biomes entries, a fixed-size array. This happens with outdated NMS versions which supported only 10 sub-biomes.\n\n(Recommended) Fix 1: After clicking 'Export', choose 'NO' to create a vanilla canvas, then add biomes manually.\n\n(Advanced) Fix 2: Add an EXTRA up-to-date vanilla (or custom) BIOMEFILENAMES.EXML to the import folder's top-most directory. Python will process it first, then handle the outdated BFN file, attempting a merge.",
-            "info_title": "Import EXML Complete",
-            "info_desc": "Import EXML complete. All relevant biome data added."
+            "warn_missing_title": " 17 Biome Entries",
+            "warn_missing_desc": "The missing or imported BIOMEFILENAMES contains less than 17 sub-biomes entries, a fixed-size array. This happens with outdated NMS versions which supported only 10 sub-biomes.\n\n(Recommended) Fix 1: After clicking 'Export', choose 'NO' to create a vanilla canvas, then add biomes manually.\n\n(Advanced) Fix 2: Add an EXTRA up-to-date vanilla (or custom) BIOMEFILENAMES to the import folder's top-most directory. Python will process it first, then handle the outdated BFN file, attempting a merge.",
+            "info_title": "Import XML Complete",
+            "info_desc": "Import XML complete. All relevant biome data added."
         },
         "import_exml_biomes": {
             "Error": "Error",
             "no_dir_pt1": "The import directory does not exist: \n\n",
             "no_dir_pt2": "\n\nPlease do not delete or rename this directory.",
             "empty_dir_pt1": "The import directory is empty: \n\n",
-            "empty_dir_pt2": "\n\nDecompile MBINs to EXML, then move one or more 'BIOMES' folder to this directory.\nSee: '_Biome Templates/__template README.txt' for more info.",
+            "empty_dir_pt2": "\n\nDecompile MBINs to MXML, then move one or more 'BIOMES' folder to this directory.\nSee: '_Biome Templates/__template README.txt' for more info.",
             "Question": "Question",
             "ques_pt1": "No 'BIOMES' folder found in directory: \n\n",
-            "ques_pt2": "\n\nThis folder contains all necessary EXML files for biome conversion into PLUMGEN data. Without it, data WILL be missing.\n\n*I do not recommend importing folders other than 'BIOMES'.\n\n*Renaming the 'BIOMES' folder may cause LUA script errors (ignore this if importing a renamed/modded 'BIOMES' folder).\n\nContinue anyway?",
+            "ques_pt2": "\n\nThis folder contains all necessary MXML/EXML files for biome conversion into PLUMGEN data. Without it, data WILL be missing.\n\n*I do not recommend importing folders other than 'BIOMES'.\n\n*Renaming the 'BIOMES' folder may cause LUA script errors (ignore this if importing a renamed/modded 'BIOMES' folder).\n\nContinue anyway?",
             "overwrite_ques_title": "Overwrite Data?",
-            "overwrite_ques_desc": "---------------------------WARNING---------------------------\n\nThis will replace *ALL* your work with the newly imported EXML data. \n\nIf you want to import EXML without losing your current work:\n\n(Recommended) Fix 1:\nA) For each biome objects item, click Presets > Save Biome as Preset. B) Add new 'BIOMES' folder to '_BIOMES Exmls Folder Goes Here' and import EXML. C) Click Presets > Import Biome Presets, and click on each file you just saved.\n\n(Advanced) Fix 2:\nA) Click 'No', B) Export, C) Extract EXML with AMUMSS or MBINCompiler (from PAK file), D) Add (or combine) 'BIOMES' folder(s) to '_BIOMES Exmls Folder Goes Here', E) Import EXML\n\nDo you want to continue?\n\n---------------------------WARNING---------------------------",
-            "after_before_next_ques_desc": "Was the 'BIOMES' folder in the directory '_BIOMES Exmls Folder Goes Here' created after NMS 'NEXT' update?\n(Update 1.5-July, 2018)\n\nYes = After\nNo = Before\n\n--- Answering this incorrectly WILL cause issues. ---"
+            "overwrite_ques_desc": "---------------------------WARNING---------------------------\n\nThis will replace *ALL* your work with the newly imported MXML/EXML data. \n\nIf you want to import XML without losing your current work:\n\n(Recommended) Fix 1:\nA) For each biome objects item, click Presets > Save Biome as Preset. B) Add new 'BIOMES' folder to '_BIOMES Xmls Folder Goes Here' and import XML. C) Click Presets > Import Biome Presets, and click on each file you just saved.\n\n(Advanced) Fix 2:\nA) Click 'No', B) Export, C) Extract MXML/EXML with AMUMSS or MBINCompiler (from PAK file), D) Add (or combine) 'BIOMES' folder(s) to '_BIOMES Xmls Folder Goes Here', E) Import XML\n\nDo you want to continue?\n\n---------------------------WARNING---------------------------",
+            "after_before_next_ques_desc": "Was the 'BIOMES' folder in the directory '_BIOMES Xmls Folder Goes Here' created after NMS 'NEXT' update?\n(Update 1.5-July, 2018)\n\nYes = After\nNo = Before\n\n--- Answering this incorrectly WILL cause issues. ---"
         },
         "complete_template": {
             "info_title": "New Biome Template Added",
@@ -329,7 +329,7 @@
             "Question": "Question",
             "desc_3_pt1": "No 'BIOMES' folder found in directory: \n\n",
             "desc_3_pt2": "\n\nThis folder contains all necessary EXML files for biome conversion into a biome template (CSV). Without it, data WILL be missing.\n\n*I do not recommend importing folders other than 'BIOMES'.\n*Renaming the 'BIOMES' folder may cause LUA script errors (ignore this if importing a renamed/modded 'BIOMES' folder).\n\nContinue anyway?",
-            "desc_4": "Was the 'BIOMES' folder in the directory '_BIOMES Exmls Folder Goes Here' created after NMS 'NEXT' update?\n(Update 1.5-July, 2018)\n\nYes = After\nNo = Before\n\n--- Answering this incorrectly WILL cause issues. ---",
+            "desc_4": "Was the 'BIOMES' folder in the directory '_BIOMES Xmls Folder Goes Here' created after NMS 'NEXT' update?\n(Update 1.5-July, 2018)\n\nYes = After\nNo = Before\n\n--- Answering this incorrectly WILL cause issues. ---",
             "template_title": "Enter template filename",
             "template_desc": "What do you want to name this biome template?\n\nUse a unique filename to prevent overwriting any .csv file with the same name in your '_Biome Templates' folder.\n\nEnter only numbers, letters, or underscores. Do not add .csv at the end.\n",
             "Invalid_Filename_title": "Invalid Filename",
@@ -345,7 +345,7 @@
             "missing_json_pt1": "JSON filepath does not exist: \n\n",
             "missing_json_pt2": "\n\nPlease do not rename or delete this JSON file.",
             "error_missing_16_title": "Issues Exporting - Import Vanilla JSON?",
-            "error_missing_16_desc": "The imported biome files list contains less than 16 entries! \n\nYou should've gotten an error message saying to re-import the EXML files. \n\nOne alternative solution is to import vanilla JSON data to create a basic canvas (or you can go back and import EXML files).\n\nI do not recommend this if you don't know what you're doing...\n\nContinue with replacing export data with a vanilla canvas?\n\nFYI: This will replace any/all of your current biome spawner data.\nThis will not replace your current Biome Objects List.",
+            "error_missing_16_desc": "The imported biome files list contains less than 17 entries! \n\nYou should've gotten an error message saying to re-import the EXML files. \n\nOne alternative solution is to import vanilla JSON data to create a basic canvas (or you can go back and import XML files).\n\nI do not recommend this if you don't know what you're doing...\n\nContinue with replacing export data with a vanilla canvas?\n\nFYI: This will replace any/all of your current biome spawner data.\nThis will not replace your current Biome Objects List.",
             "export_info_title": "Export Window",
             "export_info_desc": "Any changes made in the next window will be saved automatically."
         },
@@ -453,13 +453,13 @@
         },
         "export_settings_window": {
             "main_title": "Export Menu",
-            "dr_label": "[+] = More performance heavy\n[-] = Incompatible with mods changing GRAPHICS & ENVIRONMENT globals\n* = Enter letters, numbers, or _ - . (no empty spaces)",
+            "dr_label": "Enter letters, numbers, or _ - .",
             "draw_dist_label": "Select Level of Detail & Draw Distance:",
             "dr_checkbox": "Increase prop draw distance [+]",
             "global_checkbox": "Increase global draw distance limit/decrease fade time [+][-]",
-            "Mod_Author": "*Mod Author:",
-            "Biomes_Filename": "*Biomes Filename:",
-            "Spawner_Filename": "*Spawner Filename:",
+            "Mod_Author": "Mod Author:",
+            "Biomes_Filename": "Biomes Filename:",
+            "Spawner_Filename": "Spawner Filename:",
             "Export": "Export"
         },
         "export_all_files": {
@@ -472,8 +472,8 @@
             "Error_Desc_6": "Invalid Spawner Filename. Please enter letters, numbers, or _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Spawner: < 16 Sub-biomes",
-            "spawner_crash_desc": "Spawner: Your spawner contains less than 16 sub-biomes. Using this Spawner mod WILL crash your game. Select Tools > Replace Spawner Data, then add biome objects to each sub-biome.\n\nContinue anyway?",
+            "spawner_crash_title": "Spawner: < 17 Sub-biomes",
+            "spawner_crash_desc": "Spawner: Your spawner contains less than 17 sub-biomes. Using this Spawner mod WILL crash your game. Select Tools > Replace Spawner Data, then add biome objects to each sub-biome.\n\nContinue anyway?",
             "spawner_crash_2_title": "Spawner: Empty Sub-Biome Lists",
             "spawner_crash_2_desc": "Spawner: Empty list detected in at least one Sub-Biome Tile Type.*\nUsing this Spawner mod WILL crash your game.\n\nContinue anyway?",
             "missing_data_title": "Missing data",
@@ -690,7 +690,7 @@
         "filemenu_view_gen": {
             "check_update": "检查 PLUMGEN 更新",
             "Update": "更新",
-            "make_template": "从EXML创建生物群模板",
+            "make_template": "从XML创建生物群模板",
             "auto_rename": "自动重命名所有生物群",
             "reset_auto_rename": "重置自动重命名",
             "Exit": "退出",
@@ -718,7 +718,7 @@
             "Rename": "重命名",
             "Duplicate_Biome": "复制所选生物群系",
             "Duplicate_Prop": "复制所选植被",
-            "Import": "导入 EXMLs/合并生物群系",
+            "Import": "导入 XMLs/合并生物群系",
             "Continue": "继续 ",
             "Save": "保存",
             "Save_Model": "保存",
@@ -747,10 +747,10 @@
             "landmarks_lb": " 中景物体:\n具有较远绘制距离和中等到大型规模的植被。\n例如：标准大小的树木。",
             "objects_lb": " 物体:\n具有较短绘制距离和较小规模的植被。\n例如：标准大小的岩石、灌木。",
             "detail_objects_lb": " 详细对象:\n具有最短绘制距离和最小规模的植被。\n例如：标准大小的草、小型植物。 作为参考，这一类别拥有游戏中最多的植被。",
-            "biome_template_label": " 生物群系 .csv:\n生物群系 .MBIN 文件中的 '对象生成数据' 的大型集合。单击任何 '添加' 按钮将基于当前选择的 .csv 创建新的生物群系（或植被）。单击文件 > 从 EXML 创建生物群系 .csv 以创建您自己的生物群系 .csv。",
-            "csv_combo": " 生物群系 .csv:\n生物群系 .MBIN 文件中的 '对象生成数据' 的大型集合。单击任何 '添加' 按钮将基于当前选择的 .csv 创建新的生物群系（或植被）。单击文件 > 从 EXML 创建生物群系 .csv 以创建您自己的生物群系 .csv。",
+            "biome_template_label": " 生物群系 .csv:\n生物群系 .MBIN 文件中的 '对象生成数据' 的大型集合。单击任何 '添加' 按钮将基于当前选择的 .csv 创建新的生物群系（或植被）。单击文件 > 从 XML 创建生物群系 .csv 以创建您自己的生物群系 .csv。",
+            "csv_combo": " 生物群系 .csv:\n生物群系 .MBIN 文件中的 '对象生成数据' 的大型集合。单击任何 '添加' 按钮将基于当前选择的 .csv 创建新的生物群系（或植被）。单击文件 > 从 XML 创建生物群系 .csv 以创建您自己的生物群系 .csv。",
             "gen_using_template_data_cb": "使用选定的生物群系 .csv 场景文件路径作为添加新生物群系/植被的键。如果留空，则仍然使用 .csv 数据，但将按照标准的场景文件路径列表进行键的处理。如果未找到任何植被，则不会将其添加到生物群系植被列表中。",
-            "import_exml_button": "分析您的 '_BIOMES Exmls Folder Goes Here' 文件夹中的 EXML 文件，并转换为 PLUMGEN 的格式。\n\n*要合并生物群系列表* 首先，将所有 'BIOMES' 文件夹移动到 'BEFGH'，然后导入。",
+            "import_exml_button": "分析您的 '_BIOMES Xmls Folder Goes Here' 文件夹中的 MXML/EXML 文件，并转换为 PLUMGEN 的格式。\n\n*要合并生物群系列表* 首先，将所有 'BIOMES' 文件夹移动到 'BEFGH'，然后导入。",
             "model_lb": " '--' 行后的植被是预发布的 SCENE 或通常位于不同植被绘制距离类别中的 SCENE。它们被移至此处以扩展这些植被的绘制距离（例如，一些植被没有 LOD 冒牌，因此您可以将其移至远景物体）。"
         },
         "help": {
@@ -897,8 +897,8 @@
             "warn_title": "生物群系对象文件存在问题",
             "warn_desc_pt1": "导入的生物群系对象文件列表包含 ",
             "warn_desc_pt2": " /OBJECTS/* MBINs。\n\n这些文件可能包含具有唯一属性的唯一道具，例如词石，PLUMGEN 将使其无法交互。\n\n是=自动从生物群系对象列表中为您删除这些文件，以便道具保留其唯一属性。\n\n否=手动从 /OBJECTS/ 文件夹中删除问题 MBINS。\n\n(如果发现 200+，在导入之前根据需要删除子文件夹)",
-            "warn_missing_title": " 16 生物群系条目",
-            "warn_missing_desc": "丢失或已导入的BIOMEFILENAMES.EXML 包含少于 16 个子生物群系条目，这是一个固定大小的数组。 这发生在支持仅有 10 个子生物群系的过时 NMS 版本中。\n\n(推荐) 修复 1：单击“导出”后，选择“否”以创建纯净的画布，然后手动添加生物群系。\n\n(高级) 修复 2：向导入文件夹的最顶层目录添加一个额外的最新 BIOMEFILENAMES.EXML，Python 将首先处理它，然后处理过时的 BFN 文件，尝试合并。",
+            "warn_missing_title": " 17 生物群系条目",
+            "warn_missing_desc": "丢失或已导入的BIOMEFILENAMES 包含少于 17 个子生物群系条目，这是一个固定大小的数组。 这发生在支持仅有 10 个子生物群系的过时 NMS 版本中。\n\n(推荐) 修复 1：单击“导出”后，选择“否”以创建纯净的画布，然后手动添加生物群系。\n\n(高级) 修复 2：向导入文件夹的最顶层目录添加一个额外的最新 BIOMEFILENAMES，Python 将首先处理它，然后处理过时的 BFN 文件，尝试合并。",
             "info_title": "导入 EXML 完成",
             "info_desc": "导入 EXML 完成。 已添加所有相关生物群系数据。"
         },
@@ -907,13 +907,13 @@
             "no_dir_pt1": "导入目录不存在：\n\n",
             "no_dir_pt2": "\n\n请勿删除或重命名此目录。",
             "empty_dir_pt1": "导入目录为空：\n\n",
-            "empty_dir_pt2": "\n\n解编译 MBINs 为 EXML，然后将一个或多个'BIOMES'文件夹移动到此目录。\n有关更多信息，请参见：'_Biome Templates/__template README.txt'。",
+            "empty_dir_pt2": "\n\n解编译 MBINs 为 MXML，然后将一个或多个'BIOMES'文件夹移动到此目录。\n有关更多信息，请参见：'_Biome Templates/__template README.txt'。",
             "Question": "问题",
             "ques_pt1": "在目录中找不到'BIOMES'文件夹：\n\n",
-            "ques_pt2": "\n\n此文件夹包含将生物群系转换为 PLUMGEN 数据所需的所有必要 EXML 文件。 没有它，数据将丢失。\n\n我不建议导入除'BIOMES'之外的文件夹。\n\n重命名“BIOMES”文件夹可能会导致 LUA 脚本错误（如果导入了已重命名/修改过的'BIOMES'文件夹，请忽略此项）。\n\n无论如何继续吗？",
+            "ques_pt2": "\n\n此文件夹包含将生物群系转换为 PLUMGEN 数据所需的所有必要 MXML/EXML 文件。 没有它，数据将丢失。\n\n我不建议导入除'BIOMES'之外的文件夹。\n\n重命名“BIOMES”文件夹可能会导致 LUA 脚本错误（如果导入了已重命名/修改过的'BIOMES'文件夹，请忽略此项）。\n\n无论如何继续吗？",
             "overwrite_ques_title": "覆盖数据？",
-            "overwrite_ques_desc": "---------------------------警告---------------------------\n\n这将用新导入的 EXML 数据替换所有您的工作。\n\n如果您想导入 EXML 而不丢失当前工作：\n\n（推荐）修复 1：\nA) 对于每个生物群系对象项，单击预设 > 保存生物群系为预设。B) 将新的'BIOMES'文件夹添加到'_BIOMES Exmls 文件夹放在这里'，并导入 EXML。C) 单击预设 > 导入生物群系预设，并单击您刚保存的每个文件。\n\n（高级）修复 2：\nA) 单击“否”，B) 导出，C) 使用 AMUMSS 或 MBINCompiler（从 PAK 文件）提取 EXML，D) 将（或组合）'BIOMES'文件夹添加到'_BIOMES Exmls Folder Goes Here'，E) 导入 EXML\n\n您想继续吗？\n\n---------------------------警告---------------------------",
-            "after_before_next_ques_desc": "在'BIOMES'文件夹在目录'_BIOMES Exmls Folder Goes Here'中是在NMS 'NEXT'更新之后创建的吗？\n（更新1.5-2018年7月）\n\n是 = 后\n否 = 前\n\n--- 错误回答将会导致问题。---"
+            "overwrite_ques_desc": "---------------------------警告---------------------------\n\n这将用新导入的 MXML/EXML 数据替换所有您的工作。\n\n如果您想导入 XML 而不丢失当前工作：\n\n（推荐）修复 1：\nA) 对于每个生物群系对象项，单击预设 > 保存生物群系为预设。B) 将新的'BIOMES'文件夹添加到'_BIOMES Xmls Folder Goes Here'，并导入 EXML。C) 单击预设 > 导入生物群系预设，并单击您刚保存的每个文件。\n\n（高级）修复 2：\nA) 单击“否”，B) 导出，C) 使用 AMUMSS 或 MBINCompiler（从 PAK 文件）提取 MXML/EXML，D) 将（或组合）'BIOMES'文件夹添加到'_BIOMES Xmls Folder Goes Here'，E) 导入 EXML\n\n您想继续吗？\n\n---------------------------警告---------------------------",
+            "after_before_next_ques_desc": "在'BIOMES'文件夹在目录'_BIOMES Xmls Folder Goes Here'中是在NMS 'NEXT'更新之后创建的吗？\n（更新1.5-2018年7月）\n\n是 = 后\n否 = 前\n\n--- 错误回答将会导致问题。---"
         },
         "complete_template": {
             "info_title": "添加了新的生物群落模板",
@@ -928,7 +928,7 @@
             "Question": "问题",
             "desc_3_pt1": "目录中未找到 'BIOMES' 文件夹：\n\n",
             "desc_3_pt2": "\n\n此文件夹包含所有必要的 EXML 文件，用于将生物群落转换为生物群落模板（CSV）。 没有它，数据将丢失。\n\n*我不建议导入除 'BIOMES' 以外的文件夹。\n*重命名 'BIOMES' 文件夹可能会导致 LUA 脚本错误（如果导入已重命名/修改的 'BIOMES' 文件夹，请忽略此提示）。\n\n仍然继续？",
-            "desc_4": "目录 '_BIOMES Exmls Folder Goes Here' 中的 'BIOMES' 文件夹是在 NMS 'NEXT' 更新后创建的吗？\n（更新 1.5-2018 年 7 月）\n\n是 = 之后\n否 = 之前\n\n--- 错误回答此问题将导致问题。---",
+            "desc_4": "目录 '_BIOMES Xmls Folder Goes Here' 中的 'BIOMES' 文件夹是在 NMS 'NEXT' 更新后创建的吗？\n（更新 1.5-2018 年 7 月）\n\n是 = 之后\n否 = 之前\n\n--- 错误回答此问题将导致问题。---",
             "template_title": "输入模板文件名",
             "template_desc": "您想为这个生物群落模板命名为什么？\n\n使用唯一的文件名以防止覆盖 '_Biome Templates' 文件夹中具有相同名称的任何 .csv 文件。\n\n只输入数字、字母或下划线。 不要在末尾添加 .csv。\n",
             "Invalid_Filename_title": "无效的文件名",
@@ -944,7 +944,7 @@
             "missing_json_pt1": "JSON 文件路径不存在：\n\n",
             "missing_json_pt2": "\n\n请不要重命名或删除此 JSON 文件。",
             "error_missing_16_title": "导出问题 - 导入原版 JSON？",
-            "error_missing_16_desc": "导入的生物群落文件列表包含少于 16 个条目！\n\n您应该收到一条错误消息，提示重新导入 EXML 文件。\n\n另一种解决方案是导入原版 JSON 数据以创建基本画布（或者您可以返回并导入 EXML 文件）。\n\n如果您不知道自己在做什么，我不建议这样做...\n\n继续使用原版画布替换导出数据？\n\n仅供参考：这将替换您当前的任何/所有生物群落生成器数据。\n这不会替换您当前的生物群落对象列表。",
+            "error_missing_16_desc": "导入的生物群落文件列表包含少于 17 个条目！\n\n您应该收到一条错误消息，提示重新导入 EXML 文件。\n\n另一种解决方案是导入原版 JSON 数据以创建基本画布（或者您可以返回并导入 EXML 文件）。\n\n如果您不知道自己在做什么，我不建议这样做...\n\n继续使用原版画布替换导出数据？\n\n仅供参考：这将替换您当前的任何/所有生物群落生成器数据。\n这不会替换您当前的生物群落对象列表。",
             "export_info_title": "导出窗口",
             "export_info_desc": "在下一个窗口中进行的任何更改都将自动保存。"
         },
@@ -1052,13 +1052,13 @@
         },
         "export_settings_window": {
             "main_title": "导出菜单",
-            "dr_label": "[+] = 更耗性能\n[-] = 与更改 GRAPHICS 和 ENVIRONMENT 全局的 mod 不兼容\n = 输入字母、数字或 _ - .（不要空格）",
+            "dr_label": "输入字母、数字或 _ - . ",
             "draw_dist_label": "选择细节级别和绘制距离：",
             "dr_checkbox": "增加道具绘制距离 [+]",
             "global_checkbox": "增加全局绘制距离限制/减少淡化时间 [+][-]",
-            "Mod_Author": "*Mod 作者：",
-            "Biomes_Filename": "*生物群文件名：",
-            "Spawner_Filename": "*生成器文件名：",
+            "Mod_Author": "Mod 作者：",
+            "Biomes_Filename": "生物群文件名：",
+            "Spawner_Filename": "生成器文件名：",
             "Export": "导出"
         },
         "export_all_files": {
@@ -1071,8 +1071,8 @@
             "Error_Desc_6": "无效的生成器文件名。请输入字母、数字或 _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "生成器：< 16 子生物群",
-            "spawner_crash_desc": "生成器：您的生成器包含少于 16 个子生物群。使用此生成器 mod 会导致游戏崩溃。选择工具 > 替换生成器数据，然后为每个子生物群添加生物群对象。\n\n仍要继续吗？",
+            "spawner_crash_title": "生成器：< 17 子生物群",
+            "spawner_crash_desc": "生成器：您的生成器包含少于 17 个子生物群。使用此生成器 mod 会导致游戏崩溃。选择工具 > 替换生成器数据，然后为每个子生物群添加生物群对象。\n\n仍要继续吗？",
             "spawner_crash_2_title": "生成器：空子生物群列表",
             "spawner_crash_2_desc": "生成器：至少一个子生物群瓦片类型中检测到空列表。*\n使用此生成器 mod 会导致游戏崩溃。\n\n仍要继续吗？",
             "missing_data_title": "缺少数据",
@@ -1289,7 +1289,7 @@
         "filemenu_view_gen": {
             "check_update": "Tarkista PLUMGEN-päivitys",
             "Update": "Päivitys",
-            "make_template": "Tee Biomi pohjasta EXML-templaatti",
+            "make_template": "Tee Biomi pohjasta XML-templaatti",
             "auto_rename": "Automaattinen nimeäminen kaikille biomeille",
             "reset_auto_rename": "Nollaa automaattinen nimeäminen",
             "Exit": "Poistu",
@@ -1317,7 +1317,7 @@
             "Rename": "Nimeä uudelleen",
             "Duplicate_Biome": "Kopioi valittu biomi",
             "Duplicate_Prop": "Kopioi valittu kasvi",
-            "Import": "Tuo EXML / Yhdistä",
+            "Import": "Tuo XML / Yhdistä",
             "Continue": "Jatka ",
             "Save": "Tallenna",
             "Save_Model": "Tallenna",
@@ -1346,10 +1346,10 @@
             "landmarks_lb": " Keskikohteet:\nKasvit, joilla on korkeampi piirtomatka ja keskisuuri tai suuri mittakaava.\nEsimerkiksi vaniljatyyppiset puut.",
             "objects_lb": " Kohteet:\nKasvit, joilla on alempi piirtomatka ja pienempi mittakaava.\nEsimerkiksi vaniljatyyppiset kivet, pensaat.",
             "detail_objects_lb": " Yksityiskohtaiset kohteet:\nKasvit, joilla on alhaisin piirtomatka ja pienin mittakaava.\nEsimerkiksi vaniljatyyppinen ruoho, pienet kasvit. Tässä luokassa on suurin määrä kasveja vaniljapelistä.",
-            "biome_template_label": " Biomi .csv:\nValtava kokoelma 'Kohde-synnytystietoja' biomin .MBIN-tiedostoista. Napsauttamalla mitä tahansa 'Lisää' -painiketta luodaan uusi biomi (tai kasvi) valitun .csv perusteella. Valitse Tiedosto > Luo Biomi .csv EXMLä luodaksesi oma biomi .csv.",
-            "csv_combo": " Biomi .csv:\nValtava kokoelma 'Kohde-synnytystietoja' biomin .MBIN-tiedostoista. Napsauttamalla mitä tahansa 'Lisää' -painiketta luodaan uusi biomi (tai kasvi) valitun .csv perusteella. Valitse Tiedosto > Luo Biomi .csv EXMLä luodaksesi oma biomi .csv.",
+            "biome_template_label": " Biomi .csv:\nValtava kokoelma 'Kohde-synnytystietoja' biomin .MBIN-tiedostoista. Napsauttamalla mitä tahansa 'Lisää' -painiketta luodaan uusi biomi (tai kasvi) valitun .csv perusteella. Valitse Tiedosto > Luo Biomi .csv XMLä luodaksesi oma biomi .csv.",
+            "csv_combo": " Biomi .csv:\nValtava kokoelma 'Kohde-synnytystietoja' biomin .MBIN-tiedostoista. Napsauttamalla mitä tahansa 'Lisää' -painiketta luodaan uusi biomi (tai kasvi) valitun .csv perusteella. Valitse Tiedosto > Luo Biomi .csv XMLä luodaksesi oma biomi .csv.",
             "gen_using_template_data_cb": "Käyttää valittua biomin .csv SCENE-tiedostopolkuja avaimena, kun lisätään uusia biomeja/kasveja käyttämällä 'Lisää' -painikkeita. Jos jätetään pois, se käyttää edelleen .csv-tietoja mutta noudattaa standardia SCENE-tiedostopolkujen luetteloa avaimena. Se ei lisää kasveja Biomin kasviluetteloon, jos niitä ei löydy.",
-            "import_exml_button": "Analysoi '_BIOMES Exmls Folder Goes Here' olevat EXML-tiedostot ja muunna ne PLUMGENin muotoon. \n\nYhdistääksesi biomiluettelot ENSIN siirrä kaikki 'BIOMES'-kansiot 'BEFGH'-kansioon, SITTEN tuo ne.",
+            "import_exml_button": "Analysoi '_BIOMES Xmls Folder Goes Here' olevat MXML/EXML-tiedostot ja muunna ne PLUMGENin muotoon. \n\nYhdistääksesi biomiluettelot ENSIN siirrä kaikki 'BIOMES'-kansiot 'BEFGH'-kansioon, SITTEN tuo ne.",
             "model_lb": "Kasvit '--' -rivin jälkeen ovat esijulkaisuvaiheen SCENEjä tai SCENEjä, jotka ovat normaalisti eri kasvillisuuden piirtomatkaluokassa. Ne on siirretty tänne pidentääkseen piirtomatkaa niille kasveille (esim. jotkut kasvit eivät sisällä tasoja yksityiskohtaisia jäljitelmäkuvia, joten voit siirtää ne kaukaisten kohteiden luokkaan). "
         },
         "help": {
@@ -1496,8 +1496,8 @@
             "warn_title": "Ongelma Biome-objektien tiedostojen kanssa",
             "warn_desc_pt1": "Tuodussa biome-objektien tiedostoluettelossa on ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nNämä tiedostot voivat sisältää ainutlaatuisia ominaisuuksia, kuten sanakivet, joita PLUMGEN tekee ei-vuorovaikutteisiksi.\n\nKyllä = Poista nämä tiedostot automaattisesti Biome-objektien luettelostasi, jotta ominaisuudet säilyvät ainutlaatuisina.\n\nEi = Poista ongelmalliset MBIN-tiedostot manuaalisesti /OBJECTS/-kansiosta.\n\n(Jos 200+ löytyy, poista alikansiot tarvittaessa ennen tuontia)",
-            "warn_missing_title": " 16 Biome-merkintää",
-            "warn_missing_desc": "Puuttuvassa tai tuodussa BIOMEFILENAMES.EXML-tiedostossa on vähemmän kuin 16 alibiome-merkintää, kiinteän kokoisen taulukon. Tämä tapahtuu vanhentuneilla NMS-versioilla, jotka tukivat vain 10 alibiomea.\n\n(Suositeltu) Korjaa 1: Napsauttamisen jälkeen 'Vie', valitse 'EI' luodaksesi vaniljakankaan ja lisää sitten biomeet manuaalisesti.\n\n(Edistynyt) Korjaa 2: Lisää ylimääräinen ajan tasalla oleva vanilja (tai mukautettu) BIOMEFILENAMES.EXML tuontikansion ylimmän tason kansioon. Python käsittelee sen ensin ja käsittelee sitten vanhentuneen BFN-tiedoston yrittäen sulauttaa sen.",
+            "warn_missing_title": " 17 Biome-merkintää",
+            "warn_missing_desc": "Puuttuvassa tai tuodussa BIOMEFILENAMES-tiedostossa on vähemmän kuin 17 alibiome-merkintää, kiinteän kokoisen taulukon. Tämä tapahtuu vanhentuneilla NMS-versioilla, jotka tukivat vain 10 alibiomea.\n\n(Suositeltu) Korjaa 1: Napsauttamisen jälkeen 'Vie', valitse 'EI' luodaksesi vaniljakankaan ja lisää sitten biomeet manuaalisesti.\n\n(Edistynyt) Korjaa 2: Lisää ylimääräinen ajan tasalla oleva vanilja (tai mukautettu) BIOMEFILENAMES tuontikansion ylimmän tason kansioon. Python käsittelee sen ensin ja käsittelee sitten vanhentuneen BFN-tiedoston yrittäen sulauttaa sen.",
             "info_title": "Tuonti EXML-valmis",
             "info_desc": "Tuonti EXML-valmis. Kaikki asiaankuuluvat biometiedot lisätty."
         },
@@ -1506,13 +1506,13 @@
             "no_dir_pt1": "Tuontihakemistoa ei ole olemassa: \n\n",
             "no_dir_pt2": "\n\nÄlä poista tai uudelleennimeä tätä hakemistoa.",
             "empty_dir_pt1": "Tuontihakemisto on tyhjä: \n\n",
-            "empty_dir_pt2": "\n\nPura MBIN EXML ja siirrä yksi tai useampi 'BIOMES'-kansio tähän hakemistoon.\nKatso: '_Biome Templates/__template README.txt' lisätietoja varten.",
+            "empty_dir_pt2": "\n\nPura MBIN MXML ja siirrä yksi tai useampi 'BIOMES'-kansio tähän hakemistoon.\nKatso: '_Biome Templates/__template README.txt' lisätietoja varten.",
             "Question": "Kysymys",
             "ques_pt1": "'BIOMES'-kansiota ei löytynyt hakemistosta: \n\n",
-            "ques_pt2": "\n\nTämä kansio sisältää kaikki tarvittavat EXML-tiedostot biomeiden muuntamiseen PLUMGEN-tietoihin. Ilman sitä tiedot PUUTTUVAT.\n\nEn suosittele muiden kansioiden tuontia kuin 'BIOMES'.\n\nKansion 'BIOMES' uudelleennimeäminen voi aiheuttaa LUA-skriptivirheitä (ohita tämä, jos tuodaan uudelleennimettyä/muokattua 'BIOMES'-kansiota).\n\nHaluatko jatkaa?",
+            "ques_pt2": "\n\nTämä kansio sisältää kaikki tarvittavat MXML/EXML-tiedostot biomeiden muuntamiseen PLUMGEN-tietoihin. Ilman sitä tiedot PUUTTUVAT.\n\nEn suosittele muiden kansioiden tuontia kuin 'BIOMES'.\n\nKansion 'BIOMES' uudelleennimeäminen voi aiheuttaa LUA-skriptivirheitä (ohita tämä, jos tuodaan uudelleennimettyä/muokattua 'BIOMES'-kansiota).\n\nHaluatko jatkaa?",
             "overwrite_ques_title": "Korvataanko tiedot?",
-            "overwrite_ques_desc": "---------------------------VAROITUS---------------------------\n\nTämä korvaa KAIKKI työsi uusilla tuoduilla EXML-tiedoilla.\n\nJos haluat tuoda EXML-tiedot menettämättä nykyistä työtäsi:\n\n(Suositeltu) Korjaa 1:\nA) Jokaiselle biomen objektin kohteelle, napsauta Esiasetukset > Tallenna Biome esiasetuksena. B) Lisää uusi 'BIOMES'-kansio '_BIOMES Exmls Folder Goes Here' ja tuo EXML. C) Napsauta Esiasetukset > Tuonti Biome esiasetukset ja napsauta kutakin juuri tallennettua tiedostoa.\n\n(Edistynyt) Korjaa 2:\nA) Napsauta 'Ei', B) Vie, C) Pura EXML AMUMSS ä tai MBINCompilerilla (PAK-tiedostosta), D) Lisää (tai yhdistä) 'BIOMES'-kansio(t) '_BIOMES Exmls Folder Goes Here', E) Tuo EXML\n\nHaluatko jatkaa?\n\n---------------------------VAROITUS---------------------------",
-            "after_before_next_ques_desc": "Oliko 'BIOMES' kansio luotu hakemistoon '_BIOMES Exmls Folder Goes Here' NMS 'NEXT' päivityksen jälkeen?\n(Päivitys 1.5-heinäkuu, 2018)\n\nKyllä = Jälkeen\nEi = Ennen\n\n--- Väärin vastaaminen AIHEUTTAA ongelmia. ---"
+            "overwrite_ques_desc": "---------------------------VAROITUS---------------------------\n\nTämä korvaa KAIKKI työsi uusilla tuoduilla MXML/EXML-tiedoilla.\n\nJos haluat tuoda XML-tiedot menettämättä nykyistä työtäsi:\n\n(Suositeltu) Korjaa 1:\nA) Jokaiselle biomen objektin kohteelle, napsauta Esiasetukset > Tallenna Biome esiasetuksena. B) Lisää uusi 'BIOMES'-kansio '_BIOMES Xmls Folder Goes Here' ja tuo EXML. C) Napsauta Esiasetukset > Tuonti Biome esiasetukset ja napsauta kutakin juuri tallennettua tiedostoa.\n\n(Edistynyt) Korjaa 2:\nA) Napsauta 'Ei', B) Vie, C) Pura MXML/EXML AMUMSS ä tai MBINCompilerilla (PAK-tiedostosta), D) Lisää (tai yhdistä) 'BIOMES'-kansio(t) '_BIOMES Xmls Folder Goes Here', E) Tuo EXML\n\nHaluatko jatkaa?\n\n---------------------------VAROITUS---------------------------",
+            "after_before_next_ques_desc": "Oliko 'BIOMES' kansio luotu hakemistoon '_BIOMES Xmls Folder Goes Here' NMS 'NEXT' päivityksen jälkeen?\n(Päivitys 1.5-heinäkuu, 2018)\n\nKyllä = Jälkeen\nEi = Ennen\n\n--- Väärin vastaaminen AIHEUTTAA ongelmia. ---"
         },
         "complete_template": {
             "info_title": "Uusi biomepohjamalli lisätty",
@@ -1527,7 +1527,7 @@
             "Question": "Kysymys",
             "desc_3_pt1": "Ei 'BIOMES'-kansiota löydetty hakemistosta: \n\n",
             "desc_3_pt2": "\n\nTämä kansio sisältää kaikki tarvittavat EXML-tiedostot biomeen muuntamiseksi biomepohjamalliksi (CSV). Ilman sitä tieto PUUTTUU.\n\n*En suosittele muiden kansioita kuin 'BIOMES' tuomista.\n*Kansion 'BIOMES' nimeäminen uudelleen voi aiheuttaa LUA-skriptivirheitä (jätä tämä huomiotta, jos tuot nimetyn/muokatun 'BIOMES'-kansion).\n\nJatketaanko silti?",
-            "desc_4": "Oliko 'BIOMES'-kansio hakemistossa '_BIOMES Exmls Folder Goes Here' luotu NMS 'NEXT' päivityksen jälkeen?\n(Päivitys 1.5-heinäkuu, 2018)\n\nKyllä = Jälkeen\nEi = Ennen\n\n--- Tämän väärin vastaaminen AIHEUTTAA ongelmia. ---",
+            "desc_4": "Oliko 'BIOMES'-kansio hakemistossa '_BIOMES Xmls Folder Goes Here' luotu NMS 'NEXT' päivityksen jälkeen?\n(Päivitys 1.5-heinäkuu, 2018)\n\nKyllä = Jälkeen\nEi = Ennen\n\n--- Tämän väärin vastaaminen AIHEUTTAA ongelmia. ---",
             "template_title": "Anna mallitiedostonimi",
             "template_desc": "Miten haluat nimetä tämän biomepohjamallin?\n\nKäytä ainutlaatuista tiedostonimeä estääksesi minkään .csv-tiedoston ylikirjoittamisen samalla nimellä '_Biome-pohjamallit'-kansiossasi.\n\nAnna vain numeroita, kirjaimia tai alaviivoja. Älä lisää .csv:tä loppuun.\n",
             "Invalid_Filename_title": "Virheellinen Tiedostonimi",
@@ -1543,7 +1543,7 @@
             "missing_json_pt1": "JSON-tiedostopolkua ei ole olemassa: \n\n",
             "missing_json_pt2": "\n\nÄlä muuta tai poista tätä JSON-tiedostoa.",
             "error_missing_16_title": "Ongelmia vientiä tehdessä - Tuodaanko oletus-JSON?",
-            "error_missing_16_desc": "Tuoottu biome-tiedostoluettelo sisältää vähemmän kuin 16 merkintää! \n\nOlisit saanut virhesanoman, jossa kehotetaan tuomaan uudelleen EXML-tiedostot. \n\nYksi vaihtoehtoinen ratkaisu on tuoda oletus-JSON-tietoja peruskanvaasin luomiseksi (tai voit palata ja tuoda EXML-tiedostot uudelleen).\n\nEn suosittele tätä, jos et tiedä mitä teet...\n\nJatketaanko korvaamalla vientitiedot peruskanvaasilla?\n\nTiedoksi: Tämä korvaa kaikki nykyiset tai puuttuvat biome-sijoitustiedot.\nTämä ei korvaa nykyistä Biome Objects -luetteloa.",
+            "error_missing_16_desc": "Tuoottu biome-tiedostoluettelo sisältää vähemmän kuin 17 merkintää! \n\nOlisit saanut virhesanoman, jossa kehotetaan tuomaan uudelleen EXML-tiedostot. \n\nYksi vaihtoehtoinen ratkaisu on tuoda oletus-JSON-tietoja peruskanvaasin luomiseksi (tai voit palata ja tuoda EXML-tiedostot uudelleen).\n\nEn suosittele tätä, jos et tiedä mitä teet...\n\nJatketaanko korvaamalla vientitiedot peruskanvaasilla?\n\nTiedoksi: Tämä korvaa kaikki nykyiset tai puuttuvat biome-sijoitustiedot.\nTämä ei korvaa nykyistä Biome Objects -luetteloa.",
             "export_info_title": "Vienti-ikkuna",
             "export_info_desc": "Seuraavan ikkunan tekemät muutokset tallennetaan automaattisesti."
         },
@@ -1651,13 +1651,13 @@
         },
         "export_settings_window": {
             "main_title": "Vie Menu",
-            "dr_label": "[+] = Enemmän suorituskykyä vaativa\n[-] = Yhteensopimaton modausten kanssa jotka muuttavat GRAPHICS & ENVIRONMENT globaaleja\n = Syötä kirjaimia, numeroita, tai _ - . (ei tyhjiä välejä)",
+            "dr_label": "Syötä kirjaimia, numeroita, tai _ - . ",
             "draw_dist_label": "Valitse yksityiskohtien taso ja piirtomatka:",
             "dr_checkbox": "Lisää objektien piirtoetäisyyttä [+]",
             "global_checkbox": "Lisää globaalia piirtoetäisyysrajaa/vähennä haalistumisaikaa [+][-]",
-            "Mod_Author": "*Modin Tekijä:",
-            "Biomes_Filename": "*Biometiedostonimi:",
-            "Spawner_Filename": "*Spawner Tiedostonimi:",
+            "Mod_Author": "Modin Tekijä:",
+            "Biomes_Filename": "Biometiedostonimi:",
+            "Spawner_Filename": "Spawner Tiedostonimi:",
             "Export": "Vie"
         },
         "export_all_files": {
@@ -1670,8 +1670,8 @@
             "Error_Desc_6": "Virheellinen Spawner Tiedostonimi. Syötä kirjaimia, numeroita, tai _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Spawner: < 16 Alabiomea",
-            "spawner_crash_desc": "Spawner: Spawnerissasi on vähemmän kuin 16 alabiomea. Käyttämällä tätä Spawner modausta PELI KAATUU. Valitse Työkalut > Korvaa Spawner Data, sitten lisää biome objekteja jokaiseen alabiomeen.\n\nHaluatko jatkaa silti?",
+            "spawner_crash_title": "Spawner: < 17 Alabiomea",
+            "spawner_crash_desc": "Spawner: Spawnerissasi on vähemmän kuin 17 alabiomea. Käyttämällä tätä Spawner modausta PELI KAATUU. Valitse Työkalut > Korvaa Spawner Data, sitten lisää biome objekteja jokaiseen alabiomeen.\n\nHaluatko jatkaa silti?",
             "spawner_crash_2_title": "Spawner: Tyhjät Alabiomi Listat",
             "spawner_crash_2_desc": "Spawner: Tyhjä lista havaittu ainakin yhdessä Alabiomityypissä.*\nKäyttämällä tätä Spawner modausta PELI KAATUU.\n\nHaluatko jatkaa silti?",
             "missing_data_title": "Puuttuva data",
@@ -1888,7 +1888,7 @@
         "filemenu_view_gen": {
             "check_update": "Vérifier la mise à jour de PLUMGEN",
             "Update": "Mise à jour",
-            "make_template": "Créer un modèle de biome à partir d'EXML",
+            "make_template": "Créer un modèle de biome à partir d'XML",
             "auto_rename": "Renommer automatiquement tous les biomes",
             "reset_auto_rename": "Réinitialiser le renommage automatique",
             "Exit": "Quitter",
@@ -1916,7 +1916,7 @@
             "Rename": "Renommer",
             "Duplicate_Biome": "Dupliquer le biome sélectionné",
             "Duplicate_Prop": "Dupliquer la flore sélectionnée",
-            "Import": "Importateur EXMLs/Fusion",
+            "Import": "Importateur XMLs/Fusion",
             "Continue": "Continuer ",
             "Save": "Enregistrer",
             "Save_Model": "Enregistrer",
@@ -1945,10 +1945,10 @@
             "landmarks_lb": " Objets intermédiaires :\nFlore avec une distance de rendu plus élevée et une échelle moyenne à grande.\npar ex. arbres de taille vanilla.",
             "objects_lb": " Objets :\nFlore avec une distance de rendu plus faible et une échelle plus petite.\npar ex. roches de taille vanilla, buissons.",
             "detail_objects_lb": " Objets de détail :\nFlore avec la plus faible distance de rendu et la plus petite échelle.\npar ex. herbe de taille vanilla, petites plantes. À titre de référence, cette catégorie détient le plus grand nombre de flore dans le jeu vanilla.",
-            "biome_template_label": " Biome .csv :\nUne collection géante de 'Données de spawn d'objet' à partir de fichiers .MBIN de biome. En cliquant sur n'importe quel bouton 'Ajouter', un nouveau biome (ou une nouvelle flore) sera créé en fonction du .csv sélectionné. Cliquez sur Fichier > Créer un biome .csv à partir de EXML pour créer votre propre biome .csv.",
-            "csv_combo": " Biome .csv :\nUne collection géante de 'Données de spawn d'objet' à partir de fichiers .MBIN de biome. En cliquant sur n'importe quel bouton 'Ajouter', un nouveau biome (ou une nouvelle flore) sera créé en fonction du .csv sélectionné. Cliquez sur Fichier > Créer un biome .csv à partir de EXML pour créer votre propre biome .csv.",
+            "biome_template_label": " Biome .csv :\nUne collection géante de 'Données de spawn d'objet' à partir de fichiers .MBIN de biome. En cliquant sur n'importe quel bouton 'Ajouter', un nouveau biome (ou une nouvelle flore) sera créé en fonction du .csv sélectionné. Cliquez sur Fichier > Créer un biome .csv à partir de XML pour créer votre propre biome .csv.",
+            "csv_combo": " Biome .csv :\nUne collection géante de 'Données de spawn d'objet' à partir de fichiers .MBIN de biome. En cliquant sur n'importe quel bouton 'Ajouter', un nouveau biome (ou une nouvelle flore) sera créé en fonction du .csv sélectionné. Cliquez sur Fichier > Créer un biome .csv à partir de XML pour créer votre propre biome .csv.",
             "gen_using_template_data_cb": "Utilise les chemins d'accès des fichiers SCENE .csv de biome sélectionnés comme clé lors de l'ajout de nouveaux biomes/flores à l'aide des boutons 'Ajouter'. S'il est désactivé, il utilise toujours les données .csv mais reste sur une liste standard de chemins d'accès de SCENE pour la clé. Il n'ajoutera pas de flore à la liste de flore du biome s'il n'en trouve aucune.",
-            "import_exml_button": "Analysez les fichiers EXML dans votre dossier '_BIOMES Exmls Folder Goes Here' et convertissez-les au format de PLUMGEN. \n\nPour fusionner les listes de biomes D'ABORD, déplacez tous les dossiers 'BIOMES' vers 'BEFGH', ENSUITE importez.",
+            "import_exml_button": "Analysez les fichiers MXML/EXML dans votre dossier '_BIOMES Xmls Folder Goes Here' et convertissez-les au format de PLUMGEN. \n\nPour fusionner les listes de biomes D'ABORD, déplacez tous les dossiers 'BIOMES' vers 'BEFGH', ENSUITE importez.",
             "model_lb": "La flore après la ligne '--' sont des SCENES pré-lancement ou des SCENES normalement dans une catégorie de distance de rendu de flore différente. Ils ont été déplacés ici pour étendre la distance de rendu pour cette flore (par exemple, certaines flores n'ont pas d'imposteurs de Niveau de Détail, vous pourriez donc déplacer celles-ci vers Objets lointains)."
         },
         "help": {
@@ -2095,8 +2095,8 @@
             "warn_title": "Problème avec les fichiers d'objets de biome",
             "warn_desc_pt1": "La liste des fichiers d'objets de biome importés contient ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nCes fichiers peuvent contenir des accessoires uniques avec des attributs uniques, par exemple des pierres de mots, que PLUMGEN rendra non interactives.\n\nOui = Supprimer automatiquement ces fichiers de votre liste d'objets de biome pour que les accessoires conservent leurs attributs uniques.\n\nNon = Supprimez manuellement les MBIN problématiques dans le dossier /OBJECTS/.\n\n(Si plus de 200 sont trouvés, supprimez les sous-dossiers au besoin avant d'importer)",
-            "warn_missing_title": " 16 Entrées de biomes manquantes",
-            "warn_missing_desc": "Le fichier BIOMEFILENAMES.EXML manquant ou importé contient moins de 16 entrées de sous-biomes, un tableau de taille fixe. Cela se produit avec des versions NMS obsolètes qui ne prenaient en charge que 10 sous-biomes.\n\n(Recommandé) Correction 1 : Après avoir cliqué sur 'Exporter', choisissez 'NON' pour créer un canevas vierge, puis ajoutez manuellement des biomes.\n\n(Avancé) Correction 2 : Ajoutez un fichier BIOMEFILENAMES.EXML supplémentaire à jour (ou personnalisé) à partir du répertoire supérieur du dossier d'importation. Python le traitera d'abord, puis traitera le fichier BFN obsolète, en tentant une fusion.",
+            "warn_missing_title": " 17 Entrées de biomes manquantes",
+            "warn_missing_desc": "Le fichier BIOMEFILENAMES manquant ou importé contient moins de 17 entrées de sous-biomes, un tableau de taille fixe. Cela se produit avec des versions NMS obsolètes qui ne prenaient en charge que 10 sous-biomes.\n\n(Recommandé) Correction 1 : Après avoir cliqué sur 'Exporter', choisissez 'NON' pour créer un canevas vierge, puis ajoutez manuellement des biomes.\n\n(Avancé) Correction 2 : Ajoutez un fichier BIOMEFILENAMES supplémentaire à jour (ou personnalisé) à partir du répertoire supérieur du dossier d'importation. Python le traitera d'abord, puis traitera le fichier BFN obsolète, en tentant une fusion.",
             "info_title": "Importation EXML terminée",
             "info_desc": "Importation EXML terminée. Toutes les données de biome pertinentes ont été ajoutées."
         },
@@ -2105,13 +2105,13 @@
             "no_dir_pt1": "Le répertoire d'importation n'existe pas : \n\n",
             "no_dir_pt2": "\n\nVeuillez ne pas supprimer ni renommer ce répertoire.",
             "empty_dir_pt1": "Le répertoire d'importation est vide : \n\n",
-            "empty_dir_pt2": "\n\nDécompilez les MBIN en EXML, puis déplacez un ou plusieurs dossiers 'BIOMES' vers ce répertoire.\nVoir : '_Biome Templates/__template README.txt' pour plus d'informations.",
+            "empty_dir_pt2": "\n\nDécompilez les MBIN en MXML, puis déplacez un ou plusieurs dossiers 'BIOMES' vers ce répertoire.\nVoir : '_Biome Templates/__template README.txt' pour plus d'informations.",
             "Question": "Question",
             "ques_pt1": "Aucun dossier 'BIOMES' trouvé dans le répertoire : \n\n",
-            "ques_pt2": "\n\nCe dossier contient tous les fichiers EXML nécessaires pour la conversion des biomes en données PLUMGEN. Sans cela, certaines données seront manquantes.\n\nJe ne recommande pas d'importer d'autres dossiers que 'BIOMES'.\n\nRenommer le dossier 'BIOMES' peut entraîner des erreurs de script LUA (ignorez cela si vous importez un dossier 'BIOMES' renommé/modifié).\n\nContinuer quand même ?",
+            "ques_pt2": "\n\nCe dossier contient tous les fichiers MXML/EXML nécessaires pour la conversion des biomes en données PLUMGEN. Sans cela, certaines données seront manquantes.\n\nJe ne recommande pas d'importer d'autres dossiers que 'BIOMES'.\n\nRenommer le dossier 'BIOMES' peut entraîner des erreurs de script LUA (ignorez cela si vous importez un dossier 'BIOMES' renommé/modifié).\n\nContinuer quand même ?",
             "overwrite_ques_title": "Écraser les données ?",
-            "overwrite_ques_desc": "---------------------------AVERTISSEMENT---------------------------\n\nCela remplacera TOUT votre travail par les données EXML nouvellement importées. \n\nSi vous voulez importer EXML sans perdre votre travail actuel :\n\n(Recommandé) Correction 1 :\nA) Pour chaque objet de biome, cliquez sur Préréglages > Enregistrer le biome en tant que préréglage. B) Ajoutez un nouveau dossier 'BIOMES' dans '_BIOMES Exmls Folder Goes Here' et importez EXML. C) Cliquez sur Préréglages > Importer les préréglages de biome, et cliquez sur chaque fichier que vous venez d'enregistrer.\n\n(Avancé) Correction 2 :\nA) Cliquez sur 'Non', B) Exportez, C) Extrayez les EXML avec AMUMSS ou MBINCompiler (à partir du fichier PAK), D) Ajoutez (ou combinez) des dossier(s) 'BIOMES' dans '_BIOMES Exmls Folder Goes Here', E) Importez EXML\n\nVoulez-vous continuer ?\n\n---------------------------AVERTISSEMENT---------------------------",
-            "after_before_next_ques_desc": "Le dossier 'BIOMES' dans le répertoire '_BIOMES Exmls Folder Goes Here' a-t-il été créé après la mise à jour 'NEXT' de NMS ?\n(Mise à jour 1.5-juillet 2018)\n\nOui = Après\nNon = Avant\n\n--- Répondre incorrectement à cela CAUSERA des problèmes. ---"
+            "overwrite_ques_desc": "---------------------------AVERTISSEMENT---------------------------\n\nCela remplacera TOUT votre travail par les données MXML/EXML nouvellement importées. \n\nSi vous voulez importer XML sans perdre votre travail actuel :\n\n(Recommandé) Correction 1 :\nA) Pour chaque objet de biome, cliquez sur Préréglages > Enregistrer le biome en tant que préréglage. B) Ajoutez un nouveau dossier 'BIOMES' dans '_BIOMES Xmls Folder Goes Here' et importez EXML. C) Cliquez sur Préréglages > Importer les préréglages de biome, et cliquez sur chaque fichier que vous venez d'enregistrer.\n\n(Avancé) Correction 2 :\nA) Cliquez sur 'Non', B) Exportez, C) Extrayez les MXML/EXML avec AMUMSS ou MBINCompiler (à partir du fichier PAK), D) Ajoutez (ou combinez) des dossier(s) 'BIOMES' dans '_BIOMES Xmls Folder Goes Here', E) Importez EXML\n\nVoulez-vous continuer ?\n\n---------------------------AVERTISSEMENT---------------------------",
+            "after_before_next_ques_desc": "Le dossier 'BIOMES' dans le répertoire '_BIOMES Xmls Folder Goes Here' a-t-il été créé après la mise à jour 'NEXT' de NMS ?\n(Mise à jour 1.5-juillet 2018)\n\nOui = Après\nNon = Avant\n\n--- Répondre incorrectement à cela CAUSERA des problèmes. ---"
         },
         "complete_template": {
             "info_title": "Nouveau modèle de biome ajouté",
@@ -2126,7 +2126,7 @@
             "Question": "Question",
             "desc_3_pt1": "Aucun dossier 'BIOMES' trouvé dans le répertoire: \n\n",
             "desc_3_pt2": "\n\nCe dossier contient tous les fichiers EXML nécessaires à la conversion du biome en modèle de biome (CSV). Sans lui, des données MANQUERONT.\n\nJe ne recommande pas d'importer d'autres dossiers que 'BIOMES'.\nRenommer le dossier 'BIOMES' peut causer des erreurs de script LUA (ignorez cela si vous importez un dossier 'BIOMES' renommé/modifié).\n\nContinuer quand même ?",
-            "desc_4": "Le dossier 'BIOMES' dans le répertoire '_BIOMES Exmls Folder Goes Here' a-t-il été créé après la mise à jour NMS 'NEXT' ?\n(Mise à jour 1.5-Juillet 2018)\n\nOui = Après\nNon = Avant\n\n--- Répondre incorrectement CAUSERA des problèmes. ---",
+            "desc_4": "Le dossier 'BIOMES' dans le répertoire '_BIOMES Xmls Folder Goes Here' a-t-il été créé après la mise à jour NMS 'NEXT' ?\n(Mise à jour 1.5-Juillet 2018)\n\nOui = Après\nNon = Avant\n\n--- Répondre incorrectement CAUSERA des problèmes. ---",
             "template_title": "Entrez le nom du modèle",
             "template_desc": "Comment voulez-vous nommer ce modèle de biome ?\n\nUtilisez un nom de fichier unique pour éviter d'écraser tout fichier .csv portant le même nom dans votre dossier '_Biome Templates'.\n\nEntrez uniquement des chiffres, des lettres ou des traits de soulignement. N'ajoutez pas .csv à la fin.\n",
             "Invalid_Filename_title": "Nom de fichier invalide",
@@ -2142,7 +2142,7 @@
             "missing_json_pt1": "Le chemin d'accès JSON n'existe pas : \n\n",
             "missing_json_pt2": "\n\nVeuillez ne pas renommer ou supprimer ce fichier JSON.",
             "error_missing_16_title": "Problèmes lors de l'exportation - Importer JSON Vanilla ?",
-            "error_missing_16_desc": "La liste des fichiers de biome importés contient moins de 16 entrées ! \n\nVous auriez dû recevoir un message d'erreur vous demandant de réimporter les fichiers EXML. \n\nUne solution alternative consiste à importer des données JSON vanilla pour créer un canevas de base (ou vous pouvez revenir en arrière et importer des fichiers EXML).\n\nJe ne recommande pas cela si vous ne savez pas ce que vous faites...\n\nContinuer avec le remplacement des données d'exportation par un canevas vanilla ?\n\nFYI: Cela remplacera toutes vos données de spawn de biome actuelles.\nCela ne remplacera pas votre liste d'objets de biome actuelle.",
+            "error_missing_16_desc": "La liste des fichiers de biome importés contient moins de 17 entrées ! \n\nVous auriez dû recevoir un message d'erreur vous demandant de réimporter les fichiers EXML. \n\nUne solution alternative consiste à importer des données JSON vanilla pour créer un canevas de base (ou vous pouvez revenir en arrière et importer des fichiers EXML).\n\nJe ne recommande pas cela si vous ne savez pas ce que vous faites...\n\nContinuer avec le remplacement des données d'exportation par un canevas vanilla ?\n\nFYI: Cela remplacera toutes vos données de spawn de biome actuelles.\nCela ne remplacera pas votre liste d'objets de biome actuelle.",
             "export_info_title": "Fenêtre d'exportation",
             "export_info_desc": "Toutes les modifications apportées dans la prochaine fenêtre seront enregistrées automatiquement."
         },
@@ -2250,13 +2250,13 @@
         },
         "export_settings_window": {
             "main_title": "Menu d'exportation",
-            "dr_label": "[+] = Plus lourd en performances\n[-] = Incompatible avec les mods modifiant les globaux GRAPHICS & ENVIRONMENT\n = Entrez des lettres, des chiffres ou _ - . (pas d'espaces vides)",
+            "dr_label": "Entrez des lettres, des chiffres ou _ - . ",
             "draw_dist_label": "Choisir le niveau de détail et la distance de dessin :",
             "dr_checkbox": "Augmenter la distance de rendu des props [+] ",
             "global_checkbox": "Augmenter la limite de distance de rendu globale/réduire le temps de fondu [+][-] ",
-            "Mod_Author": "*Auteur du mod : ",
-            "Biomes_Filename": "*Nom du fichier de biomes : ",
-            "Spawner_Filename": "*Nom du fichier de spawner : ",
+            "Mod_Author": "Auteur du mod : ",
+            "Biomes_Filename": "Nom du fichier de biomes : ",
+            "Spawner_Filename": "Nom du fichier de spawner : ",
             "Export": "Exporter"
         },
         "export_all_files": {
@@ -2269,8 +2269,8 @@
             "Error_Desc_6": "Nom de fichier de spawner invalide. Veuillez saisir des lettres, des chiffres ou _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Spawner : < 16 sous-biomes",
-            "spawner_crash_desc": "Spawner : Votre spawner contient moins de 16 sous-biomes. Utiliser ce mod de spawner CAUSERA un crash de votre jeu. Sélectionnez Outils > Remplacer les données de spawner, puis ajoutez des objets de biome à chaque sous-biome.\n\nContinuer quand même ?",
+            "spawner_crash_title": "Spawner : < 17 sous-biomes",
+            "spawner_crash_desc": "Spawner : Votre spawner contient moins de 17 sous-biomes. Utiliser ce mod de spawner CAUSERA un crash de votre jeu. Sélectionnez Outils > Remplacer les données de spawner, puis ajoutez des objets de biome à chaque sous-biome.\n\nContinuer quand même ?",
             "spawner_crash_2_title": "Spawner : Listes de sous-biomes vides",
             "spawner_crash_2_desc": "Spawner : Liste vide détectée dans au moins un type de tuile de sous-biome.*\nUtiliser ce mod de spawner CAUSERA un crash de votre jeu.\n\nContinuer quand même ?",
             "missing_data_title": "Données manquantes",
@@ -2487,7 +2487,7 @@
         "filemenu_view_gen": {
             "check_update": "Suche nach PLUMGEN-Update",
             "Update": "Update",
-            "make_template": "Biomschablone aus EXML erstellen",
+            "make_template": "Biomschablone aus XML erstellen",
             "auto_rename": "Alle Biome automatisch umbenennen",
             "reset_auto_rename": "Automatische Umbenennung zurücksetzen",
             "Exit": "Beenden",
@@ -2515,7 +2515,7 @@
             "Rename": "Umbenennen",
             "Duplicate_Biome": "Ausgewähltes Biome duplizieren",
             "Duplicate_Prop": "Ausgewählte Flora duplizieren",
-            "Import": "EXML importieren/verbinden",
+            "Import": "XML importieren/verbinden",
             "Continue": "Fortsetzen ",
             "Save": "Speichern",
             "Save_Model": "Speichern",
@@ -2544,10 +2544,10 @@
             "landmarks_lb": " Mittelgroßes Objekt:\nFlora mit größerer Darstellungsreichweite und mittlerem bis großem Maßstab.\nz.B. vanillagroße Bäume.",
             "objects_lb": " Objekte:\nFlora mit geringerer Darstellungsreichweite und kleinerem Maßstab.\nz.B. vanillagroße Felsen, Büsche.",
             "detail_objects_lb": " Detailobjekte:\nFlora mit der geringsten Darstellungsreichweite und kleinstem Maßstab.\nz.B. vanillagroßes Gras, kleine Pflanzen. Zur Orientierung: Diese Kategorie enthält die höchste Anzahl an Flora im Basis-Spiel.",
-            "biome_template_label": " Biome .csv:\nEine riesige Sammlung von 'Objekt-Spawndaten' aus Biome .MBIN-Dateien. Durch Klicken auf eine beliebige 'Hinzufügen'-Schaltfläche wird ein neues Biome (oder eine Flora) basierend auf der aktuell ausgewählten .csv erstellt. Klicken Sie auf Datei > Biome .csv aus EXML erstellen, um Ihre eigene Biome .csv zu erstellen.",
-            "csv_combo": " Biome .csv:\nEine riesige Sammlung von 'Objekt-Spawndaten' aus Biome .MBIN-Dateien. Durch Klicken auf eine beliebige 'Hinzufügen'-Schaltfläche wird ein neues Biome (oder eine Flora) basierend auf der aktuell ausgewählten .csv erstellt. Klicken Sie auf Datei > Biome .csv aus EXML erstellen, um Ihre eigene Biome .csv zu erstellen.",
+            "biome_template_label": " Biome .csv:\nEine riesige Sammlung von 'Objekt-Spawndaten' aus Biome .MBIN-Dateien. Durch Klicken auf eine beliebige 'Hinzufügen'-Schaltfläche wird ein neues Biome (oder eine Flora) basierend auf der aktuell ausgewählten .csv erstellt. Klicken Sie auf Datei > Biome .csv aus XML erstellen, um Ihre eigene Biome .csv zu erstellen.",
+            "csv_combo": " Biome .csv:\nEine riesige Sammlung von 'Objekt-Spawndaten' aus Biome .MBIN-Dateien. Durch Klicken auf eine beliebige 'Hinzufügen'-Schaltfläche wird ein neues Biome (oder eine Flora) basierend auf der aktuell ausgewählten .csv erstellt. Klicken Sie auf Datei > Biome .csv aus XML erstellen, um Ihre eigene Biome .csv zu erstellen.",
             "gen_using_template_data_cb": "Verwendet ausgewählte Biome .csv SZENE-Dateipfade als Schlüssel beim Hinzufügen neuer Biome/Flora mit 'Hinzufügen'-Schaltflächen. Wenn sie deaktiviert ist, verwendet es immer noch die .csv-Daten, aber bleibt bei einer Standard-SZENE-Dateipfadliste für den Schlüssel. Es fügt keine Flora zur Biome-Flora-Liste hinzu, wenn keine gefunden wird.",
-            "import_exml_button": "Analysieren Sie EXML-Dateien in Ihrem '_BIOMES Exmls Folder Goes Here' und konvertieren Sie sie in das Format von PLUMGEN.\n\nUm Biome-Listen zusammenzuführen ZUERST alle 'BIOMES'-Ordner nach 'BEFGH' verschieben, DANN importieren.",
+            "import_exml_button": "Analysieren Sie MXML/EXML-Dateien in Ihrem '_BIOMES Xmls Folder Goes Here' und konvertieren Sie sie in das Format von PLUMGEN.\n\nUm Biome-Listen zusammenzuführen ZUERST alle 'BIOMES'-Ordner nach 'BEFGH' verschieben, DANN importieren.",
             "model_lb": "Flora nach der '--'-Zeile sind Vorabveröffentlichungs-SZENEN oder SZENEN, die normalerweise in eine andere Flora-Darstellungsreichweitenkategorie fallen. Sie wurden hierher verschoben, um die Darstellungsreichweite für diese Flora zu erweitern (z.B. einige Flora haben keine Level-of-Detail-Imposter, daher könnten Sie diese in Entfernte Objekte verschieben)."
         },
         "help": {
@@ -2694,8 +2694,8 @@
             "warn_title": "Problem mit Biome-Objektdateien",
             "warn_desc_pt1": "Die importierte Liste der Biome-Objektdateien enthält ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nDiese Dateien können einzigartige Requisiten mit einzigartigen Attributen enthalten, z.B. Wortsteine, die PLUMGEN nicht interaktiv machen wird.\n\nJa = Entfernen Sie diese Dateien automatisch aus Ihrer Liste der Biomeobjekte, damit die Requisiten ihre einzigartigen Attribute behalten.\n\nNein = Entfernen Sie problematische MBINs im /OBJECTS/-Ordner manuell.\n\n(Wenn 200+ gefunden werden, entfernen Sie bei Bedarf Unterordner vor dem Importieren)",
-            "warn_missing_title": " 16 Biomeinträge fehlen",
-            "warn_missing_desc": "Die fehlende oder importierte BIOMEFILENAMES.EXML enthält weniger als 16 Unterbiomeinträge, ein Array fester Größe. Dies tritt bei veralteten NMS-Versionen auf, die nur 10 Unterbiome unterstützten.\n\n(Empfohlen) Fix 1: Wählen Sie nach dem Klicken auf 'Export' 'NEIN', um eine Standardleinwand zu erstellen, und fügen Sie dann die Biome manuell hinzu.\n\n(Erweitert) Fix 2: Fügen Sie eine zusätzliche aktuelle Standard- (oder benutzerdefinierte) BIOMEFILENAMES.EXML in das oberste Verzeichnis des Importordners ein. Python wird es zuerst verarbeiten und dann die veraltete BFN-Datei bearbeiten und versuchen, sie zusammenzuführen.",
+            "warn_missing_title": " 17 Biomeinträge fehlen",
+            "warn_missing_desc": "Die fehlende oder importierte BIOMEFILENAMES enthält weniger als 17 Unterbiomeinträge, ein Array fester Größe. Dies tritt bei veralteten NMS-Versionen auf, die nur 10 Unterbiome unterstützten.\n\n(Empfohlen) Fix 1: Wählen Sie nach dem Klicken auf 'Export' 'NEIN', um eine Standardleinwand zu erstellen, und fügen Sie dann die Biome manuell hinzu.\n\n(Erweitert) Fix 2: Fügen Sie eine zusätzliche aktuelle Standard- (oder benutzerdefinierte) BIOMEFILENAMES in das oberste Verzeichnis des Importordners ein. Python wird es zuerst verarbeiten und dann die veraltete BFN-Datei bearbeiten und versuchen, sie zusammenzuführen.",
             "info_title": "EXML-Import abgeschlossen",
             "info_desc": "EXML-Import abgeschlossen. Alle relevanten Biomedaten wurden hinzugefügt."
         },
@@ -2704,13 +2704,13 @@
             "no_dir_pt1": "Das Importverzeichnis existiert nicht: \n\n",
             "no_dir_pt2": "\n\nBitte löschen oder umbenennen Sie dieses Verzeichnis nicht.",
             "empty_dir_pt1": "Das Importverzeichnis ist leer: \n\n",
-            "empty_dir_pt2": "\n\nDekompilieren Sie MBINs zu EXML und verschieben Sie dann einen oder mehrere 'BIOMES'-Ordner in dieses Verzeichnis.\nSiehe: '_Biome Templates/__template README.txt' für weitere Informationen.",
+            "empty_dir_pt2": "\n\nDekompilieren Sie MBINs zu MXML und verschieben Sie dann einen oder mehrere 'BIOMES'-Ordner in dieses Verzeichnis.\nSiehe: '_Biome Templates/__template README.txt' für weitere Informationen.",
             "Question": "Frage",
             "ques_pt1": "Kein 'BIOMES'-Ordner im Verzeichnis gefunden: \n\n",
-            "ques_pt2": "\n\nDieser Ordner enthält alle erforderlichen EXML-Dateien für die Umwandlung von Biomen in PLUMGEN-Daten. Ohne ihn fehlen Daten.\n\nIch empfehle nicht, Ordner außer 'BIOMES' zu importieren.\n\nDas Umbenennen des 'BIOMES'-Ordners kann LUA-Skriptfehler verursachen (ignorieren Sie dies, wenn ein umbenannter/modifizierter 'BIOMES'-Ordner importiert wird).\n\nTrotzdem fortfahren?",
+            "ques_pt2": "\n\nDieser Ordner enthält alle erforderlichen MXML/EXML-Dateien für die Umwandlung von Biomen in PLUMGEN-Daten. Ohne ihn fehlen Daten.\n\nIch empfehle nicht, Ordner außer 'BIOMES' zu importieren.\n\nDas Umbenennen des 'BIOMES'-Ordners kann LUA-Skriptfehler verursachen (ignorieren Sie dies, wenn ein umbenannter/modifizierter 'BIOMES'-Ordner importiert wird).\n\nTrotzdem fortfahren?",
             "overwrite_ques_title": "Daten überschreiben?",
-            "overwrite_ques_desc": "---------------------------WARNUNG---------------------------\n\nDies ersetzt ALLE Ihre Arbeit durch die neu importierten EXML-Daten. \n\nWenn Sie EXML importieren möchten, ohne Ihre aktuelle Arbeit zu verlieren:\n\n(Empfohlen) Fix 1:\nA) Klicken Sie für jedes Biomeobjektelement auf Voreinstellungen > Biome als Voreinstellung speichern. B) Fügen Sie einen neuen 'BIOMES'-Ordner zu '_BIOMES Exmls Folder Goes Here' hinzu und importieren Sie EXML. C) Klicken Sie auf Voreinstellungen > Biomevorgaben importieren und klicken Sie auf jede gerade gespeicherte Datei.\n\n(Erweitert) Fix 2:\nA) Klicken Sie auf 'Nein', B) Exportieren Sie, C) Extrahieren Sie EXML mit AMUMSS oder MBINCompiler (aus PAK-Datei), D) Fügen Sie (oder kombinieren Sie) 'BIOMES'-Ordner zu '_BIOMES Exmls Folder Goes Here' hinzu, E) Importieren Sie EXML\n\nMöchten Sie fortfahren?\n\n---------------------------WARNUNG---------------------------",
-            "after_before_next_ques_desc": "Wurde der Ordner 'BIOMES' im Verzeichnis '_BIOMES Exmls Folder Goes Here' nach dem NMS 'NEXT' Update erstellt?\n(Aktualisierung 1.5-Juli 2018)\n\nJa = Nach\nNein = Vor\n\n--- Das falsche Beantworten dieser Frage wird Probleme verursachen. ---"
+            "overwrite_ques_desc": "---------------------------WARNUNG---------------------------\n\nDies ersetzt ALLE Ihre Arbeit durch die neu importierten MXML/EXML-Daten. \n\nWenn Sie XML importieren möchten, ohne Ihre aktuelle Arbeit zu verlieren:\n\n(Empfohlen) Fix 1:\nA) Klicken Sie für jedes Biomeobjektelement auf Voreinstellungen > Biome als Voreinstellung speichern. B) Fügen Sie einen neuen 'BIOMES'-Ordner zu '_BIOMES Xmls Folder Goes Here' hinzu und importieren Sie EXML. C) Klicken Sie auf Voreinstellungen > Biomevorgaben importieren und klicken Sie auf jede gerade gespeicherte Datei.\n\n(Erweitert) Fix 2:\nA) Klicken Sie auf 'Nein', B) Exportieren Sie, C) Extrahieren Sie MXML/EXML mit AMUMSS oder MBINCompiler (aus PAK-Datei), D) Fügen Sie (oder kombinieren Sie) 'BIOMES'-Ordner zu '_BIOMES Xmls Folder Goes Here' hinzu, E) Importieren Sie EXML\n\nMöchten Sie fortfahren?\n\n---------------------------WARNUNG---------------------------",
+            "after_before_next_ques_desc": "Wurde der Ordner 'BIOMES' im Verzeichnis '_BIOMES Xmls Folder Goes Here' nach dem NMS 'NEXT' Update erstellt?\n(Aktualisierung 1.5-Juli 2018)\n\nJa = Nach\nNein = Vor\n\n--- Das falsche Beantworten dieser Frage wird Probleme verursachen. ---"
         },
         "complete_template": {
             "info_title": "Neue Biome-Vorlage hinzugefügt",
@@ -2725,7 +2725,7 @@
             "Question": "Frage",
             "desc_3_pt1": "Kein 'BIOMES'-Ordner im Verzeichnis gefunden: \n\n",
             "desc_3_pt2": "\n\nDieser Ordner enthält alle erforderlichen EXML-Dateien für die Umwandlung von Biomen in eine Biome-Vorlage (CSV). Ohne dies fehlen Daten.\n\n* Ich empfehle nicht, Ordner außer 'BIOMES' zu importieren.\n* Das Umbenennen des 'BIOMES'-Ordners kann LUA-Skriptfehler verursachen (ignorieren Sie dies, wenn Sie einen umbenannten/modifizierten 'BIOMES'-Ordner importieren).\n\nTrotzdem fortfahren?",
-            "desc_4": "Wurde der 'BIOMES'-Ordner im Verzeichnis '_BIOMES Exmls Folder Goes Here' nach dem NMS-'NEXT'-Update erstellt?\n(Update 1.5-Juli 2018)\n\nJa = Nach\nNein = Vor\n\n--- Das falsche Beantworten führt zu Problemen. ---",
+            "desc_4": "Wurde der 'BIOMES'-Ordner im Verzeichnis '_BIOMES Xmls Folder Goes Here' nach dem NMS-'NEXT'-Update erstellt?\n(Update 1.5-Juli 2018)\n\nJa = Nach\nNein = Vor\n\n--- Das falsche Beantworten führt zu Problemen. ---",
             "template_title": "Geben Sie den Dateinamen der Vorlage ein",
             "template_desc": "Wie möchten Sie diese Biome-Vorlage benennen?\n\nVerwenden Sie einen eindeutigen Dateinamen, um das Überschreiben von .csv-Dateien mit demselben Namen in Ihrem '_Biome-Vorlagen'-Ordner zu verhindern.\n\nGeben Sie nur Zahlen, Buchstaben oder Unterstriche ein. Fügen Sie am Ende keine .csv hinzu.\n",
             "Invalid_Filename_title": "Ungültiger Dateiname",
@@ -2741,7 +2741,7 @@
             "missing_json_pt1": "JSON-Dateipfad existiert nicht: \n\n",
             "missing_json_pt2": "\n\nBitte umbenennen oder löschen Sie diese JSON-Datei nicht.",
             "error_missing_16_title": "Fehler beim Exportieren - Vanilla JSON importieren?",
-            "error_missing_16_desc": "Die importierte Biome-Dateiliste enthält weniger als 16 Einträge! \n\nSie hätten eine Fehlermeldung erhalten sollen, die besagt, dass die EXML-Dateien neu importiert werden müssen. \n\nEine alternative Lösung besteht darin, standardmäßige JSON-Daten zu importieren, um eine grundlegende Leinwand zu erstellen (oder Sie können zurückgehen und EXML-Dateien importieren).\n\nIch empfehle dies nicht, wenn Sie nicht wissen, was Sie tun...\n\nMöchten Sie trotzdem mit dem Ersetzen von Exportdaten durch eine Vanilla-Leinwand fortfahren?\n\nHINWEIS: Dies ersetzt alle Ihre aktuellen Biome-Spawner-Daten.\nDies ersetzt nicht Ihre aktuelle Liste der Biome-Objekte.",
+            "error_missing_16_desc": "Die importierte Biome-Dateiliste enthält weniger als 17 Einträge! \n\nSie hätten eine Fehlermeldung erhalten sollen, die besagt, dass die EXML-Dateien neu importiert werden müssen. \n\nEine alternative Lösung besteht darin, standardmäßige JSON-Daten zu importieren, um eine grundlegende Leinwand zu erstellen (oder Sie können zurückgehen und EXML-Dateien importieren).\n\nIch empfehle dies nicht, wenn Sie nicht wissen, was Sie tun...\n\nMöchten Sie trotzdem mit dem Ersetzen von Exportdaten durch eine Vanilla-Leinwand fortfahren?\n\nHINWEIS: Dies ersetzt alle Ihre aktuellen Biome-Spawner-Daten.\nDies ersetzt nicht Ihre aktuelle Liste der Biome-Objekte.",
             "export_info_title": "Exportfenster",
             "export_info_desc": "Alle Änderungen im nächsten Fenster werden automatisch gespeichert."
         },
@@ -2849,13 +2849,13 @@
         },
         "export_settings_window": {
             "main_title": "Exportmenü",
-            "dr_label": "[+] = Mehr Leistungsaufwand\n[-] = Inkompatibel mit Mods, die GRAPHICS & ENVIRONMENT globals ändern\n = Geben Sie Buchstaben, Zahlen oder _ - . ein (keine leeren Leerzeichen)",
+            "dr_label": "Geben Sie Buchstaben, Zahlen oder _ - . ",
             "draw_dist_label": "Bitte wählen Sie das Detailniveau und die Sichtweite aus:",
             "dr_checkbox": "Prop-Zeichnungsabstand erhöhen [+]",
             "global_checkbox": "Globales Zeichnungslimit erhöhen/Verblassen der Zeit verringern [+][-]",
-            "Mod_Author": "*Mod-Autor:",
-            "Biomes_Filename": "*Biome-Dateiname:",
-            "Spawner_Filename": "*Spawner-Dateiname:",
+            "Mod_Author": "Mod-Autor:",
+            "Biomes_Filename": "Biome-Dateiname:",
+            "Spawner_Filename": "Spawner-Dateiname:",
             "Export": "Exportieren"
         },
         "export_all_files": {
@@ -2868,8 +2868,8 @@
             "Error_Desc_6": "Ungültiger Spawner-Dateiname. Bitte geben Sie Buchstaben, Zahlen oder _ - . ein."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Spawner: < 16 Unter-Biome",
-            "spawner_crash_desc": "Spawner: Ihr Spawner enthält weniger als 16 Unter-Biome. Die Verwendung dieses Spawner-Mods VERURSACHT einen Absturz Ihres Spiels. Wählen Sie Tools > Spawnerdaten ersetzen und fügen Sie dann Biome-Objekte zu jedem Unter-Biome hinzu.\n\nTrotzdem fortfahren?",
+            "spawner_crash_title": "Spawner: < 17 Unter-Biome",
+            "spawner_crash_desc": "Spawner: Ihr Spawner enthält weniger als 17 Unter-Biome. Die Verwendung dieses Spawner-Mods VERURSACHT einen Absturz Ihres Spiels. Wählen Sie Tools > Spawnerdaten ersetzen und fügen Sie dann Biome-Objekte zu jedem Unter-Biome hinzu.\n\nTrotzdem fortfahren?",
             "spawner_crash_2_title": "Spawner: Leere Unter-Biome-Listen",
             "spawner_crash_2_desc": "Spawner: Leere Liste in mindestens einem Unter-Biome-Kacheltyp festgestellt.*\nDie Verwendung dieses Spawner-Mods VERURSACHT einen Absturz Ihres Spiels.\n\nTrotzdem fortfahren?",
             "missing_data_title": "Fehlende Daten",
@@ -3086,7 +3086,7 @@
         "filemenu_view_gen": {
             "check_update": "Controlla aggiornamento PLUMGEN",
             "Update": "Aggiornamento",
-            "make_template": "Crea modello di bioma da EXML",
+            "make_template": "Crea modello di bioma da XML",
             "auto_rename": "Rinomina automaticamente tutti i biomi",
             "reset_auto_rename": "Resetta rinomina automatica",
             "Exit": "Esci",
@@ -3114,7 +3114,7 @@
             "Rename": "Rinomina",
             "Duplicate_Biome": "Duplica Bioma Selezionato",
             "Duplicate_Prop": "Duplica Flora Selezionata",
-            "Import": "Importa EXML/Fondi Bioma",
+            "Import": "Importa XML/Fondi Bioma",
             "Continue": "Continua ",
             "Save": "Salva",
             "Save_Model": "Salva",
@@ -3143,10 +3143,10 @@
             "landmarks_lb": " Oggetto Medio:\nFlora con distanza di visualizzazione più alta e scala media o grande.\nAd es. alberi delle dimensioni della vaniglia.",
             "objects_lb": " Oggetti:\nFlora con distanza di visualizzazione più bassa e scala più piccola.\nAd es. rocce delle dimensioni della vaniglia, cespugli.",
             "detail_objects_lb": " Oggetti Dettagliati:\nFlora con la distanza di visualizzazione più bassa e la scala più piccola.\nAd es. erba delle dimensioni della vaniglia, piccole piante. A titolo di riferimento, questa categoria contiene il numero maggiore di flora nel gioco vanilla.",
-            "biome_template_label": " Bioma .csv:\nUna grande raccolta di 'Dati di Spawn Oggetto' dai file .MBIN del bioma. Cliccando su qualsiasi pulsante 'Aggiungi' verrà creato un nuovo bioma (o flora) basato sul .csv attualmente selezionato. Clicca su File > Crea Bioma .csv da EXML per creare il tuo bioma .csv.",
-            "csv_combo": " Bioma .csv:\nUna grande raccolta di 'Dati di Spawn Oggetto' dai file .MBIN del bioma. Cliccando su qualsiasi pulsante 'Aggiungi' verrà creato un nuovo bioma (o flora) basato sul .csv attualmente selezionato. Clicca su File > Crea Bioma .csv da EXML per creare il tuo bioma .csv.",
+            "biome_template_label": " Bioma .csv:\nUna grande raccolta di 'Dati di Spawn Oggetto' dai file .MBIN del bioma. Cliccando su qualsiasi pulsante 'Aggiungi' verrà creato un nuovo bioma (o flora) basato sul .csv attualmente selezionato. Clicca su File > Crea Bioma .csv da XML per creare il tuo bioma .csv.",
+            "csv_combo": " Bioma .csv:\nUna grande raccolta di 'Dati di Spawn Oggetto' dai file .MBIN del bioma. Cliccando su qualsiasi pulsante 'Aggiungi' verrà creato un nuovo bioma (o flora) basato sul .csv attualmente selezionato. Clicca su File > Crea Bioma .csv da XML per creare il tuo bioma .csv.",
             "gen_using_template_data_cb": "Utilizza i percorsi file SCENE .csv del bioma selezionato come chiave quando si aggiungono nuovi biomi/flora utilizzando i pulsanti 'Aggiungi'. Se lasciato spento, utilizza comunque i dati .csv ma si attiene a un elenco standard di percorsi file SCENE per la chiave. Non aggiungerà flora all'elenco Flora del Bioma se non ne vengono trovate.",
-            "import_exml_button": "Analizza i file EXML nella tua cartella '_BIOMES Exmls Folder Goes Here' e convertili nel formato di PLUMGEN. \n\nPer unire elenchi di biomi PRIMA, sposta tutte le cartelle 'BIOMI' in 'BEFGH', POI importa.",
+            "import_exml_button": "Analizza i file MXML/EXML nella tua cartella '_BIOMES Xmls Folder Goes Here' e convertili nel formato di PLUMGEN. \n\nPer unire elenchi di biomi PRIMA, sposta tutte le cartelle 'BIOMI' in 'BEFGH', POI importa.",
             "model_lb": "La flora dopo la linea '--' sono SCENE pre-release o SCENE normalmente in una categoria di distanza di visualizzazione della flora diversa. Sono state spostate qui per estendere la distanza di visualizzazione per quella flora (ad es. alcune piante non hanno impostori di livello di dettaglio, quindi potresti spostarle negli Oggetti Distanza)."
         },
         "help": {
@@ -3293,8 +3293,8 @@
             "warn_title": "Problema con i file degli oggetti dei biomi",
             "warn_desc_pt1": "La lista dei file degli oggetti dei biomi importati contiene ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nQuesti file possono contenere oggetti unici con attributi unici, ad esempio pietre di parola, che PLUMGEN renderà non interagibili.\n\nSì = Rimuovi automaticamente questi file dalla tua lista degli oggetti dei biomi in modo che gli oggetti mantengano attributi unici.\n\nNo = Rimuovi manualmente i MBIN problematici nella cartella /OBJECTS/.\n\n(Se se ne trovano più di 200, rimuovere le sottocartelle come necessario prima di importare)",
-            "warn_missing_title": " 16 Voci di Bioma",
-            "warn_missing_desc": "Le voci di bioma mancanti o importate BIOMEFILENAMES.EXML contengono meno di 16 voci di sottobiomi, un array di dimensioni fisse. Questo accade con versioni obsolete di NMS che supportavano solo 10 sottobiomi.\n\n(Raccomandato) Soluzione 1: Dopo aver cliccato su 'Esporta', scegli 'NO' per creare un canvas vaniglia, quindi aggiungi manualmente i biomi.\n\n(Avanzato) Soluzione 2: Aggiungi un EXTRA BIOMEFILENAMES.EXML vaniglia (o personalizzato) aggiornato alla cartella principale della cartella di importazione. Python lo elaborerà prima, quindi gestirà il file BFN obsoleto, tentando una fusione.",
+            "warn_missing_title": " 17 Voci di Bioma",
+            "warn_missing_desc": "Le voci di bioma mancanti o importate BIOMEFILENAMES contengono meno di 17 voci di sottobiomi, un array di dimensioni fisse. Questo accade con versioni obsolete di NMS che supportavano solo 10 sottobiomi.\n\n(Raccomandato) Soluzione 1: Dopo aver cliccato su 'Esporta', scegli 'NO' per creare un canvas vaniglia, quindi aggiungi manualmente i biomi.\n\n(Avanzato) Soluzione 2: Aggiungi un EXTRA BIOMEFILENAMES vaniglia (o personalizzato) aggiornato alla cartella principale della cartella di importazione. Python lo elaborerà prima, quindi gestirà il file BFN obsoleto, tentando una fusione.",
             "info_title": "Importazione EXML completata",
             "info_desc": "Importazione EXML completata. Tutti i dati relativi al bioma aggiunti."
         },
@@ -3303,13 +3303,13 @@
             "no_dir_pt1": "La directory di importazione non esiste: \n\n",
             "no_dir_pt2": "\n\nPer favore, non eliminare o rinominare questa directory.",
             "empty_dir_pt1": "La directory di importazione è vuota: \n\n",
-            "empty_dir_pt2": "\n\nDecompila i MBIN in EXML, quindi sposta una o più cartelle 'BIOMES' in questa directory.\nVedi: '_Biome Templates/__template README.txt' per ulteriori informazioni.",
+            "empty_dir_pt2": "\n\nDecompila i MBIN in MXML, quindi sposta una o più cartelle 'BIOMES' in questa directory.\nVedi: '_Biome Templates/__template README.txt' per ulteriori informazioni.",
             "Question": "Domanda",
             "ques_pt1": "Nessuna cartella 'BIOMES' trovata nella directory: \n\n",
-            "ques_pt2": "\n\nQuesta cartella contiene tutti i file EXML necessari per la conversione del bioma in dati PLUMGEN. Senza di essa, mancheranno dati.\n\nNon consiglio di importare cartelle diverse da 'BIOMES'.\n\nRinominare la cartella 'BIOMES' potrebbe causare errori di script LUA (ignora questo se stai importando una cartella 'BIOMES' rinominata/modificata).\n\nContinuare comunque?",
+            "ques_pt2": "\n\nQuesta cartella contiene tutti i file MXML/EXML necessari per la conversione del bioma in dati PLUMGEN. Senza di essa, mancheranno dati.\n\nNon consiglio di importare cartelle diverse da 'BIOMES'.\n\nRinominare la cartella 'BIOMES' potrebbe causare errori di script LUA (ignora questo se stai importando una cartella 'BIOMES' rinominata/modificata).\n\nContinuare comunque?",
             "overwrite_ques_title": "Sovrascrivere i dati?",
-            "overwrite_ques_desc": "---------------------------AVVISO---------------------------\n\nQuesto sostituirà TUTTO il tuo lavoro con i nuovi dati EXML importati. \n\nSe desideri importare EXML senza perdere il tuo lavoro attuale:\n\n(Raccomandato) Soluzione 1:\nA) Per ogni oggetto degli oggetti del bioma, clicca su Preimpostazioni > Salva bioma come preimpostazione. B) Aggiungi una nuova cartella 'BIOMES' a '_BIOMES Exmls Folder Goes Here' e importa EXML. C) Clicca su Preimpostazioni > Importa preimpostazioni bioma e clicca su ciascun file che hai appena salvato.\n\n(Avanzato) Soluzione 2:\nA) Clicca su 'No', B) Esporta, C) Estrai EXML con AMUMSS o MBINCompiler (dal file PAK), D) Aggiungi (o combina) le cartelle 'BIOMES' a '_BIOMES Exmls Folder Goes Here', E) Importa EXML\n\nVuoi continuare?\n\n---------------------------AVVISO---------------------------",
-            "after_before_next_ques_desc": "È stata creata la cartella 'BIOMES' nella directory '_BIOMES Exmls Folder Goes Here' dopo l'aggiornamento 'NEXT' di NMS?\n(Aggiornamento 1.5-luglio 2018)\n\nSì = Dopo\nNo = Prima\n\n--- Rispondere in modo errato CAUSERÀ problemi. ---"
+            "overwrite_ques_desc": "---------------------------AVVISO---------------------------\n\nQuesto sostituirà TUTTO il tuo lavoro con i nuovi dati MXML/EXML importati. \n\nSe desideri importare XML senza perdere il tuo lavoro attuale:\n\n(Raccomandato) Soluzione 1:\nA) Per ogni oggetto degli oggetti del bioma, clicca su Preimpostazioni > Salva bioma come preimpostazione. B) Aggiungi una nuova cartella 'BIOMES' a '_BIOMES Xmls Folder Goes Here' e importa EXML. C) Clicca su Preimpostazioni > Importa preimpostazioni bioma e clicca su ciascun file che hai appena salvato.\n\n(Avanzato) Soluzione 2:\nA) Clicca su 'No', B) Esporta, C) Estrai MXML/EXML con AMUMSS o MBINCompiler (dal file PAK), D) Aggiungi (o combina) le cartelle 'BIOMES' a '_BIOMES Xmls Folder Goes Here', E) Importa EXML\n\nVuoi continuare?\n\n---------------------------AVVISO---------------------------",
+            "after_before_next_ques_desc": "È stata creata la cartella 'BIOMES' nella directory '_BIOMES Xmls Folder Goes Here' dopo l'aggiornamento 'NEXT' di NMS?\n(Aggiornamento 1.5-luglio 2018)\n\nSì = Dopo\nNo = Prima\n\n--- Rispondere in modo errato CAUSERÀ problemi. ---"
         },
         "complete_template": {
             "info_title": "Nuovo modello di Bioma aggiunto",
@@ -3324,7 +3324,7 @@
             "Question": "Domanda",
             "desc_3_pt1": "Nessuna cartella 'BIOMES' trovata nella directory: \n\n",
             "desc_3_pt2": "\n\nQuesta cartella contiene tutti i file EXML necessari per la conversione del bioma in un modello di bioma (CSV). Senza di essa, mancheranno i dati.\n\nNon consiglio di importare cartelle diverse da 'BIOMES'.\nRinominare la cartella 'BIOMES' potrebbe causare errori di script LUA (ignorare questo se si sta importando una cartella 'BIOMES' rinominata/modificata).\n\nContinuare comunque?",
-            "desc_4": "La cartella 'BIOMES' nella directory '_BIOMES Exmls Folder Goes Here' è stata creata dopo l'aggiornamento di NMS 'NEXT'?\n(Update 1.5-Luglio, 2018)\n\nSì = Dopo\nNo = Prima\n\n--- Rispondere in modo errato CAUSERÀ problemi. ---",
+            "desc_4": "La cartella 'BIOMES' nella directory '_BIOMES Xmls Folder Goes Here' è stata creata dopo l'aggiornamento di NMS 'NEXT'?\n(Update 1.5-Luglio, 2018)\n\nSì = Dopo\nNo = Prima\n\n--- Rispondere in modo errato CAUSERÀ problemi. ---",
             "template_title": "Inserisci il nome del modello",
             "template_desc": "Come vuoi chiamare questo modello di bioma?\n\nUtilizza un nome univoco per evitare sovrascritture di eventuali file .csv con lo stesso nome nella tua cartella '_Biome Templates'.\n\nInserisci solo numeri, lettere o trattini bassi. Non aggiungere .csv alla fine.\n",
             "Invalid_Filename_title": "Nome File Non Valido",
@@ -3340,7 +3340,7 @@
             "missing_json_pt1": "Il percorso del file JSON non esiste: \n\n",
             "missing_json_pt2": "\n\nNon rinominare o eliminare questo file JSON, per favore.",
             "error_missing_16_title": "Problemi di Esportazione - Importare JSON Vanilla?",
-            "error_missing_16_desc": "La lista dei file di bioma importati contiene meno di 16 voci! \n\nDovresti aver ricevuto un messaggio di errore che ti dice di reimpostare i file EXML. \n\nUna soluzione alternativa è importare dati JSON vanilla per creare una tela di base (o puoi tornare indietro e importare i file EXML).\n\nNon raccomando questo se non sai cosa stai facendo...\n\nContinuare con la sostituzione dei dati di esportazione con una tela vanilla?\n\nFYI: Questo sostituirà tutti i tuoi dati di spawner di bioma attuali.\nQuesto non sostituirà la tua Lista di Oggetti Bioma attuale.",
+            "error_missing_16_desc": "La lista dei file di bioma importati contiene meno di 17 voci! \n\nDovresti aver ricevuto un messaggio di errore che ti dice di reimpostare i file EXML. \n\nUna soluzione alternativa è importare dati JSON vanilla per creare una tela di base (o puoi tornare indietro e importare i file EXML).\n\nNon raccomando questo se non sai cosa stai facendo...\n\nContinuare con la sostituzione dei dati di esportazione con una tela vanilla?\n\nFYI: Questo sostituirà tutti i tuoi dati di spawner di bioma attuali.\nQuesto non sostituirà la tua Lista di Oggetti Bioma attuale.",
             "export_info_title": "Finestra di Esportazione",
             "export_info_desc": "Qualsiasi modifica effettuata nella finestra successiva verrà salvata automaticamente."
         },
@@ -3448,13 +3448,13 @@
         },
         "export_settings_window": {
             "main_title": "Menu di Esportazione",
-            "dr_label": "[+] = Maggiore consumo di prestazioni\n[-] = Incompatibile con mod che modificano le variabili GRAPHICS & ENVIRONMENT\n* = Inserire lettere, numeri o _ - . (senza spazi vuoti)",
+            "dr_label": "Inserire lettere, numeri o _ - . ",
             "draw_dist_label": "Scegli livello di dettaglio e distanza di disegno:",
             "dr_checkbox": "Aumentare la distanza di visualizzazione degli oggetti [+]",
             "global_checkbox": "Aumentare il limite di distanza di visualizzazione globale / ridurre il tempo di dissolvenza [+][-]",
-            "Mod_Author": "*Autore della Mod:",
-            "Biomes_Filename": "*Nome File Biomi:",
-            "Spawner_Filename": "*Nome File Creatore di Mostri:",
+            "Mod_Author": "Autore della Mod:",
+            "Biomes_Filename": "Nome File Biomi:",
+            "Spawner_Filename": "Nome File Creatore di Mostri:",
             "Export": "Esporta"
         },
         "export_all_files": {
@@ -3467,8 +3467,8 @@
             "Error_Desc_6": "Nome File Creatore di Mostri non valido. Inserire lettere, numeri o _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Creatore di Mostri: < 16 Sottobiomi",
-            "spawner_crash_desc": "Creatore di Mostri: il tuo creatore di mostri contiene meno di 16 sottobiomi. Utilizzare questa mod del Creatore di Mostri CAUSERÀ un arresto anomalo del gioco. Seleziona Strumenti > Sostituisci Dati Creatore di Mostri, quindi aggiungi oggetti del bioma a ciascun sottobioma.\n\nContinuare comunque?",
+            "spawner_crash_title": "Creatore di Mostri: < 17 Sottobiomi",
+            "spawner_crash_desc": "Creatore di Mostri: il tuo creatore di mostri contiene meno di 17 sottobiomi. Utilizzare questa mod del Creatore di Mostri CAUSERÀ un arresto anomalo del gioco. Seleziona Strumenti > Sostituisci Dati Creatore di Mostri, quindi aggiungi oggetti del bioma a ciascun sottobioma.\n\nContinuare comunque?",
             "spawner_crash_2_title": "Creatore di Mostri: Liste di Sottobiomi Vuote",
             "spawner_crash_2_desc": "Creatore di Mostri: lista vuota rilevata in almeno un tipo di tessera del sottobioma.*\nUtilizzare questa mod del Creatore di Mostri CAUSERÀ un arresto anomalo del gioco.\n\nContinuare comunque?",
             "missing_data_title": "Dati Mancanti",
@@ -3685,7 +3685,7 @@
         "filemenu_view_gen": {
             "check_update": "PLUMGENの更新を確認する",
             "Update": "更新",
-            "make_template": "テンプレートを作成する（EXMLからバイオームのテンプレートを作成する）",
+            "make_template": "テンプレートを作成する（XMLからバイオームのテンプレートを作成する）",
             "auto_rename": "すべてのバイオームを自動的に名前変更する",
             "reset_auto_rename": "自動名前変更をリセットする",
             "Exit": "終了",
@@ -3713,7 +3713,7 @@
             "Rename": "名前を変更",
             "Duplicate_Biome": "選択したバイオームを複製",
             "Duplicate_Prop": "選択したフローラを複製",
-            "Import": "EXMLのインポート/マージ",
+            "Import": "XMLのインポート/マージ",
             "Continue": "続行 ",
             "Save": "保存",
             "Save_Model": "保存",
@@ -3742,10 +3742,10 @@
             "landmarks_lb": " 中景オブジェクト:\n描画距離が高く、中程度から大きなスケールのフローラです。\n例：バニラサイズの木。",
             "objects_lb": " オブジェクト:\n描画距離が低く、小さなスケールのフローラです。\n例：バニラサイズの岩、低木。",
             "detail_objects_lb": " 詳細オブジェクト:\n最も描画距離が短く、最も小さなスケールのフローラです。\n例：バニラサイズの草、小さな植物。参考までに、このカテゴリにはバニラゲームで最も多くのフローラが含まれています。",
-            "biome_template_label": " バイオーム .csv:\nバイオーム .MBINファイルからの 'オブジェクトスポーンデータ' の巨大なコレクションです。任意の '追加' ボタンをクリックすると、現在選択されている .csv を基に新しいバイオーム（またはフローラ）が作成されます。バイオーム .csv を作成するには、[ファイル] > [EXMLからバイオーム .csvを作成] をクリックしてください。",
-            "csv_combo": " バイオーム .csv:\nバイオーム .MBINファイルからの 'オブジェクトスポーンデータ' の巨大なコレクションです。任意の '追加' ボタンをクリックすると、現在選択されている .csv を基に新しいバイオーム（またはフローラ）が作成されます。バイオーム .csv を作成するには、[ファイル] > [EXMLからバイオーム .csvを作成] をクリックしてください。",
+            "biome_template_label": " バイオーム .csv:\nバイオーム .MBINファイルからの 'オブジェクトスポーンデータ' の巨大なコレクションです。任意の '追加' ボタンをクリックすると、現在選択されている .csv を基に新しいバイオーム（またはフローラ）が作成されます。バイオーム .csv を作成するには、[ファイル] > [XMLからバイオーム .csvを作成] をクリックしてください。",
+            "csv_combo": " バイオーム .csv:\nバイオーム .MBINファイルからの 'オブジェクトスポーンデータ' の巨大なコレクションです。任意の '追加' ボタンをクリックすると、現在選択されている .csv を基に新しいバイオーム（またはフローラ）が作成されます。バイオーム .csv を作成するには、[ファイル] > [XMLからバイオーム .csvを作成] をクリックしてください。",
             "gen_using_template_data_cb": "'追加' ボタンを使用して新しいバイオーム/フローラを追加する際に選択したバイオーム .csv のシーンファイルパスをキーとして使用します。オフにした場合、.csv データは使用されますが、キーとして標準のシーンファイルパスリストが使用されます。フローラが見つからない場合は、バイオームフローラリストにフローラが追加されません。",
-            "import_exml_button": "'_BIOMES Exmls Folder Goes Here' フォルダ内のEXMLファイルを分析し、PLUMGENの形式に変換します。\n\nバイオームリストをマージする には、まずすべての 'BIOMES' フォルダを 'BEFGH' に移動し、次にインポートしてください。",
+            "import_exml_button": "'_BIOMES Xmls Folder Goes Here' フォルダ内のMXML/EXMLファイルを分析し、PLUMGENの形式に変換します。\n\nバイオームリストをマージする には、まずすべての 'BIOMES' フォルダを 'BEFGH' に移動し、次にインポートしてください。",
             "model_lb": "'--' ラインの後にあるフローラはプレリリースのシーンまたは通常は異なるフローラ描画距離カテゴリにあります。これらは、それらのフローラの描画距離を延長するためにここに移動されました（例：一部のフローラにはレベルオブディテールインポスターがないため、それらを遠景オブジェクトに移動できます）。"
         },
         "help": {
@@ -3892,8 +3892,8 @@
             "warn_title": "バイオームオブジェクトファイルに関する問題",
             "warn_desc_pt1": "インポートされたバイオームオブジェクトファイルリストには",
             "warn_desc_pt2": " /OBJECTS/* MBIN が含まれています。\n\nこれらのファイルには、ユニークなプロップが含まれており、ユニークな属性を持っています。例：ワードストーンなど。これらのファイルを削除すると、プロップにユニークな属性が保持されます。\n\nはい = 自動でこれらのファイルを 'バイオームオブジェクトリスト' から削除します。\n\nいいえ = '/OBJECTS/' フォルダー内の問題のある MBIN を手動で削除します。\n\n(200 個以上見つかった場合、インポート前に必要に応じてサブフォルダーを削除してください)",
-            "warn_missing_title": " 16 バイオームエントリー",
-            "warn_missing_desc": "欠落しているかインポートされた BIOMEFILENAMES.EXML には、16 個のサブバイオームエントリ、固定サイズの配列が含まれていません。これは、10 個のサブバイオームのみをサポートする古い NMS バージョンで発生します。\n\n（推奨）修正方法 1：「エクスポート」をクリックした後、「いいえ」を選択してバニラキャンバスを作成し、その後手動でバイオームを追加します。\n\n（高度な）修正方法 2：インポートフォルダーの最上位ディレクトリに、最新のバニラ（またはカスタム）BIOMEFILENAMES.EXML を追加します。Python が最初にそれを処理し、その後、古い BFN ファイルを処理してマージを試みます。",
+            "warn_missing_title": " 17 バイオームエントリー",
+            "warn_missing_desc": "欠落しているかインポートされた BIOMEFILENAMES には、17 個のサブバイオームエントリ、固定サイズの配列が含まれていません。これは、10 個のサブバイオームのみをサポートする古い NMS バージョンで発生します。\n\n（推奨）修正方法 1：「エクスポート」をクリックした後、「いいえ」を選択してバニラキャンバスを作成し、その後手動でバイオームを追加します。\n\n（高度な）修正方法 2：インポートフォルダーの最上位ディレクトリに、最新のバニラ（またはカスタム）BIOMEFILENAMES を追加します。Python が最初にそれを処理し、その後、古い BFN ファイルを処理してマージを試みます。",
             "info_title": "EXML のインポートが完了しました",
             "info_desc": "EXML のインポートが完了しました。関連するすべてのバイオームデータが追加されました。"
         },
@@ -3902,13 +3902,13 @@
             "no_dir_pt1": "インポートディレクトリが存在しません：\n\n",
             "no_dir_pt2": "\n\nこのディレクトリを削除または名前を変更しないでください。",
             "empty_dir_pt1": "インポートディレクトリが空です：\n\n",
-            "empty_dir_pt2": "\n\nMBIN を EXML に逆コンパイルし、1 つ以上の 'BIOMES' フォルダーをこのディレクトリに移動してください。\n詳細については、'_Biome Templates/__template README.txt' を参照してください。",
+            "empty_dir_pt2": "\n\nMBIN を MXML に逆コンパイルし、1 つ以上の 'BIOMES' フォルダーをこのディレクトリに移動してください。\n詳細については、'_Biome Templates/__template README.txt' を参照してください。",
             "Question": "質問",
             "ques_pt1": "ディレクトリ 'BIOMES' が見つかりませんでした：\n\n",
-            "ques_pt2": "\n\nこのフォルダーには、PLUMGEN データにバイオームを変換するためのすべての必要な EXML ファイルが含まれています。これがないと、データが欠落します。\n\n* 'BIOMES' 以外のフォルダーをインポートすることはお勧めしません。\n\n* 'BIOMES' フォルダーの名前を変更すると LUA スクリプトエラーが発生する場合があります（名前変更または変更された/変更された 'BIOMES' フォルダーをインポートする場合はこれを無視してください）。\n\nそれでも続行しますか？",
+            "ques_pt2": "\n\nこのフォルダーには、PLUMGEN データにバイオームを変換するためのすべての必要な MXML/EXML ファイルが含まれています。これがないと、データが欠落します。\n\n* 'BIOMES' 以外のフォルダーをインポートすることはお勧めしません。\n\n* 'BIOMES' フォルダーの名前を変更すると LUA スクリプトエラーが発生する場合があります（名前変更または変更された/変更された 'BIOMES' フォルダーをインポートする場合はこれを無視してください）。\n\nそれでも続行しますか？",
             "overwrite_ques_title": "データを上書きしますか？",
-            "overwrite_ques_desc": "---------------------------警告---------------------------\n\nこれにより、新しくインポートされた EXML データで すべて の作業が置き換えられます。\n\n現在の作業を失わずに EXML をインポートしたい場合は：\n\n（推奨）修正方法 1：\nA) 各バイオームオブジェクト項目をクリックし、「プリセット」>「バイオームをプリセットとして保存」をクリックします。B) 新しい 'BIOMES' フォルダーを '_BIOMES Exmls Folder Goes Here' に追加して、EXML をインポートします。C)「プリセット」>「バイオームプリセットのインポート」をクリックし、保存したファイルをクリックします。\n\n（高度な）修正方法 2：\nA) 'いいえ' をクリックします。B) エクスポート、C) AMUMSS または MBINCompiler（PAK ファイルから）で EXML を抽出します。D) 'BIOMES' フォルダー（または組み合わせ）を '_BIOMES Exmls フォルダーがここに配置されます' に追加します。E) EXML をインポートします\n\n続行しますか？\n\n---------------------------警告---------------------------",
-            "after_before_next_ques_desc": "'BIOMES'フォルダーは、'NEXT'更新後にディレクトリ '_BIOMES Exmls Folder Goes Here' に作成されましたか？\n（アップデート1.5-July, 2018）\n\nはい = 後\nいいえ = 前\n\n--- これを誤って回答すると問題が発生します。---"
+            "overwrite_ques_desc": "---------------------------警告---------------------------\n\nこれにより、新しくインポートされた MXML/EXML データで すべて の作業が置き換えられます。\n\n現在の作業を失わずに XML をインポートしたい場合は：\n\n（推奨）修正方法 1：\nA) 各バイオームオブジェクト項目をクリックし、「プリセット」>「バイオームをプリセットとして保存」をクリックします。B) 新しい 'BIOMES' フォルダーを '_BIOMES Xmls Folder Goes Here' に追加して、EXML をインポートします。C)「プリセット」>「バイオームプリセットのインポート」をクリックし、保存したファイルをクリックします。\n\n（高度な）修正方法 2：\nA) 'いいえ' をクリックします。B) エクスポート、C) AMUMSS または MBINCompiler（PAK ファイルから）で MXML/EXML を抽出します。D) 'BIOMES' フォルダー（または組み合わせ）を '_BIOMES Xmls Folder Goes Here' に追加します。E) EXML をインポートします\n\n続行しますか？\n\n---------------------------警告---------------------------",
+            "after_before_next_ques_desc": "'BIOMES'フォルダーは、'NEXT'更新後にディレクトリ '_BIOMES Xmls Folder Goes Here' に作成されましたか？\n（アップデート1.5-July, 2018）\n\nはい = 後\nいいえ = 前\n\n--- これを誤って回答すると問題が発生します。---"
         },
         "complete_template": {
             "info_title": "新しいバイオームテンプレートが追加されました",
@@ -3923,7 +3923,7 @@
             "Question": "質問",
             "desc_3_pt1": "ディレクトリ内に 'BIOMES'フォルダが見つかりません：\n\n",
             "desc_3_pt2": "\n\nこのフォルダには、バイオーム変換用のすべての必要なEXMLファイルが含まれています（CSV）。これがないと、データが欠落します。\n\n* 'BIOMES'以外のフォルダのインポートはお勧めしません。\n* 'BIOMES'フォルダの名前を変更すると、LUAスクリプトエラーが発生する可能性があります（名前を変更したり、変更した 'BIOMES'フォルダをインポートしている場合は、これを無視してください）。\n\nそれでも続行しますか？",
-            "desc_4": "ディレクトリ '_BIOMES Exmls Folder Goes Here'内の 'BIOMES'フォルダは、NMS 'NEXT'アップデート後に作成されましたか？\n（アップデート1.5-July、2018）\n\nはい = 後\nいいえ = 前\n\n--- これを誤って回答すると問題が発生します。 ---",
+            "desc_4": "ディレクトリ '_BIOMES Xmls Folder Goes Here'内の 'BIOMES'フォルダは、NMS 'NEXT'アップデート後に作成されましたか？\n（アップデート1.5-July、2018）\n\nはい = 後\nいいえ = 前\n\n--- これを誤って回答すると問題が発生します。 ---",
             "template_title": "テンプレートファイル名を入力してください",
             "template_desc": "このバイオームテンプレートの名前を付けたいですか？\n\nユニークなファイル名を使用して、 '_バイオームテンプレート'フォルダ内の同じ名前の .csvファイルを上書きしないようにしてください。\n\n数字、文字、またはアンダースコアのみを入力してください。末尾に .csvを追加しないでください。\n",
             "Invalid_Filename_title": "無効なファイル名",
@@ -3939,7 +3939,7 @@
             "missing_json_pt1": "JSONファイルパスが存在しません：\n\n",
             "missing_json_pt2": "\n\nこのJSONファイルをリネームまたは削除しないでください。",
             "error_missing_16_title": "エクスポートの問題 - Vanilla JSONをインポートしますか？",
-            "error_missing_16_desc": "インポートされたバイオームファイルリストに16未満のエントリが含まれています！\n\nEXMLファイルを再度インポートするようにエラーメッセージが表示されるはずです。\n\n別の解決策の1つは、基本的なキャンバスを作成するためにバニラのJSONデータをインポートすることです（またはEXMLファイルを戻ってインポートすることもできます）。\n\nあなたが何をしているかわからない場合は、これをお勧めしません...\n\nバニラのキャンバスでエクスポートデータを置換して続行しますか？\n\nFYI：これは現在のバイオームスポナーデータのいずれか/すべてを置換します。\nこれは現在のバイオームオブジェクトリストを置換しません。",
+            "error_missing_16_desc": "インポートされたバイオームファイルリストに17未満のエントリが含まれています！\n\nEXMLファイルを再度インポートするようにエラーメッセージが表示されるはずです。\n\n別の解決策の1つは、基本的なキャンバスを作成するためにバニラのJSONデータをインポートすることです（またはEXMLファイルを戻ってインポートすることもできます）。\n\nあなたが何をしているかわからない場合は、これをお勧めしません...\n\nバニラのキャンバスでエクスポートデータを置換して続行しますか？\n\nFYI：これは現在のバイオームスポナーデータのいずれか/すべてを置換します。\nこれは現在のバイオームオブジェクトリストを置換しません。",
             "export_info_title": "エクスポートウィンドウ",
             "export_info_desc": "次のウィンドウで行った変更は自動的に保存されます。"
         },
@@ -4047,13 +4047,13 @@
         },
         "export_settings_window": {
             "main_title": "エクスポートメニュー",
-            "dr_label": "[+] = よりパフォーマンスが重い\n[-] = グラフィックスと環境のグローバルを変更するMODと互換性がありません\n = 文字、数字、または_ - .を入力してください（空白は使用しないでください）",
+            "dr_label": "文字、数字、または_ - .を入力してください",
             "draw_dist_label": "詳細レベルと描画距離を選択してください。",
             "dr_checkbox": "プロップ描画距離を増やす [+]",
             "global_checkbox": "グローバル描画距離制限を増やす/フェード時間を減らす [+][-]",
-            "Mod_Author": "*Mod 作者:",
-            "Biomes_Filename": "*バイオームファイル名:",
-            "Spawner_Filename": "*スポナーファイル名:",
+            "Mod_Author": "Mod 作者:",
+            "Biomes_Filename": "バイオームファイル名:",
+            "Spawner_Filename": "スポナーファイル名:",
             "Export": "エクスポート"
         },
         "export_all_files": {
@@ -4066,8 +4066,8 @@
             "Error_Desc_6": "無効なスポナーファイル名です。文字、数字、または_ - .を入力してください。"
         },
         "apply_export_settings": {
-            "spawner_crash_title": "スポナー: < 16 サブバイオーム",
-            "spawner_crash_desc": "スポナー: スポナーには16未満のサブバイオームが含まれています。このスポナーMODを使用するとゲームがクラッシュします。ツール > スポナーデータの置き換えを選択し、各サブバイオームにバイオームオブジェクトを追加してください。\n\nそれでも続行しますか？",
+            "spawner_crash_title": "スポナー: < 17 サブバイオーム",
+            "spawner_crash_desc": "スポナー: スポナーには17未満のサブバイオームが含まれています。このスポナーMODを使用するとゲームがクラッシュします。ツール > スポナーデータの置き換えを選択し、各サブバイオームにバイオームオブジェクトを追加してください。\n\nそれでも続行しますか？",
             "spawner_crash_2_title": "スポナー: 空のサブバイオームリスト",
             "spawner_crash_2_desc": "スポナー: 少なくとも1つのサブバイオームタイルタイプで空のリストが検出されました。*\nこのスポナーMODを使用するとゲームがクラッシュします。\n\nそれでも続行しますか？",
             "missing_data_title": "データが不足しています",
@@ -4312,7 +4312,7 @@
             "Rename": "이름 변경",
             "Duplicate_Biome": "선택한 생물 군락 복제",
             "Duplicate_Prop": "선택한 식물 복제",
-            "Import": "EXML 가져오기/생물 군락 병합",
+            "Import": "XML 가져오기/생물 군락 병합",
             "Continue": "계속 ",
             "Save": "저장",
             "Save_Model": "저장",
@@ -4341,10 +4341,10 @@
             "landmarks_lb": " 중간 물체:\n더 먼 거리 및 중간에서 큰 규모의 식물.\n예: 바닐라 크기의 나무.",
             "objects_lb": " 물체:\n더 짧은 거리와 더 작은 규모의 식물.\n예: 바닐라 크기의 돌, 덤불.",
             "detail_objects_lb": " 상세 물체:\n가장 짧은 거리와 가장 작은 규모의 식물.\n예: 바닐라 크기의 풀, 작은 식물. 참고로, 이 카테고리에는 바닐라 게임에서 가장 많은 수의 식물이 포함됩니다.",
-            "biome_template_label": " 생물 군락 .csv:\n생물 군락 .MBIN 파일에서 '물체 생성 데이터'의 거대한 모음입니다. '추가' 버튼을 클릭하면 현재 선택한 .csv를 기반으로 새로운 생물 군락 (또는 식물)이 생성됩니다. 자체 생물 군락 .csv를 만들려면 파일 > EXML에서 생물 군락 .csv 만들기를 클릭하세요.",
-            "csv_combo": " 생물 군락 .csv:\n생물 군락 .MBIN 파일에서 '물체 생성 데이터'의 거대한 모음입니다. '추가' 버튼을 클릭하면 현재 선택한 .csv를 기반으로 새로운 생물 군락 (또는 식물)이 생성됩니다. 자체 생물 군락 .csv를 만들려면 파일 > EXML에서 생물 군락 .csv 만들기를 클릭하세요.",
+            "biome_template_label": " 생물 군락 .csv:\n생물 군락 .MBIN 파일에서 '물체 생성 데이터'의 거대한 모음입니다. '추가' 버튼을 클릭하면 현재 선택한 .csv를 기반으로 새로운 생물 군락 (또는 식물)이 생성됩니다. 자체 생물 군락 .csv를 만들려면 파일 > XML에서 생물 군락 .csv 만들기를 클릭하세요.",
+            "csv_combo": " 생물 군락 .csv:\n생물 군락 .MBIN 파일에서 '물체 생성 데이터'의 거대한 모음입니다. '추가' 버튼을 클릭하면 현재 선택한 .csv를 기반으로 새로운 생물 군락 (또는 식물)이 생성됩니다. 자체 생물 군락 .csv를 만들려면 파일 > XML에서 생물 군락 .csv 만들기를 클릭하세요.",
             "gen_using_template_data_cb": "'추가' 버튼을 사용하여 새로운 생물 군락/식물을 추가할 때 선택한 생물 군락 .csv SCENE 파일 경로를 키로 사용합니다. 누락된 경우에도 .csv 데이터를 사용하지만 키에 대한 표준 SCENE 파일 경로 목록을 사용합니다. 발견되지 않으면 생물 군락 목록에 식물을 추가하지 않습니다.",
-            "import_exml_button": "'_BIOMES Exmls Folder Goes Here' 폴더의 EXML 파일을 분석하여 PLUMGEN 형식으로 변환합니다. \n\n생물 군락 목록 병합 먼저 모든 'BIOMES' 폴더를 'BEFGH'로 이동한 다음 가져옵니다.",
+            "import_exml_button": "'_BIOMES Xmls Folder Goes Here' 폴더의 MXML/EXML 파일을 분석하여 PLUMGEN 형식으로 변환합니다. \n\n생물 군락 목록 병합 먼저 모든 'BIOMES' 폴더를 'BEFGH'로 이동한 다음 가져옵니다.",
             "model_lb": "'--' 라인 이후의 식물은 사전 릴리스 SCENE이거나 일반적으로 다른 식물 드로우 거리 카테고리에 속하는 SCENE입니다. 이러한 식물의 드로우 거리를 연장하기 위해 여기로 이동되었습니다 (예: 일부 식물에는 Level of Detail 임포스터가 없으므로 해당 식물을 먼 물체로 이동할 수 있습니다). "
         },
         "help": {
@@ -4491,8 +4491,8 @@
             "warn_title": "생물꾼 객체 파일에 문제 발생",
             "warn_desc_pt1": "가져온 생물꾼 객체 파일 목록에는 ",
             "warn_desc_pt2": " /OBJECTS/* MBIN이 있습니다.\n\n이 파일에는 고유한 속성을 가진 고유한 소품, 예: 단어 돌,이 포함될 수 있습니다. PLUMGEN은 이러한 파일을 소품의 고유한 속성을 유지하도록 자동으로 제거합니다.\n\n예 = 자동으로 이러한 파일을 Biome Objects 목록에서 제거합니다. 소품이 고유한 속성을 유지합니다.\n\n아니요 = /OBJECTS/ 폴더의 문제가 있는 MBIN을 수동으로 제거하십시오.\n\n(200개 이상 찾으면 가져오기 전에 필요한 하위 폴더를 제거하십시오)",
-            "warn_missing_title": " 16개의 생물꾼 항목",
-            "warn_missing_desc": "누락된 또는 가져온 BIOMEFILENAMES.EXML에는 16개의 하위 생물꾼 항목을 포함하지 않습니다. 이는 이전 NMS 버전에서만 지원되었던 고정 크기 배열입니다. 이는 이전 NMS 버전에서만 지원되었던 고정 크기 배열입니다.\n\n(권장됨) 수정 1: '내보내기'를 클릭한 후 '아니요'를 선택하여 바닐라 캔버스를 생성한 다음 생물꾼을 수동으로 추가하십시오.\n\n(고급) 수정 2: 가져오기 폴더의 최상위 디렉터리에 추가로 최신 바닐라(또는 사용자 정의) BIOMEFILENAMES.EXML을 추가하십시오. Python은 먼저이 파일을 처리 한 다음 오래된 BFN 파일을 처리하여 병합을 시도합니다.",
+            "warn_missing_title": " 17개의 생물꾼 항목",
+            "warn_missing_desc": "누락된 또는 가져온 BIOMEFILENAMES에는 17개의 하위 생물꾼 항목을 포함하지 않습니다. 이는 이전 NMS 버전에서만 지원되었던 고정 크기 배열입니다. 이는 이전 NMS 버전에서만 지원되었던 고정 크기 배열입니다.\n\n(권장됨) 수정 1: '내보내기'를 클릭한 후 '아니요'를 선택하여 바닐라 캔버스를 생성한 다음 생물꾼을 수동으로 추가하십시오.\n\n(고급) 수정 2: 가져오기 폴더의 최상위 디렉터리에 추가로 최신 바닐라(또는 사용자 정의) BIOMEFILENAMES을 추가하십시오. Python은 먼저이 파일을 처리 한 다음 오래된 BFN 파일을 처리하여 병합을 시도합니다.",
             "info_title": "EXML 가져오기 완료",
             "info_desc": "EXML 가져오기가 완료되었습니다. 모든 관련 생물꾼 데이터가 추가되었습니다."
         },
@@ -4501,13 +4501,13 @@
             "no_dir_pt1": "가져오기 디렉토리가 존재하지 않습니다: \n\n",
             "no_dir_pt2": "\n\n이 디렉터리를 삭제하거나 이름을 변경하지 마십시오.",
             "empty_dir_pt1": "가져오기 디렉토리가 비어 있습니다: \n\n",
-            "empty_dir_pt2": "\n\nMBIN을 EXML로 디컴파일하고 'BIOMES' 폴더를 이 디렉토리로 이동하십시오.\n더 많은 정보는 '_Biome Templates/__template README.txt'를 참조하십시오.",
+            "empty_dir_pt2": "\n\nMBIN을 MXML로 디컴파일하고 'BIOMES' 폴더를 이 디렉토리로 이동하십시오.\n더 많은 정보는 '_Biome Templates/__template README.txt'를 참조하십시오.",
             "Question": "질문",
             "ques_pt1": "디렉토리에서 'BIOMES' 폴더를 찾을 수 없습니다: \n\n",
-            "ques_pt2": "\n\n이 폴더에는 PLUMGEN 데이터로의 생물꾼 변환에 필요한 모든 EXML 파일이 포함되어 있습니다. 이것없이 데이터가 누락 될 수 있습니다.\n\n*'BIOMES' 이외의 폴더를 가져 오는 것을 권장하지 않습니다.\n\n*'BIOMES' 폴더의 이름을 바꾸면 LUA 스크립트 오류가 발생할 수 있습니다 (이것은 이름을 바꾼 / mod 된 'BIOMES' 폴더를 가져 오는 경우 무시하십시오).\n\n계속 하시겠습니까?",
+            "ques_pt2": "\n\n이 폴더에는 PLUMGEN 데이터로의 생물꾼 변환에 필요한 모든 MXML/EXML 파일이 포함되어 있습니다. 이것없이 데이터가 누락 될 수 있습니다.\n\n*'BIOMES' 이외의 폴더를 가져 오는 것을 권장하지 않습니다.\n\n*'BIOMES' 폴더의 이름을 바꾸면 LUA 스크립트 오류가 발생할 수 있습니다 (이것은 이름을 바꾼 / mod 된 'BIOMES' 폴더를 가져 오는 경우 무시하십시오).\n\n계속 하시겠습니까?",
             "overwrite_ques_title": "데이터 덮어쓰기?",
-            "overwrite_ques_desc": "---------------------------경고---------------------------\n\n이 작업은 새로 가져온 EXML 데이터로 모든 작업을 대체합니다.\n\n현재 작업을 유지한 채로 EXML을 가져 오려면:\n\n(권장됨) 수정 1:\nA) 각 생물꾼 객체 항목에 대해 프리셋 > 생물꾼을 프리셋으로 저장을 클릭하십시오. B) 새 'BIOMES' 폴더를 '_BIOMES Exmls Folder Goes Here'에 추가하고 EXML을 가져 오십시오. C) 프리셋 > 생물꾼 프리셋 가져오기를 클릭하고 방금 저장한 각 파일을 클릭하십시오.\n\n(고급) 수정 2:\nA) '아니요'를 클릭하십시오. B) 내보내기, C) AMUMSS 또는 MBINCompiler (PAK 파일에서)로 EXML을 추출하십시오. D) 'BIOMES' 폴더를 '_BIOMES Exmls Folder Goes Here'에 추가하십시오 (또는 병합). E) EXML 가져 오기\n\n계속 하시겠습니까?\n\n---------------------------경고---------------------------",
-            "after_before_next_ques_desc": "'BIOMES' 폴더가 '_BIOMES Exmls Folder Goes Here' 디렉터리에 만들어졌습니까?\n(NMS 'NEXT' 업데이트 후)\n\n예 = 후\n아니요 = 전\n\n--- 이것에 대한 잘못된 대답은 문제를 일으킬 수 있습니다. ---"
+            "overwrite_ques_desc": "---------------------------경고---------------------------\n\n이 작업은 새로 가져온 MXML/EXML 데이터로 모든 작업을 대체합니다.\n\n현재 작업을 유지한 채로 XML을 가져 오려면:\n\n(권장됨) 수정 1:\nA) 각 생물꾼 객체 항목에 대해 프리셋 > 생물꾼을 프리셋으로 저장을 클릭하십시오. B) 새 'BIOMES' 폴더를 '_BIOMES Xmls Folder Goes Here'에 추가하고 EXML을 가져 오십시오. C) 프리셋 > 생물꾼 프리셋 가져오기를 클릭하고 방금 저장한 각 파일을 클릭하십시오.\n\n(고급) 수정 2:\nA) '아니요'를 클릭하십시오. B) 내보내기, C) AMUMSS 또는 MBINCompiler (PAK 파일에서)로 MXML/EXML을 추출하십시오. D) 'BIOMES' 폴더를 '_BIOMES Xmls Folder Goes Here'에 추가하십시오 (또는 병합). E) EXML 가져 오기\n\n계속 하시겠습니까?\n\n---------------------------경고---------------------------",
+            "after_before_next_ques_desc": "'BIOMES' 폴더가 '_BIOMES Xmls Folder Goes Here' 디렉터리에 만들어졌습니까?\n(NMS 'NEXT' 업데이트 후)\n\n예 = 후\n아니요 = 전\n\n--- 이것에 대한 잘못된 대답은 문제를 일으킬 수 있습니다. ---"
         },
         "complete_template": {
             "info_title": "새로운 생물군 템플릿 추가됨",
@@ -4522,7 +4522,7 @@
             "Question": "질문",
             "desc_3_pt1": "디렉터리에서 'BIOMES' 폴더를 찾을 수 없습니다: \n\n",
             "desc_3_pt2": "\n\n이 폴더에는 생물군 템플릿 (CSV)으로의 생물군 변환에 필요한 모든 EXML 파일이 포함되어 있습니다. 없으면 데이터가 누락됩니다.\n\n*'BIOMES' 이외의 폴더를 가져오지 않는 것이 좋습니다.\n*'BIOMES' 폴더의 이름을 바꾸면 LUA 스크립트 오류가 발생할 수 있습니다 (이름을 변경하거나 수정된 'BIOMES' 폴더를 가져오는 경우 이 메시지를 무시하세요).\n\n계속 하시겠습니까?",
-            "desc_4": "'BIOMES Exmls Folder Goes Here' 디렉터리에 있는 'BIOMES' 폴더가 NMS 'NEXT' 업데이트 이후에 생성되었습니까?\n(2018년 7월 1.5 업데이트)\n\n예 = 이후\n아니오 = 이전\n\n--- 이 질문에 잘못 대답하면 문제가 발생할 수 있습니다. ---",
+            "desc_4": "'BIOMES Xmls Folder Goes Here' 디렉터리에 있는 'BIOMES' 폴더가 NMS 'NEXT' 업데이트 이후에 생성되었습니까?\n(2018년 7월 1.5 업데이트)\n\n예 = 이후\n아니오 = 이전\n\n--- 이 질문에 잘못 대답하면 문제가 발생할 수 있습니다. ---",
             "template_title": "템플릿 파일 이름 입력",
             "template_desc": "이 생물군 템플릿의 이름을 지정하십시오.\n\n_생물군 템플릿 폴더에 동일한 이름의 .csv 파일을 덮어쓰지 않도록 고유한 파일 이름을 사용하십시오.\n\n숫자, 문자 또는 밑줄만 입력하십시오. .csv를 끝에 추가하지 마십시오.",
             "Invalid_Filename_title": "잘못된 파일 이름",
@@ -4538,7 +4538,7 @@
             "missing_json_pt1": "JSON 파일 경로가 존재하지 않습니다: \n\n",
             "missing_json_pt2": "\n\n이 JSON 파일을 이름을 바꾸거나 삭제하지 마십시오.",
             "error_missing_16_title": "내보내기 문제 - 바닐라 JSON 가져오기?",
-            "error_missing_16_desc": "가져온 생물군 파일 목록에 16개 미만의 항목이 있습니다! \n\nEXML 파일을 다시 가져와야 한다는 오류 메시지가 표시되어야 합니다.\n\n대안으로 기본 바닐라 JSON 데이터를 가져와 기본 캔버스를 만들거나 EXML 파일을 다시 가져오실 수 있습니다.\n\n이것을 권장하지 않습니다 (자세한 내용은 모르지만...)\n\n바닐라 캔버스로 내보내기 데이터를 대체하시겠습니까?\n\nFYI: 현재의 생물군 생성기 데이터를 모두 또는 일부만 대체합니다.\n현재의 생물군 객체 목록을 대체하지는 않습니다.",
+            "error_missing_16_desc": "가져온 생물군 파일 목록에 17개 미만의 항목이 있습니다! \n\nEXML 파일을 다시 가져와야 한다는 오류 메시지가 표시되어야 합니다.\n\n대안으로 기본 바닐라 JSON 데이터를 가져와 기본 캔버스를 만들거나 EXML 파일을 다시 가져오실 수 있습니다.\n\n이것을 권장하지 않습니다 (자세한 내용은 모르지만...)\n\n바닐라 캔버스로 내보내기 데이터를 대체하시겠습니까?\n\nFYI: 현재의 생물군 생성기 데이터를 모두 또는 일부만 대체합니다.\n현재의 생물군 객체 목록을 대체하지는 않습니다.",
             "export_info_title": "내보내기 창",
             "export_info_desc": "다음 창에서 수행한 모든 변경 사항이 자동으로 저장됩니다."
         },
@@ -4646,13 +4646,13 @@
         },
         "export_settings_window": {
             "main_title": "내보내기 메뉴",
-            "dr_label": "[+] = 더 많은 성능 부담\n[-] = 그래픽 및 환경 전역을 변경하는 모드와 호환되지 않음\n* = 문자, 숫자 또는 _ - .를 입력하세요 (빈 공간 없음)",
+            "dr_label": "문자, 숫자 또는 _ - .를 입력하세요",
             "draw_dist_label": "세부 수준과 그리기 거리 선택하기",
             "dr_checkbox": "프롭 그리기 거리 증가 [+]",
             "global_checkbox": "전역 그리기 거리 제한 증가/페이드 시간 감소 [+][-]",
-            "Mod_Author": "*모드 저자:",
-            "Biomes_Filename": "*바이옴 파일 이름:",
-            "Spawner_Filename": "*스포너 파일 이름:",
+            "Mod_Author": "모드 저자:",
+            "Biomes_Filename": "바이옴 파일 이름:",
+            "Spawner_Filename": "스포너 파일 이름:",
             "Export": "내보내기"
         },
         "export_all_files": {
@@ -4665,8 +4665,8 @@
             "Error_Desc_6": "잘못된 스포너 파일 이름입니다. 문자, 숫자 또는 _ - .를 입력하세요."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "스포너: < 16 하위 바이옴",
-            "spawner_crash_desc": "스포너: 스포너에 하위 바이옴이 16 개 미만 포함되어 있습니다. 이 스포너 모드를 사용하면 게임이 충돌합니다. 도구 > 스포너 데이터 교체를 선택한 다음 각 하위 바이옴에 바이옴 객체를 추가하세요.\n\n계속 하시겠습니까?",
+            "spawner_crash_title": "스포너: < 17 하위 바이옴",
+            "spawner_crash_desc": "스포너: 스포너에 하위 바이옴이 17 개 미만 포함되어 있습니다. 이 스포너 모드를 사용하면 게임이 충돌합니다. 도구 > 스포너 데이터 교체를 선택한 다음 각 하위 바이옴에 바이옴 객체를 추가하세요.\n\n계속 하시겠습니까?",
             "spawner_crash_2_title": "스포너: 빈 하위 바이옴 목록",
             "spawner_crash_2_desc": "스포너: 하나 이상의 하위 바이옴 타일 유형에서 빈 목록을 감지했습니다.*\n이 스포너 모드를 사용하면 게임이 충돌합니다.\n\n계속 하시겠습니까?",
             "missing_data_title": "누락된 데이터",
@@ -4883,7 +4883,7 @@
         "filemenu_view_gen": {
             "check_update": "Verificar atualização do PLUMGEN",
             "Update": "Atualização",
-            "make_template": "Criar Modelo de Bioma a partir de EXML",
+            "make_template": "Criar Modelo de Bioma a partir de XML",
             "auto_rename": "Renomear Automaticamente Todos os Biomas",
             "reset_auto_rename": "Redefinir Renomeação Automática",
             "Exit": "Sair",
@@ -4911,7 +4911,7 @@
             "Rename": "Renomear",
             "Duplicate_Biome": "Duplicar Bioma Selecionado",
             "Duplicate_Prop": "Duplicar Flora Selecionada",
-            "Import": "Importar EXMLs/Mesclar",
+            "Import": "Importar XMLs/Mesclar",
             "Continue": "Continuar ",
             "Save": "Salvar",
             "Save_Model": "Salvar",
@@ -4940,10 +4940,10 @@
             "landmarks_lb": " Objeto Intermediário:\nFlora com distância de renderização maior e escala média a grande.\npor exemplo, árvores do tamanho da baunilha.",
             "objects_lb": " Objetos:\nFlora com menor distância de renderização e escala menor.\npor exemplo, rochas do tamanho da baunilha, arbustos.",
             "detail_objects_lb": " Objetos Detalhados:\nFlora com a menor distância de renderização e menor escala.\npor exemplo, grama do tamanho da baunilha, plantas pequenas. Para referência, esta categoria contém o maior número de flora no jogo da baunilha.",
-            "biome_template_label": " Bioma .csv:\nUma coleção gigante de 'Dados de Spawn de Objeto' de arquivos .MBIN de biomas. Clicar em qualquer botão 'Adicionar' criará um novo bioma (ou flora) com base no .csv atualmente selecionado. Clique em Arquivo > Criar Bioma .csv de EXML para criar seu próprio bioma .csv.",
-            "csv_combo": " Bioma .csv:\nUma coleção gigante de 'Dados de Spawn de Objeto' de arquivos .MBIN de biomas. Clicar em qualquer botão 'Adicionar' criará um novo bioma (ou flora) com base no .csv atualmente selecionado. Clique em Arquivo > Criar Bioma .csv de EXML para criar seu próprio bioma .csv.",
+            "biome_template_label": " Bioma .csv:\nUma coleção gigante de 'Dados de Spawn de Objeto' de arquivos .MBIN de biomas. Clicar em qualquer botão 'Adicionar' criará um novo bioma (ou flora) com base no .csv atualmente selecionado. Clique em Arquivo > Criar Bioma .csv de XML para criar seu próprio bioma .csv.",
+            "csv_combo": " Bioma .csv:\nUma coleção gigante de 'Dados de Spawn de Objeto' de arquivos .MBIN de biomas. Clicar em qualquer botão 'Adicionar' criará um novo bioma (ou flora) com base no .csv atualmente selecionado. Clique em Arquivo > Criar Bioma .csv de XML para criar seu próprio bioma .csv.",
             "gen_using_template_data_cb": "Usa os caminhos de arquivo de CENA .csv de bioma selecionados como a chave ao adicionar novos biomas/flora usando os botões 'Adicionar'. Se deixado desmarcado, ainda usa os dados .csv mas adere a uma lista padrão de caminhos de arquivo de CENA para a chave. Não adicionará flora à lista de Flora do Bioma se nenhuma for encontrada.",
-            "import_exml_button": "Analisa os arquivos EXML na sua pasta '_BIOMES Exmls Folder Goes Here' e converte para o formato do PLUMGEN. \n\nPara mesclar listas de biomas PRIMEIRO, mova todas as pastas 'BIOMES' para 'BEFGH', DEPOIS importe.",
+            "import_exml_button": "Analisa os arquivos MXML/EXML na sua pasta '_BIOMES Xmls Folder Goes Here' e converte para o formato do PLUMGEN. \n\nPara mesclar listas de biomas PRIMEIRO, mova todas as pastas 'BIOMES' para 'BEFGH', DEPOIS importe.",
             "model_lb": "Flora após a linha '--' são CENAS pré-lançamento ou CENAS normalmente em uma categoria de distância de renderização de flora diferente. Elas foram movidas aqui para estender a distância de renderização para aquela flora (por exemplo, algumas flora não têm impostores de Nível de Detalhe, então você pode movê-las para Objetos Distantes)."
         },
         "help": {
@@ -5090,8 +5090,8 @@
             "warn_title": "Problema com Arquivos de Objetos de Bioma",
             "warn_desc_pt1": "A lista de arquivos de objetos de bioma importados contém ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nEsses arquivos podem conter props únicos com atributos únicos, por exemplo, pedras de palavra, que o PLUMGEN tornará não interagíveis.\n\nSim = Auto. remover esses arquivos para você da sua Lista de Objetos de Bioma para que os props mantenham atributos únicos.\n\nNão = Remova manualmente os MBINs problemáticos na pasta /OBJECTS/.\n\n(Se 200+ forem encontrados, remova subpastas conforme necessário antes de importar)",
-            "warn_missing_title": " 16 Entradas de Biomas",
-            "warn_missing_desc": "O arquivo BIOMEFILENAMES.EXML ausente ou importado contém menos de 16 entradas de sub-biomas, uma matriz de tamanho fixo. Isso acontece com versões desatualizadas do NMS que suportavam apenas 10 sub-biomas.\n\n(Recomendado) Corrigir 1: Depois de clicar em 'Exportar', escolha 'NÃO' para criar um canvas padrão e, em seguida, adicione biomas manualmente.\n\n(Avançado) Corrigir 2: Adicione um arquivo BIOMEFILENAMES.EXML VANILLA (ou personalizado) EXTRA atualizado ao diretório de importação. O Python o processará primeiro e, em seguida, lidará com o arquivo BFN desatualizado, tentando uma mesclagem.",
+            "warn_missing_title": " 17 Entradas de Biomas",
+            "warn_missing_desc": "O arquivo BIOMEFILENAMES ausente ou importado contém menos de 17 entradas de sub-biomas, uma matriz de tamanho fixo. Isso acontece com versões desatualizadas do NMS que suportavam apenas 10 sub-biomas.\n\n(Recomendado) Corrigir 1: Depois de clicar em 'Exportar', escolha 'NÃO' para criar um canvas padrão e, em seguida, adicione biomas manualmente.\n\n(Avançado) Corrigir 2: Adicione um arquivo BIOMEFILENAMES VANILLA (ou personalizado) EXTRA atualizado ao diretório de importação. O Python o processará primeiro e, em seguida, lidará com o arquivo BFN desatualizado, tentando uma mesclagem.",
             "info_title": "Importação EXML Completa",
             "info_desc": "Importação EXML completa. Todos os dados relevantes do bioma foram adicionados."
         },
@@ -5100,13 +5100,13 @@
             "no_dir_pt1": "O diretório de importação não existe: \n\n",
             "no_dir_pt2": "\n\nPor favor, não exclua ou renomeie este diretório.",
             "empty_dir_pt1": "O diretório de importação está vazio: \n\n",
-            "empty_dir_pt2": "\n\nDescompile os MBINs para EXML e, em seguida, mova uma ou mais pastas 'BIOMES' para este diretório.\nConsulte: '_Biome Templates/__template README.txt' para obter mais informações.",
+            "empty_dir_pt2": "\n\nDescompile os MBINs para MXML e, em seguida, mova uma ou mais pastas 'BIOMES' para este diretório.\nConsulte: '_Biome Templates/__template README.txt' para obter mais informações.",
             "Question": "Pergunta",
             "ques_pt1": "Nenhuma pasta 'BIOMES' encontrada no diretório: \n\n",
-            "ques_pt2": "\n\nEsta pasta contém todos os arquivos EXML necessários para a conversão do bioma em dados do PLUMGEN. Sem ele, os dados ESTARÃO faltando.\n\nNão recomendo importar pastas que não sejam 'BIOMES'.\n\nRenomear a pasta 'BIOMES' pode causar erros de script LUA (ignore isso se estiver importando uma pasta 'BIOMES' renomeada/modificada).\n\nContinuar mesmo assim?",
+            "ques_pt2": "\n\nEsta pasta contém todos os arquivos MXML/EXML necessários para a conversão do bioma em dados do PLUMGEN. Sem ele, os dados ESTARÃO faltando.\n\nNão recomendo importar pastas que não sejam 'BIOMES'.\n\nRenomear a pasta 'BIOMES' pode causar erros de script LUA (ignore isso se estiver importando uma pasta 'BIOMES' renomeada/modificada).\n\nContinuar mesmo assim?",
             "overwrite_ques_title": "Sobrescrever Dados?",
-            "overwrite_ques_desc": "---------------------------AVISO---------------------------\n\nIsso substituirá TODO o seu trabalho pelos novos dados EXML importados. \n\nSe você deseja importar EXML sem perder seu trabalho atual:\n\n(Recomendado) Corrigir 1:\nA) Para cada item de objetos de bioma, clique em Presets > Salvar Bioma como Preset. B) Adicione uma nova pasta 'BIOMES' à '_BIOMES Exmls Folder Goes Here' e importe o EXML. C) Clique em Presets > Importar Predefinições de Bioma e clique em cada arquivo que você acabou de salvar.\n\n(Avançado) Corrigir 2:\nA) Clique em 'Não', B) Exportar, C) Extrair EXML com AMUMSS ou MBINCompiler (do arquivo PAK), D) Adicionar (ou combinar) pasta(s) 'BIOMES' à '_BIOMES Exmls Folder Goes Here', E) Importar EXML\n\nDeseja continuar?\n\n---------------------------AVISO---------------------------",
-            "after_before_next_ques_desc": "Foi a pasta 'BIOMES' no diretório '_BIOMES Exmls Folder Goes Here' criada após a atualização 'NEXT' do NMS?\n(Atualização 1.5-Julho, 2018)\n\nSim = Depois\nNão = Antes\n\n--- Responder incorretamente ISSO causará problemas. ---"
+            "overwrite_ques_desc": "---------------------------AVISO---------------------------\n\nIsso substituirá TODO o seu trabalho pelos novos dados MXML/EXML importados. \n\nSe você deseja importar XML sem perder seu trabalho atual:\n\n(Recomendado) Corrigir 1:\nA) Para cada item de objetos de bioma, clique em Presets > Salvar Bioma como Preset. B) Adicione uma nova pasta 'BIOMES' à '_BIOMES Xmls Folder Goes Here' e importe o EXML. C) Clique em Presets > Importar Predefinições de Bioma e clique em cada arquivo que você acabou de salvar.\n\n(Avançado) Corrigir 2:\nA) Clique em 'Não', B) Exportar, C) Extrair MXML/EXML com AMUMSS ou MBINCompiler (do arquivo PAK), D) Adicionar (ou combinar) pasta(s) 'BIOMES' à '_BIOMES Xmls Folder Goes Here', E) Importar EXML\n\nDeseja continuar?\n\n---------------------------AVISO---------------------------",
+            "after_before_next_ques_desc": "Foi a pasta 'BIOMES' no diretório '_BIOMES Xmls Folder Goes Here' criada após a atualização 'NEXT' do NMS?\n(Atualização 1.5-Julho, 2018)\n\nSim = Depois\nNão = Antes\n\n--- Responder incorretamente ISSO causará problemas. ---"
         },
         "complete_template": {
             "info_title": "Novo Modelo de Bioma Adicionado",
@@ -5121,7 +5121,7 @@
             "Question": "Pergunta",
             "desc_3_pt1": "Nenhuma pasta 'BIOMES' encontrada no diretório: \n\n",
             "desc_3_pt2": "\n\nEsta pasta contém todos os arquivos EXML necessários para a conversão do bioma em um modelo de bioma (CSV). Sem ela, dados FALTARÃO.\n\n*Eu não recomendo importar pastas que não sejam 'BIOMES'.\n*Renomear a pasta 'BIOMES' pode causar erros de script LUA (ignore isso se estiver importando uma pasta 'BIOMES' renomeada/modificada).\n\nContinuar mesmo assim?",
-            "desc_4": "A pasta 'BIOMES' no diretório '_BIOMES Exmls Folder Goes Here' foi criada após a atualização 'NEXT' do NMS?\n(Atualização 1.5-Julho, 2018)\n\nSim = Após\nNão = Antes\n\n--- Responder isso incorretamente CAUSARÁ problemas. ---",
+            "desc_4": "A pasta 'BIOMES' no diretório '_BIOMES Xmls Folder Goes Here' foi criada após a atualização 'NEXT' do NMS?\n(Atualização 1.5-Julho, 2018)\n\nSim = Após\nNão = Antes\n\n--- Responder isso incorretamente CAUSARÁ problemas. ---",
             "template_title": "Insira o nome do arquivo de modelo",
             "template_desc": "Como você quer nomear este modelo de bioma?\n\nUse um nome de arquivo único para evitar sobrescrever qualquer arquivo .csv com o mesmo nome na sua pasta '_Biome Templates'.\n\nDigite apenas números, letras ou sublinhados. Não adicione .csv no final.",
             "Invalid_Filename_title": "Nome de Arquivo Inválido",
@@ -5137,7 +5137,7 @@
             "missing_json_pt1": "O caminho do arquivo JSON não existe: \n\n",
             "missing_json_pt2": "\n\nPor favor, não renomeie ou delete este arquivo JSON.",
             "error_missing_16_title": "Problemas na Exportação - Importar JSON Padrão?",
-            "error_missing_16_desc": "A lista de arquivos de bioma importados contém menos de 16 entradas! \n\nVocê deveria ter recebido uma mensagem de erro dizendo para reimportar os arquivos EXML. \n\nUma solução alternativa é importar dados JSON padrão para criar uma tela básica (ou você pode voltar e importar arquivos EXML).\n\nEu não recomendo isso se você não souber o que está fazendo...\n\nContinuar substituindo os dados de exportação com uma tela padrão?\n\nPara sua informação: Isso substituirá qualquer/todos os seus dados de spawner de bioma atuais.\nIsso não substituirá sua atual Lista de Objetos do Bioma.",
+            "error_missing_16_desc": "A lista de arquivos de bioma importados contém menos de 17 entradas! \n\nVocê deveria ter recebido uma mensagem de erro dizendo para reimportar os arquivos EXML. \n\nUma solução alternativa é importar dados JSON padrão para criar uma tela básica (ou você pode voltar e importar arquivos EXML).\n\nEu não recomendo isso se você não souber o que está fazendo...\n\nContinuar substituindo os dados de exportação com uma tela padrão?\n\nPara sua informação: Isso substituirá qualquer/todos os seus dados de spawner de bioma atuais.\nIsso não substituirá sua atual Lista de Objetos do Bioma.",
             "export_info_title": "Janela de Exportação",
             "export_info_desc": "Qualquer alteração feita na próxima janela será salva automaticamente."
         },
@@ -5245,13 +5245,13 @@
         },
         "export_settings_window": {
             "main_title": "Menu de Exportação",
-            "dr_label": "[+] = Mais desempenho pesado\n[-] = Incompatível com mods que alteram globais de GRÁFICOS E AMBIENTE\n = Insira letras, números ou _ - . (sem espaços vazios)",
+            "dr_label": "Insira letras, números ou _ - . ",
             "draw_dist_label": "Selecionar Nível de Detalhe e Distância de Visão:",
             "dr_checkbox": "Aumentar distância de renderização de props [+]",
             "global_checkbox": "Aumentar limite de distância de renderização global/reduzir tempo de desaparecimento [+][-]",
-            "Mod_Author": "*Autor do Mod:",
-            "Biomes_Filename": "*Nome do Arquivo de Biomas:",
-            "Spawner_Filename": "*Nome do Arquivo de Spawner:",
+            "Mod_Author": "Autor do Mod:",
+            "Biomes_Filename": "Nome do Arquivo de Biomas:",
+            "Spawner_Filename": "Nome do Arquivo de Spawner:",
             "Export": "Exportar"
         },
         "export_all_files": {
@@ -5264,8 +5264,8 @@
             "Error_Desc_6": "Nome do Arquivo de Spawner inválido. Por favor, insira letras, números ou _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Spawner: < 16 Sub-biomas",
-            "spawner_crash_desc": "Spawner: Seu spawner contém menos de 16 sub-biomas. Usar este mod do Spawner FARÁ o jogo travar. Selecione Ferramentas > Substituir Dados do Spawner e adicione objetos de bioma a cada sub-bioma.\n\nContinuar mesmo assim?",
+            "spawner_crash_title": "Spawner: < 17 Sub-biomas",
+            "spawner_crash_desc": "Spawner: Seu spawner contém menos de 17 sub-biomas. Usar este mod do Spawner FARÁ o jogo travar. Selecione Ferramentas > Substituir Dados do Spawner e adicione objetos de bioma a cada sub-bioma.\n\nContinuar mesmo assim?",
             "spawner_crash_2_title": "Spawner: Listas de Sub-biomas Vazias",
             "spawner_crash_2_desc": "Spawner: Lista vazia detectada em pelo menos um Tipo de Bloco de Sub-bioma.*\nUsar este mod do Spawner FARÁ o jogo travar.\n\nContinuar mesmo assim?",
             "missing_data_title": "Dados Ausentes",
@@ -5482,7 +5482,7 @@
         "filemenu_view_gen": {
             "check_update": "Проверить обновление PLUMGEN",
             "Update": "Обновление",
-            "make_template": "Создать шаблон биома из EXML",
+            "make_template": "Создать шаблон биома из XML",
             "auto_rename": "Автоматически переименовать все биомы",
             "reset_auto_rename": "Сбросить автоматическое переименование",
             "Exit": "Выход",
@@ -5510,7 +5510,7 @@
             "Rename": "Переименовать",
             "Duplicate_Biome": "Дублировать выбранный биом",
             "Duplicate_Prop": "Дублировать выбранную флору",
-            "Import": "Импорт EXML/слияние",
+            "Import": "Импорт XML/слияние",
             "Continue": "Продолжить ",
             "Save": "Сохранить",
             "Save_Model": "Сохранить",
@@ -5539,10 +5539,10 @@
             "landmarks_lb": " Средние объекты:\nФлора с более высоким расстоянием прорисовки и средним до большого масштаба.\nнапример, деревья стандартного размера.",
             "objects_lb": " Объекты:\nФлора с более низким расстоянием прорисовки и меньшим масштабом.\nнапример, камни и кустарники стандартного размера.",
             "detail_objects_lb": " Детальные объекты:\nФлора с самым низким расстоянием прорисовки и самым маленьким масштабом.\nнапример, трава стандартного размера и маленькие растения. Для справки: в этой категории содержится наибольшее количество флоры в стандартной игре.",
-            "biome_template_label": " Биом .csv:\nГигантская коллекция 'Данных о спавне объектов' из файлов биома .MBIN. Щелкните любую кнопку 'Добавить', чтобы создать новый биом (или флору) на основе выбранного в настоящее время .csv. Щелкните Файл > Создать биом .csv из EXML, чтобы создать свой собственный биом .csv.",
-            "csv_combo": " Биом .csv:\nГигантская коллекция 'Данных о спавне объектов' из файлов биома .MBIN. Щелкните любую кнопку 'Добавить', чтобы создать новый биом (или флору) на основе выбранного в настоящее время .csv. Щелкните Файл > Создать биом .csv из EXML, чтобы создать свой собственный биом .csv.",
+            "biome_template_label": " Биом .csv:\nГигантская коллекция 'Данных о спавне объектов' из файлов биома .MBIN. Щелкните любую кнопку 'Добавить', чтобы создать новый биом (или флору) на основе выбранного в настоящее время .csv. Щелкните Файл > Создать биом .csv из XML, чтобы создать свой собственный биом .csv.",
+            "csv_combo": " Биом .csv:\nГигантская коллекция 'Данных о спавне объектов' из файлов биома .MBIN. Щелкните любую кнопку 'Добавить', чтобы создать новый биом (или флору) на основе выбранного в настоящее время .csv. Щелкните Файл > Создать биом .csv из XML, чтобы создать свой собственный биом .csv.",
             "gen_using_template_data_cb": "Использует выбранные пути к файлам сцен из .csv в качестве ключа при добавлении новых биомов/флоры с помощью кнопок 'Добавить'. Если оставить без изменений, он все равно использует данные .csv, но придерживается стандартного списка путей к файлам сцен для ключа. Он не добавит флору в список биомной флоры, если таковая не будет найдена.",
-            "import_exml_button": "Анализируйте файлы EXML в вашей папке '_BIOMES Exmls Folder Goes Here' и преобразуйте их в формат PLUMGEN. \n\nДля объединения списков биомов СНАЧАЛА переместите все папки 'BIOMES' в 'BEFGH', ЗАТЕМ импортируйте.",
+            "import_exml_button": "Анализируйте файлы MXML/EXML в вашей папке '_BIOMES Xmls Folder Goes Here' и преобразуйте их в формат PLUMGEN. \n\nДля объединения списков биомов СНАЧАЛА переместите все папки 'BIOMES' в 'BEFGH', ЗАТЕМ импортируйте.",
             "model_lb": "Флора после строки '--' являются предварительными сценами или сценами, обычно находящимися в другой категории расстояния прорисовки флоры. Они были перемещены сюда, чтобы расширить расстояние прорисовки для этой флоры (например, некоторая флора не имеет импостеров уровня деталей, поэтому вы можете переместить их в удаленные объекты). "
         },
         "help": {
@@ -5689,8 +5689,8 @@
             "warn_title": "Проблема с файлами объектов биома",
             "warn_desc_pt1": "Импортированный список файлов объектов биома содержит ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nЭти файлы могут содержать уникальные объекты с уникальными атрибутами, например, камни слов, которые PLUMGEN сделает неинтерактивными.\n\nДа = Автоматическое удаление этих файлов для вас из списка объектов биома, чтобы объекты оставались с уникальными атрибутами.\n\nНет = Вручную удалите проблемные MBIN в папке /OBJECTS/.\n\n(Если найдено 200+, удалите подпапки по мере необходимости перед импортом)",
-            "warn_missing_title": " 16 записей биома",
-            "warn_missing_desc": "Отсутствующий или импортированный BIOMEFILENAMES.EXML содержит менее 16 записей под-биомов, фиксированный массив. Это происходит с устаревшими версиями NMS, которые поддерживали только 10 под-биомов.\n\n(Рекомендуется) Исправление 1: После щелчка 'Экспорт' выберите 'Нет', чтобы создать ванильное полотно, затем добавьте биомы вручную.\n\n(Продвинутое) Исправление 2: Добавьте ДОПОЛНИТЕЛЬНЫЙ обновленный ванильный (или пользовательский) BIOMEFILENAMES.EXML в верхний каталог папки импорта. Питон будет обрабатывать его первым, затем обрабатывать устаревший файл BFN, пытаясь объединить.",
+            "warn_missing_title": " 17 записей биома",
+            "warn_missing_desc": "Отсутствующий или импортированный BIOMEFILENAMES содержит менее 17 записей под-биомов, фиксированный массив. Это происходит с устаревшими версиями NMS, которые поддерживали только 10 под-биомов.\n\n(Рекомендуется) Исправление 1: После щелчка 'Экспорт' выберите 'Нет', чтобы создать ванильное полотно, затем добавьте биомы вручную.\n\n(Продвинутое) Исправление 2: Добавьте ДОПОЛНИТЕЛЬНЫЙ обновленный ванильный (или пользовательский) BIOMEFILENAMES в верхний каталог папки импорта. Питон будет обрабатывать его первым, затем обрабатывать устаревший файл BFN, пытаясь объединить.",
             "info_title": "Импорт EXML завершен",
             "info_desc": "Импорт EXML завершен. Все соответствующие данные биома добавлены."
         },
@@ -5699,13 +5699,13 @@
             "no_dir_pt1": "Директория импорта не существует: \n\n",
             "no_dir_pt2": "\n\nПожалуйста, не удаляйте и не переименовывайте эту директорию.",
             "empty_dir_pt1": "Директория импорта пуста: \n\n",
-            "empty_dir_pt2": "\n\nДекомпилируйте MBIN в EXML, затем переместите одну или несколько папок 'BIOMES' в эту директорию.\nСм.: '_Biome Templates/__template README.txt' для получения дополнительной информации.",
+            "empty_dir_pt2": "\n\nДекомпилируйте MBIN в MXML, затем переместите одну или несколько папок 'BIOMES' в эту директорию.\nСм.: '_Biome Templates/__template README.txt' для получения дополнительной информации.",
             "Question": "Вопрос",
             "ques_pt1": "В директории не найдена папка 'BIOMES': \n\n",
-            "ques_pt2": "\n\nЭта папка содержит все необходимые файлы EXML для преобразования биома в данные PLUMGEN. Без нее данные БУДУТ отсутствовать.\n\nЯ не рекомендую импортировать папки, отличные от 'BIOMES'.\n\nПереименование папки 'BIOMES' может вызвать ошибки сценариев LUA (игнорируйте это, если импортируется переименованная/измененная папка 'BIOMES').\n\nПродолжить в любом случае?",
+            "ques_pt2": "\n\nЭта папка содержит все необходимые файлы MXML/EXML для преобразования биома в данные PLUMGEN. Без нее данные БУДУТ отсутствовать.\n\nЯ не рекомендую импортировать папки, отличные от 'BIOMES'.\n\nПереименование папки 'BIOMES' может вызвать ошибки сценариев LUA (игнорируйте это, если импортируется переименованная/измененная папка 'BIOMES').\n\nПродолжить в любом случае?",
             "overwrite_ques_title": "Перезаписать данные?",
-            "overwrite_ques_desc": "---------------------------ПРЕДУПРЕЖДЕНИЕ---------------------------\n\nЭто заменит ВСЕ ваши работы на новые импортированные данные EXML. \n\nЕсли вы хотите импортировать EXML, не потеряв текущую работу:\n\n(Рекомендуется) Исправление 1:\nA) Для каждого элемента объектов биома нажмите 'Шаблоны' > Сохранить биом как шаблон. B) Добавьте новую папку 'BIOMES' в '_BIOMES Exmls Folder Goes Here' и импортируйте EXML. C) Нажмите 'Шаблоны' > Импорт шаблонов биомов и выберите каждый файл, который вы только что сохранили.\n\n(Продвинутое) Исправление 2:\nA) Нажмите 'Нет', B) Экспорт, C) Извлеките EXML с помощью AMUMSS или MBINCompiler (из файла PAK), D) Добавьте (или объедините) папку 'BIOMES' в '_BIOMES Exmls Folder Goes Here', E) Импортируйте EXML\n\nВы хотите продолжить?\n\n---------------------------ПРЕДУПРЕЖДЕНИЕ---------------------------",
-            "after_before_next_ques_desc": "Была ли папка 'BIOMES' в каталоге '_BIOMES Exmls Folder Goes Here' создана после обновления NMS 'NEXT'?\n(Обновление 1.5-Июль, 2018)\n\nYes = После\nNo = До\n\n--- Неправильный ответ на этот вопрос МОЖЕТ вызвать проблемы. ---"
+            "overwrite_ques_desc": "---------------------------ПРЕДУПРЕЖДЕНИЕ---------------------------\n\nЭто заменит ВСЕ ваши работы на новые импортированные данные MXML/EXML. \n\nЕсли вы хотите импортировать XML, не потеряв текущую работу:\n\n(Рекомендуется) Исправление 1:\nA) Для каждого элемента объектов биома нажмите 'Шаблоны' > Сохранить биом как шаблон. B) Добавьте новую папку 'BIOMES' в '_BIOMES Xmls Folder Goes Here' и импортируйте EXML. C) Нажмите 'Шаблоны' > Импорт шаблонов биомов и выберите каждый файл, который вы только что сохранили.\n\n(Продвинутое) Исправление 2:\nA) Нажмите 'Нет', B) Экспорт, C) Извлеките MXML/EXML с помощью AMUMSS или MBINCompiler (из файла PAK), D) Добавьте (или объедините) папку 'BIOMES' в '_BIOMES Xmls Folder Goes Here', E) Импортируйте EXML\n\nВы хотите продолжить?\n\n---------------------------ПРЕДУПРЕЖДЕНИЕ---------------------------",
+            "after_before_next_ques_desc": "Была ли папка 'BIOMES' в каталоге '_BIOMES Xmls Folder Goes Here' создана после обновления NMS 'NEXT'?\n(Обновление 1.5-Июль, 2018)\n\nYes = После\nNo = До\n\n--- Неправильный ответ на этот вопрос МОЖЕТ вызвать проблемы. ---"
         },
         "complete_template": {
             "info_title": "Добавлен новый шаблон биома",
@@ -5720,7 +5720,7 @@
             "Question": "Вопрос",
             "desc_3_pt1": "Папка 'BIOMES' не найдена в каталоге: \n\n",
             "desc_3_pt2": "\n\nЭта папка содержит все необходимые файлы EXML для преобразования биома в шаблон биома (CSV). Без этого данные БУДУТ отсутствовать.\n\n*Не рекомендую импортировать папки, отличные от 'BIOMES'.\n*Переименование папки 'BIOMES' может вызвать ошибки в скриптах LUA (игнорируйте это, если импортируете переименованную/модифицированную папку 'BIOMES').\n\nПродолжить все равно?",
-            "desc_4": "Папка 'BIOMES' в каталоге '_BIOMES Exmls Folder Goes Here' была создана после обновления NMS 'NEXT'?\n(Обновление 1.5-июль, 2018)\n\nДа = После\nНет = До\n\n--- Неправильный ответ вызовет проблемы. ---",
+            "desc_4": "Папка 'BIOMES' в каталоге '_BIOMES Xmls Folder Goes Here' была создана после обновления NMS 'NEXT'?\n(Обновление 1.5-июль, 2018)\n\nДа = После\nНет = До\n\n--- Неправильный ответ вызовет проблемы. ---",
             "template_title": "Введите имя файла шаблона",
             "template_desc": "Как вы хотите назвать этот шаблон биома?\n\nИспользуйте уникальное имя файла, чтобы предотвратить перезапись любого .csv файла с таким же именем в вашей папке '_Biome Templates'.\n\nВведите только цифры, буквы или подчеркивания. Не добавляйте .csv в конце.\n",
             "Invalid_Filename_title": "Недопустимое имя файла",
@@ -5736,7 +5736,7 @@
             "missing_json_pt1": "Путь к файлу JSON не существует: \n\n",
             "missing_json_pt2": "\n\nПожалуйста, не переименовывайте и не удаляйте этот файл JSON.",
             "error_missing_16_title": "Проблемы с экспортом - импортировать стандартный JSON?",
-            "error_missing_16_desc": "Список импортированных файлов биома содержит менее 16 записей! \n\nВы должны были получить сообщение об ошибке с просьбой повторно импортировать файлы EXML. \n\nОдним из альтернативных решений является импорт данных ванильного JSON для создания базового холста (или вы можете вернуться и импортировать файлы EXML).\n\nНе рекомендую это, если вы не знаете, что делаете...\n\nПродолжить замену экспортных данных на стандартный холст?\n\nК вашему сведению: Это заменит любые/все ваши текущие данные спаунера биома.\nЭто не заменит ваш текущий список объектов биома.",
+            "error_missing_16_desc": "Список импортированных файлов биома содержит менее 17 записей! \n\nВы должны были получить сообщение об ошибке с просьбой повторно импортировать файлы EXML. \n\nОдним из альтернативных решений является импорт данных ванильного JSON для создания базового холста (или вы можете вернуться и импортировать файлы EXML).\n\nНе рекомендую это, если вы не знаете, что делаете...\n\nПродолжить замену экспортных данных на стандартный холст?\n\nК вашему сведению: Это заменит любые/все ваши текущие данные спаунера биома.\nЭто не заменит ваш текущий список объектов биома.",
             "export_info_title": "Окно экспорта",
             "export_info_desc": "Любые изменения, внесенные в следующем окне, будут сохранены автоматически."
         },
@@ -5844,13 +5844,13 @@
         },
         "export_settings_window": {
             "main_title": "Меню экспорта",
-            "dr_label": "[+] = Большая производительность\n[-] = Несовместимо с модификациями, изменяющими глобальные настройки ГРАФИКИ и ОКРУЖЕНИЯ\n = Введите буквы, числа или _ - . (без пробелов)",
+            "dr_label": "Введите буквы, числа или _ - . ",
             "draw_dist_label": "Выберите уровень детализации и расстояние прорисовки:",
             "dr_checkbox": "Увеличить дальность отрисовки объектов [+]",
             "global_checkbox": "Увеличить предел глобальной дальности отрисовки/уменьшить время затухания [+][-]",
-            "Mod_Author": "*Автор модификации:",
-            "Biomes_Filename": "*Имя файла биомов:",
-            "Spawner_Filename": "*Имя файла спавнера:",
+            "Mod_Author": "Автор модификации:",
+            "Biomes_Filename": "Имя файла биомов:",
+            "Spawner_Filename": "Имя файла спавнера:",
             "Export": "Экспорт"
         },
         "export_all_files": {
@@ -5863,8 +5863,8 @@
             "Error_Desc_6": "Неверное Имя файла спавнера. Введите буквы, числа или _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Спавнер: < 16 подбиомов",
-            "spawner_crash_desc": "Спавнер: Ваш спавнер содержит менее 16 подбиомов. Использование этой модификации спавнера ПРИВЕДЕТ к сбою вашей игры. Выберите Инструменты > Заменить данные спавнера, затем добавьте объекты биомов в каждый подбиом.\n\nПродолжить?",
+            "spawner_crash_title": "Спавнер: < 17 подбиомов",
+            "spawner_crash_desc": "Спавнер: Ваш спавнер содержит менее 17 подбиомов. Использование этой модификации спавнера ПРИВЕДЕТ к сбою вашей игры. Выберите Инструменты > Заменить данные спавнера, затем добавьте объекты биомов в каждый подбиом.\n\nПродолжить?",
             "spawner_crash_2_title": "Спавнер: Пустые списки подбиомов",
             "spawner_crash_2_desc": "Спавнер: Обнаружен пустой список хотя бы в одном типе тайла подбиома.*\nИспользование этой модификации спавнера ПРИВЕДЕТ к сбою вашей игры.\n\nПродолжить?",
             "missing_data_title": "Отсутствующие данные",
@@ -6081,7 +6081,7 @@
         "filemenu_view_gen": {
             "check_update": "Buscar actualización de PLUMGEN",
             "Update": "Actualización",
-            "make_template": "Hacer plantilla de Bioma desde EXML",
+            "make_template": "Hacer plantilla de Bioma desde XML",
             "auto_rename": "Auto-Renombrar todos los Biomas",
             "reset_auto_rename": "Restablecer Auto-Renombrar",
             "Exit": "Salir",
@@ -6109,7 +6109,7 @@
             "Rename": "Renombrar",
             "Duplicate_Biome": "Duplicar Bioma Seleccionado",
             "Duplicate_Prop": "Duplicar Flora Seleccionada",
-            "Import": "Importar EXMLs/Mesclar",
+            "Import": "Importar XMLs/Mesclar",
             "Continue": "Continuar ",
             "Save": "Guardar",
             "Save_Model": "Guardar",
@@ -6138,10 +6138,10 @@
             "landmarks_lb": " Objeto Intermedio:\nFlora con mayor distancia de dibujo y escala mediana a grande.\np. ej. árboles de tamaño vainilla.",
             "objects_lb": " Objetos:\nFlora con menor distancia de dibujo y escala más pequeña.\np. ej. rocas de tamaño vainilla, arbustos.",
             "detail_objects_lb": " Objetos Detallados:\nFlora con la menor distancia de dibujo y la escala más pequeña.\np. ej. pasto de tamaño vainilla, plantas pequeñas. Para referencia, esta categoría contiene el mayor número de flora en el juego vainilla.",
-            "biome_template_label": " Bioma .csv:\nUna colección gigante de 'Datos de Aparición de Objetos' de archivos .MBIN de biomas. Al hacer clic en cualquier botón 'Agregar', se creará un nuevo bioma (o flora) basado en el .csv seleccionado actualmente. Haga clic en Archivo > Crear Bioma .csv desde EXML para crear su propio bioma .csv.",
-            "csv_combo": " Bioma .csv:\nUna colección gigante de 'Datos de Aparición de Objetos' de archivos .MBIN de biomas. Al hacer clic en cualquier botón 'Agregar', se creará un nuevo bioma (o flora) basado en el .csv seleccionado actualmente. Haga clic en Archivo > Crear Bioma .csv desde EXML para crear su propio bioma .csv.",
+            "biome_template_label": " Bioma .csv:\nUna colección gigante de 'Datos de Aparición de Objetos' de archivos .MBIN de biomas. Al hacer clic en cualquier botón 'Agregar', se creará un nuevo bioma (o flora) basado en el .csv seleccionado actualmente. Haga clic en Archivo > Crear Bioma .csv desde XML para crear su propio bioma .csv.",
+            "csv_combo": " Bioma .csv:\nUna colección gigante de 'Datos de Aparición de Objetos' de archivos .MBIN de biomas. Al hacer clic en cualquier botón 'Agregar', se creará un nuevo bioma (o flora) basado en el .csv seleccionado actualmente. Haga clic en Archivo > Crear Bioma .csv desde XML para crear su propio bioma .csv.",
             "gen_using_template_data_cb": "Utiliza las rutas de archivo SCENE .csv de biomas seleccionados como la clave al agregar nuevos biomas/flora usando los botones 'Agregar'. Si se deja desactivado, todavía usa los datos .csv pero se adhiere a una lista de rutas de archivo SCENE estándar para la clave. No agregará flora a la lista de Flora del Bioma si no se encuentra ninguna.",
-            "import_exml_button": "Analiza archivos EXML en su carpeta '_BIOMES Exmls Folder Goes Here' y convierte al formato de PLUMGEN. \n\nPara fusionar listas de biomas PRIMERO, mueva todas las carpetas 'BIOMES' a 'BEFGH', LUEGO importe.",
+            "import_exml_button": "Analiza archivos MXML/EXML en su carpeta '_BIOMES Xmls Folder Goes Here' y convierte al formato de PLUMGEN. \n\nPara fusionar listas de biomas PRIMERO, mueva todas las carpetas 'BIOMES' a 'BEFGH', LUEGO importe.",
             "model_lb": "La flora después de la línea '--' son ESCENAS de prelanzamiento o ESCENAS normalmente en una categoría de distancia de dibujo de flora diferente. Se han movido aquí para extender la distancia de dibujo de esas flores (por ejemplo, algunas flores no tienen impostores de Nivel de Detalle, por lo que podría mover esas a Objetos Distantes)."
         },
         "help": {
@@ -6288,8 +6288,8 @@
             "warn_title": "Problema con los archivos de objetos del bioma",
             "warn_desc_pt1": "La lista de archivos de objetos de bioma importados contiene ",
             "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nEstos archivos pueden contener props únicos con atributos únicos, como piedras de palabras, que PLUMGEN hará que no sean interactivas.\n\nSí = Eliminar automáticamente estos archivos de su Lista de Objetos de Bioma para que los props conserven atributos únicos.\n\nNo = Elimine manualmente los MBIN problemáticos en la carpeta /OBJECTS/.\n\n(Si se encuentran 200+, elimine subcarpetas según sea necesario antes de importar)",
-            "warn_missing_title": " 16 Entradas de Biomas",
-            "warn_missing_desc": "El archivo BIOMEFILENAMES.EXML faltante o importado contiene menos de 16 subentradas de biomas, una matriz de tamaño fijo. Esto ocurre con versiones antiguas de NMS que solo admitían 10 sub-biomas.\n\n(Recomendado) Solución 1: Después de hacer clic en 'Exportar', elija 'NO' para crear un lienzo vainilla, luego agregue biomas manualmente.\n\n(Solución avanzada) Solución 2: Agregue un archivo BIOMEFILENAMES.EXML vainilla (o personalizado) EXTRA actualizado a la carpeta de importación del directorio superior. Python lo procesará primero, luego manejará el archivo BFN desactualizado, intentando una fusión.",
+            "warn_missing_title": " 17 Entradas de Biomas",
+            "warn_missing_desc": "El archivo BIOMEFILENAMES faltante o importado contiene menos de 17 subentradas de biomas, una matriz de tamaño fijo. Esto ocurre con versiones antiguas de NMS que solo admitían 10 sub-biomas.\n\n(Recomendado) Solución 1: Después de hacer clic en 'Exportar', elija 'NO' para crear un lienzo vainilla, luego agregue biomas manualmente.\n\n(Solución avanzada) Solución 2: Agregue un archivo BIOMEFILENAMES vainilla (o personalizado) EXTRA actualizado a la carpeta de importación del directorio superior. Python lo procesará primero, luego manejará el archivo BFN desactualizado, intentando una fusión.",
             "info_title": "Importación EXML Completada",
             "info_desc": "Importación EXML completa. Todos los datos relevantes del bioma agregados."
         },
@@ -6298,13 +6298,13 @@
             "no_dir_pt1": "El directorio de importación no existe: \n\n",
             "no_dir_pt2": "\n\nPor favor, no elimine ni cambie el nombre de este directorio.",
             "empty_dir_pt1": "El directorio de importación está vacío: \n\n",
-            "empty_dir_pt2": "\n\nDescomprima los MBIN a EXML, luego mueva una o más carpetas 'BIOMES' a este directorio.\nConsulte: '_Biome Templates/__template README.txt' para obtener más información.",
+            "empty_dir_pt2": "\n\nDescomprima los MBIN a MXML, luego mueva una o más carpetas 'BIOMES' a este directorio.\nConsulte: '_Biome Templates/__template README.txt' para obtener más información.",
             "Question": "Pregunta",
             "ques_pt1": "No se encontró la carpeta 'BIOMES' en el directorio: \n\n",
-            "ques_pt2": "\n\nEsta carpeta contiene todos los archivos EXML necesarios para la conversión del bioma en datos de PLUMGEN. Sin ella, faltarán datos.\n\nNo recomiendo importar carpetas que no sean 'BIOMES'.\n\nRenombrar la carpeta 'BIOMES' puede causar errores de script LUA (ignórelo si importa una carpeta 'BIOMES' renombrada/modificada).\n\n¿Desea continuar de todos modos?",
+            "ques_pt2": "\n\nEsta carpeta contiene todos los archivos MXML/EXML necesarios para la conversión del bioma en datos de PLUMGEN. Sin ella, faltarán datos.\n\nNo recomiendo importar carpetas que no sean 'BIOMES'.\n\nRenombrar la carpeta 'BIOMES' puede causar errores de script LUA (ignórelo si importa una carpeta 'BIOMES' renombrada/modificada).\n\n¿Desea continuar de todos modos?",
             "overwrite_ques_title": "¿Sobrescribir datos?",
-            "overwrite_ques_desc": "---------------------------ADVERTENCIA---------------------------\n\nEsto reemplazará TODO su trabajo con los datos EXML recién importados. \n\nSi desea importar EXML sin perder su trabajo actual:\n\n(Recomendado) Solución 1:\nA) Para cada elemento de objetos de bioma, haga clic en Presets > Guardar bioma como preset. B) Agregue una nueva carpeta 'BIOMES' a '_BIOMES Exmls Folder Goes Here' e importe EXML. C) Haga clic en Presets > Importar presets de bioma y haga clic en cada archivo que acaba de guardar.\n\n(Solución avanzada) Solución 2:\nA) Haga clic en 'No', B) Exporte, C) Extraiga EXML con AMUMSS o MBINCompiler (desde el archivo PAK), D) Agregue (o combine) carpeta(s) 'BIOMES' a '_BIOMES Exmls Folder Goes Here', E) Importe EXML\n\n¿Desea continuar?\n\n---------------------------ADVERTENCIA---------------------------",
-            "after_before_next_ques_desc": "¿Se creó la carpeta 'BIOMES' en el directorio '_BIOMES Exmls Folder Goes Here' después de la actualización 'NEXT' de NMS?\n(Actualización 1.5-Julio, 2018)\n\nSí = Después\nNo = Antes\n\n--- Responder incorrectamente a esto CAUSARÁ problemas. ---"
+            "overwrite_ques_desc": "---------------------------ADVERTENCIA---------------------------\n\nEsto reemplazará TODO su trabajo con los datos MXML/EXML recién importados. \n\nSi desea importar XML sin perder su trabajo actual:\n\n(Recomendado) Solución 1:\nA) Para cada elemento de objetos de bioma, haga clic en Presets > Guardar bioma como preset. B) Agregue una nueva carpeta 'BIOMES' a '_BIOMES Xmls Folder Goes Here' e importe EXML. C) Haga clic en Presets > Importar presets de bioma y haga clic en cada archivo que acaba de guardar.\n\n(Solución avanzada) Solución 2:\nA) Haga clic en 'No', B) Exporte, C) Extraiga MXML/EXML con AMUMSS o MBINCompiler (desde el archivo PAK), D) Agregue (o combine) carpeta(s) 'BIOMES' a '_BIOMES Xmls Folder Goes Here', E) Importe EXML\n\n¿Desea continuar?\n\n---------------------------ADVERTENCIA---------------------------",
+            "after_before_next_ques_desc": "¿Se creó la carpeta 'BIOMES' en el directorio '_BIOMES Xmls Folder Goes Here' después de la actualización 'NEXT' de NMS?\n(Actualización 1.5-Julio, 2018)\n\nSí = Después\nNo = Antes\n\n--- Responder incorrectamente a esto CAUSARÁ problemas. ---"
         },
         "complete_template": {
             "info_title": "Nuevo Bioma Template Añadido",
@@ -6319,7 +6319,7 @@
             "Question": "Pregunta",
             "desc_3_pt1": "No se encontró la carpeta 'BIOMES' en el directorio: \n\n",
             "desc_3_pt2": "\n\nEsta carpeta contiene todos los archivos EXML necesarios para la conversión de biomas en un bioma template (CSV). Sin ella, los datos FALTARÁN.\n\nNo recomiendo importar carpetas que no sean 'BIOMES'.\nCambiar el nombre de la carpeta 'BIOMES' puede causar errores en el script LUA (ignórelo si importa una carpeta 'BIOMES' renombrada/modificada).\n\n¿Continuar de todos modos?",
-            "desc_4": "¿Se creó la carpeta 'BIOMES' en el directorio '_BIOMES Exmls Folder Goes Here' después de la actualización 'NEXT' de NMS?\n(Actualización 1.5-Julio, 2018)\n\nSí = Después\nNo = Antes\n\n--- Responder esto incorrectamente CAUSARÁ problemas. ---",
+            "desc_4": "¿Se creó la carpeta 'BIOMES' en el directorio '_BIOMES Xmls Folder Goes Here' después de la actualización 'NEXT' de NMS?\n(Actualización 1.5-Julio, 2018)\n\nSí = Después\nNo = Antes\n\n--- Responder esto incorrectamente CAUSARÁ problemas. ---",
             "template_title": "Ingrese el nombre del archivo de plantilla",
             "template_desc": "¿Cómo desea nombrar este bioma template?\n\nUtilice un nombre de archivo único para evitar sobrescribir cualquier archivo .csv con el mismo nombre en su carpeta '_Biome Templates'.\n\nIngrese solo números, letras o guiones bajos. No agregue .csv al final.\n",
             "Invalid_Filename_title": "Nombre de archivo no válido",
@@ -6335,7 +6335,7 @@
             "missing_json_pt1": "La ruta del archivo JSON no existe: \n\n",
             "missing_json_pt2": "\n\nPor favor, no cambie ni elimine este archivo JSON.",
             "error_missing_16_title": "Problemas al Exportar - ¿Importar JSON Vanilla?",
-            "error_missing_16_desc": "¡La lista de archivos de bioma importados contiene menos de 16 entradas! \n\nDebería haber recibido un mensaje de error que decía que volviera a importar los archivos EXML. \n\nUna solución alternativa es importar datos JSON vanilla para crear un lienzo básico (o puede volver atrás e importar archivos EXML).\n\nNo recomiendo esto si no sabes lo que estás haciendo...\n\n¿Continuar reemplazando los datos de exportación con un lienzo vanilla?\n\nFYI: Esto reemplazará cualquiera/todos sus datos de generador de bioma actuales.\nEsto no reemplazará su lista actual de objetos de bioma.",
+            "error_missing_16_desc": "¡La lista de archivos de bioma importados contiene menos de 17 entradas! \n\nDebería haber recibido un mensaje de error que decía que volviera a importar los archivos EXML. \n\nUna solución alternativa es importar datos JSON vanilla para crear un lienzo básico (o puede volver atrás e importar archivos EXML).\n\nNo recomiendo esto si no sabes lo que estás haciendo...\n\n¿Continuar reemplazando los datos de exportación con un lienzo vanilla?\n\nFYI: Esto reemplazará cualquiera/todos sus datos de generador de bioma actuales.\nEsto no reemplazará su lista actual de objetos de bioma.",
             "export_info_title": "Ventana de Exportación",
             "export_info_desc": "Cualquier cambio realizado en la siguiente ventana se guardará automáticamente."
         },
@@ -6443,13 +6443,13 @@
         },
         "export_settings_window": {
             "main_title": "Menú de Exportación",
-            "dr_label": "[+] = Más exigente en rendimiento\n[-] = Incompatible con modificaciones que cambian los globales de GRÁFICOS y MEDIO AMBIENTE\n = Ingrese letras, números o _ - . (sin espacios vacíos)",
+            "dr_label": "Ingrese letras, números o _ - . ",
             "draw_dist_label": "Seleccionar nivel de detalle y distancia de dibujo:",
             "dr_checkbox": "Aumentar la distancia de visualización de accesorios [+]",
             "global_checkbox": "Aumentar el límite de distancia de visualización global/disminuir el tiempo de atenuación [+][-]",
-            "Mod_Author": "*Autor de la Modificación:",
-            "Biomes_Filename": "*Nombre del Archivo de Biomas:",
-            "Spawner_Filename": "*Nombre del Archivo del Generador:",
+            "Mod_Author": "Autor de la Modificación:",
+            "Biomes_Filename": "Nombre del Archivo de Biomas:",
+            "Spawner_Filename": "Nombre del Archivo del Generador:",
             "Export": "Exportar"
         },
         "export_all_files": {
@@ -6462,8 +6462,8 @@
             "Error_Desc_6": "Nombre del Archivo del Generador no válido. Por favor, ingrese letras, números o _ - ."
         },
         "apply_export_settings": {
-            "spawner_crash_title": "Generador: < 16 Sub-biomas",
-            "spawner_crash_desc": "Generador: Su generador contiene menos de 16 sub-biomas. Usar este mod de Generador CAUSARÁ un bloqueo en su juego. Seleccione Herramientas > Reemplazar Datos del Generador, luego agregue objetos de bioma a cada sub-bioma.\n\n¿Continuar de todos modos?",
+            "spawner_crash_title": "Generador: < 17 Sub-biomas",
+            "spawner_crash_desc": "Generador: Su generador contiene menos de 17 sub-biomas. Usar este mod de Generador CAUSARÁ un bloqueo en su juego. Seleccione Herramientas > Reemplazar Datos del Generador, luego agregue objetos de bioma a cada sub-bioma.\n\n¿Continuar de todos modos?",
             "spawner_crash_2_title": "Generador: Listas de Sub-Biomas Vacías",
             "spawner_crash_2_desc": "Generador: Se detectó una lista vacía en al menos un tipo de baldosa de sub-bioma.*\nUsar este mod de Generador CAUSARÁ un bloqueo en su juego.\n\n¿Continuar de todos modos?",
             "missing_data_title": "Datos Faltantes",

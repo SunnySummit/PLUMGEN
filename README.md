@@ -1,4 +1,4 @@
-# Plumgen (v1.2)
+# Plumgen (v1.3)
 
 [![License](https://img.shields.io/github/license/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/blob/main/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/SunnySummit/PLUMGEN/total.svg)](https://github.com/SunnySummit/PLUMGEN/releases)
@@ -8,21 +8,46 @@
 
 ### App Features
 
-+ Make a detailed & aesthetically pleasing biome mod in as little as 30 seconds.
-+ IMPORT and merge multiple biome mods.
-+ Bulk replace OR multiply flora traits (scale, density, etc).
-+ Auto-rename and auto-add biomes to sub-biomes (for spawning).
-+ EXPORT directly to PAK, EXML, MBIN, and LUA (AMUMSS optional).
-+ "LUA-ize" or remix almost any biome mod.
-+ Save and share individual biomes (JSON files).
++ Create detailed & unique biomes in as little as 30 seconds!
++ Import and merge multiple large biome mods.
++ Modify or remix existing biome mods.
++ Export directly to MXML & MBIN folders.
++ Easily change flora attributes, like scale and density.
++ Automatically rename and sort biomes to sub-biomes (lush, frozen, etc).
++ Quickly save, retrieve, and share individual biome presets.
 + Validates all input and data = stable mods.
-+ Exhaustive error handling and logging (all done locally).
++ Exhaustive error handling and logging, all done locally.
 + Responsive and intuitive interface.
-+ And more!
++ Plus more!
 
 ### Changelog
 
 <details>
+
+#### Update v1.3:
+	
+	+ Please perform a clean install for Worlds Part 2: https://github.com/SunnySummit/PLUMGEN/releases
+		+ Tried to test everything myself, report any issues on github. :)
+	+ Added support for importing and modifying MXML file types.
+	+ Rewrote a few core parts, e.g. moved from PSARC Archive Tool to new HGPAKTool, made by monkeyman192.
+	+ New feature: Right-click 'New Biome' button, renamed from 'Add Biome', to generate multiple biomes.
+	+ Improved biome generation by doubling number of categories (keywords & suffixes) when matching similar props together.
+		+ This generates "themed" biomes e.g. trees grouped with grass, rocks, flowers, etc. Note: some randomized props still added.
+	+ The 'New Biome' button detects duplicate high density ground props and varies coverage/density if found.
+	+ New options for importing: Pre-Next, Next to Worlds Part 1, and Worlds Part 2 or later.
+	+ New top menu item to add *all* biomes to each sub-biome tile/tab, via. 'Biome Spawner' window: File > Add All Biomes To All Tiles.
+	+ Added Worlds Part 1 and 2 props to Vanilla+Pre NMS.csv. Added 2 new Worlds Part 2 CSVs (Reg & DeepWater)
+	+ Other:
+		+ Fixed an issue with missing props when clicking 'New Biome' = higher density biomes.
+		+ Reduced scale/draw distance of some props which caused clutter and/or low performance via. Vanilla+Pre NMS.csv.
+		+ Names of any empty Sub-Biome Tile Types/tabs found are now displayed when exporting.
+		+ Increased frequency of more varied props (when no CSV checkbox selected).
+		+ Colors and UI improvements.
+	+ IMPORTANT:
+		+ I decided to deprecate exporting to LUA. It isn't sustainable for me to maintain two export methods, esp. with Worlds-sized updates.
+		+ New features are English only. May update translations upon request.
+		+ Deprecated several custom export settings because EXML snippets are better for these types of mods (which don't require updates).
+			+ See: Lasagna 2 for examples of aforementioned mods: https://github.com/SunnySummit/LasagnaBiomeGeneration2
 
 #### Update v1.2:
 
@@ -170,14 +195,14 @@ Yeah, I used DeepL and a few other machine learning sources to translate. Consid
 
 ### Credits & Acknowledgements
 
-+ PSARC Archive Tool - Decompiles PAK files to MBIN
-+ [MBINCompiler](https://github.com/monkeyman192/MBINCompiler/) - Decompiles MBIN files to EXML
-+ [lxml](https://lxml.de/index.html) - Parses EXML files
++ [HGPAKtool](https://github.com/monkeyman192/HGPAKtool) *modified to decompile directories* - Decompiles PAK files to MBIN
++ [MBINCompiler](https://github.com/monkeyman192/MBINCompiler/) - Decompiles MBIN files to MXML
++ [lxml](https://lxml.de/index.html) - Parses EXML/MXML files
 + [cx_Freeze](https://pypi.org/project/cx-Freeze/) - Creates executables, high performance, cross-platform
 
 
 
-### Disclaimer/Notes
+### Disclaimer & Notes
 
 + PLUMGEN lets you import and mod almost any biomes. Always seek permission before distributing others' work.
 + Note: If a mod author grants you permission to share their work, they cannot later retract it, per Nexus Mods rules.

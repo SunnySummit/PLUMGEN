@@ -4,7 +4,7 @@ import os
 
 # create empty directories, move these to child folder
 empty_dirs = [
-    "build/_BIOMES Exmls Folder Goes Here",
+    "build/_BIOMES Xmls Folder Goes Here",
     "build/__Exported Mod Files"
 ]
 
@@ -18,12 +18,13 @@ build_options = {
         #("view", "view"),
         #("Resources", "Resources"),
         ("EMPTY_latest_versions.json", "Resources/latest_versions.json"), # replaces with blank one
-        ("EMPTY_plum_extract_biomes.xml", "Resources/plum_extract_biomes.xml"), # replaces with blank one
-        ("Resources/psarc.exe", "Resources/psarc.exe"),
+        #("EMPTY_plum_extract_biomes.xml", "Resources/plum_extract_biomes.xml"), # replaces with blank one
+        ("Resources/filename_hashes.json", "Resources/filename_hashes.json"),
+        #("Resources/psarc.exe", "Resources/psarc.exe"),
         ("Resources/Updater/complete_update.bat", "Resources/Updater/complete_update.bat"),
         ("logging.conf", "logging.conf"),
         ("logger_config.py", "logger_config.py"),
-        ("README.txt", "README.txt"),
+        ("README.md", "README.md"),
         ("LICENSE", "LICENSE"),
         ("_Extracted Vanilla Game Files/DO_NOT_CHANGE_ANY_FILES_HERE.txt", "_Extracted Vanilla Game Files/DO_NOT_CHANGE_ANY_FILES_HERE.txt"),
         
@@ -48,7 +49,7 @@ executables = [
 
 setup(
     name="_PLUMGEN",
-    version="1.0",
+    version="1.3",
     description="PLUMGEN",
     options={'build_exe': build_options},
     executables=executables
