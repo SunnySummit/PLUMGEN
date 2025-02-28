@@ -26,28 +26,28 @@
 
 #### Update v1.3:
 	
-	+ Please perform a clean install for Worlds Part 2: https://github.com/SunnySummit/PLUMGEN/releases
-		+ Tried to test everything myself, report any issues on github. :)
-	+ Added support for importing and modifying MXML file types.
-	+ Rewrote a few core parts, e.g. moved from PSARC Archive Tool to new HGPAKTool, made by monkeyman192.
-	+ New feature: Right-click 'New Biome' button, renamed from 'Add Biome', to generate multiple biomes.
-	+ Improved biome generation by doubling number of categories (keywords & suffixes) when matching similar props together.
-		+ This generates "themed" biomes e.g. trees grouped with grass, rocks, flowers, etc. Note: some randomized props still added.
-	+ The 'New Biome' button detects duplicate high density ground props and varies coverage/density if found.
-	+ New options for importing: Pre-Next, Next to Worlds Part 1, and Worlds Part 2 or later.
-	+ New top menu item to add *all* biomes to each sub-biome tile/tab, via. 'Biome Spawner' window: File > Add All Biomes To All Tiles.
-	+ Added Worlds Part 1 and 2 props to Vanilla+Pre NMS.csv. Added 2 new Worlds Part 2 CSVs (Reg & DeepWater)
-	+ Other:
-		+ Fixed an issue with missing props when clicking 'New Biome' = higher density biomes.
-		+ Reduced scale/draw distance of some props which caused clutter and/or low performance via. Vanilla+Pre NMS.csv.
-		+ Names of any empty Sub-Biome Tile Types/tabs found are now displayed when exporting.
-		+ Increased frequency of more varied props (when no CSV checkbox selected).
-		+ Colors and UI improvements.
-	+ IMPORTANT:
-		+ I decided to deprecate exporting to LUA. It isn't sustainable for me to maintain two export methods, esp. with Worlds-sized updates.
-		+ New features are English only. May update translations upon request.
-		+ Deprecated several custom export settings because EXML snippets are better for these types of mods (which don't require updates).
-			+ See: Lasagna 2 for examples of aforementioned mods: https://github.com/SunnySummit/LasagnaBiomeGeneration2
++ Please perform a clean install for Worlds Part 2: https://github.com/SunnySummit/PLUMGEN/releases
+	+ Tried to test everything myself, report any issues on github. :)
++ Added support for importing and modifying MXML file types.
++ Rewrote a few core parts, e.g. moved from PSARC Archive Tool to new HGPAKTool, made by monkeyman192.
++ New feature: Right-click 'New Biome' button, renamed from 'Add Biome', to generate multiple biomes.
++ Improved biome generation by doubling number of categories (keywords & suffixes) when matching similar props together.
+	+ This generates "themed" biomes e.g. trees grouped with grass, rocks, flowers, etc. Note: some randomized props still added.
++ The 'New Biome' button detects duplicate high density ground props and varies coverage/density if found.
++ New options for importing: Pre-Next, Next to Worlds Part 1, and Worlds Part 2 or later.
++ New top menu item to add *all* biomes to each sub-biome tile/tab, via. 'Biome Spawner' window: File > Add All Biomes To All Tiles.
++ Added Worlds Part 1 and 2 props to Vanilla+Pre NMS.csv. Added 2 new Worlds Part 2 CSVs (Reg & DeepWater)
++ Other:
+	+ Fixed an issue with missing props when clicking 'New Biome' = higher density biomes.
+	+ Reduced scale/draw distance of some props which caused clutter and/or low performance via. Vanilla+Pre NMS.csv.
+	+ Names of any empty Sub-Biome Tile Types/tabs found are now displayed when exporting.
+	+ Increased frequency of more varied props (when no CSV checkbox selected).
+	+ Colors and UI improvements.
++ IMPORTANT:
+	+ I decided to deprecate exporting to LUA. It isn't sustainable for me to maintain two export methods, esp. with Worlds-sized updates.
+	+ New features displayed in English. May update translations upon request.
+	+ Deprecated several custom export settings because EXML snippets are better for these types of mods (which don't require updates).
+		+ See: Lasagna 2 for examples of aforementioned mods: https://github.com/SunnySummit/LasagnaBiomeGeneration2
 
 #### Update v1.2:
 
