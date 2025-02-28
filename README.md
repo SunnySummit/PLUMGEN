@@ -123,22 +123,14 @@ Update v1.11.1b: Fix for importing outdated after-NEXT biomes.
 + **[Required]** Download .NET 6 - Select appropriate download under "Run desktop apps"
 	https://dotnet.microsoft.com/en-us/download/dotnet/6.0/runtime
 
-+ [*Optional*] PLUMGEN generates .LUA scripts too. AMUMSS is needed to make use of these .LUA scripts. AMUMSS Guide:
-	https://www.nexusmods.com/nomanssky/mods/2626
-
 ### Exporting Details
 
-After exporting, you'll find a folder inside '__Exported Mod Files' containing:
+After exporting, you'll find a folder inside '__Exported Mod Files' containing subfolders:
 
-+ PAKs - Your mods. How to install mods: https://nomanssky.fandom.com/wiki/Mods#Summary
-+ EXMLs - Look for any 'BIOMES' (or 'CUSTOMBIOMES') folder -> copy it to PLUMGEN's '_BIOMES Exmls Folder Goes Here' -> import. [1]
-+ MBINs - Compiled EXMLs.
-+ LUAs - To be used with AMUMSS (optional). [2]
++ MBINs - Your mods aka compiled MXMLs. How to install mods: https://nomanssky.fandom.com/wiki/Mods#Summary
++ MXMLs - Look for any 'BIOMES' (or 'CUSTOMBIOMES') folder -> copy it to PLUMGEN's '_BIOMES Xmls Folder Goes Here' -> import. [1]
 
 	*[1] If you have multiple BIOMES or CUSTOMBIOMES:  Rename the others, e.g. BIOMES2, BIOMES3, etc. PLUMGEN can auto-merge multiple mods via. this method: https://youtu.be/zzaeyRAobOQ?t=867
-
-	*[2] Spawner LUA may throw errors if you use any custom 'sub-biomes' (PLUMGEN's PAKs are designed to avoid this issue). Watch video^ for more info.
-
 
 ### Known Issues
 
