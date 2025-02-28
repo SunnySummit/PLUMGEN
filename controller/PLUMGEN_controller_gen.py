@@ -52,7 +52,7 @@ class PlumgenControllerGen():
                 self.biome_xmls_folder_dir = os.path.abspath(os.path.join(current_directory, self.subfolder))
                 self.default_bfn_folder_dir = os.path.abspath(os.path.join(current_directory, self.default_subfolder))
                 self.json_lang_path = os.path.abspath(os.path.join(self.default_bfn_folder_dir, 'languages.json'))
-                self.psarc_exe_path = os.path.abspath(current_directory, "Resources", "psarc.exe")
+                self.psarc_exe_path = os.path.abspath(os.path.join(current_directory, "Resources", "psarc.exe"))
             else:
                 # if running as script, use these paths:
                 current_directory = os.path.dirname(os.path.realpath(__file__))
