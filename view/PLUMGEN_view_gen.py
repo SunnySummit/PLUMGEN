@@ -2086,13 +2086,13 @@ class PlumgenViewGen:
                 if self.is_positive_integer(num_times): # validate input is positive integer
                     
                     num_times = int(num_times)  # convert string to int
-                    if num_times > 500:
-                        caution = messagebox.askyesno("Caution", 
-                            "Generating over 500 may cause crashes in-game in the galaxy map\ni think this is the cause? as of NMS v5.29-Jan, '25\nedit: might not be the case anymore with worlds 2, no time to test\n\nDo you want to proceed?", parent=self.window)
-                        if caution: # user clicks Yes
-                            self.add_default_biome(num_times)
-                    else:
-                        self.add_default_biome(num_times)
+                    #if num_times > 500:
+                    #    caution = messagebox.askyesno("Caution", 
+                    #        "Generating over 500 may cause crashes in-game in the galaxy map\ni think this is the cause? as of NMS v5.29-Jan, '25\nedit: might not be the case anymore with worlds 2, no time to test\n\nDo you want to proceed?", parent=self.window)
+                    #    if caution: # user clicks Yes
+                    #        self.add_default_biome(num_times)
+                    #else:
+                    self.add_default_biome(num_times)
 
                 else:
                     messagebox.showerror("Invalid Number", "Please enter a positive integer.", parent=self.window)
@@ -2587,7 +2587,7 @@ class PlumgenViewGen:
         biomes_to_delete = []
         for index, biome in enumerate(all_biomes):
             self.biome_lb.insert(tk.END, biome.get_filename())
-            if "/Objects/" in biome.get_filename():
+            if "/Objects/" in biome.get_filename() or "vfx" in biome.get_filename():
                 #print("Problem biome file index:", index)
                 biomes_to_delete.append(index)
 

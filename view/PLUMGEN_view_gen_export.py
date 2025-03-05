@@ -78,7 +78,7 @@ class PlumgenViewGenExport:
             self.parent.withdraw()
             
             self.window = tk.Toplevel(self.grandparent)
-            self.window.title(f"v1.3 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
+            self.window.title(f"v1.31 - {self.langs[self.lan]["view_gen_export_init"]["main_title"]}")
             
 
             # retrieve parent window's position & size
@@ -237,7 +237,7 @@ class PlumgenViewGenExport:
 
         filemenu = tk.Menu(mb)
         filemenu.add_command(label=f"1 {self.langs[self.lan]["filemenu_view_gen_export"]["Auto_Add_To_Tiles"]}", command=self.auto_add_all_biomes)
-        filemenu.add_command(label="2 Add *ALL* Biomes To all Tiles", command=self.add_all_biomes)
+        filemenu.add_command(label="2 Add *ALL* Biome Objects To All Tiles", command=self.add_all_biomes)
         filemenu.add_separator()
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Select_All"], command=self.select_all)
         filemenu.add_command(label=self.langs[self.lan]["filemenu_view_gen_export"]["Deselect_All"], command=self.deselect_all)

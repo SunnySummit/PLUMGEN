@@ -297,7 +297,7 @@
         "complete_import": {
             "warn_title": "Issue with Biome Objects Files",
             "warn_desc_pt1": "The imported biome objects files list contains ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nThese files may contain unique props with unique attributes, e.g. word stones, which PLUMGEN will make uninteractable.\n\nYes = Auto. remove these files for you from your Biome Objects List so props retain unique attributes.\n\nNo = Manually remove problematic MBINS in the /OBJECTS/ folder.\n\n(If 200+ found, remove subfolders as needed before importing)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nThese files may contain unique props with unique attributes, e.g. word stones, which PLUMGEN will make uninteractable.\n\nYes = Auto. remove these files for you from your Biome Objects List so props retain unique attributes.\n\nNo = Manually remove problematic MBINS in the /OBJECTS/ folder.\n\n(If 200+ found, remove subfolders as needed before importing)",
             "warn_missing_title": " 17 Biome Entries",
             "warn_missing_desc": "The missing or imported BIOMEFILENAMES contains less than 17 sub-biomes entries, a fixed-size array. This happens with outdated NMS versions which supported only 10 sub-biomes.\n\n(Recommended) Fix 1: After clicking 'Export', choose 'NO' to create a vanilla canvas, then add biomes manually.\n\n(Advanced) Fix 2: Add an EXTRA up-to-date vanilla (or custom) BIOMEFILENAMES to the import folder's top-most directory. Python will process it first, then handle the outdated BFN file, attempting a merge.",
             "info_title": "Import XML Complete",
@@ -896,7 +896,7 @@
         "complete_import": {
             "warn_title": "生物群系对象文件存在问题",
             "warn_desc_pt1": "导入的生物群系对象文件列表包含 ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs。\n\n这些文件可能包含具有唯一属性的唯一道具，例如词石，PLUMGEN 将使其无法交互。\n\n是=自动从生物群系对象列表中为您删除这些文件，以便道具保留其唯一属性。\n\n否=手动从 /OBJECTS/ 文件夹中删除问题 MBINS。\n\n(如果发现 200+，在导入之前根据需要删除子文件夹)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx')。\n\n这些文件可能包含具有唯一属性的唯一道具，例如词石，PLUMGEN 将使其无法交互。\n\n是=自动从生物群系对象列表中为您删除这些文件，以便道具保留其唯一属性。\n\n否=手动从 /OBJECTS/ 文件夹中删除问题 MBINS。\n\n(如果发现 200+，在导入之前根据需要删除子文件夹)",
             "warn_missing_title": " 17 生物群系条目",
             "warn_missing_desc": "丢失或已导入的BIOMEFILENAMES 包含少于 17 个子生物群系条目，这是一个固定大小的数组。 这发生在支持仅有 10 个子生物群系的过时 NMS 版本中。\n\n(推荐) 修复 1：单击“导出”后，选择“否”以创建纯净的画布，然后手动添加生物群系。\n\n(高级) 修复 2：向导入文件夹的最顶层目录添加一个额外的最新 BIOMEFILENAMES，Python 将首先处理它，然后处理过时的 BFN 文件，尝试合并。",
             "info_title": "导入 EXML 完成",
@@ -1495,7 +1495,7 @@
         "complete_import": {
             "warn_title": "Ongelma Biome-objektien tiedostojen kanssa",
             "warn_desc_pt1": "Tuodussa biome-objektien tiedostoluettelossa on ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nNämä tiedostot voivat sisältää ainutlaatuisia ominaisuuksia, kuten sanakivet, joita PLUMGEN tekee ei-vuorovaikutteisiksi.\n\nKyllä = Poista nämä tiedostot automaattisesti Biome-objektien luettelostasi, jotta ominaisuudet säilyvät ainutlaatuisina.\n\nEi = Poista ongelmalliset MBIN-tiedostot manuaalisesti /OBJECTS/-kansiosta.\n\n(Jos 200+ löytyy, poista alikansiot tarvittaessa ennen tuontia)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nNämä tiedostot voivat sisältää ainutlaatuisia ominaisuuksia, kuten sanakivet, joita PLUMGEN tekee ei-vuorovaikutteisiksi.\n\nKyllä = Poista nämä tiedostot automaattisesti Biome-objektien luettelostasi, jotta ominaisuudet säilyvät ainutlaatuisina.\n\nEi = Poista ongelmalliset MBIN-tiedostot manuaalisesti /OBJECTS/-kansiosta.\n\n(Jos 200+ löytyy, poista alikansiot tarvittaessa ennen tuontia)",
             "warn_missing_title": " 17 Biome-merkintää",
             "warn_missing_desc": "Puuttuvassa tai tuodussa BIOMEFILENAMES-tiedostossa on vähemmän kuin 17 alibiome-merkintää, kiinteän kokoisen taulukon. Tämä tapahtuu vanhentuneilla NMS-versioilla, jotka tukivat vain 10 alibiomea.\n\n(Suositeltu) Korjaa 1: Napsauttamisen jälkeen 'Vie', valitse 'EI' luodaksesi vaniljakankaan ja lisää sitten biomeet manuaalisesti.\n\n(Edistynyt) Korjaa 2: Lisää ylimääräinen ajan tasalla oleva vanilja (tai mukautettu) BIOMEFILENAMES tuontikansion ylimmän tason kansioon. Python käsittelee sen ensin ja käsittelee sitten vanhentuneen BFN-tiedoston yrittäen sulauttaa sen.",
             "info_title": "Tuonti EXML-valmis",
@@ -2094,7 +2094,7 @@
         "complete_import": {
             "warn_title": "Problème avec les fichiers d'objets de biome",
             "warn_desc_pt1": "La liste des fichiers d'objets de biome importés contient ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nCes fichiers peuvent contenir des accessoires uniques avec des attributs uniques, par exemple des pierres de mots, que PLUMGEN rendra non interactives.\n\nOui = Supprimer automatiquement ces fichiers de votre liste d'objets de biome pour que les accessoires conservent leurs attributs uniques.\n\nNon = Supprimez manuellement les MBIN problématiques dans le dossier /OBJECTS/.\n\n(Si plus de 200 sont trouvés, supprimez les sous-dossiers au besoin avant d'importer)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nCes fichiers peuvent contenir des accessoires uniques avec des attributs uniques, par exemple des pierres de mots, que PLUMGEN rendra non interactives.\n\nOui = Supprimer automatiquement ces fichiers de votre liste d'objets de biome pour que les accessoires conservent leurs attributs uniques.\n\nNon = Supprimez manuellement les MBIN problématiques dans le dossier /OBJECTS/.\n\n(Si plus de 200 sont trouvés, supprimez les sous-dossiers au besoin avant d'importer)",
             "warn_missing_title": " 17 Entrées de biomes manquantes",
             "warn_missing_desc": "Le fichier BIOMEFILENAMES manquant ou importé contient moins de 17 entrées de sous-biomes, un tableau de taille fixe. Cela se produit avec des versions NMS obsolètes qui ne prenaient en charge que 10 sous-biomes.\n\n(Recommandé) Correction 1 : Après avoir cliqué sur 'Exporter', choisissez 'NON' pour créer un canevas vierge, puis ajoutez manuellement des biomes.\n\n(Avancé) Correction 2 : Ajoutez un fichier BIOMEFILENAMES supplémentaire à jour (ou personnalisé) à partir du répertoire supérieur du dossier d'importation. Python le traitera d'abord, puis traitera le fichier BFN obsolète, en tentant une fusion.",
             "info_title": "Importation EXML terminée",
@@ -2693,7 +2693,7 @@
         "complete_import": {
             "warn_title": "Problem mit Biome-Objektdateien",
             "warn_desc_pt1": "Die importierte Liste der Biome-Objektdateien enthält ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nDiese Dateien können einzigartige Requisiten mit einzigartigen Attributen enthalten, z.B. Wortsteine, die PLUMGEN nicht interaktiv machen wird.\n\nJa = Entfernen Sie diese Dateien automatisch aus Ihrer Liste der Biomeobjekte, damit die Requisiten ihre einzigartigen Attribute behalten.\n\nNein = Entfernen Sie problematische MBINs im /OBJECTS/-Ordner manuell.\n\n(Wenn 200+ gefunden werden, entfernen Sie bei Bedarf Unterordner vor dem Importieren)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nDiese Dateien können einzigartige Requisiten mit einzigartigen Attributen enthalten, z.B. Wortsteine, die PLUMGEN nicht interaktiv machen wird.\n\nJa = Entfernen Sie diese Dateien automatisch aus Ihrer Liste der Biomeobjekte, damit die Requisiten ihre einzigartigen Attribute behalten.\n\nNein = Entfernen Sie problematische MBINs im /OBJECTS/-Ordner manuell.\n\n(Wenn 200+ gefunden werden, entfernen Sie bei Bedarf Unterordner vor dem Importieren)",
             "warn_missing_title": " 17 Biomeinträge fehlen",
             "warn_missing_desc": "Die fehlende oder importierte BIOMEFILENAMES enthält weniger als 17 Unterbiomeinträge, ein Array fester Größe. Dies tritt bei veralteten NMS-Versionen auf, die nur 10 Unterbiome unterstützten.\n\n(Empfohlen) Fix 1: Wählen Sie nach dem Klicken auf 'Export' 'NEIN', um eine Standardleinwand zu erstellen, und fügen Sie dann die Biome manuell hinzu.\n\n(Erweitert) Fix 2: Fügen Sie eine zusätzliche aktuelle Standard- (oder benutzerdefinierte) BIOMEFILENAMES in das oberste Verzeichnis des Importordners ein. Python wird es zuerst verarbeiten und dann die veraltete BFN-Datei bearbeiten und versuchen, sie zusammenzuführen.",
             "info_title": "EXML-Import abgeschlossen",
@@ -3292,7 +3292,7 @@
         "complete_import": {
             "warn_title": "Problema con i file degli oggetti dei biomi",
             "warn_desc_pt1": "La lista dei file degli oggetti dei biomi importati contiene ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nQuesti file possono contenere oggetti unici con attributi unici, ad esempio pietre di parola, che PLUMGEN renderà non interagibili.\n\nSì = Rimuovi automaticamente questi file dalla tua lista degli oggetti dei biomi in modo che gli oggetti mantengano attributi unici.\n\nNo = Rimuovi manualmente i MBIN problematici nella cartella /OBJECTS/.\n\n(Se se ne trovano più di 200, rimuovere le sottocartelle come necessario prima di importare)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nQuesti file possono contenere oggetti unici con attributi unici, ad esempio pietre di parola, che PLUMGEN renderà non interagibili.\n\nSì = Rimuovi automaticamente questi file dalla tua lista degli oggetti dei biomi in modo che gli oggetti mantengano attributi unici.\n\nNo = Rimuovi manualmente i MBIN problematici nella cartella /OBJECTS/.\n\n(Se se ne trovano più di 200, rimuovere le sottocartelle come necessario prima di importare)",
             "warn_missing_title": " 17 Voci di Bioma",
             "warn_missing_desc": "Le voci di bioma mancanti o importate BIOMEFILENAMES contengono meno di 17 voci di sottobiomi, un array di dimensioni fisse. Questo accade con versioni obsolete di NMS che supportavano solo 10 sottobiomi.\n\n(Raccomandato) Soluzione 1: Dopo aver cliccato su 'Esporta', scegli 'NO' per creare un canvas vaniglia, quindi aggiungi manualmente i biomi.\n\n(Avanzato) Soluzione 2: Aggiungi un EXTRA BIOMEFILENAMES vaniglia (o personalizzato) aggiornato alla cartella principale della cartella di importazione. Python lo elaborerà prima, quindi gestirà il file BFN obsoleto, tentando una fusione.",
             "info_title": "Importazione EXML completata",
@@ -3891,7 +3891,7 @@
         "complete_import": {
             "warn_title": "バイオームオブジェクトファイルに関する問題",
             "warn_desc_pt1": "インポートされたバイオームオブジェクトファイルリストには",
-            "warn_desc_pt2": " /OBJECTS/* MBIN が含まれています。\n\nこれらのファイルには、ユニークなプロップが含まれており、ユニークな属性を持っています。例：ワードストーンなど。これらのファイルを削除すると、プロップにユニークな属性が保持されます。\n\nはい = 自動でこれらのファイルを 'バイオームオブジェクトリスト' から削除します。\n\nいいえ = '/OBJECTS/' フォルダー内の問題のある MBIN を手動で削除します。\n\n(200 個以上見つかった場合、インポート前に必要に応じてサブフォルダーを削除してください)",
+            "warn_desc_pt2": " /OBJECTS/* MBIN (or 'vfx') が含まれています。\n\nこれらのファイルには、ユニークなプロップが含まれており、ユニークな属性を持っています。例：ワードストーンなど。これらのファイルを削除すると、プロップにユニークな属性が保持されます。\n\nはい = 自動でこれらのファイルを 'バイオームオブジェクトリスト' から削除します。\n\nいいえ = '/OBJECTS/' フォルダー内の問題のある MBIN を手動で削除します。\n\n(200 個以上見つかった場合、インポート前に必要に応じてサブフォルダーを削除してください)",
             "warn_missing_title": " 17 バイオームエントリー",
             "warn_missing_desc": "欠落しているかインポートされた BIOMEFILENAMES には、17 個のサブバイオームエントリ、固定サイズの配列が含まれていません。これは、10 個のサブバイオームのみをサポートする古い NMS バージョンで発生します。\n\n（推奨）修正方法 1：「エクスポート」をクリックした後、「いいえ」を選択してバニラキャンバスを作成し、その後手動でバイオームを追加します。\n\n（高度な）修正方法 2：インポートフォルダーの最上位ディレクトリに、最新のバニラ（またはカスタム）BIOMEFILENAMES を追加します。Python が最初にそれを処理し、その後、古い BFN ファイルを処理してマージを試みます。",
             "info_title": "EXML のインポートが完了しました",
@@ -4490,7 +4490,7 @@
         "complete_import": {
             "warn_title": "생물꾼 객체 파일에 문제 발생",
             "warn_desc_pt1": "가져온 생물꾼 객체 파일 목록에는 ",
-            "warn_desc_pt2": " /OBJECTS/* MBIN이 있습니다.\n\n이 파일에는 고유한 속성을 가진 고유한 소품, 예: 단어 돌,이 포함될 수 있습니다. PLUMGEN은 이러한 파일을 소품의 고유한 속성을 유지하도록 자동으로 제거합니다.\n\n예 = 자동으로 이러한 파일을 Biome Objects 목록에서 제거합니다. 소품이 고유한 속성을 유지합니다.\n\n아니요 = /OBJECTS/ 폴더의 문제가 있는 MBIN을 수동으로 제거하십시오.\n\n(200개 이상 찾으면 가져오기 전에 필요한 하위 폴더를 제거하십시오)",
+            "warn_desc_pt2": " /OBJECTS/* MBIN (or 'vfx') 이 있습니다.\n\n이 파일에는 고유한 속성을 가진 고유한 소품, 예: 단어 돌,이 포함될 수 있습니다. PLUMGEN은 이러한 파일을 소품의 고유한 속성을 유지하도록 자동으로 제거합니다.\n\n예 = 자동으로 이러한 파일을 Biome Objects 목록에서 제거합니다. 소품이 고유한 속성을 유지합니다.\n\n아니요 = /OBJECTS/ 폴더의 문제가 있는 MBIN을 수동으로 제거하십시오.\n\n(200개 이상 찾으면 가져오기 전에 필요한 하위 폴더를 제거하십시오)",
             "warn_missing_title": " 17개의 생물꾼 항목",
             "warn_missing_desc": "누락된 또는 가져온 BIOMEFILENAMES에는 17개의 하위 생물꾼 항목을 포함하지 않습니다. 이는 이전 NMS 버전에서만 지원되었던 고정 크기 배열입니다. 이는 이전 NMS 버전에서만 지원되었던 고정 크기 배열입니다.\n\n(권장됨) 수정 1: '내보내기'를 클릭한 후 '아니요'를 선택하여 바닐라 캔버스를 생성한 다음 생물꾼을 수동으로 추가하십시오.\n\n(고급) 수정 2: 가져오기 폴더의 최상위 디렉터리에 추가로 최신 바닐라(또는 사용자 정의) BIOMEFILENAMES을 추가하십시오. Python은 먼저이 파일을 처리 한 다음 오래된 BFN 파일을 처리하여 병합을 시도합니다.",
             "info_title": "EXML 가져오기 완료",
@@ -5089,7 +5089,7 @@
         "complete_import": {
             "warn_title": "Problema com Arquivos de Objetos de Bioma",
             "warn_desc_pt1": "A lista de arquivos de objetos de bioma importados contém ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nEsses arquivos podem conter props únicos com atributos únicos, por exemplo, pedras de palavra, que o PLUMGEN tornará não interagíveis.\n\nSim = Auto. remover esses arquivos para você da sua Lista de Objetos de Bioma para que os props mantenham atributos únicos.\n\nNão = Remova manualmente os MBINs problemáticos na pasta /OBJECTS/.\n\n(Se 200+ forem encontrados, remova subpastas conforme necessário antes de importar)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nEsses arquivos podem conter props únicos com atributos únicos, por exemplo, pedras de palavra, que o PLUMGEN tornará não interagíveis.\n\nSim = Auto. remover esses arquivos para você da sua Lista de Objetos de Bioma para que os props mantenham atributos únicos.\n\nNão = Remova manualmente os MBINs problemáticos na pasta /OBJECTS/.\n\n(Se 200+ forem encontrados, remova subpastas conforme necessário antes de importar)",
             "warn_missing_title": " 17 Entradas de Biomas",
             "warn_missing_desc": "O arquivo BIOMEFILENAMES ausente ou importado contém menos de 17 entradas de sub-biomas, uma matriz de tamanho fixo. Isso acontece com versões desatualizadas do NMS que suportavam apenas 10 sub-biomas.\n\n(Recomendado) Corrigir 1: Depois de clicar em 'Exportar', escolha 'NÃO' para criar um canvas padrão e, em seguida, adicione biomas manualmente.\n\n(Avançado) Corrigir 2: Adicione um arquivo BIOMEFILENAMES VANILLA (ou personalizado) EXTRA atualizado ao diretório de importação. O Python o processará primeiro e, em seguida, lidará com o arquivo BFN desatualizado, tentando uma mesclagem.",
             "info_title": "Importação EXML Completa",
@@ -5688,7 +5688,7 @@
         "complete_import": {
             "warn_title": "Проблема с файлами объектов биома",
             "warn_desc_pt1": "Импортированный список файлов объектов биома содержит ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nЭти файлы могут содержать уникальные объекты с уникальными атрибутами, например, камни слов, которые PLUMGEN сделает неинтерактивными.\n\nДа = Автоматическое удаление этих файлов для вас из списка объектов биома, чтобы объекты оставались с уникальными атрибутами.\n\nНет = Вручную удалите проблемные MBIN в папке /OBJECTS/.\n\n(Если найдено 200+, удалите подпапки по мере необходимости перед импортом)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nЭти файлы могут содержать уникальные объекты с уникальными атрибутами, например, камни слов, которые PLUMGEN сделает неинтерактивными.\n\nДа = Автоматическое удаление этих файлов для вас из списка объектов биома, чтобы объекты оставались с уникальными атрибутами.\n\nНет = Вручную удалите проблемные MBIN в папке /OBJECTS/.\n\n(Если найдено 200+, удалите подпапки по мере необходимости перед импортом)",
             "warn_missing_title": " 17 записей биома",
             "warn_missing_desc": "Отсутствующий или импортированный BIOMEFILENAMES содержит менее 17 записей под-биомов, фиксированный массив. Это происходит с устаревшими версиями NMS, которые поддерживали только 10 под-биомов.\n\n(Рекомендуется) Исправление 1: После щелчка 'Экспорт' выберите 'Нет', чтобы создать ванильное полотно, затем добавьте биомы вручную.\n\n(Продвинутое) Исправление 2: Добавьте ДОПОЛНИТЕЛЬНЫЙ обновленный ванильный (или пользовательский) BIOMEFILENAMES в верхний каталог папки импорта. Питон будет обрабатывать его первым, затем обрабатывать устаревший файл BFN, пытаясь объединить.",
             "info_title": "Импорт EXML завершен",
@@ -6287,7 +6287,7 @@
         "complete_import": {
             "warn_title": "Problema con los archivos de objetos del bioma",
             "warn_desc_pt1": "La lista de archivos de objetos de bioma importados contiene ",
-            "warn_desc_pt2": " /OBJECTS/* MBINs.\n\nEstos archivos pueden contener props únicos con atributos únicos, como piedras de palabras, que PLUMGEN hará que no sean interactivas.\n\nSí = Eliminar automáticamente estos archivos de su Lista de Objetos de Bioma para que los props conserven atributos únicos.\n\nNo = Elimine manualmente los MBIN problemáticos en la carpeta /OBJECTS/.\n\n(Si se encuentran 200+, elimine subcarpetas según sea necesario antes de importar)",
+            "warn_desc_pt2": " /OBJECTS/* MBINs (or 'vfx').\n\nEstos archivos pueden contener props únicos con atributos únicos, como piedras de palabras, que PLUMGEN hará que no sean interactivas.\n\nSí = Eliminar automáticamente estos archivos de su Lista de Objetos de Bioma para que los props conserven atributos únicos.\n\nNo = Elimine manualmente los MBIN problemáticos en la carpeta /OBJECTS/.\n\n(Si se encuentran 200+, elimine subcarpetas según sea necesario antes de importar)",
             "warn_missing_title": " 17 Entradas de Biomas",
             "warn_missing_desc": "El archivo BIOMEFILENAMES faltante o importado contiene menos de 17 subentradas de biomas, una matriz de tamaño fijo. Esto ocurre con versiones antiguas de NMS que solo admitían 10 sub-biomas.\n\n(Recomendado) Solución 1: Después de hacer clic en 'Exportar', elija 'NO' para crear un lienzo vainilla, luego agregue biomas manualmente.\n\n(Solución avanzada) Solución 2: Agregue un archivo BIOMEFILENAMES vainilla (o personalizado) EXTRA actualizado a la carpeta de importación del directorio superior. Python lo procesará primero, luego manejará el archivo BFN desactualizado, intentando una fusión.",
             "info_title": "Importación EXML Completada",

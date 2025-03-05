@@ -1,4 +1,4 @@
-# Plumgen (v1.3)
+# Plumgen (v1.31)
 
 [![License](https://img.shields.io/github/license/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/blob/main/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/SunnySummit/PLUMGEN/total.svg)](https://github.com/SunnySummit/PLUMGEN/releases)
@@ -23,6 +23,10 @@
 ### Changelog
 
 <details>
+
+#### Update v1.31:
+
+	+ Improvements for new 5.58 update.
 
 #### Update v1.3:
 	
