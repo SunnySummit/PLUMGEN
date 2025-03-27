@@ -15,6 +15,7 @@ import xml.etree.ElementTree as ET
 import logging
 import shutil
 import webbrowser
+import string
 from tkinter import messagebox
 from view.PLUMGEN_view_gen import PlumgenViewGen
 from Resources.PLUMGEN_model_gen import PlumgenModelGen
@@ -104,7 +105,8 @@ class PlumgenControllerGen():
                         "MinScale", "MaxScale", "MinScaleY", "MaxScaleY", "PatchEdgeScaling",
                         "MaxXZRotation", "MaxYRotation", "MaxRaise", "MaxLower", "DestroyedByPlayerShip","DestroyedByTerrainEdit", "IsFloatingIsland",
                         "CreaturesCanEat", "Coverage", "FlatDensity", "SlopeDensity", "SlopeMultiplier", "DrawDistance"] #v4
-            
+            self.random_letter = random.choice(string.ascii_uppercase)
+            self.random_number = random.randint(1, 99)
 
             # store imported XMLs
             self.bfn_all_biome_files_weights = []
@@ -179,7 +181,7 @@ class PlumgenControllerGen():
 
             # pass to new view links on root frame and controller object
             #self.root.title("PLUMGEN - Biome Objects")
-            self.root.title(f"v1.31 - {self.langs[self.lan]["controller_init"]["main_title"]}")
+            self.root.title(f"v1.4 - {self.langs[self.lan]["controller_init"]["main_title"]}")
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
@@ -625,7 +627,7 @@ class PlumgenControllerGen():
     def c_create_default_biome(self):
         # initialize new model with dummy data
         self.counter += 1
-        self.name = f"Biomes/Plumgen/Biome {self.counter}"
+        self.name = f"Biomes/Plumgen{self.random_letter}{self.random_number}/Biome {self.counter}"
     
         self.model = PlumgenModelGen(self.name, self.dist_list, self.landm_list, self.objs_list, self.detail_list)
         # compare the 4 randomly selected "model paths" with those in csv and generate vanilla data for them

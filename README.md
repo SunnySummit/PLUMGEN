@@ -1,4 +1,4 @@
-# Plumgen (v1.31)
+# Plumgen (v1.4)
 
 [![License](https://img.shields.io/github/license/SunnySummit/PLUMGEN)](https://github.com/SunnySummit/PLUMGEN/blob/main/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/SunnySummit/PLUMGEN/total.svg)](https://github.com/SunnySummit/PLUMGEN/releases)
@@ -24,9 +24,20 @@
 
 <details>
 
+#### Update v1.4:
+
++ I discovered that it's now possible to merge biome gen mods automatically!
++ Basically, any EXML mod in your MODS folder will be merged automatically when starting your game, as long as certain indices match, which PLUMGEN now handles automatically.
++ To make this change, I converted some exported MBIN files to EXML and added extra EXML files alongside MBIN files.
++ What this means:
++ All mods made with PLUMGEN are now fully compatible with each other out-of-the-box.
++ PLUMGEN mods are also compatible with the vanilla game.
++ Simply editing any EXML file in your MODS folder applies changes in-game (after restarting), w/o first having to convert the file to MBIN.
++ This should improve overall compatibility with future game updates.
+
 #### Update v1.31:
 
-	+ Improvements for new 5.58 update.
++ Improvements for new 5.58 update.
 
 #### Update v1.3:
 	
