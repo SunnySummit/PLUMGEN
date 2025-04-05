@@ -185,6 +185,9 @@ class PlumgenControllerGen():
             self.view = PlumgenViewGen(self.root, self, self.langs, self.lan)
 
             self.data = self.load_csv_data()
+            self.draw_distance_matches = {}
+            self.refined_prop_chaos = False
+            self.update_match_drawdistance_list()
 
             self.root.mainloop()
 
@@ -372,6 +375,9 @@ class PlumgenControllerGen():
         self.csv_file = os.path.abspath(os.path.join(self.resources_path, filename))
         self.data = self.load_csv_data()
 
+    def set_refined_prop_chaos(self, refined_prop_chaos_var):
+        self.refined_prop_chaos = refined_prop_chaos_var
+
     def set_default_model_list(self):
         # set for all: current/future and past biomes
         self.placem_list, self.dist_list, self.landm_list, self.objs_list, self.detail_list = self.model_paths.create_default_model_paths()
@@ -453,8 +459,58 @@ class PlumgenControllerGen():
         return data
 
 
+
+    def update_match_drawdistance_list(self):
+        draw_distance_categories = ["DistantObjects", "Landmarks", "Objects", "DetailObjects"]
+        self.draw_distance_matches = {}
+
+        for category in draw_distance_categories:
+            category_matches = []
+            for row in self.data:
+                if row["DrawDistance"] == category:
+                    if category == "DistantObjects":
+                        if str(row["IsFloatingIsland"]).lower() == "false": # don't add if it's a floating prop... will cause crash
+                            category_matches.append(row)
+                    else:
+                        category_matches.append(row)
+            self.draw_distance_matches[category] = category_matches
+
+
     def compare_and_update(self, target_list):
+        
         matching_lists = []
+
+        # better way to do it:
+        # target_draw_distance = target_list[self.csv_compare_list.index("DrawDistance")]
+        target_draw_distance = target_list[24]
+
+        '''
+        if target_draw_distance == "DistantObjects":
+            for row in self.draw_distance_matches["DistantObjects"]:
+                if row['Filename'] == target_list[1]:
+                    #matching_list = [row[column] for column in self.csv_compare_list]
+                    #replace '\' with '/'
+                    matching_list = [row[column].replace('\\', '/') for column in self.csv_compare_list]
+                    matching_lists.append(matching_list)
+        elif target_draw_distance == "Landmarks":
+            for row in self.draw_distance_matches["Landmarks"]:
+                if row['Filename'] == target_list[1]:
+                    matching_list = [row[column].replace('\\', '/') for column in self.csv_compare_list]
+                    matching_lists.append(matching_list)
+        elif target_draw_distance == "Objects":
+            for row in self.draw_distance_matches["Objects"]:
+                if row['Filename'] == target_list[1]:
+                    matching_list = [row[column].replace('\\', '/') for column in self.csv_compare_list]
+                    matching_lists.append(matching_list)
+        elif target_draw_distance == "DetailObjects":
+            for row in self.draw_distance_matches["DetailObjects"]:
+                if row['Filename'] == target_list[1]:
+                    matching_list = [row[column].replace('\\', '/') for column in self.csv_compare_list]
+                    matching_lists.append(matching_list)
+        '''
+
+
+
 
         for row in self.data:
             if row['Filename'] == target_list[1]:
@@ -462,6 +518,7 @@ class PlumgenControllerGen():
                 #replace '\' with '/'
                 matching_list = [row[column].replace('\\', '/') for column in self.csv_compare_list]
                 matching_lists.append(matching_list)
+
 
         #print(f"target_list 1: {target_list}")
         self.matching_lists_count = matching_lists # assign matching items
@@ -480,6 +537,37 @@ class PlumgenControllerGen():
             # Update values in target_list with the randomly selected matching_list values
             for i in range(len(self.csv_compare_list)):
                 target_list[i] = selected_matching_list_copy[i]
+            
+
+
+
+
+
+            if self.refined_prop_chaos:
+
+
+                if (target_draw_distance == "DistantObjects" and
+                    target_list[1] != "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN" and
+                    str(target_list[18]).lower() == "false"):
+                    random_row = random.choice(self.draw_distance_matches["DistantObjects"])
+                elif target_draw_distance == "Landmarks":
+                    random_row = random.choice(self.draw_distance_matches["Landmarks"])
+                elif target_draw_distance == "Objects":
+                    random_row = random.choice(self.draw_distance_matches["Objects"])
+                else:
+                    return # don't do this with "detailobjects" = crash
+
+                # replace backslashes with slashes in Filename
+                new_filename = random_row["Filename"].replace('\\', '/')
+                new_type = random_row["Type"]
+                
+                # Assign to target_list
+                target_list[1] = new_filename
+                target_list[0] = new_type
+
+
+
+
         
         #print(f"matching_lists: {matching_lists}")
         #print(f"target_list 2: {target_list}\n")
@@ -575,7 +663,7 @@ class PlumgenControllerGen():
                         target_item[21] = str(float(target_item[21]) / divisor_fd) # flatdensity
 
                 if i == 0:
-                    if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN":
+                    if target_item[1] == "MODELS/PLANETS/BIOMES/COMMON/GRASS/NEWCROSSGRASS.SCENE.MBIN" or target_item[20] == 0.0: # check if coverage is zero, aka no matching distantobjects
                         self.model.delete_distant_obj(j) # delete if none selected
                     else:
                         self.model.set_all_distant_model_similar_props(j, self.matching_lists_count)
@@ -670,10 +758,10 @@ class PlumgenControllerGen():
                         # dictionary to map keywords to suffixes
                         keyword_suffix_mapping = {
                             "toxic": "_Toxic",
-                            "scorched": "_Scorched",
+                            "scorched": "_Scorched_Coral",
                             "radioactive": "_Radioactive",
                             "frozen": "_Frozen",
-                            "barren": "_Barren",
+                            "barren": "_Barren_Hot",
                             "dead": "_Dead",
                             "weird": "_Weird",
                             "swamp": "_Swamp",
@@ -685,9 +773,9 @@ class PlumgenControllerGen():
                             "nevada": "_Nevada_Lush", #v1.2
                             "rainforest": "_Rainforest_Lush", #v1.2
                             "huge": "_Huge_Ruins",
-                            "burnt": "_Burnt", # worlds part 1
+                            "burnt": "_Burnt_Hot", # worlds part 1
                             "desolate": "_Desolate",
-                            "floral": "_Floral",
+                            "floral": "_Floral_Crystal",
                             "irradiated": "_Irradiated",
                             "noxious": "_Noxious",
                             "rocky": "_Rocky_Islands", #v1.2
@@ -695,14 +783,17 @@ class PlumgenControllerGen():
                             "subzero": "_Subzero",
                             "snow": "_Frozen", #v1.3
                             "burntremix": "_BurntRemix", # worlds part 2
-                            "gasgiants": "_GasGiants",
+                            "gas": "_Gas_Crystal",
                             "irradremix": "_IrradRemix",
-                            "jungle": "_Jungle",
+                            "jungle": "_Jungle_Coral",
                             "noxremix": "_NoxRemix",
                             "ocean": "_Ocean",
                             "subzremix": "_SubzRemix",
                             "deepwater": "_DeepWater",
-                            "waterworld": "_WaterWorld"
+                            "waterworld": "_WaterWorld",
+                            "Coral": "_Coral",
+                            "Crystal": "_Crystal",
+                            "Hot": "_Hot"
                         }
 
                         # iterate over dictionary to check for each keyword

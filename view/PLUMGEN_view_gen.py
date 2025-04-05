@@ -1839,6 +1839,7 @@ class PlumgenViewGen:
 
     def gen_using_biome_template_data(self):
         try:
+            self.controller.update_match_drawdistance_list()
                     
             selected_csv = self.csv_var.get()
             # show warning if user using custom biome template .csv
@@ -2080,6 +2081,48 @@ class PlumgenViewGen:
     def ask_number_biomes_to_add_menu(self, event):
         try: 
 
+            def on_ok():
+                num_times = entry.get()
+                if self.is_positive_integer(num_times):
+                    num_times = int(num_times)
+                    refined_chaotic_models = var.get()  # store checkbox value
+                    self.controller.set_refined_prop_chaos(refined_chaotic_models) # set in controller
+                    self.bulk_generate_biomes_window.destroy()
+                    self.add_default_biome(num_times)
+                else:
+                    messagebox.showerror("Invalid Number", "Please enter a positive integer.", parent=self.window)
+
+            def on_cancel():
+                self.bulk_generate_biomes_window.destroy()
+
+            self.bulk_generate_biomes_window = tk.Toplevel(self.window)
+            self.bulk_generate_biomes_window.title("Generate Biomes")
+
+            try: ctypes.windll.shcore.SetProcessDpiAwareness(2)
+            except: pass  # DPI awareness not available
+
+            parent_x = self.window.winfo_rootx()
+            parent_y = self.window.winfo_rooty()
+            self.bulk_generate_biomes_window.geometry(f"+{parent_x}+{parent_y}")
+            self.bulk_generate_biomes_window.iconbitmap(self.icon_path)
+            self.bulk_generate_biomes_window.grab_set()  # prevent this window from going behind main window
+
+            tk.Label(self.bulk_generate_biomes_window, text="Enter the number of biomes to generate:").grid(row=0, column=0, padx=10, pady=10)
+            entry = tk.Entry(self.bulk_generate_biomes_window)
+            entry.grid(row=0, column=1, padx=10, pady=10)
+
+            var = tk.BooleanVar()
+            checkbox = tk.Checkbutton(self.bulk_generate_biomes_window, text="Refined Chaotic Models", variable=var)
+            checkbox.grid(row=1, column=0, columnspan=2, pady=(0, 10))
+
+            btn_frame = tk.Frame(self.bulk_generate_biomes_window)
+            btn_frame.grid(row=2, column=0, columnspan=2, pady=(0, 10))
+
+            tk.Button(btn_frame, text="OK", command=on_ok).pack(side=tk.LEFT, padx=5)
+            tk.Button(btn_frame, text="Cancel", command=on_cancel).pack(side=tk.LEFT)
+
+
+            '''
             # display context menu on right-click. dialog to ask how many biomes to add
             num_times = simpledialog.askstring("Enter Number", "Enter the number of biomes to generate:")
             if num_times is not None:
@@ -2096,6 +2139,9 @@ class PlumgenViewGen:
 
                 else:
                     messagebox.showerror("Invalid Number", "Please enter a positive integer.", parent=self.window)
+        
+            '''       
+
         except Exception as e:
             self.logger.exception("Error: %s", e) # log the exception
             self.show_error_message("An error occurred: {}".format(str(e)))
